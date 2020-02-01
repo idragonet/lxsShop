@@ -5,12 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <Content Remove="Areas\Admin\Views\Index\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,9 +19,31 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="wwwroot\res\images\fa_png\" />
+    <Folder Include="wwwroot\res\images\loading\" />
+    <Folder Include="wwwroot\res\images\snapshot\" />
+    <Folder Include="wwwroot\res\images\themes\border\" />
+    <Folder Include="wwwroot\res\js\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="FineUICore">
-      <HintPath>..\..\搜狗高速下载\【空项目】FineUICore_EmptyProject_v6.1.0\FineUICore.EmptyProject\bin\FineUICore.dll</HintPath>
+      <HintPath>..\..\..\..\搜狗高速下载\【空项目】FineUICore_EmptyProject_v6.1.0\FineUICore.EmptyProject\bin\FineUICore.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Areas\Admin\Views\Index\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Index\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Admin\Views\Index\Index.cshtml" />
   </ItemGroup>
 
 </Project>
