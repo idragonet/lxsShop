@@ -1,28 +1,31 @@
 ﻿@{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "登录";
     var F = @Html.F();
 }
 
+@section head {
+
+    <link type="text/css" rel="stylesheet" href="~/res/css/login.css" />
+
+}
 
 @section body {
 
-    <div>
-        用户名：admin
-        <br>
-        密码：admin
-        <br>
-        <br>
-        <br>
-        注意：在任意输入框内按回车键都会触发表单的提交（相当于点击【登陆】按钮）。
+    <div id="banner">
+        <!--done-->
+
+
     </div>
 
-    @(F.Window().Width(350).WindowPosition(WindowPosition.GoldenSection).EnableClose(false).IsModal(false).Title("登录表单").ID("Window1")
+    @(F.Window().Width(400).WindowPosition(WindowPosition.GoldenSection).EnableClose(false).IsModal(false).Title("登录").ID("Window1")
         .Items(
             F.SimpleForm().ShowHeader(false).LabelWidth(80).BodyPadding(10).ShowBorder(false).ID("SimpleForm1")
                 .Items(
                     F.SimpleForm().ShowHeader(false).LabelWidth(80).BodyPadding(10).ShowBorder(false).ID("SimpleForm1")
                         .Items(
-                            F.TextBox().ShowRedStar(true).Required(true).Label("用户名").ID("tbxUserName"),
+                            F.SimpleForm().ShowHeader(false).LabelWidth(80).BodyPadding(10).ShowBorder(false).ID("SimpleForm1")
+                                .Items(
+                                    F.TextBox().ShowRedStar(true).Required(true).Label("用户名").ID("tbxUserName"),
                             F.TextBox().ShowRedStar(true).Required(true).TextMode(TextMode.Password).Label("密码").ID("tbxPassword")
                         )
                 )
@@ -34,11 +37,11 @@
                         )
                 )
         )
+    )
         )
-      <br>
+    <br>
 
 
 }
 
 
-             

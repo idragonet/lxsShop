@@ -1,0 +1,11 @@
+﻿#banner {
+    width: 100%;
+    height: 125px;
+    background: url(/uploads/circuit_bg.jpg) no-repeat left top;
+}
+
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+}
