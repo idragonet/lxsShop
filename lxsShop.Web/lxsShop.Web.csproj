@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\lxsShop.BLL\lxsShop.BLL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FineUICore">
+      <HintPath>..\..\搜狗高速下载\【空项目】FineUICore_EmptyProject_v6.1.0\FineUICore.EmptyProject\bin\FineUICore.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
