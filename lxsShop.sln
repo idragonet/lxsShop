@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lxsShop.Web", "lxsShop.Web\lxsShop.Web.csproj", "{1039E139-926A-4C0A-AB4B-CEC9B8A7D1C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Web", "lxsShop.Web\lxsShop.Web.csproj", "{1039E139-926A-4C0A-AB4B-CEC9B8A7D1C0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lxsShop.Entitys", "lxsShop.Entitys\lxsShop.Entitys.csproj", "{02AD9814-07D1-48BF-8472-E360B581E953}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Entitys", "lxsShop.Entitys\lxsShop.Entitys.csproj", "{02AD9814-07D1-48BF-8472-E360B581E953}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lxsShop.BLL", "lxsShop.BLL\lxsShop.BLL.csproj", "{9528C527-0437-4563-930B-CCF5CD41F1B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.BLL", "lxsShop.BLL\lxsShop.BLL.csproj", "{9528C527-0437-4563-930B-CCF5CD41F1B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "通用类库", "通用类库", "{FA4420A5-B994-4CF3-B133-483174A8F8A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

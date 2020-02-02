@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FineUICore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -29,6 +30,26 @@ namespace lxsShop.Web
                 // 自定义模型绑定（Newtonsoft.Json）
                 options.ModelBinderProviders.Insert(0, new JsonModelBinderProvider());
             });
+
+
+            //添加 身份验证 服务
+            /*services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
+                AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
+                {
+                    o.LoginPath = new PathString("/Admin/Index/Login");
+                });*/
+
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                //如果自己定义了Cookie名称，这里也需要指定Cookie名称 
+                //.AddCookie("MyCookie", options => ...)
+                .AddCookie(options =>
+                {
+                    //指定登陆页面的地址
+                    options.LoginPath = "/Admin/Home/Login";
+                    //指定无权访问的跳转页面地址
+                    options.AccessDeniedPath = "/denied";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,11 +64,16 @@ namespace lxsShop.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
+
             // 静态资源中间件
             app.UseStaticFiles();
 
             // FineUI 和 MVC 中间件（确保 UseFineUI 位于 UseMvc 的前面）
             app.UseFineUI();
+
+            //使用身份验证服务  注意这句话要放在app.UseMvc的前面
+            app.UseAuthentication();
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -57,6 +83,9 @@ namespace lxsShop.Web
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+
+           
         }
     }
 }

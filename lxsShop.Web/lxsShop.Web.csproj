@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Areas\Admin\Views\Index\Index.cshtml" />
+    <Content Remove="Areas\Admin\Views\Home\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,15 +35,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <UpToDateCheckInput Remove="Areas\Admin\Views\Index\Index.cshtml" />
+    <UpToDateCheckInput Remove="Areas\Admin\Views\Home\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Index\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Areas\Admin\Views\Home\Index.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Areas\Admin\Views\Index\Index.cshtml" />
+    <None Include="Areas\Admin\Views\Home\Index.cshtml" />
   </ItemGroup>
 
 </Project>
