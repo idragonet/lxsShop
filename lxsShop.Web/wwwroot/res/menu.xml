@@ -2,14 +2,12 @@
 <Tree>
   <TreeNode Text="商品" IconFont="_Columns">
   
-    <TreeNode Text="商品列表" NavigateUrl="~/Basic/Hello" IconFont="_Table">
+    <TreeNode Text="商品列表" NavigateUrl="~/Admin/Product/Index" IconFont="_Table">
     </TreeNode>
-    <TreeNode Text="商品类别" NavigateUrl="~/Basic/Login" IconFont="_Bookmark">
+    <TreeNode Text="商品类别" NavigateUrl="~/Admin/Product/Category" IconFont="_Bookmark">
     </TreeNode>
-    <TreeNode Text="品牌管理" NavigateUrl="~/Basic/LoginEnterKey" IconFont="_Tag">
+    <TreeNode Text="品牌管理" NavigateUrl="~/Admin/Product/Brand" IconFont="_Tag">
     </TreeNode>
-    <!--<TreeNode Text="登录页面（验证码）" NavigateUrl="~/Basic/LoginCaptcha" Icon="User">
-    </TreeNode>-->
   </TreeNode>
 
   <TreeNode Text="页面" IconFont="_Layout">

@@ -86,6 +86,9 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
 
                 int childVisibleCount = 0;
+
+                node.Expanded = true;
+
                 if (isLeaf)
                 {
                     // 仅显示基础版示例
@@ -93,8 +96,6 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                     {
                         currentNodeIsVisible = false;
                     }*/
-
-
                 }
                 else
                 {
@@ -104,15 +105,6 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                     if (childVisibleCount == 0)
                     {
                         currentNodeIsVisible = false;
-                    }
-                    else
-                    {
-                        // 存在搜索文本
-                        /*if (!String.IsNullOrEmpty(_cookieSearchText))
-                        {
-                            // 展开节点
-                            node.Expanded = true;
-                        }*/
                     }
                 }
 
@@ -168,6 +160,13 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+          return Redirect("/Admin/Home/Login");
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> btnLogin_Click(string tbxUserName, string tbxPassword)
@@ -209,6 +208,12 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             Alert.Show("你好 FineUI！", MessageBoxIcon.Warning);
 
             return UIHelper.Result();
+        }
+
+        public async Task<IActionResult> LoginOut_Click()
+        {
+            await HttpContext.SignOutAsync();
+            return Redirect("/Admin/Home/Login");
         }
     }
 }

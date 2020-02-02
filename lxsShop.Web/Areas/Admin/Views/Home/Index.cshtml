@@ -34,8 +34,7 @@
 
                     .Menu(F.Menu()
                     .Items(
-                    F.MenuButton().IconFont(IconFont._SignOut).Text("安全退出"),
-                    F.MenuButton().Text("安全退出").ID("btnApplyBase").OnClientClick("onBaseDownloadClick();")
+                    F.MenuButton().IconFont(IconFont._SignOut).Text("安全退出").OnClick(Url.Action("LoginOut_Click"))
                     )
                     )
                     )
