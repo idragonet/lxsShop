@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\lxsShop.Entitys\lxsShop.Entitys.csproj" />
-    <ProjectReference Include="..\lxsShop.Repositories\lxsShop.Repository.csproj" />
     <ProjectReference Include="..\lxsShop.Services\lxsShop.Services.csproj" />
   </ItemGroup>
 
