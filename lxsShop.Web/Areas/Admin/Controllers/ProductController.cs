@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using lxsShop.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +24,10 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public IActionResult Category()
         {
-            return View();
+            var postRepository = new CategoryRepository();
+            var post = postRepository.FindById(1);
+            return View(post);
+        
         }
 
 
@@ -33,6 +37,10 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             return View();
         }
 
-        
+
+        public IActionResult Dept_DoPostBack()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

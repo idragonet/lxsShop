@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Web", "lxsShop.Web\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Entitys", "lxsShop.Entitys\lxsShop.Entitys.csproj", "{02AD9814-07D1-48BF-8472-E360B581E953}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.BLL", "lxsShop.BLL\lxsShop.BLL.csproj", "{9528C527-0437-4563-930B-CCF5CD41F1B6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{FA4420A5-B994-4CF3-B133-483174A8F8A1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "通用类库", "通用类库", "{FA4420A5-B994-4CF3-B133-483174A8F8A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Repositories", "lxsShop.Repositories\lxsShop.Repositories.csproj", "{9C02B30D-FC5F-44F8-BB42-B6E8AE2F3C06}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Services", "lxsShop.Services\lxsShop.Services.csproj", "{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,13 +27,22 @@ Global
 		{02AD9814-07D1-48BF-8472-E360B581E953}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02AD9814-07D1-48BF-8472-E360B581E953}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02AD9814-07D1-48BF-8472-E360B581E953}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9528C527-0437-4563-930B-CCF5CD41F1B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9528C527-0437-4563-930B-CCF5CD41F1B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9528C527-0437-4563-930B-CCF5CD41F1B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9528C527-0437-4563-930B-CCF5CD41F1B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C02B30D-FC5F-44F8-BB42-B6E8AE2F3C06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C02B30D-FC5F-44F8-BB42-B6E8AE2F3C06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C02B30D-FC5F-44F8-BB42-B6E8AE2F3C06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C02B30D-FC5F-44F8-BB42-B6E8AE2F3C06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02AD9814-07D1-48BF-8472-E360B581E953} = {FA4420A5-B994-4CF3-B133-483174A8F8A1}
+		{9C02B30D-FC5F-44F8-BB42-B6E8AE2F3C06} = {FA4420A5-B994-4CF3-B133-483174A8F8A1}
+		{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E} = {FA4420A5-B994-4CF3-B133-483174A8F8A1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28DEAC29-91A4-4E44-9A40-863BA41DB610}
