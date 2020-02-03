@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using FineUICore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -52,9 +54,23 @@ namespace lxsShop.Web
                 });
 
 
-            //注册Autofac组件
-            return AutofacComponent.Register(services);
+           
+            return RegisterAutofac(services);//注册Autofac
 
+        }
+
+        private IServiceProvider RegisterAutofac(IServiceCollection services)
+        {
+            //实例化Autofac容器
+            var builder = new ContainerBuilder();
+            //将Services中的服务填充到Autofac中
+            builder.Populate(services);
+            //新模块组件注册
+            builder.RegisterModule<AutofacModuleRegister>();
+            //创建容器
+            var Container = builder.Build();
+            //第三方IOC接管 core内置DI容器
+            return new AutofacServiceProvider(Container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

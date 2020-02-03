@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Entitys", "lxsShop.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{FA4420A5-B994-4CF3-B133-483174A8F8A1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Repositories", "lxsShop.Repositories\lxsShop.Repositories.csproj", "{9C02B30D-FC5F-44F8-BB42-B6E8AE2F3C06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Repository", "lxsShop.Repositories\lxsShop.Repository.csproj", "{9C02B30D-FC5F-44F8-BB42-B6E8AE2F3C06}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Services", "lxsShop.Services\lxsShop.Services.csproj", "{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{45FBE115-D0F2-4988-8488-248359032BC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,6 +42,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{1039E139-926A-4C0A-AB4B-CEC9B8A7D1C0} = {45FBE115-D0F2-4988-8488-248359032BC9}
 		{02AD9814-07D1-48BF-8472-E360B581E953} = {FA4420A5-B994-4CF3-B133-483174A8F8A1}
 		{9C02B30D-FC5F-44F8-BB42-B6E8AE2F3C06} = {FA4420A5-B994-4CF3-B133-483174A8F8A1}
 		{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E} = {FA4420A5-B994-4CF3-B133-483174A8F8A1}

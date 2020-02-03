@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Entitys;
 
-namespace lxsShop.Repositories
+namespace lxsShop.Repository
 {
    public interface ICategoryRepository
     {

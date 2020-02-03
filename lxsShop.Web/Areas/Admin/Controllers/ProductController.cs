@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using lxsShop.Repositories;
+using lxsShop.Repository;
+using lxsShop.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,12 @@ namespace lxsShop.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class ProductController : BaseController
     {
+        public ICategoryService categoryservice { get; }
+        //通过构造函数注入Service
+        public ProductController(ICategoryService categoryservice)
+        {
+            this.categoryservice = categoryservice;
+        }
 
         [Authorize]
         public IActionResult Index()
@@ -24,8 +31,11 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public IActionResult Category()
         {
-            var postRepository = new CategoryRepository();
-            var post = postRepository.FindById(1);
+            /*var postRepository = new CategoryRepository();
+            var post = postRepository.FindById(1);*/
+
+         
+            var post = categoryservice.FindById(1);
             return View(post);
         
         }

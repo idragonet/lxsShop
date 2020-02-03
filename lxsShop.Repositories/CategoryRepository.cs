@@ -6,9 +6,9 @@ using Entitys;
 using MySql.Data.MySqlClient;
 using SqlSugar;
 
-namespace lxsShop.Repositories
+namespace lxsShop.Repository
 {
-   public class CategoryRepository
+   public class CategoryRepository : ICategoryRepository
     {
 
        private SqlSugarClient db = new DbFactory().GetDb();

@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using System.Text;
 using Entitys;
 
+using lxsShop.Repository;
+
 namespace lxsShop.Services
 {
    public class CategoryService : ICategoryService
     {
 
-        private readonly ICategoryService _categoryRepository;
-        public CategoryService(ICategoryService categoryRepository)
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryService(ICategoryRepository categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
+
         public article_cats FindById(int id)
         {
             return _categoryRepository.FindById(id);

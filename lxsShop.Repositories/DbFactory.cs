@@ -7,7 +7,7 @@ using System.Text;
 using Microsoft.Extensions.Configuration;
 using SqlSugar;
 
-namespace lxsShop.Repositories
+namespace lxsShop.Repository
 {
    public class DbFactory
     {
