@@ -8,7 +8,7 @@ using SqlSugar;
 
 namespace lxsShop.Repository
 {
-   public class CategoryRepository  : GenericRepository<article_cats>
+   public class CategoryRepository  : GenericRepository<article_cats>,ICategoryRepository
     {
 
 
