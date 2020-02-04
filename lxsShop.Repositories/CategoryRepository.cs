@@ -47,7 +47,7 @@ namespace lxsShop.Repository
         /// <summary>
         /// 写入实体数据
         /// </summary>
-        /// <param name="entity">博文实体类</param>
+        /// <param name="entity">商品类别实体类</param>
         /// <returns></returns>
         public int Insert(article_cats entity)
         {

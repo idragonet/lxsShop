@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using lxsShop.Repository;
 using lxsShop.Services;
+using Masuit.Tools.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,7 +35,9 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             /*var postRepository = new CategoryRepository();
             var post = postRepository.FindById(1);*/
 
-         
+           
+            LogManager.Info("记录一次消息");
+
             var post = categoryservice.FindById(1);
             return View(post);
         

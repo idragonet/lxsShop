@@ -1,3 +1,5 @@
+using System;
+
 using SqlSugar;
 
 namespace Entitys
@@ -12,6 +14,7 @@ namespace Entitys
         /// </summary>
         public ads()
         {
+
         }
 
         private System.Int64 _adId;
