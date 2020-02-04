@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02.Repository", "02.Reposit
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.Services", "03.Services", "{A66847DC-F57C-4DEF-B619-B49275AA2977}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lxsShop.ViewModel", "lxsShop.ViewModel\lxsShop.ViewModel.csproj", "{8D551E1F-29C3-4E3A-B46B-C0ED6FEDE94F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D551E1F-29C3-4E3A-B46B-C0ED6FEDE94F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D551E1F-29C3-4E3A-B46B-C0ED6FEDE94F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D551E1F-29C3-4E3A-B46B-C0ED6FEDE94F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D551E1F-29C3-4E3A-B46B-C0ED6FEDE94F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{02AD9814-07D1-48BF-8472-E360B581E953} = {BA372B41-38F2-4333-BB91-7B5DC2F092E0}
 		{9C02B30D-FC5F-44F8-BB42-B6E8AE2F3C06} = {19698DF9-67E6-41C4-A0EF-CDE57E390422}
 		{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E} = {A66847DC-F57C-4DEF-B619-B49275AA2977}
+		{8D551E1F-29C3-4E3A-B46B-C0ED6FEDE94F} = {BA372B41-38F2-4333-BB91-7B5DC2F092E0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28DEAC29-91A4-4E44-9A40-863BA41DB610}

@@ -38,7 +38,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
            
             LogManager.Info("记录一次消息");
 
-            var post = categoryservice.FindById(1);
+            var post = categoryservice.FindAll();
             return View(post);
         
         }

@@ -24,7 +24,7 @@ namespace lxsShop.Services
         /// </summary>
         /// <param name="entity">博文实体类</param>
         /// <returns></returns>
-        int Insert(article_cats entity);
+        long Insert(article_cats entity);
 
         /// <summary>
         /// 更新实体数据

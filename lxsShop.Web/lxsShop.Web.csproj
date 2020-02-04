@@ -9,6 +9,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ScaffoldingReadMe.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Autofac" Version="5.0.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -28,6 +32,7 @@
     <Folder Include="wwwroot\res\images\snapshot\" />
     <Folder Include="wwwroot\res\images\themes\border\" />
     <Folder Include="wwwroot\res\js\" />
+    <Folder Include="Controllers\" />
   </ItemGroup>
 
   <ItemGroup>

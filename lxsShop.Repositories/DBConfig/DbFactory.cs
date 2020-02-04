@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Masuit.Tools.Logging;
 using Microsoft.Extensions.Configuration;
 using SqlSugar;
 
@@ -35,6 +36,10 @@ namespace lxsShop.Repository
             //用来打印Sql方便你调式
             db.Aop.OnLogExecuting = (sql, pars) =>
             {
+
+                LogManager.Debug(sql + "\r\n" +
+                                 db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
+
                 Console.WriteLine(sql + "\r\n" +
                                   db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
                 Console.WriteLine();

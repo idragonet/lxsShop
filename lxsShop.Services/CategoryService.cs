@@ -10,8 +10,8 @@ namespace lxsShop.Services
    public class CategoryService : ICategoryService
     {
 
-        private readonly ICategoryRepository _categoryRepository;
-        public CategoryService(ICategoryRepository categoryRepository)
+        private readonly IRepository<article_cats> _categoryRepository;
+        public CategoryService(IRepository<article_cats> categoryRepository)
         {
             _categoryRepository = categoryRepository;
         }
@@ -26,7 +26,7 @@ namespace lxsShop.Services
           return  _categoryRepository.FindAll();
         }
 
-        public int Insert(article_cats entity)
+        public long Insert(article_cats entity)
         {
             return _categoryRepository.Insert(entity);
         }
