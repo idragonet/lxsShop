@@ -98,7 +98,7 @@ namespace lxsShop.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
-
+            //AutoMapperHelper
             app.UseStateAutoMapper();
 
             // 静态资源中间件

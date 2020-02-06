@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 namespace lxsShop.Web.Extension
 {
 
+    /// <summary>
+    /// AutoMapper静态Helper
+    /// </summary>
     public static class AutoMapperHelper
     {
         private static IServiceProvider ServiceProvider;

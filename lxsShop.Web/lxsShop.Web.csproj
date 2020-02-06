@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Extension\AutoMapperExtension.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Areas\Admin\Views\Home\Index.cshtml" />
   </ItemGroup>
 
