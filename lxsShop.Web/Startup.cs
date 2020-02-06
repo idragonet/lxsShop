@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using AutoMapper;
+using Entitys;
 using FineUICore;
+using lxsShop.ViewModel;
+using lxsShop.Web.Configs;
+using lxsShop.Web.Extension;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -54,9 +61,15 @@ namespace lxsShop.Web
                 });
 
 
-           
+
+
+            //添加对AutoMapper的支持
+            services.AddAutoMapper(typeof(AutoMapperConfig));
+
             return RegisterAutofac(services);//注册Autofac
 
+
+         
         }
 
         private IServiceProvider RegisterAutofac(IServiceCollection services)
@@ -85,6 +98,8 @@ namespace lxsShop.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
+
+            app.UseStateAutoMapper();
 
             // 静态资源中间件
             app.UseStaticFiles();

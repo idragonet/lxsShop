@@ -3,7 +3,7 @@
     var F = @Html.F();
 }
 
-@model IEnumerable<Entitys.article_cats>
+@model IEnumerable<lxsShop.ViewModel.goods_catsViewModel>
 
 @section head {
 
@@ -23,9 +23,8 @@
                         F.RowNumberField().EnablePagingNumber(true),
 
                            
-                        F.RenderFieldFor(m => m.catId).Width(100),
+                        F.RenderFieldFor(m => m.parentId).Width(100),
                         F.RenderFieldFor(m => m.catName).Width(100),
-                        F.RenderFieldFor(m => m.CreateDate).Width(150),
                  
                         F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("renderActionEdit").Width(50),
                         F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("renderActionDelete").Width(50)
