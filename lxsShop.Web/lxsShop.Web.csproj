@@ -43,12 +43,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="FineUICore">
-      <HintPath>..\..\..\..\搜狗高速下载\【空项目】FineUICore_EmptyProject_v6.1.0\FineUICore.EmptyProject\bin\FineUICore.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <UpToDateCheckInput Remove="Areas\Admin\Views\Home\Index.cshtml" />
   </ItemGroup>
 
@@ -58,6 +52,12 @@
 
   <ItemGroup>
     <None Include="Areas\Admin\Views\Home\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="FineUICore">
+      <HintPath>..\..\FineUICore\FineUICore.EmptyProject\bin\FineUICore.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

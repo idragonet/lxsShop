@@ -1,0 +1,619 @@
+{
+  "RootName": "DataModels",
+  "CTVER": "43543233",
+  "TableCount": 8,
+  "Count": 3,
+  "items": [
+    {
+      "ID": 1,
+      "Name": "商品",
+      "CreateDate": "2020/1/31 15:39:38",
+      "OrderNo": 1,
+      "Params": "ShowPhyFieldName=2\r\nDatabaseEngine=",
+      "DefDbEngine": "SQLITE",
+      "DbConnectStr": "TCtMetaSqliteDb",
+      "ConfigStr": "DrawerWidth=1500\r\nDrawerHeight=2560\r\nWorkAreaColor=16777215\r\nSelectedColor=-16777203\r\nDefaultObjectColor=15921906\r\nDefaultTitleColor=255\r\nDefaultPKColor=16711935\r\nDefaultFKColor=16711680\r\nDefaultBorderColor=12632256\r\nDefaultLineColor=16711680\r\nShowFieldType=1\r\nShowFieldIcon=1\r\nShowPhyFieldName=0\r\nDatabaseEngine=\r\nGenFKIndexesSQL=0\r\n",
+      "Tables": {
+        "Count": 3,
+        "items": [
+          {
+            "Name": "goods",
+            "Caption": "商品",
+            "OrderNo": 1,
+            "GraphDesc": "Left=10.00\r\nTop=10.00",
+            "MetaFields": {
+              "Count": 12,
+              "items": [
+                {
+                  "ID": 1,
+                  "Name": "goodsId",
+                  "CreateDate": "2020/1/31 16:16:15",
+                  "OrderNo": 1,
+                  "DataType": 2,
+                  "KeyFieldType": 1,
+                  "DefaultValue": "{auto_increment}",
+                  "Nullable": true
+                },
+                {
+                  "ID": 23,
+                  "Name": "goodsSn",
+                  "CreateDate": "2020/1/31 17:32:14",
+                  "OrderNo": 2,
+                  "DisplayName": "商品编号\t",
+                  "DataType": 1,
+                  "Nullable": true
+                },
+                {
+                  "ID": 2,
+                  "Name": "goodsName",
+                  "CreateDate": "2020/1/31 16:16:15",
+                  "OrderNo": 3,
+                  "DisplayName": "商品名称",
+                  "DataType": 1,
+                  "DataLength": 255
+                },
+                {
+                  "ID": 4,
+                  "Name": "goodsImg",
+                  "CreateDate": "2020/1/31 16:16:15",
+                  "OrderNo": 4,
+                  "DisplayName": "商品图片\t",
+                  "DataType": 1,
+                  "DataLength": 4000
+                },
+                {
+                  "ID": 5,
+                  "Name": "isRecom",
+                  "Memo": "0:否 1:是",
+                  "CreateDate": "2020/1/31 16:16:15",
+                  "OrderNo": 5,
+                  "DisplayName": "是否推荐",
+                  "DataType": 2
+                },
+                {
+                  "ID": 6,
+                  "Name": "isNew",
+                  "Memo": "0:否 1:是",
+                  "CreateDate": "2020/1/31 16:16:15",
+                  "OrderNo": 6,
+                  "DisplayName": "是否新品",
+                  "DataType": 2
+                },
+                {
+                  "ID": 7,
+                  "Name": "brandId",
+                  "Memo": "0:否 1:是",
+                  "CreateDate": "2020/1/31 16:16:15",
+                  "OrderNo": 7,
+                  "DisplayName": "品牌ID",
+                  "DataType": 2
+                },
+                {
+                  "ID": 8,
+                  "Name": "goodsDesc",
+                  "CreateDate": "2020/1/31 16:16:15",
+                  "OrderNo": 8,
+                  "DisplayName": "商品描述\t",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 4000
+                },
+                {
+                  "ID": 9,
+                  "Name": "gallery",
+                  "CreateDate": "2020/1/31 16:16:15",
+                  "OrderNo": 9,
+                  "DisplayName": "商品相册",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 4000
+                },
+                {
+                  "ID": 10,
+                  "Name": "goodsSeoKeywords",
+                  "CreateDate": "2020/1/31 16:16:15",
+                  "OrderNo": 10,
+                  "DisplayName": "商品SEO关键字",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 4000
+                },
+                {
+                  "ID": 11,
+                  "Name": "dataFlag",
+                  "Memo": "-1:删除 1:有效",
+                  "CreateDate": "2020/1/31 16:16:15",
+                  "OrderNo": 11,
+                  "DisplayName": "删除标志",
+                  "DataType": 2,
+                  "Nullable": true
+                },
+                {
+                  "ID": 3,
+                  "Name": "CreateDate",
+                  "CreateDate": "2020/1/31 16:16:15",
+                  "OrderNo": 12,
+                  "DisplayName": "创建日期",
+                  "DataType": 4,
+                  "DefaultValue": "sysdate",
+                  "Nullable": true
+                }
+              ]
+            }
+          },
+          {
+            "ID": 3,
+            "Name": "goods_cats",
+            "Caption": "商品分类表",
+            "CreateDate": "2020/1/31 15:54:51",
+            "OrderNo": 2,
+            "GraphDesc": "Left=349.00\r\nTop=13.00",
+            "MetaFields": {
+              "Count": 7,
+              "items": [
+                {
+                  "ID": 34,
+                  "Name": "catId",
+                  "OrderNo": 1,
+                  "DataType": 2,
+                  "KeyFieldType": 1,
+                  "DefaultValue": "{auto_increment}",
+                  "Nullable": true
+                },
+                {
+                  "ID": 35,
+                  "Name": "parentId",
+                  "OrderNo": 2,
+                  "DisplayName": "父ID",
+                  "DataType": 2,
+                  "Nullable": true
+                },
+                {
+                  "ID": 36,
+                  "Name": "catName",
+                  "OrderNo": 3,
+                  "DisplayName": "分类名称",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 20
+                },
+                {
+                  "ID": 37,
+                  "Name": "isShow",
+                  "Memo": "0:隐藏 1:显示",
+                  "OrderNo": 4,
+                  "DisplayName": "是否显示",
+                  "DataType": 2,
+                  "Nullable": true
+                },
+                {
+                  "ID": 38,
+                  "Name": "catSort",
+                  "OrderNo": 5,
+                  "DisplayName": "排序号",
+                  "DataType": 2,
+                  "Nullable": true
+                },
+                {
+                  "ID": 39,
+                  "Name": "dataFlag",
+                  "Memo": "-1:删除 1:有效",
+                  "OrderNo": 6,
+                  "DisplayName": "删除标志",
+                  "DataType": 2,
+                  "Nullable": true
+                },
+                {
+                  "ID": 40,
+                  "Name": "CreateDate",
+                  "OrderNo": 7,
+                  "DisplayName": "创建时间",
+                  "DataType": 4,
+                  "DefaultValue": "sysdate",
+                  "Nullable": true
+                }
+              ]
+            }
+          },
+          {
+            "ID": 4,
+            "Name": "brands",
+            "Caption": "品牌信息表",
+            "CreateDate": "2020/1/31 15:57:48",
+            "OrderNo": 3,
+            "GraphDesc": "Left=12.00\r\nTop=263.00",
+            "MetaFields": {
+              "Count": 6,
+              "items": [
+                {
+                  "ID": 1,
+                  "Name": "brandId",
+                  "OrderNo": 1,
+                  "DisplayName": "编号",
+                  "DataType": 2,
+                  "KeyFieldType": 1,
+                  "DefaultValue": "{auto_increment}",
+                  "Nullable": true
+                },
+                {
+                  "ID": 9,
+                  "Name": "CreateDate",
+                  "Memo": "默认为当前时间",
+                  "OrderNo": 2,
+                  "DisplayName": "创建日期",
+                  "DataType": 4,
+                  "DefaultValue": "sysdate",
+                  "Nullable": true
+                },
+                {
+                  "ID": 23,
+                  "Name": "brandName",
+                  "OrderNo": 3,
+                  "DisplayName": "品牌名称\t",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 100
+                },
+                {
+                  "ID": 24,
+                  "Name": "brandImg",
+                  "OrderNo": 4,
+                  "DisplayName": "品牌图标\t",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 150
+                },
+                {
+                  "ID": 25,
+                  "Name": "brandDesc",
+                  "OrderNo": 5,
+                  "DisplayName": "品牌介绍\t",
+                  "DataType": 1,
+                  "Nullable": true
+                },
+                {
+                  "ID": 26,
+                  "Name": "dataFlag",
+                  "Memo": "-1:删除 1:有效",
+                  "OrderNo": 6,
+                  "DisplayName": "删除标志\t",
+                  "DataType": 2,
+                  "Nullable": true
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "ID": 2,
+      "Name": "文章",
+      "CreateDate": "2020/1/31 16:02:20",
+      "OrderNo": 2,
+      "Tables": {
+        "Count": 2,
+        "items": [
+          {
+            "ID": 1,
+            "Name": "article_cats",
+            "Caption": "文章分类",
+            "CreateDate": "2020/1/31 16:03:14",
+            "OrderNo": 1,
+            "GraphDesc": "Left=10.00\r\nTop=10.00\r\n",
+            "MetaFields": {
+              "Count": 4,
+              "items": [
+                {
+                  "ID": 12,
+                  "Name": "catId",
+                  "CreateDate": "2020/1/31 17:41:48",
+                  "OrderNo": 1,
+                  "DataType": 2,
+                  "KeyFieldType": 1,
+                  "DefaultValue": "{auto_increment}",
+                  "Nullable": true
+                },
+                {
+                  "ID": 13,
+                  "Name": "catName",
+                  "CreateDate": "2020/1/31 17:43:55",
+                  "OrderNo": 2,
+                  "DisplayName": "分类名称",
+                  "DataType": 1,
+                  "Nullable": true
+                },
+                {
+                  "ID": 8,
+                  "Name": "isShow",
+                  "Memo": "0:隐藏 1:显示",
+                  "OrderNo": 3,
+                  "DisplayName": "是否显示",
+                  "DataType": 2,
+                  "Nullable": true
+                },
+                {
+                  "ID": 9,
+                  "Name": "CreateDate",
+                  "Memo": "默认为当前时间",
+                  "OrderNo": 4,
+                  "DisplayName": "创建日期",
+                  "DataType": 4,
+                  "DefaultValue": "sysdate",
+                  "Nullable": true
+                }
+              ]
+            }
+          },
+          {
+            "ID": 2,
+            "Name": "articles",
+            "Caption": "文章",
+            "CreateDate": "2020/1/31 16:03:50",
+            "OrderNo": 2,
+            "GraphDesc": "Left=255.00\r\nTop=10.00\r\n",
+            "MetaFields": {
+              "Count": 7,
+              "items": [
+                {
+                  "ID": 1,
+                  "Name": "articleId",
+                  "OrderNo": 1,
+                  "DisplayName": "编号",
+                  "DataType": 2,
+                  "KeyFieldType": 1,
+                  "DefaultValue": "{auto_increment}",
+                  "Nullable": true
+                },
+                {
+                  "ID": 4,
+                  "Name": "articleTitle",
+                  "OrderNo": 2,
+                  "DisplayName": "文章标题",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 255
+                },
+                {
+                  "ID": 12,
+                  "Name": "articleContent",
+                  "CreateDate": "2020/1/31 17:47:26",
+                  "OrderNo": 3,
+                  "DisplayName": "文章内容",
+                  "DataType": 1,
+                  "Nullable": true
+                },
+                {
+                  "ID": 6,
+                  "Name": "isShow",
+                  "OrderNo": 4,
+                  "DisplayName": "是否显示",
+                  "DataType": 2,
+                  "Nullable": true
+                },
+                {
+                  "ID": 13,
+                  "Name": "dataFlag",
+                  "Memo": "-1：无效 1：有效",
+                  "CreateDate": "2020/1/31 17:47:26",
+                  "OrderNo": 5,
+                  "DisplayName": "有效状态",
+                  "DataType": 2,
+                  "Nullable": true
+                },
+                {
+                  "ID": 8,
+                  "Name": "CreatorName",
+                  "OrderNo": 6,
+                  "DisplayName": "创建人姓名",
+                  "DataType": 1,
+                  "Nullable": true
+                },
+                {
+                  "ID": 9,
+                  "Name": "CreateDate",
+                  "Memo": "默认为当前时间",
+                  "OrderNo": 7,
+                  "DisplayName": "创建日期",
+                  "DataType": 4,
+                  "DefaultValue": "sysdate",
+                  "Nullable": true
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "ID": 3,
+      "Name": "系统",
+      "CreateDate": "2020/1/31 16:02:55",
+      "OrderNo": 3,
+      "DefDbEngine": "SQLITE",
+      "DbConnectStr": "TCtMetaSqliteDb",
+      "Tables": {
+        "Count": 3,
+        "items": [
+          {
+            "ID": 1,
+            "Name": "admin",
+            "Caption": "管理员",
+            "CreateDate": "2020/1/31 16:04:00",
+            "OrderNo": 1,
+            "GraphDesc": "Left=10.00\r\nTop=10.00",
+            "MetaFields": {
+              "Count": 6,
+              "items": [
+                {
+                  "ID": 1,
+                  "Name": "adminId",
+                  "OrderNo": 1,
+                  "DisplayName": "编号",
+                  "DataType": 2,
+                  "KeyFieldType": 1,
+                  "DefaultValue": "{auto_increment}",
+                  "Nullable": true
+                },
+                {
+                  "ID": 4,
+                  "Name": "loginName",
+                  "OrderNo": 2,
+                  "DisplayName": "账号名称",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 40
+                },
+                {
+                  "ID": 15,
+                  "Name": "loginPwd",
+                  "CreateDate": "2020/1/31 17:50:15",
+                  "OrderNo": 3,
+                  "DisplayName": "密码",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 50
+                },
+                {
+                  "ID": 17,
+                  "Name": "staffName",
+                  "CreateDate": "2020/1/31 17:50:44",
+                  "OrderNo": 4,
+                  "DisplayName": "职员名称",
+                  "DataType": 1,
+                  "Nullable": true
+                },
+                {
+                  "ID": 9,
+                  "Name": "CreateDate",
+                  "Memo": "默认为当前时间",
+                  "OrderNo": 5,
+                  "DisplayName": "创建日期",
+                  "DataType": 4,
+                  "DefaultValue": "sysdate",
+                  "Nullable": true
+                },
+                {
+                  "ID": 14,
+                  "Name": "lastTime",
+                  "CreateDate": "2020/1/31 17:49:35",
+                  "OrderNo": 6,
+                  "DisplayName": "最后登录时间",
+                  "DataType": 4,
+                  "Nullable": true
+                }
+              ]
+            }
+          },
+          {
+            "ID": 2,
+            "Name": "sys_configs",
+            "Caption": "商城配置表",
+            "CreateDate": "2020/1/31 16:05:18",
+            "OrderNo": 2,
+            "GraphDesc": "Left=255.00\r\nTop=10.00",
+            "MetaFields": {
+              "Count": 5,
+              "items": [
+                {
+                  "ID": 1,
+                  "Name": "configId",
+                  "OrderNo": 1,
+                  "DisplayName": "编号",
+                  "DataType": 2,
+                  "KeyFieldType": 1,
+                  "DefaultValue": "{auto_increment}",
+                  "Nullable": true
+                },
+                {
+                  "ID": 4,
+                  "Name": "fieldName",
+                  "OrderNo": 2,
+                  "DisplayName": "字段名称",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 255
+                },
+                {
+                  "ID": 5,
+                  "Name": "fieldCode",
+                  "OrderNo": 3,
+                  "DisplayName": "字段代码",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 255
+                },
+                {
+                  "ID": 6,
+                  "Name": "fieldValue",
+                  "OrderNo": 4,
+                  "DisplayName": "字段值",
+                  "DataType": 1,
+                  "Nullable": true
+                },
+                {
+                  "ID": 9,
+                  "Name": "CreateDate",
+                  "Memo": "默认为当前时间",
+                  "OrderNo": 5,
+                  "DisplayName": "创建日期",
+                  "DataType": 4,
+                  "DefaultValue": "sysdate",
+                  "Nullable": true
+                }
+              ]
+            }
+          },
+          {
+            "ID": 3,
+            "Name": "log_admin_logins",
+            "Caption": "管理员登录记录表",
+            "CreateDate": "2020/1/31 16:06:10",
+            "OrderNo": 3,
+            "GraphDesc": "Left=10.00\r\nTop=308.00",
+            "MetaFields": {
+              "Count": 4,
+              "items": [
+                {
+                  "ID": 1,
+                  "Name": "loginId",
+                  "OrderNo": 1,
+                  "DisplayName": "编号",
+                  "DataType": 2,
+                  "KeyFieldType": 1,
+                  "DefaultValue": "{auto_increment}",
+                  "Nullable": true
+                },
+                {
+                  "ID": 2,
+                  "Name": "adminId",
+                  "OrderNo": 2,
+                  "DisplayName": "父编号",
+                  "DataType": 2,
+                  "Nullable": true
+                },
+                {
+                  "ID": 4,
+                  "Name": "loginTime",
+                  "OrderNo": 3,
+                  "DisplayName": "登录时间",
+                  "DataType": 1,
+                  "Nullable": true
+                },
+                {
+                  "ID": 5,
+                  "Name": "loginIp",
+                  "OrderNo": 4,
+                  "DisplayName": "登录IP",
+                  "DataType": 1,
+                  "Nullable": true,
+                  "DataLength": 16
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  ]
+}
