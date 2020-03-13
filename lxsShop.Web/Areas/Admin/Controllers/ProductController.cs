@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Entitys;
 using lxsShop.Repository;
 using lxsShop.Services;
 using lxsShop.ViewModel;
@@ -39,6 +40,8 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         }
 
 
+        private static List<goods_catsViewModel> resultNew = new List<goods_catsViewModel>();
+
         [Authorize]
         public IActionResult Category()
         {
@@ -49,6 +52,9 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             LogManager.Info("记录一次消息");
 
               var post = goods_catsservice.FindAll();
+             
+
+             
 
             //   LogManager.Info("post:"+ post.Count());
 
@@ -59,7 +65,25 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             LogManager.Info("post2:" + result.Count());
             // Mapper.Map<FoodDto>(model);
 
-            return View(result);
+
+            ResolveCollection(result, null, 0);
+
+            return View(resultNew);
+        }
+
+
+        private static int ResolveCollection(List<goods_catsViewModel> result, goods_catsViewModel parentMenu, long level)
+        {
+            int count = 0;
+
+            foreach (var goodsCatsViewModel in result.Where(m => m.parentId == level))
+            {
+                count++;
+                resultNew.Add(goodsCatsViewModel);
+                ResolveCollection(result, goodsCatsViewModel, goodsCatsViewModel.catId);
+            }
+
+            return count;
         }
 
 
