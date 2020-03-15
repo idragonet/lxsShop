@@ -19,6 +19,7 @@ namespace lxsShop.Web.Configs
             // 配置 mapping 规则
             //
              CreateMap<goods_cats, goods_catsViewModel>();
+             CreateMap<article_cats, article_catsViewModel>();
 
           //  AutoMapperHelper.UseStateAutoMapper(goods_cats, goods_catsViewModel);
         }

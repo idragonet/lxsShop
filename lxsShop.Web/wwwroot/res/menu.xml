@@ -12,9 +12,9 @@
 
   <TreeNode Text="页面" IconFont="_Layout">
 
-    <TreeNode Text="广告" NavigateUrl="~/Basic/Hello" IconFont="_Pic">
+    <TreeNode Text="广告" NavigateUrl="~/Basic/Article" IconFont="_Pic">
     </TreeNode>
-    <TreeNode Text="文章类别" NavigateUrl="~/Basic/Login" IconFont="_Pencil">
+    <TreeNode Text="文章类别" NavigateUrl="~/Admin/Article/ArticleCats" IconFont="_Pencil">
     </TreeNode>
     <TreeNode Text="文章列表" NavigateUrl="~/Basic/LoginEnterKey" IconFont="_Edit">
     </TreeNode>

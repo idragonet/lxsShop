@@ -9,7 +9,7 @@ namespace lxsShop.ViewModel
     /// <summary>
     /// 商品类别 视图实体
     /// </summary>
-    public class goods_catsViewModel
+    public class article_catsViewModel
     {
 
         [Display(Name = "ID")]
@@ -19,19 +19,10 @@ namespace lxsShop.ViewModel
         [Required(ErrorMessage = "类别名称不要忘记填")]
         public string catName { get; set; }
 
-        [Display(Name = "上级类别")]
-        public long parentId { get; set; }
-
-        [Display(Name = "排序")]
-        public long catSort { get; set; } 
 
 
-        [Display(Name = "显示")]
-        public long isShow { get; set; }
-
-        [Display(Name = "层级")]
-        public int TreeLevel { get; set; }
-
+        [Display(Name = "创建时间")]
+        public DateTime CreateDate { get; set; }
 
 
 
