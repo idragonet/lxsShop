@@ -21,23 +21,30 @@
                 F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableCheckBoxSelect(false).DataIDField("catId").DataTextField("catName").EnableSimulateTree(true)
                     .Columns(
                         F.RowNumberField().EnablePagingNumber(true),
-                        F.RenderFieldFor(m => m.catName, true).DataSimulateTreeLevelField("parentId").Width(180),
-                           
-                        F.RenderFieldFor(m => m.parentId).Width(100),
-                        F.RenderFieldFor(m => m.catName).Width(100),
+                        F.RenderFieldFor(m => m.catName, true).DataSimulateTreeLevelField("TreeLevel").Width(370),
+
                         F.RenderFieldFor(m => m.catSort).Width(70),
-                        F.RenderFieldFor(m => m.isShow).Width(70),
+                      
+                        F.RenderCheckFieldFor(m => m.isShow).RenderAsStaticField(true).Width(50),
                  
                         F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("renderActionEdit").Width(50),
                         F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("renderActionDelete").Width(50)
-
-
-                  ).DataSource(Model)
+                      
+                  )
+                    
+                    .Toolbars(
+                        F.Toolbar().ID("Toolbar1").Position(ToolbarPosition.Top)
+                            .Items(
+                                F.ToolbarFill(),
+                                F.Button().ID("btnNew").Icon(Icon.Add).Text("新增").Listener("click", "onNewClick")
+                            )
+                    )
+                    .DataSource(Model)
 
             )
     )
 
-    @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(900).Height(550).OnClose(Url.Action("Dept_DoPostBack"), "Panel1"))
+    @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(900).Height(450).OnClose(Url.Action("Dept_DoPostBack"), "Panel1"))
 
 }
 
@@ -48,22 +55,22 @@
 
     <script>
 
-        var coreDeptEdit = '';
-        var coreDeptDelete = '';
+        var coreDeptEdit ='';
+        var coreDeptDelete ='';
 
         function onNewClick(event) {
-            F.ui.Window1.show('@Url.Content("~/Admin/DeptNew")', '新增');
+            F.ui.Window1.show('@Url.Content("~/Admin/Product/CategoryNew")', '新增');
         }
 
         function renderActionEdit(value, params) {
             var imageUrl = '@Url.Content("~/res/icon/pencil.png")';
-            var disabledCls = coreDeptEdit ? '' : ' f-state-disabled';
-            return '<a class="action-btn edit'+ disabledCls +'" href="javascript:;"><img class="f-grid-cell-icon" src="' + imageUrl + '"></a>';
+            var disabledCls =  '';
+            return '<a class="action-btn edit '+ disabledCls +'"  href="javascript:;"><img class="f-grid-cell-icon" src="' + imageUrl + '"></a>';
         }
 
         function renderActionDelete(value, params) {
             var imageUrl = '@Url.Content("~/res/icon/delete.png")';
-            var disabledCls = coreDeptDelete ? '' : ' f-state-disabled';
+            var disabledCls =  '';
             return '<a class="action-btn delete'+ disabledCls +'" href="javascript:;"><img class="f-grid-cell-icon" src="' + imageUrl + '"></a>';
         }
 
@@ -92,7 +99,7 @@
                         }
                     });
                 } else if (cnode.hasClass('edit')) {
-                    F.ui.Window1.show('@Url.Content("~/Admin/DeptEdit?id=")' + rowData.id, '编辑');
+                    F.ui.Window1.show('@Url.Content("~/Admin/Product/CategoryEdit?id=")' + rowData.id, '编辑');
                 }
             });
 

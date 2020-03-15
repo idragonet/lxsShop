@@ -22,7 +22,7 @@
             "OrderNo": 1,
             "GraphDesc": "Left=10.00\r\nTop=10.00",
             "MetaFields": {
-              "Count": 12,
+              "Count": 13,
               "items": [
                 {
                   "ID": 1,
@@ -137,6 +137,14 @@
                   "DataType": 4,
                   "DefaultValue": "sysdate",
                   "Nullable": true
+                },
+                {
+                  "ID": 13,
+                  "Name": "goodsCatId",
+                  "CreateDate": "2020/3/13 13:20:54",
+                  "OrderNo": 13,
+                  "DisplayName": "最后一级商品分类ID",
+                  "DataType": 2
                 }
               ]
             }
@@ -183,16 +191,14 @@
                   "Memo": "0:隐藏 1:显示",
                   "OrderNo": 4,
                   "DisplayName": "是否显示",
-                  "DataType": 2,
-                  "Nullable": true
+                  "DataType": 2
                 },
                 {
                   "ID": 38,
                   "Name": "catSort",
                   "OrderNo": 5,
                   "DisplayName": "排序号",
-                  "DataType": 2,
-                  "Nullable": true
+                  "DataType": 2
                 },
                 {
                   "ID": 39,
