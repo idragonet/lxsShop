@@ -21,10 +21,12 @@
                 F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableCheckBoxSelect(false).DataIDField("catId").DataTextField("catName").EnableSimulateTree(true)
                     .Columns(
                         F.RowNumberField().EnablePagingNumber(true),
-                        F.RenderFieldFor(m => m.catName, true).Width(370),
-                        F.RenderFieldFor(m => m.CreateDate, true).Width(450).FieldFormat("yyyy-MM-dd HH:mm")
+                        F.RenderFieldFor(m => m.catName, true).Width(280),
+                        F.RenderFieldFor(m => m.CreateDate, true).Width(200).FieldFormat("yyyy-MM-dd HH:mm"),
 
-                     
+        F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("renderActionEdit").Width(50),
+        F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("renderActionDelete").Width(50)
+
                           )
 
                             .Toolbars(
