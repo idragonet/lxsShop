@@ -141,5 +141,47 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
 
 
+
+
+
+        #region 商品类别 新增
+
+
+        [Authorize]
+        public IActionResult ArticleCatsNew()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ArticleCatsNew_btnSaveClose_Click(
+            [Bind(include:"catName")]
+            article_cats articlecats)
+        {
+
+
+            if (ModelState.IsValid)
+            {
+                // 下拉列表的顶级节点值为-1
+                articlecats.CreateDate = DateTime.Now;
+                article_catsservice.Insert(articlecats);
+
+                //  db.Depts.Add(dept);
+                //  db.SaveChanges();
+
+                // 关闭本窗体（触发窗体的关闭事件）
+                ActiveWindow.HidePostBack();
+            }
+
+            return UIHelper.Result();
+        }
+
+
+
+        #endregion
+
+
+
     }
 }
