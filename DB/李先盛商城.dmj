@@ -297,6 +297,8 @@
       "Name": "文章",
       "CreateDate": "2020/1/31 16:02:20",
       "OrderNo": 2,
+      "DefDbEngine": "SQLITE",
+      "DbConnectStr": "TCtMetaSqliteDb",
       "Tables": {
         "Count": 2,
         "items": [
@@ -306,7 +308,7 @@
             "Caption": "文章分类",
             "CreateDate": "2020/1/31 16:03:14",
             "OrderNo": 1,
-            "GraphDesc": "Left=10.00\r\nTop=10.00\r\n",
+            "GraphDesc": "Left=10.00\r\nTop=10.00",
             "MetaFields": {
               "Count": 4,
               "items": [
@@ -357,9 +359,9 @@
             "Caption": "文章",
             "CreateDate": "2020/1/31 16:03:50",
             "OrderNo": 2,
-            "GraphDesc": "Left=255.00\r\nTop=10.00\r\n",
+            "GraphDesc": "Left=255.00\r\nTop=10.00",
             "MetaFields": {
-              "Count": 7,
+              "Count": 8,
               "items": [
                 {
                   "ID": 1,
@@ -377,7 +379,6 @@
                   "OrderNo": 2,
                   "DisplayName": "文章标题",
                   "DataType": 1,
-                  "Nullable": true,
                   "DataLength": 255
                 },
                 {
@@ -409,7 +410,7 @@
                 },
                 {
                   "ID": 8,
-                  "Name": "CreatorName",
+                  "Name": "CreatorUser",
                   "OrderNo": 6,
                   "DisplayName": "创建人姓名",
                   "DataType": 1,
@@ -424,6 +425,14 @@
                   "DataType": 4,
                   "DefaultValue": "sysdate",
                   "Nullable": true
+                },
+                {
+                  "ID": 8,
+                  "Name": "catId",
+                  "CreateDate": "2020/4/11 21:39:43",
+                  "OrderNo": 8,
+                  "DisplayName": "文章类别",
+                  "DataType": 2
                 }
               ]
             }
@@ -447,7 +456,7 @@
             "Caption": "管理员",
             "CreateDate": "2020/1/31 16:04:00",
             "OrderNo": 1,
-            "GraphDesc": "Left=10.00\r\nTop=10.00",
+            "GraphDesc": "Left=10.00\r\nTop=10.00\r\n",
             "MetaFields": {
               "Count": 6,
               "items": [
@@ -517,7 +526,7 @@
             "Caption": "商城配置表",
             "CreateDate": "2020/1/31 16:05:18",
             "OrderNo": 2,
-            "GraphDesc": "Left=255.00\r\nTop=10.00",
+            "GraphDesc": "Left=255.00\r\nTop=10.00\r\n",
             "MetaFields": {
               "Count": 5,
               "items": [
@@ -576,7 +585,7 @@
             "Caption": "管理员登录记录表",
             "CreateDate": "2020/1/31 16:06:10",
             "OrderNo": 3,
-            "GraphDesc": "Left=10.00\r\nTop=308.00",
+            "GraphDesc": "Left=10.00\r\nTop=308.00\r\n",
             "MetaFields": {
               "Count": 4,
               "items": [

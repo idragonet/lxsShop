@@ -43,6 +43,6 @@ namespace Entitys
         /// <summary>
         /// CreateDate
         /// </summary>
-        public System.DateTime? CreateDate { get { return this._CreateDate; } set { this._CreateDate = value; } }
+        public System.DateTime? CreateDate { get { return this._CreateDate; } set { this._CreateDate = value ?? default(System.DateTime); } }
     }
 }

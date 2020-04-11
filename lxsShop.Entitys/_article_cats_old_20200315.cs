@@ -3,14 +3,14 @@ using SqlSugar;
 namespace Entitys
 {
     /// <summary>
-    /// article_cats
+    /// _article_cats_old_20200315
     /// </summary>
-    public class article_cats
+    public class _article_cats_old_20200315
     {
         /// <summary>
-        /// article_cats
+        /// _article_cats_old_20200315
         /// </summary>
-        public article_cats()
+        public _article_cats_old_20200315()
         {
         }
 

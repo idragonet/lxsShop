@@ -16,7 +16,7 @@
     </TreeNode>
     <TreeNode Text="文章类别" NavigateUrl="~/Admin/Article/ArticleCats" IconFont="_Pencil">
     </TreeNode>
-    <TreeNode Text="文章列表" NavigateUrl="~/Basic/LoginEnterKey" IconFont="_Edit">
+    <TreeNode Text="文章列表" NavigateUrl="~/Admin/Article/Article" IconFont="_Edit">
     </TreeNode>
     <!--<TreeNode Text="登录页面（验证码）" NavigateUrl="~/Basic/LoginCaptcha" Icon="User">
     </TreeNode>-->

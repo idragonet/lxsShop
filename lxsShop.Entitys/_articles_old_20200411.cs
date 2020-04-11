@@ -3,14 +3,14 @@ using SqlSugar;
 namespace Entitys
 {
     /// <summary>
-    /// articles
+    /// _articles_old_20200411
     /// </summary>
-    public class articles
+    public class _articles_old_20200411
     {
         /// <summary>
-        /// articles
+        /// _articles_old_20200411
         /// </summary>
-        public articles()
+        public _articles_old_20200411()
         {
         }
 
@@ -45,11 +45,17 @@ namespace Entitys
         /// </summary>
         public System.Int64? dataFlag { get { return this._dataFlag; } set { this._dataFlag = value ?? default(System.Int64); } }
 
-        private System.DateTime _CreateDate;
+        private System.String _CreatorName;
+        /// <summary>
+        /// CreatorName
+        /// </summary>
+        public System.String CreatorName { get { return this._CreatorName; } set { this._CreatorName = value; } }
+
+        private System.DateTime? _CreateDate;
         /// <summary>
         /// CreateDate
         /// </summary>
-        public System.DateTime CreateDate { get { return this._CreateDate; } set { this._CreateDate = value; } }
+        public System.DateTime? CreateDate { get { return this._CreateDate; } set { this._CreateDate = value ?? default(System.DateTime); } }
 
         private System.Int64? _catId;
         /// <summary>

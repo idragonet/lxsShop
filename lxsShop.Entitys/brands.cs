@@ -25,7 +25,7 @@ namespace Entitys
         /// <summary>
         /// CreateDate
         /// </summary>
-        public System.DateTime? CreateDate { get { return this._CreateDate; } set { this._CreateDate = value; } }
+        public System.DateTime? CreateDate { get { return this._CreateDate; } set { this._CreateDate = value ?? default(System.DateTime); } }
 
         private System.String _brandName;
         /// <summary>
@@ -49,6 +49,6 @@ namespace Entitys
         /// <summary>
         /// dataFlag
         /// </summary>
-        public System.Int64? dataFlag { get { return this._dataFlag; } set { this._dataFlag = value; } }
+        public System.Int64? dataFlag { get { return this._dataFlag; } set { this._dataFlag = value ?? default(System.Int64); } }
     }
 }

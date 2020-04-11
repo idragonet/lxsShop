@@ -25,7 +25,7 @@ namespace Entitys
         /// <summary>
         /// adminId
         /// </summary>
-        public System.Int64? adminId { get { return this._adminId; } set { this._adminId = value; } }
+        public System.Int64? adminId { get { return this._adminId; } set { this._adminId = value ?? default(System.Int64); } }
 
         private System.String _loginTime;
         /// <summary>
