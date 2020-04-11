@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Entitys;
 using FineUICore;
 using lxsShop.Repository;
 using lxsShop.Services;
@@ -40,8 +41,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         #region 文章类别
 
 
-        private static List<goods_catsViewModel> _resultNew;
-
+         
         [Authorize]
         public IActionResult ArticleCats()
         {
@@ -94,8 +94,50 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         }
 
 
-
         #endregion
+
+
+
+        // GET: Admin/DeptEdit
+        public IActionResult ArticleCatsEdit(int id)
+        {
+            var current = article_catsservice.FindById(id);
+
+            /*Dept current = db.Depts
+                .Where(m => m.ID == id).FirstOrDefault();*/
+            if (current == null)
+            {
+                return Content("无效参数！");
+            }
+            
+            return View(current.MapTo<article_catsViewModel>());
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ArticleCatsEdit_btnSaveClose_Click([Bind(include:"catId,catName")]
+            article_cats articlecats)
+        {
+            if (ModelState.IsValid)
+            {
+                // 下拉列表的顶级节点值为-1
+                // 下拉列表的顶级节点值为-1
+
+                articlecats.CreateDate = DateTime.Now;
+
+                article_catsservice.Update(articlecats);
+
+
+                // db.Entry(dept).State = EntityState.Modified;
+                // db.SaveChanges();
+
+                // 关闭本窗体（触发窗体的关闭事件）
+                ActiveWindow.HidePostBack();
+            }
+
+            return UIHelper.Result();
+        }
 
 
 

@@ -41,7 +41,7 @@
             )
     )
 
-    @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(900).Height(450).OnClose(Url.Action("Dept_DoPostBack"), "Panel1"))
+    @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(900).Height(450).OnClose(Url.Action("Article_DoPostBack"), "Panel1"))
 
 }
 
@@ -96,7 +96,7 @@
                         }
                     });
                 } else if (cnode.hasClass('edit')) {
-                    F.ui.Window1.show('@Url.Content("~/Admin/Product/CategoryEdit?id=")' + rowData.id, '编辑');
+                    F.ui.Window1.show('@Url.Content("~/Admin/Article/ArticleCatsEdit?id=")' + rowData.id, '编辑');
                 }
             });
 
