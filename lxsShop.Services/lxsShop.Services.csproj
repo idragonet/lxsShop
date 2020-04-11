@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Category\**" />
+    <EmbeddedResource Remove="Category\**" />
+    <None Remove="Category\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\lxsShop.Entitys\lxsShop.Entitys.csproj" />
     <ProjectReference Include="..\lxsShop.Repositories\lxsShop.Repository.csproj" />
   </ItemGroup>

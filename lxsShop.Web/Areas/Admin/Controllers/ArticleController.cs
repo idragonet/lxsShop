@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FineUICore;
+using lxsShop.Repository;
 using lxsShop.Services;
 using lxsShop.ViewModel;
 using lxsShop.Web.Extension;
@@ -19,6 +20,8 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         
 
         public Iarticle_catsService article_catsservice { get; }
+        
+        public articleRepository articleService = new articleRepository();
 
         //通过构造函数注入Service
         public ArticleController(Iarticle_catsService article_catsservice)
@@ -53,32 +56,29 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Dept_DoPostBack(string[] Grid1_fields, string actionType, int? deletedRowID)
+        public ActionResult Article_DoPostBack(string[] Grid1_fields, string actionType, int? deletedRowID)
         {
             if (actionType == "delete")
             {
-             
-                /*var findByClause = goods_catsservice.FindByClause(m => m.parentId == deletedRowID.Value);
               
-
-                var goods = goods_service.FindByClause(m => m.goodsCatId == deletedRowID.Value);
-                if (goods != null)
+                var article = articleService.FindByClause(m => m.articleId == deletedRowID.Value);
+                if (article != null)
                 {
-                    Alert.ShowInTop("删除失败！需要先清空该类别下带商品");
+                    Alert.ShowInTop("删除失败！需要类别下面的全部文章.");
                     return UIHelper.Result();
                 }
 
 
-                if (goods_catsservice.DeleteById(deletedRowID))
+                if (article_catsservice.DeleteById(deletedRowID))
                 {
 
-                }*/
+                }
 
 
             }
 
 
-           
+
             /*
             var post = goods_catsservice.FindAll();
             var result = post.MapTo<List<goods_catsViewModel>>();
@@ -86,6 +86,9 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             ResolveCollection(result, null, 0, 0);
             UIHelper.Grid("Grid1").DataSource(_resultNew, Grid1_fields);*/
 
+            var post = article_catsservice.FindAll();
+            var result = post.MapTo<List<article_catsViewModel>>();
+            UIHelper.Grid("Grid1").DataSource(result, Grid1_fields);
 
             return UIHelper.Result();
         }

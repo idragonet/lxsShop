@@ -89,7 +89,7 @@
                         target: '_top',
                         ok: function () {
                             // 触发后台事件
-                            F.doPostBack('@Url.Action("Dept_DoPostBack")', 'Panel1', {
+                            F.doPostBack('@Url.Action("Article_DoPostBack")', 'Panel1', {
                                 actionType: 'delete',
                                 deletedRowID: rowData.id
                             });

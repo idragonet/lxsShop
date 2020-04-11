@@ -5,8 +5,8 @@ using Entitys;
 
 namespace lxsShop.Repository
 {
-   public interface Igoods_catsRepository : IRepository<goods_cats>
+    public interface Iarticle_catsRepository : IRepository<article_cats>
     {
-       
+
     }
 }
