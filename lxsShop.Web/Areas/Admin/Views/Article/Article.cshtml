@@ -3,7 +3,7 @@
     var F = @Html.F();
 }
 
-@model IEnumerable<lxsShop.ViewModel.articleViewModel>
+@model IEnumerable<lxsShop.ViewModel.articlesViewModel>
 
 @section head {
 
@@ -18,10 +18,10 @@
     @(
         F.Panel().ID("Panel1").BodyPadding(5).ShowBorder(false).Layout(LayoutType.VBox).ShowHeader(true).Title("文章").IsViewPort(true)
             .Items(
-                F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableCheckBoxSelect(false)
+                F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableCheckBoxSelect(false).DataIDField("articleId").DataTextField("articleTitle")
                     .Columns(
                         F.RowNumberField().EnablePagingNumber(true),
-                        F.RenderFieldFor(m => m.catId, true).Width(70),
+                        F.RenderFieldFor(m => m.catId, true).Width(100),
                         F.RenderFieldFor(m => m.articleId, true).Width(70),
                         F.RenderFieldFor(m => m.articleTitle, true).Width(300),
                        
@@ -59,7 +59,7 @@
         var coreDeptDelete ='';
 
         function onNewClick(event) {
-            F.ui.Window1.show('@Url.Content("~/Admin/Article/ArticleCatsNew")', '新增');
+            F.ui.Window1.show('@Url.Content("~/Admin/Article/ArticleNew")', '新增');
         }
 
         function renderActionEdit(value, params) {
@@ -99,7 +99,7 @@
                         }
                     });
                 } else if (cnode.hasClass('edit')) {
-                    F.ui.Window1.show('@Url.Content("~/Admin/Article/ArticleCatsEdit?id=")' + rowData.id, '编辑');
+                    F.ui.Window1.show('@Url.Content("~/Admin/Article/ArticleEdit?id=")' + rowData.id, '编辑');
                 }
             });
 

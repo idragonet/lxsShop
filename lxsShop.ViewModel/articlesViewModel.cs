@@ -9,7 +9,7 @@ namespace lxsShop.ViewModel
     /// <summary>
     /// 商品类别 视图实体
     /// </summary>
-    public class articleViewModel
+    public class articlesViewModel
     {
 
         [Display(Name = "ID")]

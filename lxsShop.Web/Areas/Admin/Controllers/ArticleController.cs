@@ -21,8 +21,9 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         
 
         public Iarticle_catsService article_catsservice { get; }
+       // public IarticleService articleservice { get; }
         
-        public articleRepository articleService = new articleRepository();
+        public articleRepository articleRepository = new articleRepository();
 
         //通过构造函数注入Service
         public ArticleController(Iarticle_catsService article_catsservice)
@@ -30,22 +31,95 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             this.article_catsservice = article_catsservice;
         }
 
+
+        #region 文章显示、删除
+
+
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Article()
         {
-            return View();
+            var post = articleRepository.FindAll();
+            var result = post.MapTo<List<articlesViewModel>>();
+            return View(result);
         }
 
 
 
-        #region 文章类别
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Article_DoPostBack(string[] Grid1_fields, string actionType, int? deletedRowID)
+        {
+            if (actionType == "delete")
+            {
+                articleRepository.DeleteById(deletedRowID);
+            }
+
+            var post = articleRepository.FindAll();
+            var result = post.MapTo<List<articlesViewModel>>();
+            UIHelper.Grid("Grid1").DataSource(result, Grid1_fields);
+
+            return UIHelper.Result();
+        }
 
 
-         
+        #endregion
+
+
+        #region 文章编辑
+
+        // GET: Admin/DeptEdit
+        public IActionResult ArticleEdit(int id)
+        {
+            var current = articleRepository.FindById(id);
+
+            /*Dept current = db.Depts
+                .Where(m => m.ID == id).FirstOrDefault();*/
+            if (current == null)
+            {
+                return Content("无效参数！");
+            }
+
+            return View(current.MapTo<articlesViewModel>());
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ArticlesEdit_btnSaveClose_Click([Bind(include:"catId,catName")]
+            article_cats articlecats)
+        {
+            if (ModelState.IsValid)
+            {
+                // 下拉列表的顶级节点值为-1
+                // 下拉列表的顶级节点值为-1
+
+                articlecats.CreateDate = DateTime.Now;
+
+                article_catsservice.Update(articlecats);
+
+
+                // db.Entry(dept).State = EntityState.Modified;
+                // db.SaveChanges();
+
+                // 关闭本窗体（触发窗体的关闭事件）
+                ActiveWindow.HidePostBack();
+            }
+
+            return UIHelper.Result();
+        }
+
+
+
+
+        #endregion
+
+        #region 文章类别 显示、删除
+
+
+
         [Authorize]
         public IActionResult ArticleCats()
         {
-
             var post = article_catsservice.FindAll();
             var result = post.MapTo<List<article_catsViewModel>>();
             return View(result);
@@ -56,12 +130,12 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Article_DoPostBack(string[] Grid1_fields, string actionType, int? deletedRowID)
+        public ActionResult ArticleCats_DoPostBack(string[] Grid1_fields, string actionType, int? deletedRowID)
         {
             if (actionType == "delete")
             {
               
-                var article = articleService.FindByClause(m => m.articleId == deletedRowID.Value);
+                var article = articleRepository.FindByClause(m => m.articleId == deletedRowID.Value);
                 if (article != null)
                 {
                     Alert.ShowInTop("删除失败！需要类别下面的全部文章.");
@@ -73,8 +147,6 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 {
 
                 }
-
-
             }
 
 
@@ -97,6 +169,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         #endregion
 
 
+        #region 文章类别编辑
 
         // GET: Admin/DeptEdit
         public IActionResult ArticleCatsEdit(int id)
@@ -140,11 +213,12 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         }
 
 
+        
+
+        #endregion
 
 
-
-
-        #region 商品类别 新增
+        #region 文章类别 新增
 
 
         [Authorize]
@@ -159,16 +233,10 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             [Bind(include:"catName")]
             article_cats articlecats)
         {
-
-
             if (ModelState.IsValid)
             {
-                // 下拉列表的顶级节点值为-1
                 articlecats.CreateDate = DateTime.Now;
                 article_catsservice.Insert(articlecats);
-
-                //  db.Depts.Add(dept);
-                //  db.SaveChanges();
 
                 // 关闭本窗体（触发窗体的关闭事件）
                 ActiveWindow.HidePostBack();
