@@ -25,8 +25,8 @@
                 .Items(
                     F.HiddenFieldFor(m => m.articleId),
                   
-                    F.TextBoxFor(m => m.articleTitle),
-                    F.DropDownListFor(m => m.catId),
+                    F.TextBoxFor(m => m.articleTitle).MaxLength(50),
+                    F.DropDownListFor(m => m.catId).DataSource(ViewBag.ArticleCatsDataSource).DataTextField("catName").DataValueField("catId"),
                     F.HtmlEditor().Label("文章内容").ID("HtmlEditor1").Editor(Editor.UMEditor)
                         .BasePath(Url.Content("~/res/third-party/umeditor/")).ToolbarSet(EditorToolbarSet.Full).ToolbarSet(EditorToolbarSet.Basic).Height(450)
                         

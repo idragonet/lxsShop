@@ -79,13 +79,16 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 return Content("无效参数！");
             }
 
+            ViewBag.ArticleCatsDataSource = article_catsservice.FindAll();
+
+
             return View(current.MapTo<articlesViewModel>());
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ArticlesEdit_btnSaveClose_Click([Bind(include:"articleId,articleTitle")]
+        public ActionResult ArticlesEdit_btnSaveClose_Click([Bind(include:"articleId,articleTitle,catId")]
             articles articlesEdit, string text)
         {
             if (ModelState.IsValid)
@@ -113,6 +116,45 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
 
         #endregion
+
+
+
+        #region 文章 新增
+
+
+        [Authorize]
+        public IActionResult ArticleNew()
+        {
+            ViewBag.ArticleCatsDataSource = article_catsservice.FindAll();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ArticleNew_btnSaveClose_Click(
+            [Bind(include:"articleTitle,catId")]
+            articles articlesEdit, string text)
+        {
+            if (ModelState.IsValid)
+            {
+                articlesEdit.CreateDate = DateTime.Now;
+                articlesEdit.articleContent = text;
+
+                articleRepository.Insert(articlesEdit);
+
+                // 关闭本窗体（触发窗体的关闭事件）
+                ActiveWindow.HidePostBack();
+            }
+
+            return UIHelper.Result();
+        }
+
+
+
+        #endregion
+
+
+
 
         #region 文章类别 显示、删除
 

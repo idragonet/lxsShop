@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "新建文章";
+    var F = @Html.F();
+}
+
+@model lxsShop.ViewModel.articlesViewModel
+
+@section body {
+
+
+
+    @(F.Panel().ID("Panel1").ShowBorder(false).ShowHeader(false).AutoScroll(true).IsViewPort(true).Layout(LayoutType.VBox)
+        .Toolbars(
+            F.Toolbar().ID("Toolbar1")
+                .Items(
+                    F.Button().ID("btnClose").Icon(Icon.SystemClose).Text("关闭").Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button().ID("btnSaveClose").ValidateForms("SimpleForm1").Icon(Icon.SystemSaveClose).OnClick(Url.Action("ArticleNew_btnSaveClose_Click"), "SimpleForm1", new Parameter("text", "F.ui.HtmlEditor1.getValue()")).Text("保存后关闭")
+                )
+        )
+        .Items(
+            F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
+                .Items(
+                    F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
+                        .Items(
+                           
+                            F.TextBoxFor(m => m.articleTitle).MaxLength(50),
+                            F.DropDownListFor(m => m.catId).DataSource(ViewBag.ArticleCatsDataSource).DataTextField("catName").DataValueField("catId"),
+                            F.HtmlEditor().Label("文章内容").ID("HtmlEditor1").Editor(Editor.UMEditor)
+                                .BasePath(Url.Content("~/res/third-party/umeditor/")).ToolbarSet(EditorToolbarSet.Full).ToolbarSet(EditorToolbarSet.Basic).Height(450)
+)
+
+                        )
+                )
+        )
+
+}

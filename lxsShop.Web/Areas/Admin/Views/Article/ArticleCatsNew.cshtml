@@ -21,7 +21,7 @@
         .Items(
             F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
                 .Items(
-                    F.TextBoxFor(m => m.catName)
+                    F.TextBoxFor(m => m.catName).MaxLength(20)
                                    )
         )
         )

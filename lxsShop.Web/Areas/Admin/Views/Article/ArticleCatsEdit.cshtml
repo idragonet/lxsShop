@@ -25,7 +25,7 @@
                 .Items(
                     F.HiddenFieldFor(m => m.catId),
                   
-                    F.TextBoxFor(m => m.catName)
+                    F.TextBoxFor(m => m.catName).MaxLength(20)
                 )
         )
         )
