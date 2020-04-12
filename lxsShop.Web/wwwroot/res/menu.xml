@@ -12,7 +12,7 @@
 
   <TreeNode Text="页面" IconFont="_Layout">
 
-    <TreeNode Text="广告" NavigateUrl="~/Basic/Article" IconFont="_Pic">
+    <TreeNode Text="首页轮播" NavigateUrl="~/Basic/Article" IconFont="_Pic">
     </TreeNode>
     <TreeNode Text="文章类别" NavigateUrl="~/Admin/Article/ArticleCats" IconFont="_Pencil">
     </TreeNode>
@@ -24,9 +24,10 @@
 
   <TreeNode Text="配置" IconFont="_Gear">
 
-    <TreeNode Text="基本配置" NavigateUrl="~/Basic/Hello" IconFont="_Pencil">
+    <TreeNode Text="基本配置" NavigateUrl="~/Basic/Hello" IconFont="_Code">
     </TreeNode>
-
+    <TreeNode Text="系统信息" NavigateUrl="~/Basic/Hello" IconFont="_Info">
+    </TreeNode>
   </TreeNode>
 
 </Tree>
