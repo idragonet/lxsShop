@@ -85,17 +85,18 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult ArticlesEdit_btnSaveClose_Click([Bind(include:"catId,catName")]
-            article_cats articlecats)
+        public ActionResult ArticlesEdit_btnSaveClose_Click([Bind(include:"articleId,articleTitle")]
+            articles articlesEdit, string text)
         {
             if (ModelState.IsValid)
             {
                 // 下拉列表的顶级节点值为-1
                 // 下拉列表的顶级节点值为-1
 
-                articlecats.CreateDate = DateTime.Now;
+                articlesEdit.CreateDate = DateTime.Now;
+                articlesEdit.articleContent = text;
 
-                article_catsservice.Update(articlecats);
+                articleRepository.Update(articlesEdit);
 
 
                 // db.Entry(dept).State = EntityState.Modified;

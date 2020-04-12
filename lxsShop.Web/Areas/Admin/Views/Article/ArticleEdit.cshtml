@@ -17,16 +17,21 @@
                 .Items(
                     F.Button().ID("btnClose").Icon(Icon.SystemClose).Text("关闭").Listener("click", "F.activeWindow.hide();"),
                     F.ToolbarSeparator(),
-                    F.Button().ID("btnSaveClose").ValidateForms("SimpleForm1").Icon(Icon.SystemSaveClose).OnClick(Url.Action("ArticlesEdit_btnSaveClose_Click"), "SimpleForm1").Text("保存后关闭")
+                    F.Button().ID("btnSaveClose").ValidateForms("SimpleForm1").Icon(Icon.SystemSaveClose).OnClick(Url.Action("ArticlesEdit_btnSaveClose_Click"), "SimpleForm1",new Parameter("text", "F.ui.HtmlEditor1.getValue()")).Text("保存后关闭")
                 )
         )
         .Items(
             F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
                 .Items(
-                    F.HiddenFieldFor(m => m.catId),
+                    F.HiddenFieldFor(m => m.articleId),
                   
                     F.TextBoxFor(m => m.articleTitle),
-                    F.TextBoxFor(m => m.articleContent)
+                 
+                    F.HtmlEditor().Label("文章内容").ID("HtmlEditor1").Editor(Editor.UMEditor)
+                        .BasePath(Url.Content("~/res/third-party/umeditor/")).ToolbarSet(EditorToolbarSet.Full).ToolbarSet(EditorToolbarSet.Basic).Height(350)
+                        
+                        .Text(Model.articleContent)
+                       
                 )
         )
         )
