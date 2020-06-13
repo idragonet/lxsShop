@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\lxsShop.Entitys\lxsShop.Entitys.csproj" />
+    <ProjectReference Include="..\lxsShop.ViewModel\lxsShop.ViewModel.csproj" />
   </ItemGroup>
 
 </Project>

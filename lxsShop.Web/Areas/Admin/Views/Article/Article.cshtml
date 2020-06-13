@@ -21,7 +21,7 @@
                 F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableCheckBoxSelect(false).DataIDField("articleId").DataTextField("articleTitle")
                     .Columns(
                         F.RowNumberField().EnablePagingNumber(true),
-                        F.RenderFieldFor(m => m.catId, true).Width(100),
+                        F.RenderFieldFor(m => m.catName, true).Width(100),
                         F.RenderFieldFor(m => m.articleId, true).Width(70),
                         F.RenderFieldFor(m => m.articleTitle, true).Width(300),
                        
@@ -44,7 +44,7 @@
             )
     )
 
-    @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(950).Height(650).OnClose(Url.Action("Article_DoPostBack"), "Panel1"))
+    @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(950).Height(658).OnClose(Url.Action("Article_DoPostBack"), "Panel1"))
 
 }
 

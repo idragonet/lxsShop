@@ -11,7 +11,7 @@ namespace lxsShop.Repository
     {
         #region Implementation of IRepository<T>
 
-        private SqlSugarClient db = new DbFactory().GetDb();
+        public SqlSugarClient db = new DbFactory().GetDb();
 
         /// <summary>
         /// 根据主值查询单条数据
@@ -29,7 +29,7 @@ namespace lxsShop.Repository
         /// 查询所有数据(无分页,请慎用)
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<T> FindAll()
+        public virtual IEnumerable<T> FindAll()
         {
             // using (var db = DbFactory.GetSqlSugarClient())
             // {

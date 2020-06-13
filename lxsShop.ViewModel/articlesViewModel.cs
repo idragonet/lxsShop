@@ -7,7 +7,7 @@ namespace lxsShop.ViewModel
 {
 
     /// <summary>
-    /// 商品类别 视图实体
+    /// 文章 视图实体
     /// </summary>
     public class articlesViewModel
     {
@@ -29,7 +29,9 @@ namespace lxsShop.ViewModel
         [Required(ErrorMessage = "文章类别不要忘记填")]
         public long catId { get; set; }
 
-        
+
+        [Display(Name = "文章类别")]
+        public string catName { get; set; }
 
         [Display(Name = "创建时间")]
         public DateTime CreateDate { get; set; }
