@@ -82,11 +82,11 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         }
 
 
-        [Authorize]
+        /*[Authorize]
         public IActionResult Brand()
         {
             return View();
-        }
+        }*/
 
 
 

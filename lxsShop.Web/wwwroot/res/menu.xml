@@ -2,7 +2,7 @@
 <Tree>
   <TreeNode Text="商品" IconFont="_Columns">
   
-    <TreeNode Text="商品列表" NavigateUrl="~/Admin/Product/Index" IconFont="_Table">
+    <TreeNode Text="商品列表" NavigateUrl="~/Admin/Goods/Index" IconFont="_Table">
     </TreeNode>
     <TreeNode Text="商品类别" NavigateUrl="~/Admin/Product/Category" IconFont="_Bookmark">
     </TreeNode>

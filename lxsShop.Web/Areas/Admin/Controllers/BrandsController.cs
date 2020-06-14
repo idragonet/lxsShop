@@ -18,12 +18,12 @@ namespace lxsShop.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class BrandsController : lxsShop.Web.Controllers.BaseController
     {
-        public IbrandsService brandsCatsservice { get; }
+        public IbrandsService brandsservice { get; }
 
         //通过构造函数注入Service
         public BrandsController(IbrandsService brands_catsservice)
         {
-            brandsCatsservice = brands_catsservice;
+            brandsservice = brands_catsservice;
         }
 
 
@@ -32,7 +32,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public IActionResult Brands()
         {
-            var post = brandsCatsservice.FindAll();
+            var post = brandsservice.FindAll();
             var result = post.MapTo<List<brandsViewModel>>();
 
 
@@ -40,15 +40,27 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         }
 
 
-        public brandsRepository BrandsRepository = new brandsRepository();
+        //   public brandsRepository BrandsRepository = new brandsRepository();
 
+        public goodsRepository goods_service = new goodsRepository();
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Brands_DoPostBack(string[] Grid1_fields, string actionType, int? deletedRowID)
         {
-            if (actionType == "delete") BrandsRepository.DeleteById(deletedRowID);
+            if (actionType == "delete")
+            {
+                //该品牌的的商品必须没有才允许删除
+                var goods = goods_service.FindByClause(m => m.brandId == deletedRowID.Value);
+                if (goods != null)
+                {
+                    Alert.ShowInTop("删除失败！需要先清空该品牌下的商品");
+                    return UIHelper.Result();
+                }
 
-            var post = BrandsRepository.FindAll();
+                brandsservice.DeleteById(deletedRowID);
+            }
+
+            var post = brandsservice.FindAll();
             var result = post.MapTo<List<brandsViewModel>>();
             UIHelper.Grid("Grid1").DataSource(result, Grid1_fields);
 
@@ -63,13 +75,13 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         // GET: Admin/DeptEdit
         public IActionResult BrandsEdit(int id)
         {
-            var current = BrandsRepository.FindById(id);
+            var current = brandsservice.FindById(id);
 
             /*Dept current = db.Depts
                 .Where(m => m.ID == id).FirstOrDefault();*/
             if (current == null) return Content("无效参数！");
 
-            ViewBag.BrandsDataSource = BrandsRepository.FindAll();
+            ViewBag.BrandsDataSource = brandsservice.FindAll();
 
 
             return View(current.MapTo<brandsViewModel>());
@@ -125,7 +137,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 brandsEdit.CreateDate = DateTime.Now;
 
 
-                BrandsRepository.Update(brandsEdit);
+                brandsservice.Update(brandsEdit);
 
 
                 // db.Entry(dept).State = EntityState.Modified;
@@ -149,7 +161,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public IActionResult BrandsNew()
         {
-            ViewBag.BrandsDataSource = BrandsRepository.FindAll();
+            ViewBag.BrandsDataSource = brandsservice.FindAll();
             return View();
         }
 
@@ -190,7 +202,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 brandsEdit.CreateDate = DateTime.Now;
 
 
-                BrandsRepository.Insert(brandsEdit);
+                brandsservice.Insert(brandsEdit);
 
                 // 关闭本窗体（触发窗体的关闭事件）
                 ActiveWindow.HidePostBack();
