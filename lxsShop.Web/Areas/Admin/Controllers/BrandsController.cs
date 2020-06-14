@@ -139,5 +139,71 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         }
 
         #endregion
+
+
+
+
+        #region 品牌 新增
+
+
+        [Authorize]
+        public IActionResult BrandsNew()
+        {
+            ViewBag.BrandsDataSource = BrandsRepository.FindAll();
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult BrandsNew_btnSaveClose_Click(
+            [Bind(include:"brandId,brandName")]
+            brands brandsEdit, IFormFile filePhoto)
+        {
+            if (ModelState.IsValid)
+            {
+                if (filePhoto != null)
+                {
+                    var fileName = filePhoto.FileName;
+
+                    if (!ValidateFileType(fileName))
+                    {
+                        // 清空文件上传组件
+                        UIHelper.FileUpload("filePhoto").Reset();
+
+                        ShowNotify("无效的文件类型！");
+                        return UIHelper.Result();
+                    }
+                    else
+                    {
+                        fileName = fileName.Replace(":", "_").Replace(" ", "_").Replace("\\", "_").Replace("/", "_");
+                        fileName = DateTime.Now.Ticks.ToString() + "_" + fileName;
+                        brandsEdit.brandImg = fileName;
+
+                        using (var stream = new FileStream(PageContext.MapWebPath("~/uploads/Logo/" + fileName),
+                            FileMode.Create))
+                        {
+                            filePhoto.CopyTo(stream);
+                        }
+                    }
+                }
+
+                brandsEdit.CreateDate = DateTime.Now;
+
+
+                BrandsRepository.Insert(brandsEdit);
+
+                // 关闭本窗体（触发窗体的关闭事件）
+                ActiveWindow.HidePostBack();
+            }
+
+            return UIHelper.Result();
+        }
+
+
+
+        #endregion
+
+
+
     }
 }
