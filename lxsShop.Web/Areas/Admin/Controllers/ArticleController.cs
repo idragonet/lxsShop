@@ -20,15 +20,15 @@ namespace lxsShop.Web.Areas.Admin.Controllers
     {
         
 
-        public Iarticle_catsService article_catsservice { get; }
+        public Iarticle_catsService articleCatsservice { get; }
        // public IarticleService articleservice { get; }
         
-        public articleRepository articleRepository = new articleRepository();
+        public articleRepository ArticleRepository = new articleRepository();
 
         //通过构造函数注入Service
         public ArticleController(Iarticle_catsService article_catsservice)
         {
-            this.article_catsservice = article_catsservice;
+            this.articleCatsservice = article_catsservice;
         }
 
 
@@ -38,10 +38,10 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public IActionResult Article()
         {
-            var post = articleRepository.FindAll();
+            var post = ArticleRepository.FindAll();
             var result = post.MapTo<List<articlesViewModel>>();
 
-            var post2 = articleRepository.FindAll2();
+            var post2 = ArticleRepository.FindAll2();
            // var result2= post2.MapTo<List<articlesViewModel>>();
 
 
@@ -57,10 +57,10 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         {
             if (actionType == "delete")
             {
-                articleRepository.DeleteById(deletedRowID);
+                ArticleRepository.DeleteById(deletedRowID);
             }
 
-            var post = articleRepository.FindAll();
+            var post = ArticleRepository.FindAll();
             var result = post.MapTo<List<articlesViewModel>>();
             UIHelper.Grid("Grid1").DataSource(result, Grid1_fields);
 
@@ -76,7 +76,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         // GET: Admin/DeptEdit
         public IActionResult ArticleEdit(int id)
         {
-            var current = articleRepository.FindById(id);
+            var current = ArticleRepository.FindById(id);
 
             /*Dept current = db.Depts
                 .Where(m => m.ID == id).FirstOrDefault();*/
@@ -85,7 +85,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 return Content("无效参数！");
             }
 
-            ViewBag.ArticleCatsDataSource = article_catsservice.FindAll();
+            ViewBag.ArticleCatsDataSource = articleCatsservice.FindAll();
 
 
             return View(current.MapTo<articlesViewModel>());
@@ -105,7 +105,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 articlesEdit.CreateDate = DateTime.Now;
                 articlesEdit.articleContent = text;
 
-                articleRepository.Update(articlesEdit);
+                ArticleRepository.Update(articlesEdit);
 
 
                 // db.Entry(dept).State = EntityState.Modified;
@@ -131,7 +131,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public IActionResult ArticleNew()
         {
-            ViewBag.ArticleCatsDataSource = article_catsservice.FindAll();
+            ViewBag.ArticleCatsDataSource = articleCatsservice.FindAll();
             return View();
         }
 
@@ -146,7 +146,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 articlesEdit.CreateDate = DateTime.Now;
                 articlesEdit.articleContent = text;
 
-                articleRepository.Insert(articlesEdit);
+                ArticleRepository.Insert(articlesEdit);
 
                 // 关闭本窗体（触发窗体的关闭事件）
                 ActiveWindow.HidePostBack();
@@ -169,7 +169,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public IActionResult ArticleCats()
         {
-            var post = article_catsservice.FindAll();
+            var post = articleCatsservice.FindAll();
             var result = post.MapTo<List<article_catsViewModel>>();
             return View(result);
         }
@@ -184,7 +184,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             if (actionType == "delete")
             {
               
-                var article = articleRepository.FindByClause(m => m.articleId == deletedRowID.Value);
+                var article = ArticleRepository.FindByClause(m => m.articleId == deletedRowID.Value);
                 if (article != null)
                 {
                     Alert.ShowInTop("删除失败！需要类别下面的全部文章.");
@@ -192,7 +192,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 }
 
 
-                if (article_catsservice.DeleteById(deletedRowID))
+                if (articleCatsservice.DeleteById(deletedRowID))
                 {
 
                 }
@@ -207,7 +207,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             ResolveCollection(result, null, 0, 0);
             UIHelper.Grid("Grid1").DataSource(_resultNew, Grid1_fields);*/
 
-            var post = article_catsservice.FindAll();
+            var post = articleCatsservice.FindAll();
             var result = post.MapTo<List<article_catsViewModel>>();
             UIHelper.Grid("Grid1").DataSource(result, Grid1_fields);
 
@@ -223,7 +223,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         // GET: Admin/DeptEdit
         public IActionResult ArticleCatsEdit(int id)
         {
-            var current = article_catsservice.FindById(id);
+            var current = articleCatsservice.FindById(id);
 
             /*Dept current = db.Depts
                 .Where(m => m.ID == id).FirstOrDefault();*/
@@ -248,7 +248,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
                 articlecats.CreateDate = DateTime.Now;
 
-                article_catsservice.Update(articlecats);
+                articleCatsservice.Update(articlecats);
 
 
                 // db.Entry(dept).State = EntityState.Modified;
@@ -285,7 +285,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 articlecats.CreateDate = DateTime.Now;
-                article_catsservice.Insert(articlecats);
+                articleCatsservice.Insert(articlecats);
 
                 // 关闭本窗体（触发窗体的关闭事件）
                 ActiveWindow.HidePostBack();

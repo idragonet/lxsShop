@@ -1,9 +1,10 @@
 ﻿@{
-    ViewBag.Title = "文章类别";
+    ViewBag.Title = "品牌管理";
     var F = @Html.F();
 }
 
-@model IEnumerable<lxsShop.ViewModel.goods_catsViewModel>
+@using Masuit.Tools.Reflection
+@model IEnumerable<lxsShop.ViewModel.brandsViewModel>
 
 @section head {
 
@@ -16,16 +17,15 @@
 
 
     @(
-        F.Panel().ID("Panel1").BodyPadding(5).ShowBorder(false).Layout(LayoutType.VBox).ShowHeader(true).Title("文章类别").IsViewPort(true)
+        F.Panel().ID("Panel1").BodyPadding(5).ShowBorder(false).Layout(LayoutType.VBox).ShowHeader(true).Title("品牌管理").IsViewPort(true)
             .Items(
-                F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableCheckBoxSelect(false).DataIDField("catId").DataTextField("catName").EnableSimulateTree(true)
+                F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableCheckBoxSelect(false).DataIDField("brandId").DataTextField("catName").EnableSimulateTree(true)
                     .Columns(
                         F.RowNumberField().EnablePagingNumber(true),
-                        F.RenderFieldFor(m => m.catName, true).Width(370),
-
-                   
-
-                                F.RenderCheckFieldFor(m => m.isShow).RenderAsStaticField(true).Width(50),
+                        F.RenderFieldFor(m => m.brandId, true).Width(80),
+                        F.RenderFieldFor(m => m.brandName, true).Width(200),
+                        F.RenderFieldFor(m => m.brandImg, true).Width(280).Hidden(true),
+                        F.RenderField().HeaderText("LOGO").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("showlogo").Width(280),
 
                                 F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("renderActionEdit").Width(50),
                         F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("renderActionDelete").Width(50)
@@ -44,7 +44,7 @@
             )
     )
 
-    @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(900).Height(450).OnClose(Url.Action("Dept_DoPostBack"), "Panel1"))
+    @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(700).Height(250).OnClose(Url.Action("Brands_DoPostBack"), "Panel1"))
 
 }
 
@@ -59,7 +59,7 @@
         var coreDeptDelete ='';
 
         function onNewClick(event) {
-            F.ui.Window1.show('@Url.Content("~/Admin/Product/CategoryNew")', '新增');
+            F.ui.Window1.show('@Url.Content("~/Admin/Brands/BrandsNew")', '新增');
         }
 
         function renderActionEdit(value, params) {
@@ -72,6 +72,12 @@
             var imageUrl = '@Url.Content("~/res/icon/delete.png")';
             var disabledCls =  '';
             return '<a class="action-btn delete'+ disabledCls +'" href="javascript:;"><img class="f-grid-cell-icon" src="' + imageUrl + '"></a>';
+        }
+
+        function showlogo(value, params) {
+            var imageUrl = '@Url.Content("~/res/icon/delete.png")';
+            var disabledCls =  '';
+            return '<img class="f-grid-cell-icon" src="' + imageUrl + '">';
         }
 
         F.ready(function () {
@@ -92,14 +98,14 @@
                         target: '_top',
                         ok: function () {
                             // 触发后台事件
-                            F.doPostBack('@Url.Action("Dept_DoPostBack")', 'Panel1', {
+                            F.doPostBack('@Url.Action("Brands_DoPostBack")', 'Panel1', {
                                 actionType: 'delete',
                                 deletedRowID: rowData.id
                             });
                         }
                     });
                 } else if (cnode.hasClass('edit')) {
-                    F.ui.Window1.show('@Url.Content("~/Admin/Product/CategoryEdit?id=")' + rowData.id, '编辑');
+                    F.ui.Window1.show('@Url.Content("~/Admin/Brands/BrandsEdit?id=")' + rowData.id, '编辑');
                 }
             });
 

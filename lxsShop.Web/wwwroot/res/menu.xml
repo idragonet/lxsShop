@@ -6,7 +6,7 @@
     </TreeNode>
     <TreeNode Text="商品类别" NavigateUrl="~/Admin/Product/Category" IconFont="_Bookmark">
     </TreeNode>
-    <TreeNode Text="品牌管理" NavigateUrl="~/Admin/Product/Brand" IconFont="_Tag">
+    <TreeNode Text="品牌管理" NavigateUrl="~/Admin/Brands/Brands" IconFont="_Tag">
     </TreeNode>
   </TreeNode>
 

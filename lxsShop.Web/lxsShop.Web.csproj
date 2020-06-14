@@ -39,7 +39,7 @@
     <Folder Include="wwwroot\res\images\snapshot\" />
     <Folder Include="wwwroot\res\images\themes\border\" />
     <Folder Include="wwwroot\res\js\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="wwwroot\uploads\Logo\" />
   </ItemGroup>
 
   <ItemGroup>
