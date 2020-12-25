@@ -26,8 +26,8 @@
 
     <TreeNode Text="基本配置" NavigateUrl="~/Basic/Hello" IconFont="_Code">
     </TreeNode>
-    <TreeNode Text="系统信息" NavigateUrl="~/Basic/Hello" IconFont="_Info">
-    </TreeNode>
+    <!-- <TreeNode Text="系统信息" NavigateUrl="~/Basic/Hello" IconFont="_Info"> -->
+    <!-- </TreeNode> -->
   </TreeNode>
 
 </Tree>

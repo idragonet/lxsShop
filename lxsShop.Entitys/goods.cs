@@ -1,3 +1,4 @@
+using System;
 using SqlSugar;
 
 namespace Entitys
@@ -85,7 +86,7 @@ namespace Entitys
         /// <summary>
         /// CreateDate
         /// </summary>
-        public System.DateTime? CreateDate { get { return this._CreateDate; } set { this._CreateDate = value ?? default(System.DateTime); } }
+        public DateTime? CreateDate { get { return this._CreateDate; } set { this._CreateDate = value ?? default(System.DateTime); } }
 
         private System.Int64 _goodsCatId;
         /// <summary>

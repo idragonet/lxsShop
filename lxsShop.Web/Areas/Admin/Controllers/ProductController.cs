@@ -24,7 +24,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         //  private IMapper Mapper { get; }
 
         public Igoods_catsService goods_catsservice { get; }
-        public goodsRepository goods_service = new goodsRepository();
+       // public goodsRepository goods_service = new goodsRepository();
 
         //通过构造函数注入Service
         //  public ProductController(Mapper mapper, Igoods_catsService goods_catsservice)
@@ -113,12 +113,12 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 }
 
 
-                var goods = goods_service.FindByClause(m => m.goodsCatId == deletedRowID.Value);
+                /*var goods = goods_service.FindByClause(m => m.goodsCatId == deletedRowID.Value);
                 if (goods!=null)
                 {
                     Alert.ShowInTop("删除失败！需要先清空该类别下带商品");
                     return UIHelper.Result();
-                }
+                }*/
 
 
                 if (goods_catsservice.DeleteById(deletedRowID))

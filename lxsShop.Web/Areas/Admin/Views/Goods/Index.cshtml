@@ -3,14 +3,22 @@
     var F = @Html.F();
 }
 
-@using Masuit.Tools.Reflection
-@model IEnumerable<lxsShop.ViewModel.goodsViewModel>
 
+
+@using Masuit.Tools.Reflection
+@model List<lxsShop.ViewModel.goodsViewModel>
+
+@*
 @section head {
 
+    <style>
+        .f-grid-cell-goodsImg img.f-grid-imagefield {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
 
-
-}
+}*@
 
 
 @section body {
@@ -27,8 +35,9 @@
                     F.RenderField().HeaderText("商品图片").EnableHeaderMenu(false).EnableColumnHide(false).DataField("goodsImg").RendererFunction("renderGoodsImg").Width(100),
 
                     F.RenderFieldFor(m => m.goodsCatId, true).Width(120),
+                    F.RenderFieldFor(m => m.catName, true).Width(120),
                     F.RenderFieldFor(m => m.brandId, true).Width(120),
-                    F.RenderFieldFor(m => m.CreateDate, true).Width(160),
+                    F.RenderFieldFor(m => m.CreateDate, true).Width(170).FieldFormat("yyyy-MM-dd HH:mm"),
 
                     F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).TextAlign(TextAlign.Center).RendererFunction("renderActionEdit").Width(50),
                     F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).TextAlign(TextAlign.Center).RendererFunction("renderActionDelete").Width(50),
@@ -45,7 +54,6 @@
                 .DataSource(Model)
 
         ))
-
     @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(700).Height(250).OnClose(Url.Action("Brands_DoPostBack"), "Panel1"))
 
 }

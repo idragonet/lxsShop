@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FineUICore;
+using lxsShop.NewServices;
+using lxsShop.NewServices.Interfaces;
 using lxsShop.Repository;
 using lxsShop.Services;
 using lxsShop.ViewModel;
@@ -17,30 +19,36 @@ namespace lxsShop.Web.Areas.Admin.Controllers
     public class GoodsController : Controller
     {
 
-        public IgoodsService _goodsservice { get; }
+        private readonly IgoodServer _goodserver;
 
-        //通过构造函数注入Service
-        public GoodsController(IgoodsService goodsservice)
+        public GoodsController(IgoodServer goodserver)
         {
-            _goodsservice = goodsservice;
+            _goodserver = goodserver;
         }
 
 
         #region 显示、删除
 
 
-      
+        /*[HttpGet]
+        public async Task<IActionResult> Get()
+        {
+            var info = await services.GetCategory("31d5f34b-e0cc-4e47-aa9a-75c4890b709d");
+            return Ok(info);
+        }*/
+
 
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index([FromQuery] PageParm request)
         {
-            var post = _goodsservice.FindAll();
-            var result = post.MapTo<List<goodsViewModel>>();
-            return View(result);
+            var post = await _goodserver.GetPagesAsync(request);
+
+            return View(post.data.Items);
         }
 
 
 
+        /*
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Brands_DoPostBack(string[] Grid1_fields, string actionType, int? deletedRowID)
@@ -55,7 +63,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             UIHelper.Grid("Grid1").DataSource(result, Grid1_fields);
 
             return UIHelper.Result();
-        }
+        }*/
 
         #endregion
 

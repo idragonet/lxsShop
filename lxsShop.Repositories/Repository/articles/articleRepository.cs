@@ -16,7 +16,7 @@ namespace lxsShop.Repository
         /// 需要多表查询，所以重写
         /// </summary>
         /// <returns></returns>
-        public  IEnumerable<articlesViewModel> FindAll2()
+        public  IEnumerable<articlesViewModel> FindAll()
         {
 
             /*

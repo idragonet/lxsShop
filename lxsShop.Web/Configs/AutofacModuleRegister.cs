@@ -17,6 +17,8 @@ namespace lxsShop.Web
             
             //注册Repository中的对象,Repository中的类要以Repository结尾，否则注册失败
             builder.RegisterAssemblyTypes(GetAssemblyByName("lxsShop.Repository")).Where(a => a.Name.EndsWith("Repository")).AsImplementedInterfaces();
+
+            builder.RegisterAssemblyTypes(GetAssemblyByName("lxsShop.NewServices")).Where(a => a.Name.EndsWith("Server")).AsImplementedInterfaces();
         }
         /// <summary>
         /// 根据程序集名称获取程序集

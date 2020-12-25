@@ -24,20 +24,21 @@ namespace lxsShop.ViewModel
         public string goodsName { get; set; }
 
         [Display(Name = "商品图片")]
-        public long goodsImg { get; set; }
+        public string goodsImg { get; set; }
 
         [Display(Name = "推荐")]
-        public int isRecom { get; set; }
+        public long isRecom { get; set; }
 
 
         [Display(Name = "新品")]
-        public int isNew { get; set; }
+        public long isNew { get; set; }
 
 
         [Display(Name = "品牌ID")]
         public long brandId { get; set; }
 
-
+        [Display(Name = "品牌")]
+        public string brandName { get; set; }
 
 
         [Display(Name = "商品描述")]
@@ -49,13 +50,14 @@ namespace lxsShop.ViewModel
         public string goodsSeoKeywords { get; set; }
 
 
-        [Display(Name = "商品类别")]
+        [Display(Name = "商品类别ID")]
         public long goodsCatId { get; set; }
 
-
+        [Display(Name = "商品类别")]
+        public string catName { get; set; }
 
         [Display(Name = "创建日期")]
-        public DateTime CreateDate { get; set; }
+        public DateTime? CreateDate { get; set; }
         
     }
 }

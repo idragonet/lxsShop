@@ -42,7 +42,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         //   public brandsRepository BrandsRepository = new brandsRepository();
 
-        public goodsRepository goods_service = new goodsRepository();
+      //  public goodsRepository goods_service = new goodsRepository();
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Brands_DoPostBack(string[] Grid1_fields, string actionType, int? deletedRowID)
@@ -50,12 +50,12 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             if (actionType == "delete")
             {
                 //该品牌的的商品必须没有才允许删除
-                var goods = goods_service.FindByClause(m => m.brandId == deletedRowID.Value);
+                /*var goods = goods_service.FindByClause(m => m.brandId == deletedRowID.Value);
                 if (goods != null)
                 {
                     Alert.ShowInTop("删除失败！需要先清空该品牌下的商品");
                     return UIHelper.Result();
-                }
+                }*/
 
                 brandsservice.DeleteById(deletedRowID);
             }

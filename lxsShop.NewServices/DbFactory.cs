@@ -8,12 +8,12 @@ using Masuit.Tools.Logging;
 using Microsoft.Extensions.Configuration;
 using SqlSugar;
 
-namespace lxsShop.Repository
+namespace lxsShop.NewServices
 {
    public class DbFactory
     {
 
-        public SqlSugarClient db; //用来处理事务多表查询和复杂的操作
+        public SqlSugarClient Db; //用来处理事务多表查询和复杂的操作
 
         private static IConfiguration configure = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -24,7 +24,7 @@ namespace lxsShop.Repository
         // public BaseHelper(string connectionString)
         public DbFactory()
         {
-            db = new SqlSugarClient(
+            Db = new SqlSugarClient(
                 new ConnectionConfig()
                 {
                     ConnectionString = _connectionstring,
@@ -34,31 +34,31 @@ namespace lxsShop.Repository
                 });
 
             //用来打印Sql方便你调式
-            db.Aop.OnLogExecuting = (sql, pars) =>
+            Db.Aop.OnLogExecuting = (sql, pars) =>
             {
 
                 LogManager.Debug(sql + "\r\n" +
-                                 db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
+                                 Db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
 
                 Console.WriteLine(sql + "\r\n" +
-                                  db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
+                                  Db.Utilities.SerializeObject(pars.ToDictionary(it => it.ParameterName, it => it.Value)));
                 Console.WriteLine();
             };
         }
 
         public SqlSugarClient GetDb()
         {
-            return db;
+            return Db;
         }
 
         public bool InsertInto<T>(T obj) where T : class, new()
         {
-            return db.Insertable(obj).ExecuteCommandIdentityIntoEntity();
+            return Db.Insertable(obj).ExecuteCommandIdentityIntoEntity();
         }
 
         public int UpdateInfo<T>(Expression<Func<T, bool>> set, Expression<Func<T, bool>> where) where T : class, new()
         {
-            return db.Updateable<T>().SetColumns(set).Where(where).ExecuteCommand();
+            return Db.Updateable<T>().SetColumns(set).Where(where).ExecuteCommand();
         }
     }
 }

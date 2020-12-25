@@ -27,6 +27,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\lxsShop.NewServices\lxsShop.NewServices.csproj" />
     <ProjectReference Include="..\lxsShop.Services\lxsShop.Services.csproj" />
     <ProjectReference Include="..\lxsShop.ViewModel\lxsShop.ViewModel.csproj" />
   </ItemGroup>

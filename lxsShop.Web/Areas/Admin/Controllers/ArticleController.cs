@@ -41,12 +41,12 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             var post = ArticleRepository.FindAll();
             var result = post.MapTo<List<articlesViewModel>>();
 
-            var post2 = ArticleRepository.FindAll2();
+         //   var post2 = ArticleRepository.FindAll2();
            // var result2= post2.MapTo<List<articlesViewModel>>();
 
 
 
-            return View(post2);
+            return View(result);
         }
 
 

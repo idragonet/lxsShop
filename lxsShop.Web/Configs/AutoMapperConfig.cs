@@ -22,7 +22,7 @@ namespace lxsShop.Web.Configs
              CreateMap<article_cats, article_catsViewModel>();
              CreateMap<articles, articlesViewModel>();
              CreateMap<brands, brandsViewModel>();
-             CreateMap<goods, goodsViewModel>();
+           //  CreateMap<goods, goodsViewModel>();
 
           //  AutoMapperHelper.UseStateAutoMapper(goods_cats, goods_catsViewModel);
         }
