@@ -60,11 +60,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 brandsservice.DeleteById(deletedRowID);
             }
 
-            var post = brandsservice.FindAll();
-            var result = post.MapTo<List<brandsViewModel>>();
-            UIHelper.Grid("Grid1").DataSource(result, Grid1_fields);
-
-            return UIHelper.Result();
+            return RedirectToAction("Brands");
         }
 
         #endregion

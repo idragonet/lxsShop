@@ -54,7 +54,7 @@
         )
         )
 
-    @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(700).Height(250).OnClose(Url.Action("Brands_DoPostBack"), "Panel1"))
+    @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(1000).Height(780).OnClose(Url.Action("DoPostBack"), "Panel1"))
 
 }
 
@@ -69,7 +69,7 @@
         var coreDeptDelete = '';
 
         function onNewClick(event) {
-            F.ui.Window1.show('@Url.Content("~/Admin/Brands/BrandsNew")', '新增');
+            F.ui.Window1.show('@Url.Content("~/Admin/Goods/New")', '新增');
         }
 
         function renderActionEdit(value, params) {
@@ -120,7 +120,7 @@
                             target: '_top',
                             ok: function() {
                                 // 触发后台事件
-                                F.doPostBack('@Url.Action("Brands_DoPostBack")',
+                                F.doPostBack('@Url.Action("DoPostBack")',
                                     'Panel1',
                                     {
                                         actionType: 'delete',

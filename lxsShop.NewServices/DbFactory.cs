@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Entitys;
 using Masuit.Tools.Logging;
 using Microsoft.Extensions.Configuration;
 using SqlSugar;
@@ -60,5 +61,11 @@ namespace lxsShop.NewServices
         {
             return Db.Updateable<T>().SetColumns(set).Where(where).ExecuteCommand();
         }
+
+
+        //系统权限设置
+        public SimpleClient<goods> goodsDb => new SimpleClient<goods>(Db);
+        public SimpleClient<goods_cats> goods_catsDb => new SimpleClient<goods_cats>(Db);
+
     }
 }

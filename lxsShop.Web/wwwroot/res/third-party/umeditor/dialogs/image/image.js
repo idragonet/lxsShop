@@ -184,8 +184,14 @@
             return me;
         },
         uploadComplete: function(r){
+			console.log(r);
             var me = this;
             try{
+				 r = r.replace(/<pre.*?>/ig, "")
+            .replace("</pre>", "")
+            .replace(/<audio.*?>/ig, "")
+            .replace("</audio>", "");
+			
                 var json = eval('('+r+')');
                 Base.callback(me.editor, me.dialog, json.url, json.state);
             }catch (e){
