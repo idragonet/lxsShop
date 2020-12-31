@@ -196,10 +196,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
           //  return UIHelper.Result();
         }
 
-        public IActionResult Hello()
-        {
-            return View();
-        }
+    
 
         [HttpPost]
         [ValidateAntiForgeryToken]

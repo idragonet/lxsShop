@@ -19,7 +19,13 @@ namespace lxsShop.Repository
             .SetBasePath(Directory.GetCurrentDirectory())
             .AddJsonFile("appsettings.json").Build();
 
-        private static readonly string _connectionstring = configure["connectionStrings:Conn"];
+        private static string directory = string.Format(Directory.GetCurrentDirectory() + "{0}wwwroot{0}DB{0}",
+            Path.DirectorySeparatorChar);
+
+        private static readonly string _connectionstring = string.Format(configure["connectionStrings:Conn"], directory);
+
+
+     //   private static readonly string _connectionstring = configure["connectionStrings:Conn"];
 
         // public BaseHelper(string connectionString)
         public DbFactory()

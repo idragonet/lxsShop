@@ -20,16 +20,18 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
-    public class GoodsController : Controller
+    public class GoodsController : lxsShop.Web.Controllers.BaseController
     {
 
         private readonly IgoodServer _goodserver;
         private readonly Igoods_catsServer _goodscatsserver;
+        private readonly IbrandsServer _brandsserver;
 
-        public GoodsController(IgoodServer goodserver, Igoods_catsServer goodscatsserver)
+        public GoodsController(IgoodServer goodserver, Igoods_catsServer goodscatsserver, IbrandsServer brandsserver)
         {
             _goodserver = goodserver;
             _goodscatsserver = goodscatsserver;
+            _brandsserver = brandsserver;
         }
 
 
@@ -191,6 +193,11 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             ViewBag.goods_catsDataSource = _resultNew;
 
 
+            var post2 = await _brandsserver.GetPagesAsync(new PageParm() { limit = 100,field = "brandName",order = "ASC"});
+            var brandsNA=new brands {brandId  =-1, brandName = "N/A"};
+            post2.data.Items.Insert(0, brandsNA);
+            ViewBag.brands_DataSource = post2.data.Items;
+
             ViewBag.DataSource = _goodserver.GetPagesAsync(new PageParm()).Result.data.Items;
             return View();
         }
@@ -198,17 +205,17 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult New_btnSaveClose_Click(
-            [Bind(include:"brandId,brandName")]
-            brands brandsEdit, IFormFile filePhoto)
+        public async Task<IActionResult> New_btnSaveClose_Click(goodsViewModel goodsview, IFormFile filePhoto, string text)
         {
+            var goods=new goods();
+            
             if (ModelState.IsValid)
             {
                 if (filePhoto != null)
                 {
                     var fileName = filePhoto.FileName;
 
-                    /*if (!ValidateFileType(fileName))
+                    if (!ValidateFileType(fileName))
                     {
                         // 清空文件上传组件
                         UIHelper.FileUpload("filePhoto").Reset();
@@ -218,25 +225,37 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                     }
                     else
                     {
-                        fileName = fileName.Replace(":", "_").Replace(" ", "_").Replace("\\", "_").Replace("/", "_");
-                        fileName = DateTime.Now.Ticks.ToString() + "_" + fileName;
-                        brandsEdit.brandImg = fileName;
-
-                        using (var stream = new FileStream(PageContext.MapWebPath("~/uploads/Logo/" + fileName),
-                            FileMode.Create))
+                      
+                        string fileExt = Path.GetExtension(filePhoto.FileName);
+                        string fileDir = Path.Combine(PageContext.MapWebPath("~/uploads/"), DateTime.Now.ToString("yyyyMM"));
+                        if (!Directory.Exists(fileDir))
+                        {
+                            Directory.CreateDirectory(fileDir);
+                        }
+                        string newFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileExt;
+                        string filePath = Path.Combine(fileDir, newFileName);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
                         {
                             filePhoto.CopyTo(stream);
                         }
-                    }*/
+
+                        goods.goodsImg = fileName;
+                    }
                 }
 
-                brandsEdit.CreateDate = DateTime.Now;
+                goods.CreateDate = DateTime.Now;
+               if(goodsview.brandId!=null) goods.brandId =Convert.ToInt64(goodsview.brandId);
+                goods.isNew = Convert.ToInt32(goodsview.isNew);
+                goods.isRecom = Convert.ToInt32(goodsview.isRecom); ;
+                goods.goodsCatId = goodsview.goodsCatId;
+                goods.goodsSeoKeywords = goodsview.goodsSeoKeywords;
+                goods.goodsSn = goodsview.goodsSn;
+                goods.goodsDesc = text;
 
-
-             //   brandsservice.Insert(brandsEdit);
-
+              //  await _goodserver.AddAsync(goods);
+                return Ok(await _goodserver.AddAsync(goods));
                 // 关闭本窗体（触发窗体的关闭事件）
-                ActiveWindow.HidePostBack();
+             //   ActiveWindow.HidePostBack();
             }
 
             return UIHelper.Result();

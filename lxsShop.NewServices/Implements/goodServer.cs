@@ -24,8 +24,7 @@ namespace lxsShop.NewServices.Implements
             try
             {
                 //判断商品编号是否存在,如果不存在自动产生
-                parm.goodsSn = parm.goodsSn.Trim().ToUpper();
-                if (string.IsNullOrEmpty(parm.goodsSn.Trim()))
+                if (string.IsNullOrEmpty(parm.goodsSn))
                 {
                     int maxId1 = goodsDb.AsQueryable().Max(it => it.goodsId).ObjToInt() + 1; //拉姆达
                     parm.goodsSn = "BK-" + maxId1;
@@ -34,6 +33,7 @@ namespace lxsShop.NewServices.Implements
 
                 if (!string.IsNullOrEmpty(parm.goodsSn))
                 {
+                    parm.goodsSn = parm.goodsSn.Trim().ToUpper();
                     //判断是否存在
                     var isExt = goodsDb.IsAny(m => m.goodsSn == parm.goodsSn);
                     if (isExt)
@@ -107,8 +107,8 @@ namespace lxsShop.NewServices.Implements
                         goodsSn = g.goodsSn,
                         goodsName = g.goodsName,
                         goodsImg = g.goodsImg,
-                        isRecom = g.isRecom,
-                        isNew = g.isNew,
+                        isRecom = Convert.ToBoolean(g.isRecom),
+                        isNew = Convert.ToBoolean(g.isNew),
                         brandId = g.brandId,
                         brandName = b.brandName,
                         goodsDesc = g.goodsDesc,

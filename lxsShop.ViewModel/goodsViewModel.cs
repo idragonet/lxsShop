@@ -27,22 +27,21 @@ namespace lxsShop.ViewModel
         public string goodsImg { get; set; }
 
         [Display(Name = "推荐")]
-        public long isRecom { get; set; }
+        public bool isRecom { get; set; }
 
 
         [Display(Name = "新品")]
-        public long isNew { get; set; }
+        public bool isNew { get; set; }
 
 
         [Display(Name = "品牌ID")]
-        public long brandId { get; set; }
+        public long? brandId { get; set; }
 
         [Display(Name = "品牌")]
         public string brandName { get; set; }
 
 
         [Display(Name = "商品描述")]
-        [Required(ErrorMessage = "商品描述不要忘记填")]
         public string goodsDesc { get; set; }
 
 
