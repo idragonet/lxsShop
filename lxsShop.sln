@@ -25,6 +25,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03.NewServices", "03.NewSer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.NewServices", "lxsShop.NewServices\lxsShop.NewServices.csproj", "{2912E4B6-879C-41E1-A754-A7DE691E5162}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.Common", "05.Common", "{B722BA88-DFEE-439D-B7BF-0A60C7263951}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lxsShop.Common", "lxsShop.Common\lxsShop.Common.csproj", "{1A389F48-21B5-4E2C-8077-04018BDAF03E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +59,10 @@ Global
 		{2912E4B6-879C-41E1-A754-A7DE691E5162}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2912E4B6-879C-41E1-A754-A7DE691E5162}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2912E4B6-879C-41E1-A754-A7DE691E5162}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A389F48-21B5-4E2C-8077-04018BDAF03E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A389F48-21B5-4E2C-8077-04018BDAF03E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A389F48-21B5-4E2C-8077-04018BDAF03E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A389F48-21B5-4E2C-8077-04018BDAF03E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +74,7 @@ Global
 		{162DAADD-D6BC-4D8B-8ACE-CF6365C9878E} = {A66847DC-F57C-4DEF-B619-B49275AA2977}
 		{8D551E1F-29C3-4E3A-B46B-C0ED6FEDE94F} = {BA372B41-38F2-4333-BB91-7B5DC2F092E0}
 		{2912E4B6-879C-41E1-A754-A7DE691E5162} = {07B7DCD5-6C2E-4802-B479-3A8AEAB5DC16}
+		{1A389F48-21B5-4E2C-8077-04018BDAF03E} = {B722BA88-DFEE-439D-B7BF-0A60C7263951}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28DEAC29-91A4-4E44-9A40-863BA41DB610}

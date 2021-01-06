@@ -27,7 +27,7 @@ namespace lxsShop.NewServices.Implements
                 if (string.IsNullOrEmpty(parm.goodsSn))
                 {
                     int maxId1 = goodsDb.AsQueryable().Max(it => it.goodsId).ObjToInt() + 1; //拉姆达
-                    parm.goodsSn = "BK-" + maxId1;
+                    parm.goodsSn = "BONKE-" + maxId1;
                 }
 
 
@@ -41,16 +41,17 @@ namespace lxsShop.NewServices.Implements
                         res.statusCode = (int) ApiEnum.ParameterError;
                         res.message = "商品编号已存在~";
                     }
-                }
-                else
-                {
-                    var dbres = await Db.Insertable(parm).ExecuteCommandAsync();
-                    if (dbres == 0)
+                    else
                     {
-                        res.statusCode = (int) ApiEnum.Error;
-                        res.message = "插入数据失败~";
+                        var dbres = await Db.Insertable(parm).ExecuteCommandAsync();
+                        if (dbres == 0)
+                        {
+                            res.statusCode = (int)ApiEnum.Error;
+                            res.message = "插入数据失败~";
+                        }
                     }
                 }
+               
             }
             catch (Exception ex)
             {

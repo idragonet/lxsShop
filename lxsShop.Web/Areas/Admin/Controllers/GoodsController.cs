@@ -5,24 +5,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using Entitys;
 using FineUICore;
+using lxsShop.Common.ImgHelper;
 using lxsShop.NewServices;
 using lxsShop.NewServices.Interfaces;
 using lxsShop.Repository;
 using lxsShop.Services;
 using lxsShop.ViewModel;
 using lxsShop.Web.Extension;
+using Masuit.Tools.Media;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using DbFactory = lxsShop.NewServices.DbFactory;
+using Image = System.Drawing.Image;
 
 namespace lxsShop.Web.Areas.Admin.Controllers
 {
-
     [Area("Admin")]
     public class GoodsController : lxsShop.Web.Controllers.BaseController
     {
-
         private readonly IgoodServer _goodserver;
         private readonly Igoods_catsServer _goodscatsserver;
         private readonly IbrandsServer _brandsserver;
@@ -36,7 +37,6 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
 
         #region 显示、删除
-
 
         /*[HttpGet]
         public async Task<IActionResult> Get()
@@ -58,9 +58,9 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
             var post = await _goodserver.GetPagesAsync(request);
 
-            ViewBag.Grid1RecordCount = Convert.ToInt32(post.data.TotalItems); 
+            ViewBag.Grid1RecordCount = Convert.ToInt32(post.data.TotalItems);
             return View(post.data.Items);
-              // return View(post.data);
+            // return View(post.data);
         }
 
 
@@ -90,12 +90,14 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Grid1_PageIndexChangedOrSort(string[] Grid1_fields, int Grid1_pageIndex, string Grid1_sortField, string Grid1_sortDirection)
+        public async Task<IActionResult> Grid1_PageIndexChangedOrSort(string[] Grid1_fields, int Grid1_pageIndex,
+            string Grid1_sortField, string Grid1_sortDirection)
         {
             var grid1 = UIHelper.Grid("Grid1");
 
             var post = await _goodserver.GetPagesAsync(
-                new PageParm { page = (Grid1_pageIndex + 1), limit = 20,order = Grid1_sortDirection , field = Grid1_sortField }
+                new PageParm
+                    {page = (Grid1_pageIndex + 1), limit = 20, order = Grid1_sortDirection, field = Grid1_sortField}
             );
 
             var recordCount = Convert.ToInt32(post.data.TotalItems);
@@ -107,7 +109,6 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
             return UIHelper.Result();
         }
-
 
 
         [HttpPost]
@@ -152,15 +153,13 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         #endregion
 
 
-
-
-
         #region 品牌 新增
 
         private static List<goods_catsViewModel> _resultNew;
 
 
-        private static int ResolveCollection(List<goods_catsViewModel> result, goods_catsViewModel parentMenu, long parentId, int level)
+        private static int ResolveCollection(List<goods_catsViewModel> result, goods_catsViewModel parentMenu,
+            long parentId, int level)
         {
             int count = 0;
 
@@ -193,8 +192,9 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             ViewBag.goods_catsDataSource = _resultNew;
 
 
-            var post2 = await _brandsserver.GetPagesAsync(new PageParm() { limit = 100,field = "brandName",order = "ASC"});
-            var brandsNA=new brands {brandId  =-1, brandName = "N/A"};
+            var post2 = await _brandsserver.GetPagesAsync(new PageParm()
+                {limit = 100, field = "brandName", order = "ASC"});
+            var brandsNA = new brands {brandId = -1, brandName = "N/A"};
             post2.data.Items.Insert(0, brandsNA);
             ViewBag.brands_DataSource = post2.data.Items;
 
@@ -205,10 +205,11 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> New_btnSaveClose_Click(goodsViewModel goodsview, IFormFile filePhoto, string text)
+        public async Task<IActionResult> New_btnSaveClose_Click(goodsViewModel goodsview, IFormFile filePhoto,
+            string text)
         {
-            var goods=new goods();
-            
+            var goods = new goods();
+
             if (ModelState.IsValid)
             {
                 if (filePhoto != null)
@@ -220,54 +221,68 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                         // 清空文件上传组件
                         UIHelper.FileUpload("filePhoto").Reset();
 
-                     //   ShowNotify("无效的文件类型！");
+                        //   ShowNotify("无效的文件类型！");
                         return UIHelper.Result();
                     }
                     else
                     {
-                      
                         string fileExt = Path.GetExtension(filePhoto.FileName);
-                        string fileDir = Path.Combine(PageContext.MapWebPath("~/uploads/"), DateTime.Now.ToString("yyyyMM"));
+                        string fileDir = Path.Combine(PageContext.MapWebPath("~/uploads/"),
+                            DateTime.Now.ToString("yyyyMM"));
                         if (!Directory.Exists(fileDir))
                         {
                             Directory.CreateDirectory(fileDir);
                         }
+
                         string newFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileExt;
+                        string newFileName300 = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileExt + "_300.jpg";
+                        string newFileName100 = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileExt + "_100.jpg";
                         string filePath = Path.Combine(fileDir, newFileName);
                         using (var stream = new FileStream(filePath, FileMode.Create))
                         {
                             filePhoto.CopyTo(stream);
                         }
 
-                        goods.goodsImg = fileName;
+
+                        new ThumbnailImage().MakeThumbnail(filePath, Path.Combine(fileDir, newFileName300), 300, 300);
+                        new ThumbnailImage().MakeThumbnail(filePath, Path.Combine(fileDir, newFileName100), 100, 100);
+
+                        goods.goodsImg = "/" + DateTime.Now.ToString("yyyyMM") + "/" + newFileName;
                     }
                 }
 
                 goods.CreateDate = DateTime.Now;
-               if(goodsview.brandId!=null) goods.brandId =Convert.ToInt64(goodsview.brandId);
+                if (goodsview.brandId != null) goods.brandId = Convert.ToInt64(goodsview.brandId);
                 goods.isNew = Convert.ToInt32(goodsview.isNew);
-                goods.isRecom = Convert.ToInt32(goodsview.isRecom); ;
+                goods.isRecom = Convert.ToInt32(goodsview.isRecom);
+                ;
                 goods.goodsCatId = goodsview.goodsCatId;
                 goods.goodsSeoKeywords = goodsview.goodsSeoKeywords;
                 goods.goodsSn = goodsview.goodsSn;
+                goods.goodsName = goodsview.goodsName;
                 goods.goodsDesc = text;
 
-              //  await _goodserver.AddAsync(goods);
-                return Ok(await _goodserver.AddAsync(goods));
+
+                var ret = await _goodserver.AddAsync(goods);
+
+                if (ret.statusCode == 200)
+                {
+                    ActiveWindow.HidePostBack();
+                }
+                else
+                {
+                    return Ok(ret);
+                }
+
+                //  await _goodserver.AddAsync(goods);
+                //  return Ok(await _goodserver.AddAsync(goods));
                 // 关闭本窗体（触发窗体的关闭事件）
-             //   ActiveWindow.HidePostBack();
+                //   ActiveWindow.HidePostBack();
             }
 
             return UIHelper.Result();
         }
 
-
-
         #endregion
-
-
-
-
-
     }
 }

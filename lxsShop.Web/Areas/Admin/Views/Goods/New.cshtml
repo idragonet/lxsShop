@@ -36,7 +36,7 @@
                          
                             F.DropDownListFor(m => m.brandId).DataSource(ViewBag.brands_DataSource).DataTextField("brandName").DataValueField("brandId"),
                             F.HtmlEditor().Label("商品介绍").ID("HtmlEditor1").Editor(Editor.UMEditor)
-                                .BasePath(Url.Content("~/res/third-party/umeditor/")).ToolbarSet(EditorToolbarSet.Full).ToolbarSet(EditorToolbarSet.Full).Height(300)
+                                .BasePath(Url.Content("~/res/third-party/umeditor/")).ToolbarSet(EditorToolbarSet.Full).Height(300)
                         )
 
                 )

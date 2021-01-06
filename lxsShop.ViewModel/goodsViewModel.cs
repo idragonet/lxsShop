@@ -45,7 +45,7 @@ namespace lxsShop.ViewModel
         public string goodsDesc { get; set; }
 
 
-        [Display(Name = "关键词")]
+        [Display(Name = "SEO")]
         public string goodsSeoKeywords { get; set; }
 
 
