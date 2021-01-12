@@ -77,7 +77,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 .Where(m => m.ID == id).FirstOrDefault();*/
             if (current == null) return Content("无效参数！");
 
-            ViewBag.BrandsDataSource = brandsservice.FindAll();
+           // ViewBag.BrandsDataSource = brandsservice.FindAll();
 
 
             return View(current.MapTo<brandsViewModel>());

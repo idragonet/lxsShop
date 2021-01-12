@@ -97,6 +97,7 @@ namespace lxsShop.NewServices.Implements
                 res.data = await Db.Queryable<goods, goods_cats, brands>((g, gc, b) => new
                         JoinQueryInfos(JoinType.Left, g.goodsCatId == gc.catId
                             , JoinType.Left, g.brandId == b.brandId))
+                    .WhereIF(param.id != 0, g => g.goodsId == param.id)
                     //  .WhereIF(!string.IsNullOrEmpty(param.guid), (b, m, g) => b.QuestionGuid == param.guid)  //问题
                     //  .OrderByIF(param.attr == 1, (b, m, g) => b.AddTime, OrderByType.Desc)  //热门排序
                     //   .OrderBy((g, gc, b) => g.CreateDate, OrderByType.Desc)
@@ -137,33 +138,28 @@ namespace lxsShop.NewServices.Implements
         /// <returns></returns>
         public async Task<ApiResult<string>> ModifyAsync(goods parm)
         {
-            var res = new ApiResult<string>
-            {
-                statusCode = (int) ApiEnum.Error
-            };
-
+            var res = new ApiResult<string>() { statusCode = 200 };
             try
             {
-                var dbres = await Db.Updateable<goods>().SetColumns(m => new goods()
-                {
-                    goodsName = parm.goodsName,
-                    goodsDesc = parm.goodsDesc,
-                    goodsSeoKeywords = parm.goodsSeoKeywords
-                }).Where(m => m.goodsId == parm.goodsId).ExecuteCommandAsync();
-                if (dbres > 0)
-                {
-                    res.statusCode = (int) ApiEnum.Status;
-                    res.message = "更新成功！";
-                }
-                else
-                {
-                    res.message = "更新失败！";
-                }
+                        var dbres = await Db.Updateable(parm)
+                            .Where(m => m.goodsId == parm.goodsId)
+                            .ExecuteCommandAsync();
+
+                     
+
+                if (dbres == 0)
+                        {
+                            res.statusCode = (int)ApiEnum.Error;
+                            res.message = "插入数据失败~";
+                        }
+                    
+               
             }
             catch (Exception ex)
             {
+                res.statusCode = (int)ApiEnum.Error;
                 res.message = ApiEnum.Error.GetEnumText() + ex.Message;
-                // Logger<>.Default.ProcessError((int)ApiEnum.Error, ex.Message);
+                // Logger.Default.ProcessError((int)ApiEnum.Error, ex.Message);
             }
 
             return res;
