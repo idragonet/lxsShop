@@ -24,7 +24,7 @@
 
   <TreeNode Text="配置" IconFont="_Gear">
 
-    <TreeNode Text="基本配置" NavigateUrl="~/Basic/Hello" IconFont="_Code">
+    <TreeNode Text="基本配置" NavigateUrl="~/Admin/SysConfigs/Index" IconFont="_Code">
     </TreeNode>
     <!-- <TreeNode Text="系统信息" NavigateUrl="~/Basic/Hello" IconFont="_Info"> -->
     <!-- </TreeNode> -->

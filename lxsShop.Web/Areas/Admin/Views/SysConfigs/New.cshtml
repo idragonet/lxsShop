@@ -1,9 +1,9 @@
 ﻿@{
-    ViewBag.Title = "新增轮播图片";
+    ViewBag.Title = "新增";
     var F = @Html.F();
 }
 
-@model lxsShop.ViewModel.bannerViewModel
+@model Entitys.sys_configs
 
 
 
@@ -24,9 +24,9 @@
             F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
                 .Items(
 
-                    F.TextBoxFor(m => m.URL).MaxLength(100),
-                    F.NumberBoxFor(m => m.BannerOrder).Text("1").NoDecimal(true).MinValue(0).MaxValue(9999),
-                    F.FileUpload().ID("filePhoto").EmptyText("请选择一张图片（1200*556）").Label("图片").Required(true).ShowRedStar(true)
+                    F.TextBoxFor(m => m.fieldCode).Label("Code").MaxLength(100).Required(true).ShowRedStar(true),
+                    F.TextBoxFor(m => m.fieldValue).MaxLength(300).Label("值").Required(true).ShowRedStar(true)
+
 
 
                 )

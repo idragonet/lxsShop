@@ -85,9 +85,8 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
 
         [Authorize]
-        public async Task<IActionResult> New()
+        public  IActionResult New()
         {
-
             //ViewBag.DataSource = _goodserver.GetPagesAsync(new PageParm()).Result.data.Items;
             return View();
         }

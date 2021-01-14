@@ -3,23 +3,29 @@ using SqlSugar;
 namespace Entitys
 {
     /// <summary>
-    /// sys_configs
+    /// _sys_configs_old_20210114
     /// </summary>
-    public class sys_configs
+    public class _sys_configs_old_20210114
     {
         /// <summary>
-        /// sys_configs
+        /// _sys_configs_old_20210114
         /// </summary>
-        public sys_configs()
+        public _sys_configs_old_20210114()
         {
         }
 
-        private System.Int64 _ID;
+        private System.Int64 _configId;
         /// <summary>
-        /// ID
+        /// configId
         /// </summary>
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
-        public System.Int64 ID { get { return this._ID; } set { this._ID = value; } }
+        public System.Int64 configId { get { return this._configId; } set { this._configId = value; } }
+
+        private System.String _fieldName;
+        /// <summary>
+        /// fieldName
+        /// </summary>
+        public System.String fieldName { get { return this._fieldName; } set { this._fieldName = value; } }
 
         private System.String _fieldCode;
         /// <summary>
