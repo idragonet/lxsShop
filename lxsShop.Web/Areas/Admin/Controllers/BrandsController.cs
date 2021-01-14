@@ -66,7 +66,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         #endregion
 
 
-        #region 文章编辑
+        #region 编辑
 
         // GET: Admin/DeptEdit
         public IActionResult BrandsEdit(int id)

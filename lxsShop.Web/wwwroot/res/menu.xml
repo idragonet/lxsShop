@@ -12,7 +12,7 @@
 
   <TreeNode Text="页面" IconFont="_Layout">
 
-    <TreeNode Text="首页轮播" NavigateUrl="~/Basic/Article" IconFont="_Pic">
+    <TreeNode Text="轮播图片" NavigateUrl="~/Admin/Banner/Index" IconFont="_Pic">
     </TreeNode>
     <TreeNode Text="文章类别" NavigateUrl="~/Admin/Article/ArticleCats" IconFont="_Pencil">
     </TreeNode>

@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "新增轮播图片";
+    var F = @Html.F();
+}
+
+@model lxsShop.ViewModel.bannerViewModel
+
+
+
+@section body {
+
+
+
+    @(F.Panel().ID("Panel1").ShowBorder(false).ShowHeader(false).AutoScroll(true).IsViewPort(true).Layout(LayoutType.VBox)
+        .Toolbars(
+            F.Toolbar().ID("Toolbar1")
+                .Items(
+                    F.Button().ID("btnClose").Icon(Icon.SystemClose).Text("关闭").Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button().ID("btnSaveClose").ValidateForms("SimpleForm1").Icon(Icon.SystemSaveClose).OnClick(Url.Action("New_btnSaveClose_Click"), "SimpleForm1").Text("保存后关闭")
+                )
+        )
+        .Items(
+            F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
+                .Items(
+
+                    F.TextBoxFor(m => m.URL).MaxLength(100),
+                    F.NumberBoxFor(m => m.BannerOrder).NoDecimal(true).MinValue(0).MaxValue(9999),
+                    F.FileUpload().ID("filePhoto").EmptyText("请选择一张图片（1200*556）").Label("图片").Required(true).ShowRedStar(true)
+
+
+                )
+        )
+        )
+
+}
