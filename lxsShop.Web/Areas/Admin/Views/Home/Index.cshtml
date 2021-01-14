@@ -42,33 +42,27 @@
             </tr>
         </table>
     </div>
+    
 
     <div id="maincontent">
-        <h2>FineUICore</h2>
-        基于 jQuery 的专业 ASP.NET Core 控件库
 
-        <br />
-        <h2>支持的浏览器</h2>
-        Chrome、Firefox、Safari、Edge、IE8.0+
-
-        <br />
-        <h2>授权协议</h2>
-        商业授权
-
-        <br />
-        <h2>相关链接</h2>
+        <h2>邦可网站</h2>
         <ul class="list">
             <li>
-                首页：<a target="_blank" href="http://fineui.com/core/">http://fineui.com/core/</a>
+                商品数量：@Html.Raw(ViewBag.GoodsCount)
             </li>
             <li>
-                更新：<a target="_blank" href="http://fineui.com/core/version/">http://fineui.com/core/version/</a>
+                品牌数量：@Html.Raw(ViewBag.BrandCount)
+            </li>
+        </ul>
+
+        <h2>系统信息</h2>
+        <ul class="list">
+            <li>
+                操作系统：@Html.Raw(ViewBag.OS)
             </li>
             <li>
-                示例：<a target="_blank" href="http://core.fineui.com/">http://core.fineui.com/</a>
-            </li>
-            <li>
-                论坛：<a target="_blank" href="http://fineui.com/bbs/">http://fineui.com/bbs/</a>
+               .NET Core：@Html.Raw(ViewBag.Ver)
             </li>
         </ul>
 

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Xml;
 using FineUICore;
+using lxsShop.NewServices;
+using lxsShop.NewServices.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -19,10 +22,32 @@ namespace lxsShop.Web.Areas.Admin.Controllers
     public class HomeController : BaseController
     {
 
+        private readonly IgoodServer _goodserver;
+        private readonly IbrandsServer _brandsserver;
+
+        public HomeController(IgoodServer goodserver, Igoods_catsServer goodscatsserver, IbrandsServer brandsserver)
+        {
+            _goodserver = goodserver;
+            _brandsserver = brandsserver;
+        }
+
         [Authorize]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             LoadTreeMenuData();
+
+
+            ViewBag.OS= RuntimeInformation.OSDescription;
+            ViewBag.Ver= System.Runtime.InteropServices.RuntimeEnvironment.GetRuntimeDirectory();
+
+            var post = await _goodserver.GetPagesAsync(new PageParm(){limit = 999999});
+            ViewBag.GoodsCount= post.data.Items.Count;
+
+
+            var post2 = await _brandsserver.GetPagesAsync(new PageParm() { limit = 999999 });
+            ViewBag.BrandCount = post2.data.Items.Count;
+
+
             return View();
         }
 
