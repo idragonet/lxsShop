@@ -1,5 +1,37 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewBag.Title = "编辑轮播图片";
+    var F = @Html.F();
+}
+
+@model lxsShop.ViewModel.bannerViewModel
+
+
+
+@section body {
+
+
+
+    @(F.Panel().ID("Panel1").ShowBorder(false).ShowHeader(false).AutoScroll(true).IsViewPort(true).Layout(LayoutType.VBox)
+        .Toolbars(
+            F.Toolbar().ID("Toolbar1")
+                .Items(
+                    F.Button().ID("btnClose").Icon(Icon.SystemClose).Text("关闭").Listener("click", "F.activeWindow.hide();"),
+                    F.ToolbarSeparator(),
+                    F.Button().ID("btnSaveClose").ValidateForms("SimpleForm1").Icon(Icon.SystemSaveClose).OnClick(Url.Action("Edit_btnSaveClose_Click"), "SimpleForm1").Text("保存后关闭")
+                )
+        )
+        .Items(
+            F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
+                .Items(
+                    F.HiddenFieldFor(m => m.ID),
+                    F.HiddenFieldFor(m => m.Img),
+                    F.TextBoxFor(m => m.URL).MaxLength(100),
+                    F.NumberBoxFor(m => m.BannerOrder).NoDecimal(true).MinValue(0).MaxValue(9999),
+                    F.FileUpload().ID("filePhoto").EmptyText("如需更新请选择一张图片（1200*556）").Label("图片")
+
+
+                )
+        )
+        )
+
 }

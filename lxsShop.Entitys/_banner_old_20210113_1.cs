@@ -3,14 +3,14 @@ using SqlSugar;
 namespace Entitys
 {
     /// <summary>
-    /// banner
+    /// _banner_old_20210113_1
     /// </summary>
-    public class banner
+    public class _banner_old_20210113_1
     {
         /// <summary>
-        /// banner
+        /// _banner_old_20210113_1
         /// </summary>
-        public banner()
+        public _banner_old_20210113_1()
         {
         }
 
@@ -18,7 +18,7 @@ namespace Entitys
         /// <summary>
         /// ID
         /// </summary>
-        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
+        [SugarColumn(IsPrimaryKey = true)]
         public System.Int64 ID { get { return this._ID; } set { this._ID = value; } }
 
         private System.String _Img;

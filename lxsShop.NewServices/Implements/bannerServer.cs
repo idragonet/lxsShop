@@ -49,7 +49,7 @@ namespace lxsShop.NewServices.Implements
         public async Task<ApiResult<string>> DeleteAsync(string parm)
         {
             var list = Utils.StrToListString(parm);
-            var isok = await Db.Deleteable<goods_cats>().Where(m => list.Contains(m.catId.ToString())).ExecuteCommandAsync();
+            var isok = await Db.Deleteable<banner>().Where(m => list.Contains(m.ID.ToString())).ExecuteCommandAsync();
 
 
             var res = new ApiResult<string>
@@ -72,7 +72,7 @@ namespace lxsShop.NewServices.Implements
             try
             {
                 res.data = await Db.Queryable<banner>()
-                    .WhereIF(!string.IsNullOrEmpty(parm.key), m => m.ID == Convert.ToInt64(parm.key))
+                    .WhereIF(parm.id != 0, g => g.ID == parm.id)
                     .OrderByIF(!string.IsNullOrEmpty(parm.field), parm.field + " " + parm.order)
                     .ToPageAsync(parm.page, parm.limit);
 
@@ -100,7 +100,11 @@ namespace lxsShop.NewServices.Implements
 
             try
             {
-                var dbres = await Db.Updateable<banner>()
+                /*var dbres = await Db.Updateable(parm)
+                    .Where(m => m.goodsId == parm.goodsId)
+                    .ExecuteCommandAsync();*/
+
+                var dbres = await Db.Updateable(parm)
                     .Where(m => m.ID == parm.ID).ExecuteCommandAsync();
                 if (dbres > 0)
                 {

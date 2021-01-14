@@ -36,7 +36,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         {
             request.limit = 20;
             request.order = "DESC";
-            request.field = "CreateDate";
+            request.field = "BannerOrder";
             
             var post = await _bannerserver.GetPagesAsync(request);
 
@@ -97,8 +97,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> New_btnSaveClose_Click(bannerViewModel bannerview, IFormFile filePhoto,
-            string text)
+        public async Task<IActionResult> New_btnSaveClose_Click(bannerViewModel bannerview, IFormFile filePhoto)
         {
             var banner = new banner();
 
@@ -153,11 +152,89 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 {
                     return Ok(ret);
                 }
+            }
+          
+            return UIHelper.Result();
+        }
 
-                //  await _goodserver.AddAsync(goods);
-                //  return Ok(await _goodserver.AddAsync(goods));
-                // 关闭本窗体（触发窗体的关闭事件）
-                //   ActiveWindow.HidePostBack();
+        #endregion
+
+
+
+        #region 编辑
+
+
+        [Authorize]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var post = await _bannerserver.GetPagesAsync(new PageParm { id = id });
+            var result = post.data.Items.MapTo<List<bannerViewModel>>();
+
+            return View(result[0]);
+        }
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit_btnSaveClose_Click(bannerViewModel bannerview, IFormFile filePhoto)
+        {
+            var banner = new banner();
+
+            if (ModelState.IsValid)
+            {
+                if (filePhoto != null)
+                {
+                    var fileName = filePhoto.FileName;
+
+                    if (!ValidateFileType(fileName))
+                    {
+                        // 清空文件上传组件
+                        UIHelper.FileUpload("filePhoto").Reset();
+
+                        //   ShowNotify("无效的文件类型！");
+                        return UIHelper.Result();
+                    }
+                    else
+                    {
+                        string fileExt = Path.GetExtension(filePhoto.FileName);
+                        string fileDir = Path.Combine(PageContext.MapWebPath("~/uploads/"),
+                            DateTime.Now.ToString("yyyyMM"));
+                        if (!Directory.Exists(fileDir))
+                        {
+                            Directory.CreateDirectory(fileDir);
+                        }
+
+                        string newFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileExt;
+                        string filePath = Path.Combine(fileDir, newFileName);
+                        using (var stream = new FileStream(filePath, FileMode.Create))
+                        {
+                            filePhoto.CopyTo(stream);
+                        }
+
+                        banner.Img = "/" + DateTime.Now.ToString("yyyyMM") + "/" + newFileName;
+                    }
+                }
+
+
+                if (filePhoto == null) banner.Img = bannerview.Img;
+
+                banner.CreateDate = DateTime.Now;
+
+                banner.ID = bannerview.ID;
+                banner.URL = bannerview.URL;
+                banner.BannerOrder = bannerview.BannerOrder;
+
+                var ret = await _bannerserver.ModifyAsync(banner);
+
+                if (ret.statusCode == 200)
+                {
+                    ActiveWindow.HidePostBack();
+                }
+                else
+                {
+                    return Ok(ret);
+                }
             }
 
             return UIHelper.Result();
