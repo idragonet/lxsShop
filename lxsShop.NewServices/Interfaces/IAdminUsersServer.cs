@@ -44,6 +44,6 @@ namespace lxsShop.NewServices.Interfaces
         /// 修改一条数据
         /// </summary>
         /// <returns></returns>
-        Task<ApiResult<string>> ModifyAsync(AdminUsers parm);
+        Task<ApiResult<string>> ModifyAsync(AdminUsers parm, string NewPwd);
     }
 }

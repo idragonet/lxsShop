@@ -60,11 +60,19 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             var post2 = await _brandsserver.GetPagesAsync(new PageParm() { limit = 999999 });
             ViewBag.BrandCount = post2.data.Items.Count;
 
+            ViewBag.UserName = User.Identity.Name;
 
             return View();
         }
 
 
+        public async Task<IActionResult> PassWord()
+        {
+            var post = await _adminUsersserverr.GetPagesAsync(new PageParm{key = User.Identity.Name });
+
+            return View(post.data.Items[0]);
+        }
+        
 
         private void LoadTreeMenuData()
         {
@@ -212,7 +220,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
            var ip= Get();
 
-           var post = await _adminUsersserverr.LoginAsync(new AdminUsers {loginName = tbxUserName, loginPwd = tbxPassword},ip);
+           var post = await _adminUsersserverr.LoginAsync(new AdminUsers {loginName = tbxUserName.Trim(), loginPwd = tbxPassword},ip);
 
             if (string.IsNullOrEmpty(post.message))
             {
@@ -242,9 +250,22 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult btnHello_Click()
+        public async Task<IActionResult> btnPassSubmit_Click(AdminUsers adminusers,string TextBoxOld, string TextBoxNew1)
         {
-            Alert.Show("你好 FineUI！", MessageBoxIcon.Warning);
+            adminusers.loginPwd = TextBoxOld;
+
+            var ret = await _adminUsersserverr.ModifyAsync(adminusers, TextBoxNew1);
+            if (ret.statusCode == 400)
+            {
+                ShowNotify(ret.message, MessageBoxIcon.Information);
+            }else if (ret.statusCode == 200)
+            {
+                ActiveWindow.HidePostBack();
+            }
+            /*else
+            {
+                return Ok(ret);
+            }*/
 
             return UIHelper.Result();
         }

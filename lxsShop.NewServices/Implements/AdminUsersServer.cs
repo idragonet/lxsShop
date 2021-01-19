@@ -30,14 +30,24 @@ namespace lxsShop.NewServices.Implements
                 var model = await Db.Queryable<AdminUsers>()
                         .Where(m => m.loginName == parm.loginName).FirstAsync();
 
-                //一个IP 5分钟用户名密码错误10次，拒绝登录
-                var dt=DateTime.Now.AddMinutes(-5);
-                   var fail= log_loginsDb.Count(g => g.loginIp == IP &&  SqlFunc.DateIsSame(Convert.ToDateTime(g.loginTime),DateTime.Now,DateType.Hour));
-                   if (fail >= 10)
-                   {
-                       res.message = "服务器忙~";
-                       return res;
-                   }
+
+                try
+                {
+                    //一个IP 5分钟用户名密码错误10次，拒绝登录
+                    var dt = DateTime.Now.AddMinutes(-5);
+                    var fail = Db.Queryable<log_logins>().Where(c => c.loginIp == IP && c.loginTime > dt).Count();
+                    if (fail >= 10)
+                    {
+                        res.message = "服务器忙~";
+                        return res;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
+              
 
 
 
@@ -108,9 +118,49 @@ namespace lxsShop.NewServices.Implements
             return res;
         }
 
-        public Task<ApiResult<string>> ModifyAsync(AdminUsers parm)
+        public async Task<ApiResult<string>> ModifyAsync(AdminUsers parm,string NewPwd)
         {
-            throw new NotImplementedException();
+            var res = new ApiResult<string>
+            {
+                statusCode = (int)ApiEnum.Error
+            };
+
+            try
+            {
+                //修改，判断用户是否和其它的重复
+                var isExisteName = await Db.Queryable<AdminUsers>().AnyAsync(m => m.loginName == parm.loginName && m.loginPwd != parm.loginPwd.MDString());
+                if (isExisteName)
+                {
+                    res.message = "旧密码错误~";
+                    res.statusCode = (int)ApiEnum.ParameterError;
+                    return await Task.Run(() => res);
+                }
+
+                parm.loginPwd = NewPwd.MDString();
+        
+               
+
+                var dbres = await Db.Updateable<AdminUsers>().SetColumns(m => new AdminUsers()
+                {
+                    loginPwd = parm.loginPwd
+                }).Where(m => m.loginName == parm.loginName).ExecuteCommandAsync();
+                if (dbres > 0)
+                {
+                    res.statusCode = (int)ApiEnum.Status;
+                    res.message = "更新成功！";
+                }
+                else
+                {
+                    res.message = "更新失败！";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                res.message = ApiEnum.Error.GetEnumText() + ex.Message;
+                
+            }
+            return res;
         }
 
 
@@ -137,7 +187,7 @@ namespace lxsShop.NewServices.Implements
                 //查询角色
               
                 res.data = await Db.Queryable<AdminUsers>()
-                       // .WhereIF(!string.IsNullOrEmpty(parm.key), m => m.DepartmentGuidList.Contains(parm.key))
+                         .WhereIF(!string.IsNullOrEmpty(parm.key), m => m.loginName== parm.key)
                       //  .WhereIF(!string.IsNullOrEmpty(parm.guid), m => adminGuidList.Contains(m.Guid))
                         .OrderBy(m => m.CreateDate).ToPageAsync(parm.page, parm.limit);
                 

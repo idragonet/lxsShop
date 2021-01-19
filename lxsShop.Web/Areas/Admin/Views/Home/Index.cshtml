@@ -18,16 +18,16 @@
                     @(F.Button()
                         .EnableDefaultCorner(false).EnableDefaultState(false)
                         .IconFont(IconFont._Home).IconAlign(IconAlign.Top)
-                        .ToolTip("官网首页").ID("btnHomePage").CssClass("icononlyaction"))
+                        .ToolTip("首页").ID("btnHomePage").CssClass("icononlyaction"))
                     <a class="logo" title="">
                         邦可电子
                     </a>
                 </td>
                 <td style="text-align: right;">
- 
+                    @(F.Button().CssClass("icononlyaction").ID("btnThemeSelect").ToolTip("修改密码").IconAlign(IconAlign.Top).IconFont(IconFont.Key).EnableDefaultState(false).EnableDefaultCorner(false).TabIndex(-1).Listener("click", "onThemeSelectClick"))
 
                     @(F.Button().EnableDefaultCorner(false).EnableDefaultState(false)
-                        .Text("系统管理员")
+                        .Text(ViewBag.UserName)
                         .IconAlign(IconAlign.Left)
                         .IconUrl(Url.Content("~/res/images/my_face.png"))
                         .CssClass("userpicaction")
@@ -87,7 +87,7 @@
     )
 
 
-    @(F.Window().Hidden(true).EnableResize(true).EnableMaximize(true).EnableClose(true).Height(600).Width(1020).IsModal(true).ClearIFrameAfterClose(false).IFrameUrl(Url.Content("~/Home/Themes")).EnableIFrame(true).Title("主题仓库").ID("windowThemeRoller"))
+    @(F.Window().Hidden(true).EnableResize(true).EnableMaximize(true).EnableClose(true).Height(250).Width(650).IsModal(true).ClearIFrameAfterClose(false).IFrameUrl(Url.Content("~/Admin/Home/PassWord")).EnableIFrame(true).Title("修改密码").ID("windowThemeRoller"))
 }
 
 @section script {

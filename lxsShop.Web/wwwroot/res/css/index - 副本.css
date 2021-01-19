@@ -37,17 +37,13 @@
 }
 
 
-    #header .f-btn.icononlyaction {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
+#header .icononlyaction .f-btn-icon,
+#header .icononlyaction .f-btn-text {
+    font-size: 30px;
+    line-height: 42px;
+    height: 42px;
+}
 
-    #header .icononlyaction .f-btn-icon,
-    #header .icononlyaction .f-btn-text {
-        font-size: 18px;
-        line-height: 38px;
-        height: 38px;
-    }
 
 #header .userpicaction .f-btn-icon {
     border-radius: 50%;
