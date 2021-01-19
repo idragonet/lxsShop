@@ -3,23 +3,23 @@ using SqlSugar;
 namespace Entitys
 {
     /// <summary>
-    /// ADMIN
+    /// AdminUsers
     /// </summary>
-    public class ADMIN
+    public class AdminUsers
     {
         /// <summary>
-        /// ADMIN
+        /// AdminUsers
         /// </summary>
-        public ADMIN()
+        public AdminUsers()
         {
         }
 
-        private System.Int64 _adminId;
+        private System.Int64 _ID;
         /// <summary>
-        /// adminId
+        /// ID
         /// </summary>
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
-        public System.Int64 adminId { get { return this._adminId; } set { this._adminId = value; } }
+        public System.Int64 ID { get { return this._ID; } set { this._ID = value; } }
 
         private System.String _loginName;
         /// <summary>
@@ -33,22 +33,16 @@ namespace Entitys
         /// </summary>
         public System.String loginPwd { get { return this._loginPwd; } set { this._loginPwd = value; } }
 
-        private System.String _staffName;
-        /// <summary>
-        /// staffName
-        /// </summary>
-        public System.String staffName { get { return this._staffName; } set { this._staffName = value; } }
-
         private System.DateTime? _CreateDate;
         /// <summary>
         /// CreateDate
         /// </summary>
         public System.DateTime? CreateDate { get { return this._CreateDate; } set { this._CreateDate = value ?? default(System.DateTime); } }
 
-        private System.DateTime? _lastTime;
+        private System.DateTime? _LastLoginTime;
         /// <summary>
-        /// lastTime
+        /// LastLoginTime
         /// </summary>
-        public System.DateTime? lastTime { get { return this._lastTime; } set { this._lastTime = value ?? default(System.DateTime); } }
+        public System.DateTime? LastLoginTime { get { return this._LastLoginTime; } set { this._LastLoginTime = value ?? default(System.DateTime); } }
     }
 }

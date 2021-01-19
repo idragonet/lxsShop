@@ -6,12 +6,14 @@ using System.Runtime.InteropServices;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Xml;
+using Entitys;
 using FineUICore;
 using lxsShop.NewServices;
 using lxsShop.NewServices.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace lxsShop.Web.Areas.Admin.Controllers
@@ -24,12 +26,23 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         private readonly IgoodServer _goodserver;
         private readonly IbrandsServer _brandsserver;
+        private readonly IAdminUsersServer _adminUsersserverr;
 
-        public HomeController(IgoodServer goodserver, Igoods_catsServer goodscatsserver, IbrandsServer brandsserver)
+        public HomeController(IgoodServer goodserver, Igoods_catsServer goodscatsserver, IbrandsServer brandsserver, IAdminUsersServer adminUsersserverr)
         {
             _goodserver = goodserver;
             _brandsserver = brandsserver;
+            _adminUsersserverr = adminUsersserverr;
         }
+
+
+        [HttpGet]
+        public string Get()
+        {
+            var remoteIpAddress = HttpContext.Connection.RemoteIpAddress;
+            return remoteIpAddress.ToString();
+        }
+
 
         [Authorize]
         public async Task<IActionResult> Index()
@@ -196,7 +209,12 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> btnLogin_Click(string tbxUserName, string tbxPassword)
         {
-            if (tbxUserName == "admin" && tbxPassword == "admin")
+
+           var ip= Get();
+
+           var post = await _adminUsersserverr.LoginAsync(new AdminUsers {loginName = tbxUserName, loginPwd = tbxPassword},ip);
+
+            if (string.IsNullOrEmpty(post.message))
             {
                 //  ShowNotify("成功登录！", MessageBoxIcon.Success);
 
@@ -205,8 +223,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 //创建用户登录标识，Cookie名称与IServiceCollection中配置的一样即可
                 var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
                 //添加之后，可使用User.Identity.Name获取该值
-                identity.AddClaim(new Claim(ClaimTypes.Name, "admin"));
-
+                identity.AddClaim(new Claim(ClaimTypes.Name, post.data.loginName));
 
                 await HttpContext.SignInAsync(new ClaimsPrincipal(identity));
 
@@ -214,11 +231,11 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             }
             else
             {
-                ShowNotify("用户名或密码错误！", MessageBoxIcon.Error);
+                ShowNotify(post.message, MessageBoxIcon.Information);
             }
 
-            return RedirectToPagePreserveMethod("index", "Index");
-          //  return UIHelper.Result();
+            //  return RedirectToPagePreserveMethod("index", "Index");
+            return UIHelper.Result();
         }
 
     

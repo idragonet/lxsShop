@@ -72,6 +72,8 @@ namespace lxsShop.NewServices
         //系统权限设置
         public SimpleClient<goods> goodsDb => new SimpleClient<goods>(Db);
         public SimpleClient<goods_cats> goods_catsDb => new SimpleClient<goods_cats>(Db);
+        public SimpleClient<AdminUsers> AdminUsersDb => new SimpleClient<AdminUsers>(Db);
+        public SimpleClient<log_logins> log_loginsDb => new SimpleClient<log_logins>(Db);
 
     }
 }
