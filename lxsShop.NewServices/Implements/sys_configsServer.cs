@@ -10,7 +10,23 @@ namespace lxsShop.NewServices.Implements
 {
    public class sys_configsServer : BaseService<sys_configs>, Isys_configsServer
     {
+        public async Task<string> GetKeyAsync(string parm)
+        {
+            try
+            {
+                var post = await Db.Queryable<sys_configs>().Where(g => g.fieldCode == parm)
+                  //  .WithCache(60*30)
+                    .FirstAsync();
+                if (post!=null)  return post.fieldValue;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
 
+            return "Null";
+        }
 
         /// <summary>
         /// 添加

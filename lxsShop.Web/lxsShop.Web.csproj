@@ -39,6 +39,7 @@
     <Folder Include="wwwroot\res\images\themes\border\" />
     <Folder Include="wwwroot\res\js\" />
     <Folder Include="wwwroot\uploads\Logo\" />
+    <Folder Include="wwwroot\css\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -19,6 +19,12 @@ namespace lxsShop.NewServices.Interfaces
         Task<ApiResult<Page<sys_configs>>> GetPagesAsync(PageParm parm);
 
         /// <summary>
+        /// 获得关键词对应定义
+        /// </summary>
+        /// <returns></returns>
+        Task<string> GetKeyAsync(string parm);
+
+        /// <summary>
         /// 添加一条数据
         /// </summary>
         /// <returns></returns>

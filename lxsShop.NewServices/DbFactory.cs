@@ -8,6 +8,7 @@ using Entitys;
 using Masuit.Tools.Logging;
 using Microsoft.Extensions.Configuration;
 using SqlSugar;
+using SqlSugar.Extensions;
 
 namespace lxsShop.NewServices
 {
@@ -37,7 +38,11 @@ namespace lxsShop.NewServices
                     ConnectionString = _connectionstring,
                     DbType = DbType.Sqlite,//设置数据库类型
                     IsAutoCloseConnection = true,//自动释放数据务，如果存在事务，在事务结束后释放
-                    InitKeyType = InitKeyType.Attribute //从实体特性中读取主键自增列信息
+                    InitKeyType = InitKeyType.Attribute, //从实体特性中读取主键自增列信息
+                    ConfigureExternalServices=new ConfigureExternalServices()
+                    {
+                        DataInfoCacheService = new SugarCache()
+                    }
                 });
 
             //用来打印Sql方便你调式
@@ -74,6 +79,7 @@ namespace lxsShop.NewServices
         public SimpleClient<goods_cats> goods_catsDb => new SimpleClient<goods_cats>(Db);
         public SimpleClient<AdminUsers> AdminUsersDb => new SimpleClient<AdminUsers>(Db);
         public SimpleClient<log_logins> log_loginsDb => new SimpleClient<log_logins>(Db);
+        public SimpleClient<sys_configs> sys_configsDb => new SimpleClient<sys_configs>(Db);
 
     }
 }
