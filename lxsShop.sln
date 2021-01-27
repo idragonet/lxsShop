@@ -27,7 +27,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.NewServices", "lxsS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.Common", "05.Common", "{B722BA88-DFEE-439D-B7BF-0A60C7263951}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lxsShop.Common", "lxsShop.Common\lxsShop.Common.csproj", "{1A389F48-21B5-4E2C-8077-04018BDAF03E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Common", "lxsShop.Common\lxsShop.Common.csproj", "{1A389F48-21B5-4E2C-8077-04018BDAF03E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

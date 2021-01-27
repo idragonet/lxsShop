@@ -42,6 +42,8 @@ namespace lxsShop.Web
             });
 
 
+            
+
             //添加 身份验证 服务
             /*services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).
                 AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, o =>
@@ -99,6 +101,8 @@ namespace lxsShop.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseStatusCodePages();//启用常见错误状态代码的默认纯文本处理程序
+
             //AutoMapperHelper
             app.UseStateAutoMapper();
 
@@ -116,9 +120,9 @@ namespace lxsShop.Web
                 routes.MapRoute(
                     name: "area",
                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                 /*routes.MapRoute(
+                     name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");*/
             });
 
 
