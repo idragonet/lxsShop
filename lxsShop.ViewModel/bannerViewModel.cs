@@ -20,9 +20,15 @@ namespace lxsShop.ViewModel
 
 
         [Display(Name = "URL")]
-        [Required(ErrorMessage = "URL不要忘记填")]
+        // [Required(ErrorMessage = "URL不要忘记填")]
         public string URL { get; set; }
 
+        [Display(Name = "标题")]
+        public string Title { get; set; }
+
+
+        [Display(Name = "背景颜色")]
+        public string BackgroundColor { get; set; }
 
 
         [Display(Name = "显示排序(大优先)")]

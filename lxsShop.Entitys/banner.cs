@@ -44,5 +44,17 @@ namespace Entitys
         /// BannerOrder
         /// </summary>
         public System.Int64? BannerOrder { get { return this._BannerOrder; } set { this._BannerOrder = value ?? default(System.Int64); } }
+
+        private System.String _Title;
+        /// <summary>
+        /// Title
+        /// </summary>
+        public System.String Title { get { return this._Title; } set { this._Title = value; } }
+
+        private System.String _BackgroundColor;
+        /// <summary>
+        /// BackgroundColor
+        /// </summary>
+        public System.String BackgroundColor { get { return this._BackgroundColor; } set { this._BackgroundColor = value; } }
     }
 }

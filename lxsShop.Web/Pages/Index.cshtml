@@ -1,288 +1,290 @@
 ﻿@page
 @model lxsShop.Web.Views.Home.IndexModel
 @{ //ViewData["Title"] = "FytERP管理系统";
-   // Layout = "_Layout";
+    Layout = "_Layout";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <link href="https://g.csdnimg.cn/static/logo/favicon32.ico" rel="shortcut icon" type="image/x-icon" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="viewport" content="width=1200,user-scalable=yes">
-    <meta name="renderer" content="webkit">
 
-    <title>@Html.Raw(ViewData["Title"])</title>
-    <meta name="keywords" content="@Html.Raw(ViewData["keywords"])" />
-    <meta name="description" content="@Html.Raw(ViewData["description"])" />
-
-    <link rel="stylesheet" href="/Static/css/public.min.css" type="text/css">
-    <link rel="stylesheet" href="/Static/css/index.min.css" type="text/css">
-    <link rel="stylesheet" href="/Static/css/layer.css" id="layuicss-skinlayercss">
-</head>
-
-<body>
-    <div class="header">
-        <div class="topline">
-            <div class="frame">
-                <ul class="login-nav fl">
-                    <li class="addfav"><a href="javascript:void(0);" target="_parent" onclick="AddFav(window.location.href,document.title)" rel="nofollow"><i class="fa fa-star" aria-hidden="true"></i> 收藏本站</a></li>
-                    <li class="br">-</li>
-                    <li><a href="javascript:quicklogin(0);" rel="nofollow">登录</a></li>
-                    <li class="br">-</li>
-                    <li><a href="/user/signup.html" rel="nofollow">注册</a></li>
-                </ul>        <ul class="tool-nav fr">
-                    <li class="tool-sub"><a href="javascript:void(0);" rel="nofollow">微信号</a><img class="tool-sub-con" src="/Public/upload/info/2017/03-04/58ba66d5dc527.jpg" alt="邦可微信二维码" /></li>
-                    <li class="br">-</li>
-
-                    <li><a href="/help/contact.html" rel="nofollow">联系我们</a></li>
-
-                    <li class="br">-</li>
-                    <li class="telephone"><i class="fa fa-phone-square" aria-hidden="true"></i> 400-888-1044</li>
-                </ul>
-            </div>
-        </div>
-        <div class="top frame">
-            <div class="logo"><a href="https://www.forrun.cn/" title="凡一工业品商城"><img src="/uploads/5ed463b88a786.png" alt="凡一工业品商城"></a></div>
-            <div class="search-bar">
-                <div class="search-form">
-                    <form name="search_form" id="search_form" method="get" action="/search/">
-                        <input autocomplete="off" type="text" class="search-text" name="keyword" id="search_keyword" value="" placeholder="请输入产品型号或名称进行搜索" />
-                        <button type="button" class="search-btn" id="search_submit"><i class="fa fa-search" aria-hidden="true"></i> 搜 索</button>
-                    </form>
-                    <div class="search-suggest"></div>
-                </div>
-                <div class="search-hot">
-                    <span>热门搜索：</span><a target="_blank" href="/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">直线导轨</a><a target="_blank" href="/search/?keyword=%E6%BB%9A%E7%8F%A0%E4%B8%9D%E6%9D%A0">滚珠丝杠</a><a target="_blank" href="/search/?keyword=%E6%97%A0%E6%B2%B9%E8%A1%AC%E5%A5%97">无油衬套</a><a target="_blank" href="/search/?keyword=%E5%90%8C%E6%AD%A5%E5%B8%A6">同步带</a><a target="_blank" href="/search/?keyword=%E5%AE%9A%E4%BD%8D%E9%94%80">定位销</a><a target="_blank" href="/search/?keyword=%E5%9B%BA%E5%AE%9A%E7%8E%AF">固定环</a>
-                </div>
-            </div>
-            <div class="top-cart" id="top_cart">
-                <div class="top-my-cart">
-                    <div class="top-cart-btn">
-                        <a href="/cart/index.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 购物车</a>
-                        <span class="cart-num"><em class="cart_quantity">0</em></span>
-                    </div>
-                    <div class="top-cart-list"></div>
-                </div>
-            </div>
-            <div class="top-quote">
-                <a href="/quote.html"><i class="fa fa-bolt" aria-hidden="true"></i> 快速报价</a>
-            </div>
-        </div>
-    </div>
-
-    <div class="nav">
+<div class="header">
+    <div class="topline">
         <div class="frame">
-            <div class="cate on" id="cate">
-                <div class="cate-tit"><h2>所有产品分类</h2></div>
-                <div class="cate-list" id="cate-list">
-                    <ul class="fa-cate-list-ul">
-                        <li class="fa-cate-list-li">
-                            <div class="fa-cate-list-li-f">
-                                <h3><a class="fa-nav-cate-1" href="/catalog/293/"><span>直线运动零件</span></a></h3>
+            <ul class="login-nav fl">
+                <li class="addfav"><a href="javascript:void(0);" target="_parent" onclick="AddFav(window.location.href,document.title)" rel="nofollow"><i class="fa fa-star" aria-hidden="true"></i> 收藏本站</a></li>
+                <li class="br">-</li>
+                <li><a href="javascript:quicklogin(0);" rel="nofollow">登录</a></li>
 
-                            </div>
-                            <div class="fa-cate-list-li-s" style="display: none;">
-                                <dl class="clearfix">
-                                    <dt><a href="/catalog/293/">直线运动零件</a></dt>
-                                    <dd class="fa-cate-list-name"><a href="/catalog/zhixiandg-340/">直线导轨</a><a href="/catalog/298/">滚珠丝杠</a><a href="/catalog/376/">模组滑台电缸</a><a href="/catalog/368/">丝杆支撑座</a><a href="/catalog/326/">电机座</a><a href="/catalog/320/">梯形丝杠</a><a href="/catalog/385/">滚珠花键</a><a href="/catalog/362/"> 直线轴承</a><a href="/catalog/360/">钢珠衬套</a><a href="/catalog/108/">无油衬套</a><a href="/catalog/109/">无油垫圈垫片</a><a href="/catalog/149/">自润滑铜滑板</a><a href="/catalog/4/">线性导向轴</a><a href="/catalog/5/">导向轴支座</a><a href="/catalog/6/">固定环 · 夹紧套</a><a href="/catalog/327/">机床防护罩</a><a href="/catalog/329/">交叉滚子导轨滑台</a><a href="/catalog/346/">直线电机</a><div class="clear"></div></dd>
-                                    <dd class="fa-cate-list-img"><a href="/catalog/zhixiandg-340/" title="直线导轨"><img src="/Public/upload/fa_category/2019/12-12/5df1e03f619c8.jpg" alt="直线导轨"></a><a href="/catalog/298/" title="滚珠丝杠"><img src="/Public/upload/fa_category/2018/01-04/5a4df0fe771f7.jpg" alt="滚珠丝杠"></a><a href="/catalog/376/" title="模组滑台电缸"><img src="/Public/upload/fa_category/2020/01-15/5e1ecbe0aea46.jpg" alt="模组滑台电缸"></a><a href="/catalog/368/" title="丝杆支撑座"><img src="/Public/upload/fa_category/2020/01-13/5e1bc4da5905a.jpg" alt="丝杆支撑座"></a><a href="/catalog/326/" title="电机座"><img src="/Public/upload/fa_category/2019/10-12/5da1762c7df73.jpg" alt="电机座"></a><a href="/catalog/320/" title="梯形丝杠"><img src="/Public/upload/fa_category/2020/01-04/5e100b45b75dc.jpg" alt="梯形丝杠"></a><a href="/catalog/385/" title="滚珠花键"><img src="/Public/upload/fa_category/2020/02-26/5e55dcf8c864c.jpg" alt="滚珠花键"></a><a href="/catalog/362/" title=" 直线轴承"><img src="/Public/upload/fa_category/2020/01-06/5e129e998853a.jpg" alt=" 直线轴承"></a><a href="/catalog/360/" title="钢珠衬套"><img src="/Public/upload/fa_category/2020/01-04/5e0fe7bf80153.jpg" alt="钢珠衬套"></a><a href="/catalog/108/" title="无油衬套"><img src="/Public/upload/fa_category/2018/03-01/5a97d2a04bac6.jpg" alt="无油衬套"></a><a href="/catalog/109/" title="无油垫圈垫片"><img src="/Public/upload/fa_category/2018/03-01/5a97d32f85d84.jpg" alt="无油垫圈垫片"></a><a href="/catalog/149/" title="自润滑铜滑板"><img src="/Public/upload/fa_category/2018/03-06/5a9e4cfc99c6a.jpg" alt="自润滑铜滑板"></a><a href="/catalog/4/" title="线性导向轴"><img src="/Public/upload/fa_category/2017/08-08/598910c715e97.jpg" alt="线性导向轴"></a><a href="/catalog/5/" title="导向轴支座"><img src="/Public/upload/fa_category/2018/03-01/5a97d107443da.jpg" alt="导向轴支座"></a><a href="/catalog/6/" title="固定环 · 夹紧套"><img src="/Public/upload/fa_category/2018/03-01/5a97d17a2cb26.jpg" alt="固定环 · 夹紧套"></a><a href="/catalog/327/" title="机床防护罩"><img src="/Public/upload/fa_category/2019/10-16/5da6c7f5e594f.jpg" alt="机床防护罩"></a><a href="/catalog/329/" title="交叉滚子导轨滑台"><img src="/Public/upload/fa_category/2019/11-02/5dbd15590bb45.jpg" alt="交叉滚子导轨滑台"></a><a href="/catalog/346/" title="直线电机"><img src="/Public/upload/fa_category/2019/12-19/5dfacdfa38939.jpg" alt="直线电机"></a><div class="clear"></div></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li class="fa-cate-list-li">
-                            <div class="fa-cate-list-li-f">
-                                <h3><a class="fa-nav-cate-2" href="/catalog/292/"><span>工业传动部件</span></a></h3>
+            </ul>        <ul class="tool-nav fr">
+                <li class="tool-sub"><a href="javascript:void(0);" rel="nofollow">微信号</a><img class="tool-sub-con" src="/Public/upload/info/2017/03-04/58ba66d5dc527.jpg" alt="邦可微信二维码" /></li>
+                <li class="br">-</li>
 
-                            </div>
-                            <div class="fa-cate-list-li-s" style="display: none;">
-                                <dl class="clearfix">
-                                    <dt><a href="/catalog/292/">工业传动部件</a></dt>
-                                    <dd class="fa-cate-list-name"><a href="/catalog/426/">联轴器</a><a href="/catalog/36/">同步带 </a><a href="/catalog/37/">同步带轮</a><a href="/catalog/343/">免键胀套</a><a href="/catalog/422/">工业皮带 · 输送带</a><a href="/catalog/19/">滚轮·滚筒</a><a href="/catalog/38/">圆皮带</a><a href="/catalog/39/">圆皮带轮</a><a href="/catalog/40/">链条</a><a href="/catalog/42/">链轮</a><a href="/catalog/44/">链条配件</a><a href="/catalog/31/">包胶轴承滑轮</a><a href="/catalog/27/">钢珠滚轮·万向滚珠</a><a href="/catalog/30/">毛刷辊·工业毛刷</a><a href="/catalog/351/">齿轮</a><a href="/catalog/347/">齿条</a><a href="/catalog/399/">关节轴承</a><a href="/catalog/400/">带座轴承</a><a href="/catalog/405/">进口轴承</a><a href="/catalog/344/">环形导轨</a><a href="/catalog/431/">小型输送机</a><div class="clear"></div></dd>
-                                    <dd class="fa-cate-list-img"><a href="/catalog/426/" title="联轴器"><img src="/Public/upload/facategory/2020/11-12/5faccf2460270.jpg" alt="联轴器"></a><a href="/catalog/36/" title="同步带 "><img src="/Public/upload/fa_category/2018/02-26/5a93d02942f15.jpg" alt="同步带 "></a><a href="/catalog/37/" title="同步带轮"><img src="/Public/upload/fa_category/2018/02-26/5a93cfdedaeb9.jpg" alt="同步带轮"></a><a href="/catalog/343/" title="免键胀套"><img src="/Public/upload/fa_category/2019/12-14/5df49874992a7.jpg" alt="免键胀套"></a><a href="/catalog/422/" title="工业皮带 · 输送带"><img src="/Public/upload/facategory/2020/08-26/5f461bc7e8a85.jpg" alt="工业皮带 · 输送带"></a><a href="/catalog/19/" title="滚轮·滚筒"><img src="/Public/upload/fa_category/2017/08-08/598911b6a78e4.jpg" alt="滚轮·滚筒"></a><a href="/catalog/38/" title="圆皮带"><img src="/Public/upload/fa_category/2017/08-30/59a6542d5427e.jpg" alt="圆皮带"></a><a href="/catalog/39/" title="圆皮带轮"><img src="/Public/upload/fa_category/2017/08-30/59a6543e1ca97.jpg" alt="圆皮带轮"></a><a href="/catalog/40/" title="链条"><img src="/Public/upload/fa_category/2017/08-30/59a6545cd8c93.jpg" alt="链条"></a><a href="/catalog/42/" title="链轮"><img src="/Public/upload/fa_category/2017/08-30/59a6548e1d7e8.jpg" alt="链轮"></a><a href="/catalog/44/" title="链条配件"><img src="/Public/upload/fa_category/2017/08-30/59a654aee1194.jpg" alt="链条配件"></a><a href="/catalog/31/" title="包胶轴承滑轮"><img src="/Public/upload/fa_category/2017/08-08/5989123f5aa70.jpg" alt="包胶轴承滑轮"></a><a href="/catalog/27/" title="钢珠滚轮·万向滚珠"><img src="/Public/upload/fa_category/2018/03-01/5a97ca857d959.jpg" alt="钢珠滚轮·万向滚珠"></a><a href="/catalog/30/" title="毛刷辊·工业毛刷"><img src="/Public/upload/fa_category/2017/08-08/5989123537327.jpg" alt="毛刷辊·工业毛刷"></a><a href="/catalog/351/" title="齿轮"><img src="/Public/upload/fa_category/2019/12-26/5e04624c5a0d6.jpg" alt="齿轮"></a><a href="/catalog/347/" title="齿条"><img src="/Public/upload/fa_category/2019/12-26/5e04193ac6f36.jpg" alt="齿条"></a><a href="/catalog/399/" title="关节轴承"><img src="/Public/upload/fa_category/2020/03-16/5e6f2754310bb.jpg" alt="关节轴承"></a><a href="/catalog/400/" title="带座轴承"><img src="/Public/upload/fa_category/2020/03-16/5e6f2951866b7.jpg" alt="带座轴承"></a><a href="/catalog/405/" title="进口轴承"><img src="/Public/upload/fa_category/2020/03-23/5e784dafbac9b.jpg" alt="进口轴承"></a><a href="/catalog/344/" title="环形导轨"><img src="/Public/upload/facategory/2020/11-12/5face3c89168c.jpg" alt="环形导轨"></a><a href="/catalog/431/" title="小型输送机"><img src="/Public/upload/facategory/2020/12-15/5fd84f9088fca.jpg" alt="小型输送机"></a><div class="clear"></div></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li class="fa-cate-list-li">
-                            <div class="fa-cate-list-li-f">
-                                <h3><a class="fa-nav-cate-3" href="/catalog/306/"><span>工业框架部件</span></a></h3>
+                <li><a href="/help/contact.html" rel="nofollow">联系我们</a></li>
 
-                            </div>
-                            <div class="fa-cate-list-li-s" style="display: none;">
-                                <dl class="clearfix">
-                                    <dt><a href="/catalog/306/">工业框架部件</a></dt>
-                                    <dd class="fa-cate-list-name"><a href="/catalog/304/">工业铝型材</a><a href="/catalog/305/">脚轮</a><a href="/catalog/317/">脚杯</a><a href="/catalog/339/">水平调节脚轮</a><a href="/catalog/315/">弹簧锁扣 · 搭扣锁</a><a href="/catalog/314/">磁力扣 · 磁吸</a><a href="/catalog/308/">拉手·提手</a><a href="/catalog/307/">紧定手柄·胶木手柄</a><a href="/catalog/325/">旋钮把手▪胶木把手</a><a href="/catalog/309/">手轮 · 摇手柄</a><a href="/catalog/311/">气弹簧</a><a href="/catalog/312/">钢珠滑轨</a><a href="/catalog/313/">合页 · 铰链</a><a href="/catalog/333/">密封条</a><a href="/catalog/334/">门碰卡扣</a><a href="/catalog/335/">插销锁</a><a href="/catalog/336/">挂钩</a><a href="/catalog/338/">系留紧固件</a><a href="/catalog/425/">门锁</a><div class="clear"></div></dd>
-                                    <dd class="fa-cate-list-img"><a href="/catalog/304/" title="工业铝型材"><img src="/Public/upload/fa_category/2018/02-26/5a9382929c8bf.jpg" alt="工业铝型材"></a><a href="/catalog/305/" title="脚轮"><img src="/Public/upload/fa_category/2018/04-07/5ac8203a0ed50.jpg" alt="脚轮"></a><a href="/catalog/317/" title="脚杯"><img src="/Public/upload/fa_category/2018/10-30/5bd7b07d2fd25.jpg" alt="脚杯"></a><a href="/catalog/339/" title="水平调节脚轮"><img src="/Public/upload/fa_category/2019/12-10/5deefdff852f2.jpg" alt="水平调节脚轮"></a><a href="/catalog/315/" title="弹簧锁扣 · 搭扣锁"><img src="/Public/upload/fa_category/2018/04-07/5ac88634e3235.jpg" alt="弹簧锁扣 · 搭扣锁"></a><a href="/catalog/314/" title="磁力扣 · 磁吸"><img src="/Public/upload/fa_category/2018/04-07/5ac88625dd875.jpg" alt="磁力扣 · 磁吸"></a><a href="/catalog/308/" title="拉手·提手"><img src="/Public/upload/fa_category/2018/04-07/5ac885d4da705.jpg" alt="拉手·提手"></a><a href="/catalog/307/" title="紧定手柄·胶木手柄"><img src="/Public/upload/fa_category/2019/09-10/5d7743ebce8d4.jpg" alt="紧定手柄·胶木手柄"></a><a href="/catalog/325/" title="旋钮把手▪胶木把手"><img src="/Public/upload/fa_category/2019/09-26/5d8c1a909c1fd.jpg" alt="旋钮把手▪胶木把手"></a><a href="/catalog/309/" title="手轮 · 摇手柄"><img src="/Public/upload/fa_category/2018/04-07/5ac885e2ba353.jpg" alt="手轮 · 摇手柄"></a><a href="/catalog/311/" title="气弹簧"><img src="/Public/upload/fa_category/2018/04-07/5ac885fabf727.jpg" alt="气弹簧"></a><a href="/catalog/312/" title="钢珠滑轨"><img src="/Public/upload/fa_category/2018/04-07/5ac88605c260e.jpg" alt="钢珠滑轨"></a><a href="/catalog/313/" title="合页 · 铰链"><img src="/Public/upload/fa_category/2018/04-07/5ac88617d25ed.jpg" alt="合页 · 铰链"></a><a href="/catalog/333/" title="密封条"><img src="/Public/upload/fa_category/2019/11-25/5ddb8a2e7196f.jpg" alt="密封条"></a><a href="/catalog/334/" title="门碰卡扣"><img src="/Public/upload/fa_category/2019/11-27/5dddd9e9c037f.jpg" alt="门碰卡扣"></a><a href="/catalog/335/" title="插销锁"><img src="/Public/upload/fa_category/2019/11-30/5de215f1ab4ed.jpg" alt="插销锁"></a><a href="/catalog/336/" title="挂钩"><img src="/Public/upload/fa_category/2019/12-05/5de8bb06acaa1.jpg" alt="挂钩"></a><a href="/catalog/338/" title="系留紧固件"><img src="/Public/upload/fa_category/2019/12-09/5dedf58f54801.jpg" alt="系留紧固件"></a><a href="/catalog/425/" title="门锁"><img src="/Public/upload/facategory/2020/09-15/5f608d299f69d.jpg" alt="门锁"></a><div class="clear"></div></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li class="fa-cate-list-li">
-                            <div class="fa-cate-list-li-f">
-                                <h3><a class="fa-nav-cate-4" href="/catalog/jixie-1/"><span>通用五金配件</span></a></h3>
-
-                            </div>
-                            <div class="fa-cate-list-li-s" style="display: none;">
-                                <dl class="clearfix">
-                                    <dt><a href="/catalog/jixie-1/">通用五金配件</a></dt>
-                                    <dd class="fa-cate-list-name"><a href="/catalog/luosi-26/">螺丝 · 螺栓</a><a href="/catalog/91/">螺帽 · 螺母</a><a href="/catalog/22/">垫圈垫片 · 轴环</a><a href="/catalog/20/">强力小磁铁·磁条</a><a href="/catalog/159/">压缩弹簧</a><a href="/catalog/235/">矩形弹簧</a><a href="/catalog/328/">拉伸弹簧</a><a href="/catalog/160/">PU聚氨酯棒·优力胶</a><a href="/catalog/316/">O型密封圈 · 骨架油封</a><a href="/catalog/319/">液压缓冲器</a><div class="clear"></div></dd>
-                                    <dd class="fa-cate-list-img"><a href="/catalog/luosi-26/" title="螺丝 · 螺栓"><img src="/Public/upload/fa_category/2018/02-26/5a938628562ef.jpg" alt="螺丝 · 螺栓"></a><a href="/catalog/91/" title="螺帽 · 螺母"><img src="/Public/upload/fa_category/2018/02-26/5a93af1887135.jpg" alt="螺帽 · 螺母"></a><a href="/catalog/22/" title="垫圈垫片 · 轴环"><img src="/Public/upload/fa_category/2018/02-26/5a93be3b3be4e.jpg" alt="垫圈垫片 · 轴环"></a><a href="/catalog/20/" title="强力小磁铁·磁条"><img src="/Public/upload/fa_category/2018/02-26/5a93b9688a04e.jpg" alt="强力小磁铁·磁条"></a><a href="/catalog/159/" title="压缩弹簧"><img src="/Public/upload/fa_category/2017/11-29/5a1e2345169c9.jpg" alt="压缩弹簧"></a><a href="/catalog/235/" title="矩形弹簧"><img src="/Public/upload/fa_category/2018/02-26/5a93c6b1c1291.jpg" alt="矩形弹簧"></a><a href="/catalog/328/" title="拉伸弹簧"><img src="/Public/upload/fa_category/2019/10-18/5da9313c87a0c.jpg" alt="拉伸弹簧"></a><a href="/catalog/160/" title="PU聚氨酯棒·优力胶"><img src="/Public/upload/fa_category/2017/11-29/5a1e226328cd6.jpg" alt="PU聚氨酯棒·优力胶"></a><a href="/catalog/316/" title="O型密封圈 · 骨架油封"><img src="/Public/upload/fa_category/2018/10-13/5bc1438add23b.jpg" alt="O型密封圈 · 骨架油封"></a><a href="/catalog/319/" title="液压缓冲器"><img src="/Public/upload/fa_category/2018/12-15/5c14512c0227a.jpg" alt="液压缓冲器"></a><div class="clear"></div></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li class="fa-cate-list-li">
-                            <div class="fa-cate-list-li-f">
-                                <h3><a class="fa-nav-cate-5" href="/catalog/105/"><span>定位固定零件</span></a></h3>
-
-                            </div>
-                            <div class="fa-cate-list-li-s" style="display: none;">
-                                <dl class="clearfix">
-                                    <dt><a href="/catalog/105/">定位固定零件</a></dt>
-                                    <dd class="fa-cate-list-name"><a href="/catalog/21/">定位销 · 圆柱销</a><a href="/catalog/24/">平键</a><a href="/catalog/322/">手动位移台 · 微调平台</a><a href="/catalog/323/">电动位移平台</a><a href="/catalog/324/">对位平台</a><a href="/catalog/125/">定位销衬套</a><a href="/catalog/23/">卡销 · 开口销</a><a href="/catalog/25/">扣环 · 挡圈</a><a href="/catalog/35/">弹簧柱塞 · 旋钮柱塞</a><a href="/catalog/118/">紧定螺钉 · 锁紧螺栓</a><div class="clear"></div></dd>
-                                    <dd class="fa-cate-list-img"><a href="/catalog/21/" title="定位销 · 圆柱销"><img src="/Public/upload/fa_category/2018/03-02/5a98b489d8eb4.jpg" alt="定位销 · 圆柱销"></a><a href="/catalog/24/" title="平键"><img src="/Public/upload/fa_category/2018/03-02/5a98b4d816420.jpg" alt="平键"></a><a href="/catalog/322/" title="手动位移台 · 微调平台"><img src="/Public/upload/fa_category/2019/05-08/5cd23f6bd19c4.jpg" alt="手动位移台 · 微调平台"></a><a href="/catalog/323/" title="电动位移平台"><img src="/Public/upload/fa_category/2019/05-08/5cd2403458b7e.jpg" alt="电动位移平台"></a><a href="/catalog/324/" title="对位平台"><img src="/Public/upload/fa_category/2019/05-08/5cd241568a2e3.jpg" alt="对位平台"></a><a href="/catalog/125/" title="定位销衬套"><img src="/Public/upload/fa_category/2018/03-02/5a98b4c54ea6e.jpg" alt="定位销衬套"></a><a href="/catalog/23/" title="卡销 · 开口销"><img src="/Public/upload/fa_category/2018/03-02/5a98b6254eb79.jpg" alt="卡销 · 开口销"></a><a href="/catalog/25/" title="扣环 · 挡圈"><img src="/Public/upload/fa_category/2018/03-02/5a98bb15a556d.jpg" alt="扣环 · 挡圈"></a><a href="/catalog/35/" title="弹簧柱塞 · 旋钮柱塞"><img src="/Public/upload/fa_category/2018/02-26/5a93c47af3eda.jpg" alt="弹簧柱塞 · 旋钮柱塞"></a><a href="/catalog/118/" title="紧定螺钉 · 锁紧螺栓"><img src="/Public/upload/fa_category/2018/01-22/5a659669b6cb1.jpg" alt="紧定螺钉 · 锁紧螺栓"></a><div class="clear"></div></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li class="fa-cate-list-li">
-                            <div class="fa-cate-list-li-f">
-                                <h3><a class="fa-nav-cate-6" href="/catalog/384/"><span>电气驱动部件</span></a></h3>
-
-                            </div>
-                            <div class="fa-cate-list-li-s" style="display: none;">
-                                <dl class="clearfix">
-                                    <dt><a href="/catalog/384/">电气驱动部件</a></dt>
-                                    <dd class="fa-cate-list-name"><a href="/catalog/8/">拖链 · 坦克链</a><a href="/catalog/390/">伺服电机</a><a href="/catalog/395/">DD马达</a><a href="/catalog/330/">伺服控制线束</a><a href="/catalog/plc-331/">PLC线束</a><a href="/catalog/421/">信号灯·报警灯</a><a href="/catalog/424/">行星减速机·谐波减速机</a><div class="clear"></div></dd>
-                                    <dd class="fa-cate-list-img"><a href="/catalog/8/" title="拖链 · 坦克链"><img src="/Public/upload/fa_category/2019/09-07/5d731af8b88ed.jpg" alt="拖链 · 坦克链"></a><a href="/catalog/390/" title="伺服电机"><img src="/Public/upload/fa_category/2020/02-28/5e58aad32981e.jpg" alt="伺服电机"></a><a href="/catalog/395/" title="DD马达"><img src="/Public/upload/fa_category/2020/03-03/5e5e0e871ba85.jpg" alt="DD马达"></a><a href="/catalog/330/" title="伺服控制线束"><img src="/Public/upload/fa_category/2019/11-12/5dca067d15cf8.jpg" alt="伺服控制线束"></a><a href="/catalog/plc-331/" title="PLC线束"><img src="/Public/upload/fa_category/2019/11-12/5dca209b0e125.jpg" alt="PLC线束"></a><a href="/catalog/421/" title="信号灯·报警灯"><img src="/Public/upload/facategory/2020/06-05/5eda0e853cd29.jpg" alt="信号灯·报警灯"></a><a href="/catalog/424/" title="行星减速机·谐波减速机"><img src="/Public/upload/facategory/2021/01-22/600a3b726ccdc.jpg" alt="行星减速机·谐波减速机"></a><div class="clear"></div></dd>
-                                </dl>
-                            </div>
-                        </li>
-                        <li class="fa-cate-list-li">
-                            <div class="fa-cate-list-li-f">
-                                <h3><a class="fa-nav-cate-7" href="/catalog/429/"><span>气动元件</span></a></h3>
-
-                            </div>
-                            <div class="fa-cate-list-li-s" style="display: none;">
-                                <dl class="clearfix">
-                                    <dt><a href="/catalog/429/">气动元件</a></dt>
-                                    <dd class="fa-cate-list-name"><a href="/catalog/430/">真空吸盘</a><a href="/catalog/432/">工业喷嘴·吹风喷嘴</a><div class="clear"></div></dd>
-                                    <dd class="fa-cate-list-img"><a href="/catalog/430/" title="真空吸盘"><img src="/Public/upload/facategory/2020/11-18/5fb4986c90fa4.jpg" alt="真空吸盘"></a><a href="/catalog/432/" title="工业喷嘴·吹风喷嘴"><img src="/Public/upload/facategory/2020/12-26/5fe68a6b46cd1.jpg" alt="工业喷嘴·吹风喷嘴"></a><div class="clear"></div></dd>
-                                </dl>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <ul class="nav-right">
-                <li><a href="https://www.forrun.cn/">首页</a></li>
-                <li><a href="/catalog/">产品中心</a></li>
-                <li><a href="/brand/">品牌中心</a></li>
-                <li><a href="/help/about.html">关于我们</a></li>
+                <li class="br">-</li>
+                <li class="telephone"><i class="fa fa-phone-square" aria-hidden="true"></i> @Html.Raw(ViewData["tel"])</li>
             </ul>
         </div>
     </div>
+    <div class="top frame">
+        <div class="logo"><a href="https://www.forrun.cn/" title="凡一工业品商城"><img src="/uploads/5ed463b88a786.png" alt="凡一工业品商城"></a></div>
+        <div class="search-bar">
+            <div class="search-form">
+                <form name="search_form" id="search_form" method="get" action="/search/">
+                    <input autocomplete="off" type="text" class="search-text" name="keyword" id="search_keyword" value="" placeholder="请输入产品型号或名称进行搜索" />
+                    <button type="button" class="search-btn" id="search_submit"><i class="fa fa-search" aria-hidden="true"></i> 搜 索</button>
+                </form>
+                <div class="search-suggest"></div>
+            </div>
+            <div class="search-hot">
+                <span>热门搜索：</span><a target="_blank" href="/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">直线导轨</a><a target="_blank" href="/search/?keyword=%E6%BB%9A%E7%8F%A0%E4%B8%9D%E6%9D%A0">滚珠丝杠</a><a target="_blank" href="/search/?keyword=%E6%97%A0%E6%B2%B9%E8%A1%AC%E5%A5%97">无油衬套</a><a target="_blank" href="/search/?keyword=%E5%90%8C%E6%AD%A5%E5%B8%A6">同步带</a><a target="_blank" href="/search/?keyword=%E5%AE%9A%E4%BD%8D%E9%94%80">定位销</a><a target="_blank" href="/search/?keyword=%E5%9B%BA%E5%AE%9A%E7%8E%AF">固定环</a>
+            </div>
+        </div>
+        <div class="top-cart" id="top_cart">
+            <div class="top-my-cart">
+                <div class="top-cart-btn">
+                    <a href="/cart/index.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 购物车</a>
+                    <span class="cart-num"><em class="cart_quantity">0</em></span>
+                </div>
+                <div class="top-cart-list"></div>
+            </div>
+        </div>
+        <div class="top-quote">
+            <a href="/quote.html"><i class="fa fa-bolt" aria-hidden="true"></i> 快速报价</a>
+        </div>
+    </div>
+</div>
 
-    <div class="banner">
-        <div class="index-banner">
-            <div class="bd">
-                <ul>
-                    <li style="background-image: url(/uploads/ad/5ed4630ca0797.jpg);"><a href="https://www.forrun.cn/book.html" title="产品选型手册免费申请" target="_blank"><strong>产品选型手册免费申请</strong></a></li>
-                    <li style="background-image: url(/uploads/ad/5f4ef0b028149.jpg);"><a href="https://www.forrun.cn/supplier.html" title="诚邀加入凡一供应链" target="_blank"><strong>诚邀加入凡一供应链</strong></a></li>
-                    <li style="background-image: url(/uploads/ad/5f56d78f77955.jpg);"><a href="	https://www.forrun.cn/help/about.html" title="凡一商城介绍" target="_blank"><strong>凡一商城介绍</strong></a></li>
+<div class="nav">
+    <div class="frame">
+        <div class="cate on" id="cate">
+            <div class="cate-tit"><h2>所有产品分类</h2></div>
+            <div class="cate-list" id="cate-list">
+                <ul class="fa-cate-list-ul">
+                    <li class="fa-cate-list-li">
+                        <div class="fa-cate-list-li-f">
+                            <h3><a class="fa-nav-cate-1" href="/catalog/293/"><span>直线运动零件</span></a></h3>
+
+                        </div>
+                        <div class="fa-cate-list-li-s" style="display: none;">
+                            <dl class="clearfix">
+                                <dt><a href="/catalog/293/">直线运动零件</a></dt>
+                                <dd class="fa-cate-list-name"><a href="/catalog/zhixiandg-340/">直线导轨</a><a href="/catalog/298/">滚珠丝杠</a><a href="/catalog/376/">模组滑台电缸</a><a href="/catalog/368/">丝杆支撑座</a><a href="/catalog/326/">电机座</a><a href="/catalog/320/">梯形丝杠</a><a href="/catalog/385/">滚珠花键</a><a href="/catalog/362/"> 直线轴承</a><a href="/catalog/360/">钢珠衬套</a><a href="/catalog/108/">无油衬套</a><a href="/catalog/109/">无油垫圈垫片</a><a href="/catalog/149/">自润滑铜滑板</a><a href="/catalog/4/">线性导向轴</a><a href="/catalog/5/">导向轴支座</a><a href="/catalog/6/">固定环 · 夹紧套</a><a href="/catalog/327/">机床防护罩</a><a href="/catalog/329/">交叉滚子导轨滑台</a><a href="/catalog/346/">直线电机</a><div class="clear"></div></dd>
+                                <dd class="fa-cate-list-img"><a href="/catalog/zhixiandg-340/" title="直线导轨"><img src="/Public/upload/fa_category/2019/12-12/5df1e03f619c8.jpg" alt="直线导轨"></a><a href="/catalog/298/" title="滚珠丝杠"><img src="/Public/upload/fa_category/2018/01-04/5a4df0fe771f7.jpg" alt="滚珠丝杠"></a><a href="/catalog/376/" title="模组滑台电缸"><img src="/Public/upload/fa_category/2020/01-15/5e1ecbe0aea46.jpg" alt="模组滑台电缸"></a><a href="/catalog/368/" title="丝杆支撑座"><img src="/Public/upload/fa_category/2020/01-13/5e1bc4da5905a.jpg" alt="丝杆支撑座"></a><a href="/catalog/326/" title="电机座"><img src="/Public/upload/fa_category/2019/10-12/5da1762c7df73.jpg" alt="电机座"></a><a href="/catalog/320/" title="梯形丝杠"><img src="/Public/upload/fa_category/2020/01-04/5e100b45b75dc.jpg" alt="梯形丝杠"></a><a href="/catalog/385/" title="滚珠花键"><img src="/Public/upload/fa_category/2020/02-26/5e55dcf8c864c.jpg" alt="滚珠花键"></a><a href="/catalog/362/" title=" 直线轴承"><img src="/Public/upload/fa_category/2020/01-06/5e129e998853a.jpg" alt=" 直线轴承"></a><a href="/catalog/360/" title="钢珠衬套"><img src="/Public/upload/fa_category/2020/01-04/5e0fe7bf80153.jpg" alt="钢珠衬套"></a><a href="/catalog/108/" title="无油衬套"><img src="/Public/upload/fa_category/2018/03-01/5a97d2a04bac6.jpg" alt="无油衬套"></a><a href="/catalog/109/" title="无油垫圈垫片"><img src="/Public/upload/fa_category/2018/03-01/5a97d32f85d84.jpg" alt="无油垫圈垫片"></a><a href="/catalog/149/" title="自润滑铜滑板"><img src="/Public/upload/fa_category/2018/03-06/5a9e4cfc99c6a.jpg" alt="自润滑铜滑板"></a><a href="/catalog/4/" title="线性导向轴"><img src="/Public/upload/fa_category/2017/08-08/598910c715e97.jpg" alt="线性导向轴"></a><a href="/catalog/5/" title="导向轴支座"><img src="/Public/upload/fa_category/2018/03-01/5a97d107443da.jpg" alt="导向轴支座"></a><a href="/catalog/6/" title="固定环 · 夹紧套"><img src="/Public/upload/fa_category/2018/03-01/5a97d17a2cb26.jpg" alt="固定环 · 夹紧套"></a><a href="/catalog/327/" title="机床防护罩"><img src="/Public/upload/fa_category/2019/10-16/5da6c7f5e594f.jpg" alt="机床防护罩"></a><a href="/catalog/329/" title="交叉滚子导轨滑台"><img src="/Public/upload/fa_category/2019/11-02/5dbd15590bb45.jpg" alt="交叉滚子导轨滑台"></a><a href="/catalog/346/" title="直线电机"><img src="/Public/upload/fa_category/2019/12-19/5dfacdfa38939.jpg" alt="直线电机"></a><div class="clear"></div></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li class="fa-cate-list-li">
+                        <div class="fa-cate-list-li-f">
+                            <h3><a class="fa-nav-cate-2" href="/catalog/292/"><span>工业传动部件</span></a></h3>
+
+                        </div>
+                        <div class="fa-cate-list-li-s" style="display: none;">
+                            <dl class="clearfix">
+                                <dt><a href="/catalog/292/">工业传动部件</a></dt>
+                                <dd class="fa-cate-list-name"><a href="/catalog/426/">联轴器</a><a href="/catalog/36/">同步带 </a><a href="/catalog/37/">同步带轮</a><a href="/catalog/343/">免键胀套</a><a href="/catalog/422/">工业皮带 · 输送带</a><a href="/catalog/19/">滚轮·滚筒</a><a href="/catalog/38/">圆皮带</a><a href="/catalog/39/">圆皮带轮</a><a href="/catalog/40/">链条</a><a href="/catalog/42/">链轮</a><a href="/catalog/44/">链条配件</a><a href="/catalog/31/">包胶轴承滑轮</a><a href="/catalog/27/">钢珠滚轮·万向滚珠</a><a href="/catalog/30/">毛刷辊·工业毛刷</a><a href="/catalog/351/">齿轮</a><a href="/catalog/347/">齿条</a><a href="/catalog/399/">关节轴承</a><a href="/catalog/400/">带座轴承</a><a href="/catalog/405/">进口轴承</a><a href="/catalog/344/">环形导轨</a><a href="/catalog/431/">小型输送机</a><div class="clear"></div></dd>
+                                <dd class="fa-cate-list-img"><a href="/catalog/426/" title="联轴器"><img src="/Public/upload/facategory/2020/11-12/5faccf2460270.jpg" alt="联轴器"></a><a href="/catalog/36/" title="同步带 "><img src="/Public/upload/fa_category/2018/02-26/5a93d02942f15.jpg" alt="同步带 "></a><a href="/catalog/37/" title="同步带轮"><img src="/Public/upload/fa_category/2018/02-26/5a93cfdedaeb9.jpg" alt="同步带轮"></a><a href="/catalog/343/" title="免键胀套"><img src="/Public/upload/fa_category/2019/12-14/5df49874992a7.jpg" alt="免键胀套"></a><a href="/catalog/422/" title="工业皮带 · 输送带"><img src="/Public/upload/facategory/2020/08-26/5f461bc7e8a85.jpg" alt="工业皮带 · 输送带"></a><a href="/catalog/19/" title="滚轮·滚筒"><img src="/Public/upload/fa_category/2017/08-08/598911b6a78e4.jpg" alt="滚轮·滚筒"></a><a href="/catalog/38/" title="圆皮带"><img src="/Public/upload/fa_category/2017/08-30/59a6542d5427e.jpg" alt="圆皮带"></a><a href="/catalog/39/" title="圆皮带轮"><img src="/Public/upload/fa_category/2017/08-30/59a6543e1ca97.jpg" alt="圆皮带轮"></a><a href="/catalog/40/" title="链条"><img src="/Public/upload/fa_category/2017/08-30/59a6545cd8c93.jpg" alt="链条"></a><a href="/catalog/42/" title="链轮"><img src="/Public/upload/fa_category/2017/08-30/59a6548e1d7e8.jpg" alt="链轮"></a><a href="/catalog/44/" title="链条配件"><img src="/Public/upload/fa_category/2017/08-30/59a654aee1194.jpg" alt="链条配件"></a><a href="/catalog/31/" title="包胶轴承滑轮"><img src="/Public/upload/fa_category/2017/08-08/5989123f5aa70.jpg" alt="包胶轴承滑轮"></a><a href="/catalog/27/" title="钢珠滚轮·万向滚珠"><img src="/Public/upload/fa_category/2018/03-01/5a97ca857d959.jpg" alt="钢珠滚轮·万向滚珠"></a><a href="/catalog/30/" title="毛刷辊·工业毛刷"><img src="/Public/upload/fa_category/2017/08-08/5989123537327.jpg" alt="毛刷辊·工业毛刷"></a><a href="/catalog/351/" title="齿轮"><img src="/Public/upload/fa_category/2019/12-26/5e04624c5a0d6.jpg" alt="齿轮"></a><a href="/catalog/347/" title="齿条"><img src="/Public/upload/fa_category/2019/12-26/5e04193ac6f36.jpg" alt="齿条"></a><a href="/catalog/399/" title="关节轴承"><img src="/Public/upload/fa_category/2020/03-16/5e6f2754310bb.jpg" alt="关节轴承"></a><a href="/catalog/400/" title="带座轴承"><img src="/Public/upload/fa_category/2020/03-16/5e6f2951866b7.jpg" alt="带座轴承"></a><a href="/catalog/405/" title="进口轴承"><img src="/Public/upload/fa_category/2020/03-23/5e784dafbac9b.jpg" alt="进口轴承"></a><a href="/catalog/344/" title="环形导轨"><img src="/Public/upload/facategory/2020/11-12/5face3c89168c.jpg" alt="环形导轨"></a><a href="/catalog/431/" title="小型输送机"><img src="/Public/upload/facategory/2020/12-15/5fd84f9088fca.jpg" alt="小型输送机"></a><div class="clear"></div></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li class="fa-cate-list-li">
+                        <div class="fa-cate-list-li-f">
+                            <h3><a class="fa-nav-cate-3" href="/catalog/306/"><span>工业框架部件</span></a></h3>
+
+                        </div>
+                        <div class="fa-cate-list-li-s" style="display: none;">
+                            <dl class="clearfix">
+                                <dt><a href="/catalog/306/">工业框架部件</a></dt>
+                                <dd class="fa-cate-list-name"><a href="/catalog/304/">工业铝型材</a><a href="/catalog/305/">脚轮</a><a href="/catalog/317/">脚杯</a><a href="/catalog/339/">水平调节脚轮</a><a href="/catalog/315/">弹簧锁扣 · 搭扣锁</a><a href="/catalog/314/">磁力扣 · 磁吸</a><a href="/catalog/308/">拉手·提手</a><a href="/catalog/307/">紧定手柄·胶木手柄</a><a href="/catalog/325/">旋钮把手▪胶木把手</a><a href="/catalog/309/">手轮 · 摇手柄</a><a href="/catalog/311/">气弹簧</a><a href="/catalog/312/">钢珠滑轨</a><a href="/catalog/313/">合页 · 铰链</a><a href="/catalog/333/">密封条</a><a href="/catalog/334/">门碰卡扣</a><a href="/catalog/335/">插销锁</a><a href="/catalog/336/">挂钩</a><a href="/catalog/338/">系留紧固件</a><a href="/catalog/425/">门锁</a><div class="clear"></div></dd>
+                                <dd class="fa-cate-list-img"><a href="/catalog/304/" title="工业铝型材"><img src="/Public/upload/fa_category/2018/02-26/5a9382929c8bf.jpg" alt="工业铝型材"></a><a href="/catalog/305/" title="脚轮"><img src="/Public/upload/fa_category/2018/04-07/5ac8203a0ed50.jpg" alt="脚轮"></a><a href="/catalog/317/" title="脚杯"><img src="/Public/upload/fa_category/2018/10-30/5bd7b07d2fd25.jpg" alt="脚杯"></a><a href="/catalog/339/" title="水平调节脚轮"><img src="/Public/upload/fa_category/2019/12-10/5deefdff852f2.jpg" alt="水平调节脚轮"></a><a href="/catalog/315/" title="弹簧锁扣 · 搭扣锁"><img src="/Public/upload/fa_category/2018/04-07/5ac88634e3235.jpg" alt="弹簧锁扣 · 搭扣锁"></a><a href="/catalog/314/" title="磁力扣 · 磁吸"><img src="/Public/upload/fa_category/2018/04-07/5ac88625dd875.jpg" alt="磁力扣 · 磁吸"></a><a href="/catalog/308/" title="拉手·提手"><img src="/Public/upload/fa_category/2018/04-07/5ac885d4da705.jpg" alt="拉手·提手"></a><a href="/catalog/307/" title="紧定手柄·胶木手柄"><img src="/Public/upload/fa_category/2019/09-10/5d7743ebce8d4.jpg" alt="紧定手柄·胶木手柄"></a><a href="/catalog/325/" title="旋钮把手▪胶木把手"><img src="/Public/upload/fa_category/2019/09-26/5d8c1a909c1fd.jpg" alt="旋钮把手▪胶木把手"></a><a href="/catalog/309/" title="手轮 · 摇手柄"><img src="/Public/upload/fa_category/2018/04-07/5ac885e2ba353.jpg" alt="手轮 · 摇手柄"></a><a href="/catalog/311/" title="气弹簧"><img src="/Public/upload/fa_category/2018/04-07/5ac885fabf727.jpg" alt="气弹簧"></a><a href="/catalog/312/" title="钢珠滑轨"><img src="/Public/upload/fa_category/2018/04-07/5ac88605c260e.jpg" alt="钢珠滑轨"></a><a href="/catalog/313/" title="合页 · 铰链"><img src="/Public/upload/fa_category/2018/04-07/5ac88617d25ed.jpg" alt="合页 · 铰链"></a><a href="/catalog/333/" title="密封条"><img src="/Public/upload/fa_category/2019/11-25/5ddb8a2e7196f.jpg" alt="密封条"></a><a href="/catalog/334/" title="门碰卡扣"><img src="/Public/upload/fa_category/2019/11-27/5dddd9e9c037f.jpg" alt="门碰卡扣"></a><a href="/catalog/335/" title="插销锁"><img src="/Public/upload/fa_category/2019/11-30/5de215f1ab4ed.jpg" alt="插销锁"></a><a href="/catalog/336/" title="挂钩"><img src="/Public/upload/fa_category/2019/12-05/5de8bb06acaa1.jpg" alt="挂钩"></a><a href="/catalog/338/" title="系留紧固件"><img src="/Public/upload/fa_category/2019/12-09/5dedf58f54801.jpg" alt="系留紧固件"></a><a href="/catalog/425/" title="门锁"><img src="/Public/upload/facategory/2020/09-15/5f608d299f69d.jpg" alt="门锁"></a><div class="clear"></div></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li class="fa-cate-list-li">
+                        <div class="fa-cate-list-li-f">
+                            <h3><a class="fa-nav-cate-4" href="/catalog/jixie-1/"><span>通用五金配件</span></a></h3>
+
+                        </div>
+                        <div class="fa-cate-list-li-s" style="display: none;">
+                            <dl class="clearfix">
+                                <dt><a href="/catalog/jixie-1/">通用五金配件</a></dt>
+                                <dd class="fa-cate-list-name"><a href="/catalog/luosi-26/">螺丝 · 螺栓</a><a href="/catalog/91/">螺帽 · 螺母</a><a href="/catalog/22/">垫圈垫片 · 轴环</a><a href="/catalog/20/">强力小磁铁·磁条</a><a href="/catalog/159/">压缩弹簧</a><a href="/catalog/235/">矩形弹簧</a><a href="/catalog/328/">拉伸弹簧</a><a href="/catalog/160/">PU聚氨酯棒·优力胶</a><a href="/catalog/316/">O型密封圈 · 骨架油封</a><a href="/catalog/319/">液压缓冲器</a><div class="clear"></div></dd>
+                                <dd class="fa-cate-list-img"><a href="/catalog/luosi-26/" title="螺丝 · 螺栓"><img src="/Public/upload/fa_category/2018/02-26/5a938628562ef.jpg" alt="螺丝 · 螺栓"></a><a href="/catalog/91/" title="螺帽 · 螺母"><img src="/Public/upload/fa_category/2018/02-26/5a93af1887135.jpg" alt="螺帽 · 螺母"></a><a href="/catalog/22/" title="垫圈垫片 · 轴环"><img src="/Public/upload/fa_category/2018/02-26/5a93be3b3be4e.jpg" alt="垫圈垫片 · 轴环"></a><a href="/catalog/20/" title="强力小磁铁·磁条"><img src="/Public/upload/fa_category/2018/02-26/5a93b9688a04e.jpg" alt="强力小磁铁·磁条"></a><a href="/catalog/159/" title="压缩弹簧"><img src="/Public/upload/fa_category/2017/11-29/5a1e2345169c9.jpg" alt="压缩弹簧"></a><a href="/catalog/235/" title="矩形弹簧"><img src="/Public/upload/fa_category/2018/02-26/5a93c6b1c1291.jpg" alt="矩形弹簧"></a><a href="/catalog/328/" title="拉伸弹簧"><img src="/Public/upload/fa_category/2019/10-18/5da9313c87a0c.jpg" alt="拉伸弹簧"></a><a href="/catalog/160/" title="PU聚氨酯棒·优力胶"><img src="/Public/upload/fa_category/2017/11-29/5a1e226328cd6.jpg" alt="PU聚氨酯棒·优力胶"></a><a href="/catalog/316/" title="O型密封圈 · 骨架油封"><img src="/Public/upload/fa_category/2018/10-13/5bc1438add23b.jpg" alt="O型密封圈 · 骨架油封"></a><a href="/catalog/319/" title="液压缓冲器"><img src="/Public/upload/fa_category/2018/12-15/5c14512c0227a.jpg" alt="液压缓冲器"></a><div class="clear"></div></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li class="fa-cate-list-li">
+                        <div class="fa-cate-list-li-f">
+                            <h3><a class="fa-nav-cate-5" href="/catalog/105/"><span>定位固定零件</span></a></h3>
+
+                        </div>
+                        <div class="fa-cate-list-li-s" style="display: none;">
+                            <dl class="clearfix">
+                                <dt><a href="/catalog/105/">定位固定零件</a></dt>
+                                <dd class="fa-cate-list-name"><a href="/catalog/21/">定位销 · 圆柱销</a><a href="/catalog/24/">平键</a><a href="/catalog/322/">手动位移台 · 微调平台</a><a href="/catalog/323/">电动位移平台</a><a href="/catalog/324/">对位平台</a><a href="/catalog/125/">定位销衬套</a><a href="/catalog/23/">卡销 · 开口销</a><a href="/catalog/25/">扣环 · 挡圈</a><a href="/catalog/35/">弹簧柱塞 · 旋钮柱塞</a><a href="/catalog/118/">紧定螺钉 · 锁紧螺栓</a><div class="clear"></div></dd>
+                                <dd class="fa-cate-list-img"><a href="/catalog/21/" title="定位销 · 圆柱销"><img src="/Public/upload/fa_category/2018/03-02/5a98b489d8eb4.jpg" alt="定位销 · 圆柱销"></a><a href="/catalog/24/" title="平键"><img src="/Public/upload/fa_category/2018/03-02/5a98b4d816420.jpg" alt="平键"></a><a href="/catalog/322/" title="手动位移台 · 微调平台"><img src="/Public/upload/fa_category/2019/05-08/5cd23f6bd19c4.jpg" alt="手动位移台 · 微调平台"></a><a href="/catalog/323/" title="电动位移平台"><img src="/Public/upload/fa_category/2019/05-08/5cd2403458b7e.jpg" alt="电动位移平台"></a><a href="/catalog/324/" title="对位平台"><img src="/Public/upload/fa_category/2019/05-08/5cd241568a2e3.jpg" alt="对位平台"></a><a href="/catalog/125/" title="定位销衬套"><img src="/Public/upload/fa_category/2018/03-02/5a98b4c54ea6e.jpg" alt="定位销衬套"></a><a href="/catalog/23/" title="卡销 · 开口销"><img src="/Public/upload/fa_category/2018/03-02/5a98b6254eb79.jpg" alt="卡销 · 开口销"></a><a href="/catalog/25/" title="扣环 · 挡圈"><img src="/Public/upload/fa_category/2018/03-02/5a98bb15a556d.jpg" alt="扣环 · 挡圈"></a><a href="/catalog/35/" title="弹簧柱塞 · 旋钮柱塞"><img src="/Public/upload/fa_category/2018/02-26/5a93c47af3eda.jpg" alt="弹簧柱塞 · 旋钮柱塞"></a><a href="/catalog/118/" title="紧定螺钉 · 锁紧螺栓"><img src="/Public/upload/fa_category/2018/01-22/5a659669b6cb1.jpg" alt="紧定螺钉 · 锁紧螺栓"></a><div class="clear"></div></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li class="fa-cate-list-li">
+                        <div class="fa-cate-list-li-f">
+                            <h3><a class="fa-nav-cate-6" href="/catalog/384/"><span>电气驱动部件</span></a></h3>
+
+                        </div>
+                        <div class="fa-cate-list-li-s" style="display: none;">
+                            <dl class="clearfix">
+                                <dt><a href="/catalog/384/">电气驱动部件</a></dt>
+                                <dd class="fa-cate-list-name"><a href="/catalog/8/">拖链 · 坦克链</a><a href="/catalog/390/">伺服电机</a><a href="/catalog/395/">DD马达</a><a href="/catalog/330/">伺服控制线束</a><a href="/catalog/plc-331/">PLC线束</a><a href="/catalog/421/">信号灯·报警灯</a><a href="/catalog/424/">行星减速机·谐波减速机</a><div class="clear"></div></dd>
+                                <dd class="fa-cate-list-img"><a href="/catalog/8/" title="拖链 · 坦克链"><img src="/Public/upload/fa_category/2019/09-07/5d731af8b88ed.jpg" alt="拖链 · 坦克链"></a><a href="/catalog/390/" title="伺服电机"><img src="/Public/upload/fa_category/2020/02-28/5e58aad32981e.jpg" alt="伺服电机"></a><a href="/catalog/395/" title="DD马达"><img src="/Public/upload/fa_category/2020/03-03/5e5e0e871ba85.jpg" alt="DD马达"></a><a href="/catalog/330/" title="伺服控制线束"><img src="/Public/upload/fa_category/2019/11-12/5dca067d15cf8.jpg" alt="伺服控制线束"></a><a href="/catalog/plc-331/" title="PLC线束"><img src="/Public/upload/fa_category/2019/11-12/5dca209b0e125.jpg" alt="PLC线束"></a><a href="/catalog/421/" title="信号灯·报警灯"><img src="/Public/upload/facategory/2020/06-05/5eda0e853cd29.jpg" alt="信号灯·报警灯"></a><a href="/catalog/424/" title="行星减速机·谐波减速机"><img src="/Public/upload/facategory/2021/01-22/600a3b726ccdc.jpg" alt="行星减速机·谐波减速机"></a><div class="clear"></div></dd>
+                            </dl>
+                        </div>
+                    </li>
+                    <li class="fa-cate-list-li">
+                        <div class="fa-cate-list-li-f">
+                            <h3><a class="fa-nav-cate-7" href="/catalog/429/"><span>气动元件</span></a></h3>
+
+                        </div>
+                        <div class="fa-cate-list-li-s" style="display: none;">
+                            <dl class="clearfix">
+                                <dt><a href="/catalog/429/">气动元件</a></dt>
+                                <dd class="fa-cate-list-name"><a href="/catalog/430/">真空吸盘</a><a href="/catalog/432/">工业喷嘴·吹风喷嘴</a><div class="clear"></div></dd>
+                                <dd class="fa-cate-list-img"><a href="/catalog/430/" title="真空吸盘"><img src="/Public/upload/facategory/2020/11-18/5fb4986c90fa4.jpg" alt="真空吸盘"></a><a href="/catalog/432/" title="工业喷嘴·吹风喷嘴"><img src="/Public/upload/facategory/2020/12-26/5fe68a6b46cd1.jpg" alt="工业喷嘴·吹风喷嘴"></a><div class="clear"></div></dd>
+                            </dl>
+                        </div>
+                    </li>
                 </ul>
             </div>
-            <div class="hd">
-                <ul><li></li><li></li><li></li><li></li><li></li><li></li></ul>
-            </div>
-            @* <div class="index-notice"> *@
-            @*     <div class="user-info"> *@
-            @*         <img src="/Static/images/user-head.png?=1.2" alt="用户头像" /> *@
-            @*         <p>尊敬的客户，您好！<br />欢迎来到凡一商城！</p> *@
-            @*     </div> *@
-            @*     <div class="user-btn"> *@
-            @*         <a href="/user/login.html" rel="nofollow" class="mr10">登录</a> *@
-            @*         <a href="/user/signup.html" rel="nofollow">注册</a> *@
-            @*     </div>           <div class="free-find"><a href="/quote.html"><i class="fa fa-table" aria-hidden="true"></i> 快速报价入口</a><p>支持型号替换和来图定制</p></div> *@
-            @*     <div class="notice-box"> *@
-            @*         <h3><a href="/article/notice.html" class="fr">更多+</a>商城新闻</h3> *@
-            @*         <ul> *@
-            @*             <li><a href="/article/2427.html" title="凡一商城2021年春节放假通知" target="_blank">凡一商城2021年春节放假通知</a></li> *@
-            @*             <li><a href="/article/2424.html" title="凡一商城2021年元旦放假通知" target="_blank">凡一商城2021年元旦放假通知</a></li> *@
-            @*             <li><a href="/article/2331.html" title="凡一商城2020年国庆节及中秋节放假通知" target="_blank">凡一商城2020年国庆节及中秋节放假通知</a></li> *@
-            @*             <li><a href="/article/2275.html" title="“小新异大服务” 凡一商城网站改版上线" target="_blank">“小新异大服务” 凡一商城网站改版上线</a></li> *@
-            @*             <li><a href="/article/2274.html" title="喜讯！凡一商城又获“广东省守合同重信用企业”" target="_blank">喜讯！凡一商城又获“广东省守合同重信用企业”</a></li> *@
-            @*         </ul> *@
-            @*     </div> *@
-            @*     <div class="index-book-app"><a href="/book.html"><h4>纸质目录免费申请</h4><p>凡一商城《2020-2021 产品手册》</p></a></div> *@
-            @* </div> *@
         </div>
+        <ul class="nav-right">
+            <li><a href="@Html.Raw(ViewData["首页"])">首页</a></li>
+            <li><a href="/catalog/">产品中心</a></li>
+            <li><a href="/brand/">品牌中心</a></li>
+            <li><a href="/help/about.html">关于我们</a></li>
+        </ul>
     </div>
+</div>
+
+<div class="banner">
+    <div class="index-banner">
+        <div class="bd">
+            <ul>
 
 
 
 
-    <div class="index-floor floor-2 mt35 frame">
-        <div class="floor-tit">
-            <h3>人体防护类</h3>
-            <span><a href="/catalog/292/">更多 <i class="fa fa-arrow-right" aria-hidden="true"></i></a></span>
-        </div>
-        <div class="floor-con clearfix">
-            <div class="floor-img"><a href="/catalog/292/"><img src="/Static/images/index/f2.jpg" alt="工业传动部件"></a></div>
-            <div class="floor-pro">
-                <ul><li><span class="rec">热门</span><a href="/catalog/426/" title="联轴器"><img src="/Public/upload/facategory/2020/11-12/5faccf2460270.jpg" alt="联轴器"><p>联轴器</p></a></li><li><span class="rec">热门</span><a href="/catalog/36/" title="同步带 "><img src="/Public/upload/fa_category/2018/02-26/5a93d02942f15.jpg" alt="同步带 "><p>同步带 </p></a></li><li><span class="rec">热门</span><a href="/catalog/37/" title="同步带轮"><img src="/Public/upload/fa_category/2018/02-26/5a93cfdedaeb9.jpg" alt="同步带轮"><p>同步带轮</p></a></li><li><a href="/catalog/343/" title="免键胀套"><img src="/Public/upload/fa_category/2019/12-14/5df49874992a7.jpg" alt="免键胀套"><p>免键胀套</p></a></li><li><a href="/catalog/422/" title="工业皮带 · 输送带"><img src="/Public/upload/facategory/2020/08-26/5f461bc7e8a85.jpg" alt="工业皮带 · 输送带"><p>工业皮带 · 输送带</p></a></li><li><a href="/catalog/19/" title="滚轮·滚筒"><img src="/Public/upload/fa_category/2017/08-08/598911b6a78e4.jpg" alt="滚轮·滚筒"><p>滚轮·滚筒</p></a></li><li><a href="/catalog/38/" title="圆皮带"><img src="/Public/upload/fa_category/2017/08-30/59a6542d5427e.jpg" alt="圆皮带"><p>圆皮带</p></a></li><li><a href="/catalog/39/" title="圆皮带轮"><img src="/Public/upload/fa_category/2017/08-30/59a6543e1ca97.jpg" alt="圆皮带轮"><p>圆皮带轮</p></a></li><li><span class="rec">热门</span><a href="/catalog/40/" title="链条"><img src="/Public/upload/fa_category/2017/08-30/59a6545cd8c93.jpg" alt="链条"><p>链条</p></a></li><li><span class="rec">热门</span><a href="/catalog/42/" title="链轮"><img src="/Public/upload/fa_category/2017/08-30/59a6548e1d7e8.jpg" alt="链轮"><p>链轮</p></a></li>			</ul>
-            </div>
-        </div>
-    </div><div class="index-floor floor-3 mt35 frame">
-        <div class="floor-tit">
-            <h3>作业用具类</h3>
-            <span><a href="/catalog/306/">更多 <i class="fa fa-arrow-right" aria-hidden="true"></i></a></span>
-        </div>
-        <div class="floor-con clearfix">
-            <div class="floor-img"><a href="/catalog/306/"><img src="/Static/images/index/f3.jpg" alt="工业框架部件"></a></div>
-            <div class="floor-pro">
-                <ul><li><a href="/catalog/304/" title="工业铝型材"><img src="/Public/upload/fa_category/2018/02-26/5a9382929c8bf.jpg" alt="工业铝型材"><p>工业铝型材</p></a></li><li><span class="rec">热门</span><a href="/catalog/305/" title="脚轮"><img src="/Public/upload/fa_category/2018/04-07/5ac8203a0ed50.jpg" alt="脚轮"><p>脚轮</p></a></li><li><span class="rec">热门</span><a href="/catalog/317/" title="脚杯"><img src="/Public/upload/fa_category/2018/10-30/5bd7b07d2fd25.jpg" alt="脚杯"><p>脚杯</p></a></li><li><a href="/catalog/339/" title="水平调节脚轮"><img src="/Public/upload/fa_category/2019/12-10/5deefdff852f2.jpg" alt="水平调节脚轮"><p>水平调节脚轮</p></a></li><li><a href="/catalog/315/" title="弹簧锁扣 · 搭扣锁"><img src="/Public/upload/fa_category/2018/04-07/5ac88634e3235.jpg" alt="弹簧锁扣 · 搭扣锁"><p>弹簧锁扣 · 搭扣锁</p></a></li><li><a href="/catalog/314/" title="磁力扣 · 磁吸"><img src="/Public/upload/fa_category/2018/04-07/5ac88625dd875.jpg" alt="磁力扣 · 磁吸"><p>磁力扣 · 磁吸</p></a></li><li><span class="rec">热门</span><a href="/catalog/308/" title="拉手·提手"><img src="/Public/upload/fa_category/2018/04-07/5ac885d4da705.jpg" alt="拉手·提手"><p>拉手·提手</p></a></li><li><a href="/catalog/307/" title="紧定手柄·胶木手柄"><img src="/Public/upload/fa_category/2019/09-10/5d7743ebce8d4.jpg" alt="紧定手柄·胶木手柄"><p>紧定手柄·胶木手柄</p></a></li><li><a href="/catalog/325/" title="旋钮把手▪胶木把手"><img src="/Public/upload/fa_category/2019/09-26/5d8c1a909c1fd.jpg" alt="旋钮把手▪胶木把手"><p>旋钮把手▪胶木把手</p></a></li><li><span class="rec">热门</span><a href="/catalog/309/" title="手轮 · 摇手柄"><img src="/Public/upload/fa_category/2018/04-07/5ac885e2ba353.jpg" alt="手轮 · 摇手柄"><p>手轮 · 摇手柄</p></a></li>			</ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="index-floor floor-5 mt35 frame">
-        <div class="floor-tit">
-            <h3>周转器材类</h3>
-            <span><a href="/catalog/105/">更多 <i class="fa fa-arrow-right" aria-hidden="true"></i></a></span>
-        </div>
-        <div class="floor-con clearfix">
-            <div class="floor-img"><a href="/catalog/105/"><img src="/Static/images/index/f5.jpg" alt="定位固定零件"></a></div>
-            <div class="floor-pro">
-                <ul><li><span class="rec">热门</span><a href="/catalog/21/" title="定位销 · 圆柱销"><img src="/Public/upload/fa_category/2018/03-02/5a98b489d8eb4.jpg" alt="定位销 · 圆柱销"><p>定位销 · 圆柱销</p></a></li><li><span class="rec">热门</span><a href="/catalog/24/" title="平键"><img src="/Public/upload/fa_category/2018/03-02/5a98b4d816420.jpg" alt="平键"><p>平键</p></a></li><li><a href="/catalog/322/" title="手动位移台 · 微调平台"><img src="/Public/upload/fa_category/2019/05-08/5cd23f6bd19c4.jpg" alt="手动位移台 · 微调平台"><p>手动位移台 · 微调平台</p></a></li><li><a href="/catalog/323/" title="电动位移平台"><img src="/Public/upload/fa_category/2019/05-08/5cd2403458b7e.jpg" alt="电动位移平台"><p>电动位移平台</p></a></li><li><a href="/catalog/324/" title="对位平台"><img src="/Public/upload/fa_category/2019/05-08/5cd241568a2e3.jpg" alt="对位平台"><p>对位平台</p></a></li><li><a href="/catalog/125/" title="定位销衬套"><img src="/Public/upload/fa_category/2018/03-02/5a98b4c54ea6e.jpg" alt="定位销衬套"><p>定位销衬套</p></a></li><li><a href="/catalog/23/" title="卡销 · 开口销"><img src="/Public/upload/fa_category/2018/03-02/5a98b6254eb79.jpg" alt="卡销 · 开口销"><p>卡销 · 开口销</p></a></li><li><a href="/catalog/25/" title="扣环 · 挡圈"><img src="/Public/upload/fa_category/2018/03-02/5a98bb15a556d.jpg" alt="扣环 · 挡圈"><p>扣环 · 挡圈</p></a></li><li><span class="rec">热门</span><a href="/catalog/35/" title="弹簧柱塞 · 旋钮柱塞"><img src="/Public/upload/fa_category/2018/02-26/5a93c47af3eda.jpg" alt="弹簧柱塞 · 旋钮柱塞"><p>弹簧柱塞 · 旋钮柱塞</p></a></li><li><a href="/catalog/118/" title="紧定螺钉 · 锁紧螺栓"><img src="/Public/upload/fa_category/2018/01-22/5a659669b6cb1.jpg" alt="紧定螺钉 · 锁紧螺栓"><p>紧定螺钉 · 锁紧螺栓</p></a></li>			</ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="index-brand mt35 frame">
-        <div class="product-tit">
-            <h3 class="i-brand">品牌中心</h3>
-            <span><a href="/brand/">查看更多</a></span>
-        </div>
-        <div class="index-brand-con">
-
-            <ul class="index-brand-ul clearfix">
-                
-                
                 @{
-                    if (Model.brandsList.Any())
+                    if (Model.bannerList.Any())
                     {
-                        foreach (var item in Model.brandsList)
+                        foreach (var item in Model.bannerList)
                         {
-                           
-                                @*<option value='@item.EnClassName' selected="selected">@item.ClassName</option>*@
-                            <li><a href="#"><img src="/uploads/Logo/@item.brandImg" alt="@item.brandName"/><span>@item.brandName</span></a></li>
-                          
-                           
+                            if (string.IsNullOrEmpty(item.URL))
+                            {
+                                <li style="        background-image: url(/uploads/@item.Img);"></li>
+
+                            }
+                            else
+                            {
+                                <li style="        background-image: url(/uploads/@item.Img);"><a href="@item.URL" title="产品选型手册免费申请" target="_blank"><strong>产品选型手册免费申请</strong></a></li>
+                            }
                         }
                     }
                 }
+                @*<li style="background-image: url(/uploads/ad/5ed4630ca0797.jpg);"><a href="https://www.forrun.cn/book.html" title="产品选型手册免费申请" target="_blank"><strong>产品选型手册免费申请</strong></a></li>
+        <li style="background-image: url(/uploads/ad/5f4ef0b028149.jpg);"><a href="https://www.forrun.cn/supplier.html" title="诚邀加入凡一供应链" target="_blank"><strong>诚邀加入凡一供应链</strong></a></li>
+        <li style="background-image: url(/uploads/ad/5f56d78f77955.jpg);"><a href="	https://www.forrun.cn/help/about.html" title="凡一商城介绍" target="_blank"><strong>凡一商城介绍</strong></a></li>*@
+            </ul>
+        </div>
+        <div class="hd">
+            <ul><li></li><li></li><li></li><li></li><li></li><li></li></ul>
+        </div>
+        @* <div class="index-notice"> *@
+        @*     <div class="user-info"> *@
+        @*         <img src="/Static/images/user-head.png?=1.2" alt="用户头像" /> *@
+        @*         <p>尊敬的客户，您好！<br />欢迎来到凡一商城！</p> *@
+        @*     </div> *@
+        @*     <div class="user-btn"> *@
+        @*         <a href="/user/login.html" rel="nofollow" class="mr10">登录</a> *@
+        @*         <a href="/user/signup.html" rel="nofollow">注册</a> *@
+        @*     </div>           <div class="free-find"><a href="/quote.html"><i class="fa fa-table" aria-hidden="true"></i> 快速报价入口</a><p>支持型号替换和来图定制</p></div> *@
+        @*     <div class="notice-box"> *@
+        @*         <h3><a href="/article/notice.html" class="fr">更多+</a>商城新闻</h3> *@
+        @*         <ul> *@
+        @*             <li><a href="/article/2427.html" title="凡一商城2021年春节放假通知" target="_blank">凡一商城2021年春节放假通知</a></li> *@
+        @*             <li><a href="/article/2424.html" title="凡一商城2021年元旦放假通知" target="_blank">凡一商城2021年元旦放假通知</a></li> *@
+        @*             <li><a href="/article/2331.html" title="凡一商城2020年国庆节及中秋节放假通知" target="_blank">凡一商城2020年国庆节及中秋节放假通知</a></li> *@
+        @*             <li><a href="/article/2275.html" title="“小新异大服务” 凡一商城网站改版上线" target="_blank">“小新异大服务” 凡一商城网站改版上线</a></li> *@
+        @*             <li><a href="/article/2274.html" title="喜讯！凡一商城又获“广东省守合同重信用企业”" target="_blank">喜讯！凡一商城又获“广东省守合同重信用企业”</a></li> *@
+        @*         </ul> *@
+        @*     </div> *@
+        @*     <div class="index-book-app"><a href="/book.html"><h4>纸质目录免费申请</h4><p>凡一商城《2020-2021 产品手册》</p></a></div> *@
+        @* </div> *@
+    </div>
+</div>
 
-                @*
+
+
+
+<div class="index-floor floor-2 mt35 frame">
+    <div class="floor-tit">
+        <h3>人体防护类</h3>
+        <span><a href="/catalog/292/">更多 <i class="fa fa-arrow-right" aria-hidden="true"></i></a></span>
+    </div>
+    <div class="floor-con clearfix">
+        <div class="floor-img"><a href="/catalog/292/"><img src="/Static/images/index/f2.jpg" alt="工业传动部件"></a></div>
+        <div class="floor-pro">
+            <ul><li><span class="rec">热门</span><a href="/catalog/426/" title="联轴器"><img src="/Public/upload/facategory/2020/11-12/5faccf2460270.jpg" alt="联轴器"><p>联轴器</p></a></li><li><span class="rec">热门</span><a href="/catalog/36/" title="同步带 "><img src="/Public/upload/fa_category/2018/02-26/5a93d02942f15.jpg" alt="同步带 "><p>同步带 </p></a></li><li><span class="rec">热门</span><a href="/catalog/37/" title="同步带轮"><img src="/Public/upload/fa_category/2018/02-26/5a93cfdedaeb9.jpg" alt="同步带轮"><p>同步带轮</p></a></li><li><a href="/catalog/343/" title="免键胀套"><img src="/Public/upload/fa_category/2019/12-14/5df49874992a7.jpg" alt="免键胀套"><p>免键胀套</p></a></li><li><a href="/catalog/422/" title="工业皮带 · 输送带"><img src="/Public/upload/facategory/2020/08-26/5f461bc7e8a85.jpg" alt="工业皮带 · 输送带"><p>工业皮带 · 输送带</p></a></li><li><a href="/catalog/19/" title="滚轮·滚筒"><img src="/Public/upload/fa_category/2017/08-08/598911b6a78e4.jpg" alt="滚轮·滚筒"><p>滚轮·滚筒</p></a></li><li><a href="/catalog/38/" title="圆皮带"><img src="/Public/upload/fa_category/2017/08-30/59a6542d5427e.jpg" alt="圆皮带"><p>圆皮带</p></a></li><li><a href="/catalog/39/" title="圆皮带轮"><img src="/Public/upload/fa_category/2017/08-30/59a6543e1ca97.jpg" alt="圆皮带轮"><p>圆皮带轮</p></a></li><li><span class="rec">热门</span><a href="/catalog/40/" title="链条"><img src="/Public/upload/fa_category/2017/08-30/59a6545cd8c93.jpg" alt="链条"><p>链条</p></a></li><li><span class="rec">热门</span><a href="/catalog/42/" title="链轮"><img src="/Public/upload/fa_category/2017/08-30/59a6548e1d7e8.jpg" alt="链轮"><p>链轮</p></a></li>			</ul>
+        </div>
+    </div>
+</div><div class="index-floor floor-3 mt35 frame">
+    <div class="floor-tit">
+        <h3>作业用具类</h3>
+        <span><a href="/catalog/306/">更多 <i class="fa fa-arrow-right" aria-hidden="true"></i></a></span>
+    </div>
+    <div class="floor-con clearfix">
+        <div class="floor-img"><a href="/catalog/306/"><img src="/Static/images/index/f3.jpg" alt="工业框架部件"></a></div>
+        <div class="floor-pro">
+            <ul><li><a href="/catalog/304/" title="工业铝型材"><img src="/Public/upload/fa_category/2018/02-26/5a9382929c8bf.jpg" alt="工业铝型材"><p>工业铝型材</p></a></li><li><span class="rec">热门</span><a href="/catalog/305/" title="脚轮"><img src="/Public/upload/fa_category/2018/04-07/5ac8203a0ed50.jpg" alt="脚轮"><p>脚轮</p></a></li><li><span class="rec">热门</span><a href="/catalog/317/" title="脚杯"><img src="/Public/upload/fa_category/2018/10-30/5bd7b07d2fd25.jpg" alt="脚杯"><p>脚杯</p></a></li><li><a href="/catalog/339/" title="水平调节脚轮"><img src="/Public/upload/fa_category/2019/12-10/5deefdff852f2.jpg" alt="水平调节脚轮"><p>水平调节脚轮</p></a></li><li><a href="/catalog/315/" title="弹簧锁扣 · 搭扣锁"><img src="/Public/upload/fa_category/2018/04-07/5ac88634e3235.jpg" alt="弹簧锁扣 · 搭扣锁"><p>弹簧锁扣 · 搭扣锁</p></a></li><li><a href="/catalog/314/" title="磁力扣 · 磁吸"><img src="/Public/upload/fa_category/2018/04-07/5ac88625dd875.jpg" alt="磁力扣 · 磁吸"><p>磁力扣 · 磁吸</p></a></li><li><span class="rec">热门</span><a href="/catalog/308/" title="拉手·提手"><img src="/Public/upload/fa_category/2018/04-07/5ac885d4da705.jpg" alt="拉手·提手"><p>拉手·提手</p></a></li><li><a href="/catalog/307/" title="紧定手柄·胶木手柄"><img src="/Public/upload/fa_category/2019/09-10/5d7743ebce8d4.jpg" alt="紧定手柄·胶木手柄"><p>紧定手柄·胶木手柄</p></a></li><li><a href="/catalog/325/" title="旋钮把手▪胶木把手"><img src="/Public/upload/fa_category/2019/09-26/5d8c1a909c1fd.jpg" alt="旋钮把手▪胶木把手"><p>旋钮把手▪胶木把手</p></a></li><li><span class="rec">热门</span><a href="/catalog/309/" title="手轮 · 摇手柄"><img src="/Public/upload/fa_category/2018/04-07/5ac885e2ba353.jpg" alt="手轮 · 摇手柄"><p>手轮 · 摇手柄</p></a></li>			</ul>
+        </div>
+    </div>
+</div>
+
+@*<div class="index-floor floor-5 mt35 frame">
+    <div class="floor-tit">
+        <h3>周转器材类</h3>
+        <span><a href="/catalog/105/">更多 <i class="fa fa-arrow-right" aria-hidden="true"></i></a></span>
+    </div>
+    <div class="floor-con clearfix">
+        <div class="floor-img"><a href="/catalog/105/"><img src="/Static/images/index/f5.jpg" alt="定位固定零件"></a></div>
+        <div class="floor-pro">
+            <ul><li><span class="rec">热门</span><a href="/catalog/21/" title="定位销 · 圆柱销"><img src="/Public/upload/fa_category/2018/03-02/5a98b489d8eb4.jpg" alt="定位销 · 圆柱销"><p>定位销 · 圆柱销</p></a></li><li><span class="rec">热门</span><a href="/catalog/24/" title="平键"><img src="/Public/upload/fa_category/2018/03-02/5a98b4d816420.jpg" alt="平键"><p>平键</p></a></li><li><a href="/catalog/322/" title="手动位移台 · 微调平台"><img src="/Public/upload/fa_category/2019/05-08/5cd23f6bd19c4.jpg" alt="手动位移台 · 微调平台"><p>手动位移台 · 微调平台</p></a></li><li><a href="/catalog/323/" title="电动位移平台"><img src="/Public/upload/fa_category/2019/05-08/5cd2403458b7e.jpg" alt="电动位移平台"><p>电动位移平台</p></a></li><li><a href="/catalog/324/" title="对位平台"><img src="/Public/upload/fa_category/2019/05-08/5cd241568a2e3.jpg" alt="对位平台"><p>对位平台</p></a></li><li><a href="/catalog/125/" title="定位销衬套"><img src="/Public/upload/fa_category/2018/03-02/5a98b4c54ea6e.jpg" alt="定位销衬套"><p>定位销衬套</p></a></li><li><a href="/catalog/23/" title="卡销 · 开口销"><img src="/Public/upload/fa_category/2018/03-02/5a98b6254eb79.jpg" alt="卡销 · 开口销"><p>卡销 · 开口销</p></a></li><li><a href="/catalog/25/" title="扣环 · 挡圈"><img src="/Public/upload/fa_category/2018/03-02/5a98bb15a556d.jpg" alt="扣环 · 挡圈"><p>扣环 · 挡圈</p></a></li><li><span class="rec">热门</span><a href="/catalog/35/" title="弹簧柱塞 · 旋钮柱塞"><img src="/Public/upload/fa_category/2018/02-26/5a93c47af3eda.jpg" alt="弹簧柱塞 · 旋钮柱塞"><p>弹簧柱塞 · 旋钮柱塞</p></a></li><li><a href="/catalog/118/" title="紧定螺钉 · 锁紧螺栓"><img src="/Public/upload/fa_category/2018/01-22/5a659669b6cb1.jpg" alt="紧定螺钉 · 锁紧螺栓"><p>紧定螺钉 · 锁紧螺栓</p></a></li>			</ul>
+        </div>
+    </div>
+</div>*@
+
+<div class="index-brand mt35 frame">
+    <div class="product-tit">
+        <h3 class="i-brand">品牌中心</h3>
+        <span><a href="/brand/">查看更多</a></span>
+    </div>
+    <div class="index-brand-con">
+
+        <ul class="index-brand-ul clearfix">
+
+
+            @{
+                if (Model.brandsList.Any())
+                {
+                    foreach (var item in Model.brandsList)
+                    {
+
+                        @*<option value='@item.EnClassName' selected="selected">@item.ClassName</option>*@
+                        <li><a href="#"><img src="/uploads/Logo/@item.brandImg" alt="@item.brandName" /><span>@item.brandName</span></a></li>
+
+
+                    }
+                }
+            }
+
+            @*
                 <li><a href="/brand/hiwin.html"><img src="/Public/upload/brand/2018/12-11/5c0f179565feb.png" alt="HIWIN上银"/><span>HIWIN上银</span></a></li>
                 <li><a href="/brand/thk.html"><img src="/Public/upload/brand/2018/12-11/5c0f17f5cf0be.png" alt="THK"/><span>THK</span></a></li>
                 <li><a href="/brand/staf.html"><img src="/Public/upload/brand/2017/01-05/586d9f81da3c2.jpg" alt="STAF"/><span>STAF</span></a></li>
@@ -302,63 +304,67 @@
                 <li><a href="/brand/nsk.html"><img src="/Public/upload/brand/2017/02-23/58ae30f1e5972.jpg" alt="NSK"/><span>NSK</span></a></li>
                 <li><a href="/brand/kbs.html"><img src="/Public/upload/brand/2017/06-12/593dfb72c8a6a.jpg" alt="KBS"/><span>KBS</span></a></li>
                 <li><a href="/brand/delta.html"><img src="/Public/upload/brand/2017/01-17/587d919ef2b93.jpg" alt="台达"/><span>台达</span></a></li>
-                *@
-               
-            </ul>
+            *@
+
+        </ul>
+    </div>
+</div>
+
+
+
+@*<div class="frame mt35">
+        <div class="links">
+            <strong>友情链接</strong><a href="http://www.szcy99.com/" target="_blank">激光打标机厂家</a><a href="http://www.pinpai-bang.com" target="_blank">中国品牌榜</a><a href="http://www.schalod.com" target="_blank">光栅尺</a><a href="https://www.gmb2b.com" target="_blank">b2b网站</a><a href="https://www.chinabrands.cn/ " target="_blank">外贸b2b平台</a><a href="http://www.yunken.com" target="_blank">橡胶</a><a href="https://www.ymgk.com/" target="_blank">工控网</a><a href="http://www.hlo-trade.com/" target="_blank">SCHUNK</a><a href="http://www.sheji-china.cn" target="_blank">十大设计品牌</a><a href="https://www.huanbao35.com" target="_blank">环保设备</a><a href="http://www.lqjxc.com" target="_blank">挖掘机</a><a href="http://www.sotongwang.com" target="_blank">搜统网</a><a href="http://www.0tpe.com" target="_blank">tpu</a><a href="https://www.bjhgyjs.com" target="_blank">检测机构</a><a href="http://www.juboshi.cn" target="_blank">空调维修</a><a href="https://www.huazhengcaiwu.com" target="_blank">注册公司</a>
         </div>
+    </div>*@
+
+<div class="footer">
+    <div class="frame">
+        <ul class="footer-good">
+            <li class="f1"><h5>超短货期</h5><p>现货备存 闪电发货</p></li>
+            <li class="f2"><h5>高品质保证</h5><p>专柜精选 优势供应</p></li>
+            <li class="f4"><h5>提供增值税发票</h5><p>商务凭证 省时省力</p></li>
+            <li class="f5"><h5>一站式采购</h5><p>种类丰富 应有尽有</p></li>
+        </ul>
     </div>
 
-
-
-    @*<div class="frame mt35">
-            <div class="links">
-                <strong>友情链接</strong><a href="http://www.szcy99.com/" target="_blank">激光打标机厂家</a><a href="http://www.pinpai-bang.com" target="_blank">中国品牌榜</a><a href="http://www.schalod.com" target="_blank">光栅尺</a><a href="https://www.gmb2b.com" target="_blank">b2b网站</a><a href="https://www.chinabrands.cn/ " target="_blank">外贸b2b平台</a><a href="http://www.yunken.com" target="_blank">橡胶</a><a href="https://www.ymgk.com/" target="_blank">工控网</a><a href="http://www.hlo-trade.com/" target="_blank">SCHUNK</a><a href="http://www.sheji-china.cn" target="_blank">十大设计品牌</a><a href="https://www.huanbao35.com" target="_blank">环保设备</a><a href="http://www.lqjxc.com" target="_blank">挖掘机</a><a href="http://www.sotongwang.com" target="_blank">搜统网</a><a href="http://www.0tpe.com" target="_blank">tpu</a><a href="https://www.bjhgyjs.com" target="_blank">检测机构</a><a href="http://www.juboshi.cn" target="_blank">空调维修</a><a href="https://www.huazhengcaiwu.com" target="_blank">注册公司</a>
-            </div>
-        </div>*@
-
-    <div class="footer">
+    <div class="footer-info">
         <div class="frame">
-            <ul class="footer-good">
-                <li class="f1"><h5>超短货期</h5><p>现货备存 闪电发货</p></li>
-                <li class="f2"><h5>高品质保证</h5><p>专柜精选 优势供应</p></li>
-                <li class="f4"><h5>提供增值税发票</h5><p>商务凭证 省时省力</p></li>
-                <li class="f5"><h5>一站式采购</h5><p>种类丰富 应有尽有</p></li>
-            </ul>
-        </div>
-
-        <div class="footer-info">
-            <div class="frame">
-                <div class="footer-nav">
-                    @* <a href="/sitemap.html">网站地图</a><span>-</span> *@
-                    <a href="/help/about.html">关于我们</a><span>-</span>
-                    <a href="/help/manager.html">企业创始人</a><span>-</span>
-                    <a href="/help/contact.html">联系我们</a><span>-</span>
+            <div class="footer-nav">
+                @* <a href="/sitemap.html">网站地图</a><span>-</span> *@
+                <a href="/help/about.html">关于我们</a><span>-</span>
+                <a href="/help/manager.html">企业创始人</a><span>-</span>
+                <a href="/help/contact.html">联系我们</a><span>-</span>
 
 
-                    <a href="/help/index.html">帮助中心</a><span>-</span>
-                    <a href="/help/license.html">网站声明</a>
-                </div>
+                <a href="/help/index.html">帮助中心</a><span>-</span>
+                <a href="/help/license.html">网站声明</a>
+            </div>
 
-                <div class="copyright">
-                    <p>@Html.Raw(ViewData["Copyright"])</p>
-                </div>
+            <div class="copyright">
+                <p>@Html.Raw(ViewData["Copyright"])</p>
             </div>
         </div>
     </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        var ROOT = '/';
+        var STATIC = '/Static/';
+        var UID = 0;
+        var IS_INDEX = 1;
+        var SSID = 'p0aaqfjqvn9el5po2q8qbr6626';
+    </script>
+    <script src="/Static/js/forrun.min.js?v=ae9e0a639c"></script>
+    @*<script>var banner_bg = ["#EFF8FF","#468BC1","#79E047"];</script>*@
     
 
-<script type="text/javascript">
-    var ROOT = '/';
-    var STATIC = '/Static/';
-    var UID = 0;
-    var IS_INDEX = 1;
-    var SSID = 'p0aaqfjqvn9el5po2q8qbr6626';
-</script>
-<script src="/Static/js/forrun.min.js?v=ae9e0a639c"></script>
-<script>var banner_bg = ["\/Public\/upload\/ad\/2020\/09-05\/5f52e54f5dfbd.jpg","\/Public\/upload\/ad\/2020\/12-15\/5fd84d50dd005.png","\/Public\/upload\/ad\/2020\/09-05\/5f52e9ef88917.jpg","\/Public\/upload\/ad\/2020\/07-27\/5f1e28d102f14.jpg","\/Public\/upload\/ad\/2020\/07-27\/5f1e28c5442d7.jpg","\/Public\/upload\/ad\/2020\/07-27\/5f1e28eac7a6a.jpg"];</script>
-<script src="/Static/js/index.min.js?v=90058d336a"></script>
+    <script>var banner_bg = [@Html.Raw(ViewData["banner_bg"])];</script>
+    
+    
+    
 
-
-
-</body>
-</html>
+  
+    <script src="/Static/js/index.min.js?v=90058d336a"></script>
+}

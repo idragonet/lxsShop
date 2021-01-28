@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -100,6 +101,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         {
             var banner = new banner();
 
+            string filePath = "";
             if (ModelState.IsValid)
             {
                 if (filePhoto != null)
@@ -126,7 +128,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
                         string newFileName = DateTime.Now.ToString("yyyyMMddHHmmssfff") + fileExt;
                      
-                        string filePath = Path.Combine(fileDir, newFileName);
+                        filePath = Path.Combine(fileDir, newFileName);
                         using (var stream = new FileStream(filePath, FileMode.Create))
                         {
                             filePhoto.CopyTo(stream);
@@ -139,6 +141,23 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 banner.CreateDate = DateTime.Now;
                 banner.BannerOrder = bannerview.BannerOrder;
                 banner.URL = bannerview.URL;
+                banner.Title = bannerview.Title;
+
+
+
+                //自动获取颜色
+                if (string.IsNullOrEmpty(bannerview.BackgroundColor))
+                {
+                    Color color = new Bitmap(filePath).GetPixel(5, 5);
+                    banner.BackgroundColor = ColorTranslator.ToHtml(color);
+                }
+                else
+                {
+                    banner.BackgroundColor = bannerview.BackgroundColor;
+                }
+              
+
+               
                
 
                 var ret = await _bannerserver.AddAsync(banner);
@@ -223,6 +242,8 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 banner.ID = bannerview.ID;
                 banner.URL = bannerview.URL;
                 banner.BannerOrder = bannerview.BannerOrder;
+                banner.Title = bannerview.Title;
+                banner.BackgroundColor = bannerview.BackgroundColor;
 
                 var ret = await _bannerserver.ModifyAsync(banner);
 

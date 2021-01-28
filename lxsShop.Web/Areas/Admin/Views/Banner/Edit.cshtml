@@ -24,6 +24,8 @@
             F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
                 .Items(
                     F.HiddenFieldFor(m => m.ID),
+                    F.TextBoxFor(m => m.Title).MaxLength(20),
+                    F.TextBoxFor(m => m.BackgroundColor).MaxLength(20),
                     F.HiddenFieldFor(m => m.Img),
                     F.TextBoxFor(m => m.URL).MaxLength(100),
                     F.NumberBoxFor(m => m.BannerOrder).NoDecimal(true).MinValue(0).MaxValue(9999),

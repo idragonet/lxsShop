@@ -45,6 +45,7 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Pages\Home\" />
     <Folder Include="wwwroot\res\images\fa_png\" />
     <Folder Include="wwwroot\res\images\loading\" />
     <Folder Include="wwwroot\res\images\snapshot\" />

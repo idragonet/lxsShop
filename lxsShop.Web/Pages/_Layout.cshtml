@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <link href="http://gdbonke.com.cn/Static/logo/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=1200,user-scalable=yes">
+    <meta name="renderer" content="webkit">
+
+    <title>@Html.Raw(ViewData["Title"])</title>
+    <meta name="keywords" content="@Html.Raw(ViewData["keywords"])" />
+    <meta name="description" content="@Html.Raw(ViewData["description"])" />
+
+    <link rel="stylesheet" href="/Static/css/public.min.css" type="text/css">
+    <link rel="stylesheet" href="/Static/css/index.min.css" type="text/css">
+    <link rel="stylesheet" href="/Static/css/layer.css" id="layuicss-skinlayercss">
+</head>
+
+
+
+
+<body>
+@RenderBody()
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
