@@ -21,7 +21,7 @@
                 )
         )
         .Items(
-            F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
+            F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10).LabelWidth(140)
                 .Items(
                     F.HiddenFieldFor(m => m.ID),
                     F.TextBoxFor(m => m.Title).MaxLength(20),

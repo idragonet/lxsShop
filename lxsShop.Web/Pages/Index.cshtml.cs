@@ -41,6 +41,8 @@ namespace lxsShop.Web.Views.Home
             ViewData["Copyright"] = await _sysconfigsserver.GetKeyAsync("Copyright");
             ViewData["description"] = await _sysconfigsserver.GetKeyAsync("description");
             ViewData["首页"] = await _sysconfigsserver.GetKeyAsync("首页");
+            ViewData["报价"] = await _sysconfigsserver.GetKeyAsync("报价");
+            ViewData["热门搜索"] = await _sysconfigsserver.GetKeyAsync("热门搜索");
 
             ViewData["banner_bg"] = "\"#EFF8FF\",\"#468BC1\",\"#79E047\"";
 

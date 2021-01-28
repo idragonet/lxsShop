@@ -11,11 +11,10 @@
         <div class="frame">
             <ul class="login-nav fl">
                 <li class="addfav"><a href="javascript:void(0);" target="_parent" onclick="AddFav(window.location.href,document.title)" rel="nofollow"><i class="fa fa-star" aria-hidden="true"></i> 收藏本站</a></li>
-                <li class="br">-</li>
-                <li><a href="javascript:quicklogin(0);" rel="nofollow">登录</a></li>
+               
 
             </ul>        <ul class="tool-nav fr">
-                <li class="tool-sub"><a href="javascript:void(0);" rel="nofollow">微信号</a><img class="tool-sub-con" src="/Public/upload/info/2017/03-04/58ba66d5dc527.jpg" alt="邦可微信二维码" /></li>
+                <li class="tool-sub"><a href="javascript:void(0);" rel="nofollow">微信号</a><img class="tool-sub-con" src="/Static/images/WX58ba66d5dc527.jpg" alt="邦可微信二维码" /></li>
                 <li class="br">-</li>
 
                 <li><a href="/help/contact.html" rel="nofollow">联系我们</a></li>
@@ -26,7 +25,7 @@
         </div>
     </div>
     <div class="top frame">
-        <div class="logo"><a href="https://www.forrun.cn/" title="凡一工业品商城"><img src="/uploads/5ed463b88a786.png" alt="凡一工业品商城"></a></div>
+        <div class="logo"><a href="@Html.Raw(ViewData["首页"])" title="@Html.Raw(ViewData["Title"])"><img src="/uploads/5ed463b88a786.png" alt="@Html.Raw(ViewData["Title"])"></a></div>
         <div class="search-bar">
             <div class="search-form">
                 <form name="search_form" id="search_form" method="get" action="/search/">
@@ -36,10 +35,29 @@
                 <div class="search-suggest"></div>
             </div>
             <div class="search-hot">
-                <span>热门搜索：</span><a target="_blank" href="/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">直线导轨</a><a target="_blank" href="/search/?keyword=%E6%BB%9A%E7%8F%A0%E4%B8%9D%E6%9D%A0">滚珠丝杠</a><a target="_blank" href="/search/?keyword=%E6%97%A0%E6%B2%B9%E8%A1%AC%E5%A5%97">无油衬套</a><a target="_blank" href="/search/?keyword=%E5%90%8C%E6%AD%A5%E5%B8%A6">同步带</a><a target="_blank" href="/search/?keyword=%E5%AE%9A%E4%BD%8D%E9%94%80">定位销</a><a target="_blank" href="/search/?keyword=%E5%9B%BA%E5%AE%9A%E7%8E%AF">固定环</a>
+                <span>热门搜索：</span>
+                @*<a target="_blank" href="/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">直线导轨</a>
+        <a target="_blank" href="/search/?keyword=%E6%BB%9A%E7%8F%A0%E4%B8%9D%E6%9D%A0">滚珠丝杠</a>
+        <a target="_blank" href="/search/?keyword=%E6%97%A0%E6%B2%B9%E8%A1%AC%E5%A5%97">无油衬套</a>
+        <a target="_blank" href="/search/?keyword=%E5%90%8C%E6%AD%A5%E5%B8%A6">同步带</a>
+        <a target="_blank" href="/search/?keyword=%E5%AE%9A%E4%BD%8D%E9%94%80">定位销</a>
+        <a target="_blank" href="/search/?keyword=%E5%9B%BA%E5%AE%9A%E7%8E%AF">固定环</a>*@
+
+
+                @{
+                    List<string> Keylist = new List<string>(ViewData["热门搜索"].ToString().Split(','));
+                    if (Keylist.Count>0)
+                    {
+                        foreach (var item in Keylist)
+                        {
+                            <a target="_blank" href="/search/?keyword=@System.Web.HttpUtility.UrlEncode(item)">@item</a>
+                        }
+                    }
+                }
+
             </div>
         </div>
-        <div class="top-cart" id="top_cart">
+        @*<div class="top-cart" id="top_cart">
             <div class="top-my-cart">
                 <div class="top-cart-btn">
                     <a href="/cart/index.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 购物车</a>
@@ -47,9 +65,9 @@
                 </div>
                 <div class="top-cart-list"></div>
             </div>
-        </div>
+        </div>*@
         <div class="top-quote">
-            <a href="/quote.html"><i class="fa fa-bolt" aria-hidden="true"></i> 快速报价</a>
+            <a href="#" onclick="alert('@Html.Raw(ViewData["报价"])'); return false;"><i class="fa fa-bolt" aria-hidden="true"></i> 快速报价</a>
         </div>
     </div>
 </div>
@@ -231,7 +249,39 @@
     <div class="floor-con clearfix">
         <div class="floor-img"><a href="/catalog/292/"><img src="/Static/images/index/f2.jpg" alt="工业传动部件"></a></div>
         <div class="floor-pro">
-            <ul><li><span class="rec">热门</span><a href="/catalog/426/" title="联轴器"><img src="/Public/upload/facategory/2020/11-12/5faccf2460270.jpg" alt="联轴器"><p>联轴器</p></a></li><li><span class="rec">热门</span><a href="/catalog/36/" title="同步带 "><img src="/Public/upload/fa_category/2018/02-26/5a93d02942f15.jpg" alt="同步带 "><p>同步带 </p></a></li><li><span class="rec">热门</span><a href="/catalog/37/" title="同步带轮"><img src="/Public/upload/fa_category/2018/02-26/5a93cfdedaeb9.jpg" alt="同步带轮"><p>同步带轮</p></a></li><li><a href="/catalog/343/" title="免键胀套"><img src="/Public/upload/fa_category/2019/12-14/5df49874992a7.jpg" alt="免键胀套"><p>免键胀套</p></a></li><li><a href="/catalog/422/" title="工业皮带 · 输送带"><img src="/Public/upload/facategory/2020/08-26/5f461bc7e8a85.jpg" alt="工业皮带 · 输送带"><p>工业皮带 · 输送带</p></a></li><li><a href="/catalog/19/" title="滚轮·滚筒"><img src="/Public/upload/fa_category/2017/08-08/598911b6a78e4.jpg" alt="滚轮·滚筒"><p>滚轮·滚筒</p></a></li><li><a href="/catalog/38/" title="圆皮带"><img src="/Public/upload/fa_category/2017/08-30/59a6542d5427e.jpg" alt="圆皮带"><p>圆皮带</p></a></li><li><a href="/catalog/39/" title="圆皮带轮"><img src="/Public/upload/fa_category/2017/08-30/59a6543e1ca97.jpg" alt="圆皮带轮"><p>圆皮带轮</p></a></li><li><span class="rec">热门</span><a href="/catalog/40/" title="链条"><img src="/Public/upload/fa_category/2017/08-30/59a6545cd8c93.jpg" alt="链条"><p>链条</p></a></li><li><span class="rec">热门</span><a href="/catalog/42/" title="链轮"><img src="/Public/upload/fa_category/2017/08-30/59a6548e1d7e8.jpg" alt="链轮"><p>链轮</p></a></li>			</ul>
+            <ul>
+
+                <li><span class="rec">热门</span>
+                    <a href="/catalog/426/" title="联轴器"><img src="/Public/upload/facategory/2020/11-12/5faccf2460270.jpg" alt="联轴器">
+                        <p>联轴器</p></a></li>
+                <li><span class="rec">热门</span>
+                    <a href="/catalog/36/" title="同步带 "><img src="/Public/upload/fa_category/2018/02-26/5a93d02942f15.jpg" alt="同步带 ">
+                        <p>同步带 </p></a></li>
+                <li><span class="rec">热门</span>
+                    <a href="/catalog/37/" title="同步带轮"><img src="/Public/upload/fa_category/2018/02-26/5a93cfdedaeb9.jpg" alt="同步带轮">
+                        <p>同步带轮</p></a></li>
+                <li>
+                    <a href="/catalog/343/" title="免键胀套"><img src="/Public/upload/fa_category/2019/12-14/5df49874992a7.jpg" alt="免键胀套">
+                        <p>免键胀套</p></a></li>
+                <li>
+                    <a href="/catalog/422/" title="工业皮带 · 输送带"><img src="/Public/upload/facategory/2020/08-26/5f461bc7e8a85.jpg" alt="工业皮带 · 输送带">
+                        <p>工业皮带 · 输送带</p></a></li>
+                <li>
+                    <a href="/catalog/19/" title="滚轮·滚筒"><img src="/Public/upload/fa_category/2017/08-08/598911b6a78e4.jpg" alt="滚轮·滚筒">
+                        <p>滚轮·滚筒</p></a></li>
+                <li>
+                    <a href="/catalog/38/" title="圆皮带"><img src="/Public/upload/fa_category/2017/08-30/59a6542d5427e.jpg" alt="圆皮带">
+                        <p>圆皮带</p></a></li>
+                <li>
+                    <a href="/catalog/39/" title="圆皮带轮"><img src="/Public/upload/fa_category/2017/08-30/59a6543e1ca97.jpg" alt="圆皮带轮">
+                        <p>圆皮带轮</p></a></li>
+                <li><span class="rec">热门</span>
+                    <a href="/catalog/40/" title="链条"><img src="/Public/upload/fa_category/2017/08-30/59a6545cd8c93.jpg" alt="链条">
+                        <p>链条</p></a></li>
+                <li><span class="rec">热门</span>
+                    <a href="/catalog/42/" title="链轮"><img src="/Public/upload/fa_category/2017/08-30/59a6548e1d7e8.jpg" alt="链轮">
+                        <p>链轮</p></a></li>
+            </ul>
         </div>
     </div>
 </div><div class="index-floor floor-3 mt35 frame">
@@ -284,27 +334,7 @@
                 }
             }
 
-            @*
-                <li><a href="/brand/hiwin.html"><img src="/Public/upload/brand/2018/12-11/5c0f179565feb.png" alt="HIWIN上银"/><span>HIWIN上银</span></a></li>
-                <li><a href="/brand/thk.html"><img src="/Public/upload/brand/2018/12-11/5c0f17f5cf0be.png" alt="THK"/><span>THK</span></a></li>
-                <li><a href="/brand/staf.html"><img src="/Public/upload/brand/2017/01-05/586d9f81da3c2.jpg" alt="STAF"/><span>STAF</span></a></li>
-                <li><a href="/brand/cpc.html"><img src="/Public/upload/brand/2017/01-05/586d9f9c03d4a.jpg" alt="cpc"/><span>cpc</span></a></li>
-                <li><a href="/brand/pmi.html"><img src="/Public/upload/brand/2017/01-05/586d9e4930021.jpg" alt="PMI银泰(AMT)"/><span>PMI银泰(AMT)</span></a></li>
-                <li><a href="/brand/tbi.html"><img src="/Public/upload/brand/2019/12-27/5e05bb9acbc07.jpg" alt="TBI"/><span>TBI</span></a></li>
-                <li><a href="/brand/iko.html"><img src="/Public/upload/brand/2017/01-03/586b6e438c386.jpg" alt="IKO"/><span>IKO</span></a></li>
-                <li><a href="/brand/abba.html"><img src="/Public/upload/brand/2017/01-05/586d9e891ae17.jpg" alt="ABBA"/><span>ABBA</span></a></li>
-                <li><a href="/brand/won.html"><img src="/Public/upload/brand/2017/06-12/593e004d10453.jpg" alt="WON"/><span>WON</span></a></li>
-                <li><a href="/brand/ina.html"><img src="/Public/upload/brand/2017/01-17/587d8edbca70f.jpg" alt="INA"/><span>INA</span></a></li>
-                <li><a href="/brand/aim.html"><img src="/Public/upload/brand/2019/04-26/5cc26caa9f0be.jpg" alt="AIM"/><span>AIM</span></a></li>
-                <li><a href="/brand/yaskawa.html"><img src="/Public/upload/brand/2017/01-17/587d91ecb866a.jpg" alt="安川"/><span>安川</span></a></li>
-                <li><a href="/brand/sata.html"><img src="/Public/upload/brand/2017/01-17/587d74d3c5e02.jpg" alt="SATA"/><span>SATA</span></a></li>
-                <li><a href="/brand/mitsubishi.html"><img src="/Public/upload/brand/2017/01-17/587d9324c11fb.jpg" alt="三菱"/><span>三菱</span></a></li>
-                <li><a href="/brand/ntn.html"><img src="/Public/upload/brand/2017/01-17/587d94ea76f03.jpg" alt="NTN"/><span>NTN</span></a></li>
-                <li><a href="/brand/panasonic.html"><img src="/Public/upload/brand/2017/02-06/5897ca6b8d081.jpg" alt="松下"/><span>松下</span></a></li>
-                <li><a href="/brand/nsk.html"><img src="/Public/upload/brand/2017/02-23/58ae30f1e5972.jpg" alt="NSK"/><span>NSK</span></a></li>
-                <li><a href="/brand/kbs.html"><img src="/Public/upload/brand/2017/06-12/593dfb72c8a6a.jpg" alt="KBS"/><span>KBS</span></a></li>
-                <li><a href="/brand/delta.html"><img src="/Public/upload/brand/2017/01-17/587d919ef2b93.jpg" alt="台达"/><span>台达</span></a></li>
-            *@
+         
 
         </ul>
     </div>
