@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Entitys;
 using lxsShop.NewServices;
 using lxsShop.NewServices.Interfaces;
+using lxsShop.ViewModel;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace lxsShop.Web.Views.Home
@@ -15,17 +16,21 @@ namespace lxsShop.Web.Views.Home
         private readonly IbrandsServer _brandsServer;
         private readonly Isys_configsServer _sysconfigsserver;
         private readonly IbannerServer _bannerserver;
+        private readonly IgoodServer _goodserver;
         //   private readonly IBbs_QuestionsService _askService;
-        public IndexModel(IbrandsServer brandsServer, Isys_configsServer sysconfigsserver, IbannerServer bannerserver)
+        public IndexModel(IbrandsServer brandsServer, Isys_configsServer sysconfigsserver, IbannerServer bannerserver, IgoodServer goodserver)
         {
             _brandsServer = brandsServer;
             _sysconfigsserver = sysconfigsserver;
             _bannerserver = bannerserver;
+            _goodserver = goodserver;
             //   _askService = askService;
         }
 
         public List<brands> brandsList { get; set; }
         public List<banner> bannerList { get; set; }
+        public List<goodsViewModel> goodsList_cat2 { get; set; }
+        public List<goodsViewModel> goodsList_cat3 { get; set; }
 
 
         /// <summary>
@@ -58,9 +63,7 @@ namespace lxsShop.Web.Views.Home
             { limit = 100, field = "brandName", order = "ASC" });
             brandsList = brandsPost.data.Items;
 
-
-
-
+            
             var bannerpost = await _bannerserver.GetPagesAsync(new PageParm{order = "DESC", field = "BannerOrder" });
             bannerList = bannerpost.data.Items;
 
@@ -74,6 +77,19 @@ namespace lxsShop.Web.Views.Home
             if (banner_bg.Length > 0) banner_bg = banner_bg.Substring(0, banner_bg.Length - 1);
             ViewData["banner_bg"] = banner_bg;
 
+
+            var goodPageParm = new PageParm();
+            goodPageParm.limit = 10;
+            goodPageParm.order = "DESC";
+            goodPageParm.field = "CreateDate";
+            goodPageParm.where = "parentId";
+            goodPageParm.attr = 2;
+            var  goodspost_2 = await _goodserver.GetPagesAsync(goodPageParm);
+            goodsList_cat2 = goodspost_2.data.Items;
+
+            goodPageParm.attr = 3;
+            var goodspost_3 = await _goodserver.GetPagesAsync(goodPageParm);
+            goodsList_cat3 = goodspost_3.data.Items;
             /*Types = where;
             pageIndex = page;
             Limit = limit;

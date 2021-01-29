@@ -20,10 +20,11 @@
             .Items(
                 F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableCheckBoxSelect(false).DataIDField("catId").DataTextField("catName").EnableSimulateTree(true)
                     .Columns(
-                        F.RowNumberField().EnablePagingNumber(true),
+                        F.RenderFieldFor(m => m.catId).Width(60),
                         F.RenderFieldFor(m => m.catName, true).DataSimulateTreeLevelField("TreeLevel").Width(370),
 
                         F.RenderFieldFor(m => m.catSort).Width(70),
+                      
                       
                         F.RenderCheckFieldFor(m => m.isShow).RenderAsStaticField(true).Width(50),
                  

@@ -24,7 +24,7 @@
 
                         F.RenderFieldFor(m => m.ID, true).Hidden(true).Width(80),
                         F.RenderFieldFor(m => m.fieldCode, true).HeaderText("Code").Width(150),
-                        F.RenderFieldFor(m => m.fieldValue, true).HeaderText("值").Width(500),
+                        F.RenderFieldFor(m => m.fieldValue, true).HeaderText("值").ExpandUnusedSpace(true),
         F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("renderActionEdit").Width(50),
         F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("renderActionDelete").Width(50)
                           )

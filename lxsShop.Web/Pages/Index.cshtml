@@ -186,9 +186,6 @@
         <div class="bd">
             <ul>
 
-
-
-
                 @{
                     if (Model.bannerList.Any())
                     {
@@ -201,7 +198,7 @@
                             }
                             else
                             {
-                                <li style="        background-image: url(/uploads/@item.Img);"><a href="@item.URL" title="产品选型手册免费申请" target="_blank"><strong>产品选型手册免费申请</strong></a></li>
+                                <li style="        background-image: url(/uploads/@item.Img);"><a href="@item.URL" title="@item.Title" target="_blank"><strong>@item.Title</strong></a></li>
                             }
                         }
                     }
@@ -247,40 +244,47 @@
         <span><a href="/catalog/292/">更多 <i class="fa fa-arrow-right" aria-hidden="true"></i></a></span>
     </div>
     <div class="floor-con clearfix">
-        <div class="floor-img"><a href="/catalog/292/"><img src="/Static/images/index/f2.jpg" alt="工业传动部件"></a></div>
+        <div class="floor-img"><a href="/catalog/292/"><img src="/Static/images/index/f2.jpg" alt="人体防护类"></a></div>
         <div class="floor-pro">
             <ul>
 
-                <li><span class="rec">热门</span>
-                    <a href="/catalog/426/" title="联轴器"><img src="/Public/upload/facategory/2020/11-12/5faccf2460270.jpg" alt="联轴器">
-                        <p>联轴器</p></a></li>
-                <li><span class="rec">热门</span>
-                    <a href="/catalog/36/" title="同步带 "><img src="/Public/upload/fa_category/2018/02-26/5a93d02942f15.jpg" alt="同步带 ">
-                        <p>同步带 </p></a></li>
-                <li><span class="rec">热门</span>
-                    <a href="/catalog/37/" title="同步带轮"><img src="/Public/upload/fa_category/2018/02-26/5a93cfdedaeb9.jpg" alt="同步带轮">
-                        <p>同步带轮</p></a></li>
-                <li>
-                    <a href="/catalog/343/" title="免键胀套"><img src="/Public/upload/fa_category/2019/12-14/5df49874992a7.jpg" alt="免键胀套">
-                        <p>免键胀套</p></a></li>
-                <li>
-                    <a href="/catalog/422/" title="工业皮带 · 输送带"><img src="/Public/upload/facategory/2020/08-26/5f461bc7e8a85.jpg" alt="工业皮带 · 输送带">
-                        <p>工业皮带 · 输送带</p></a></li>
-                <li>
-                    <a href="/catalog/19/" title="滚轮·滚筒"><img src="/Public/upload/fa_category/2017/08-08/598911b6a78e4.jpg" alt="滚轮·滚筒">
-                        <p>滚轮·滚筒</p></a></li>
-                <li>
-                    <a href="/catalog/38/" title="圆皮带"><img src="/Public/upload/fa_category/2017/08-30/59a6542d5427e.jpg" alt="圆皮带">
-                        <p>圆皮带</p></a></li>
-                <li>
-                    <a href="/catalog/39/" title="圆皮带轮"><img src="/Public/upload/fa_category/2017/08-30/59a6543e1ca97.jpg" alt="圆皮带轮">
-                        <p>圆皮带轮</p></a></li>
-                <li><span class="rec">热门</span>
-                    <a href="/catalog/40/" title="链条"><img src="/Public/upload/fa_category/2017/08-30/59a6545cd8c93.jpg" alt="链条">
-                        <p>链条</p></a></li>
-                <li><span class="rec">热门</span>
-                    <a href="/catalog/42/" title="链轮"><img src="/Public/upload/fa_category/2017/08-30/59a6548e1d7e8.jpg" alt="链轮">
-                        <p>链轮</p></a></li>
+                @{
+                    if (Model.goodsList_cat2.Any())
+                    {
+                        foreach (var item in Model.goodsList_cat2)
+                        {
+                            string imgsrc = "/uploads" + item.goodsImg + "_100.jpg";
+                            string goodsName = item.goodsName;
+                            if (goodsName.Length > 9)
+                            {
+                                goodsName = goodsName.Substring(0, 9) + "...";
+                            }
+
+                            if (@item.isRecom || @item.isNew)
+                            {
+                                <li>
+                                    <span class="rec">热门</span>
+                                    <a href="/catalog/426/" title="@item.goodsName">
+                                        <img src="@imgsrc" alt="@item.goodsName">
+                                        <p>@goodsName</p>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="/catalog/426/" title="@item.goodsName">
+                                        <img src="@imgsrc" alt="@item.goodsName">
+                                        <p>@goodsName</p>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    }
+                }
+
+
+
             </ul>
         </div>
     </div>
@@ -290,9 +294,46 @@
         <span><a href="/catalog/306/">更多 <i class="fa fa-arrow-right" aria-hidden="true"></i></a></span>
     </div>
     <div class="floor-con clearfix">
-        <div class="floor-img"><a href="/catalog/306/"><img src="/Static/images/index/f3.jpg" alt="工业框架部件"></a></div>
+        <div class="floor-img"><a href="/catalog/306/"><img src="/Static/images/index/f3.jpg" alt="作业用具类"></a></div>
         <div class="floor-pro">
-            <ul><li><a href="/catalog/304/" title="工业铝型材"><img src="/Public/upload/fa_category/2018/02-26/5a9382929c8bf.jpg" alt="工业铝型材"><p>工业铝型材</p></a></li><li><span class="rec">热门</span><a href="/catalog/305/" title="脚轮"><img src="/Public/upload/fa_category/2018/04-07/5ac8203a0ed50.jpg" alt="脚轮"><p>脚轮</p></a></li><li><span class="rec">热门</span><a href="/catalog/317/" title="脚杯"><img src="/Public/upload/fa_category/2018/10-30/5bd7b07d2fd25.jpg" alt="脚杯"><p>脚杯</p></a></li><li><a href="/catalog/339/" title="水平调节脚轮"><img src="/Public/upload/fa_category/2019/12-10/5deefdff852f2.jpg" alt="水平调节脚轮"><p>水平调节脚轮</p></a></li><li><a href="/catalog/315/" title="弹簧锁扣 · 搭扣锁"><img src="/Public/upload/fa_category/2018/04-07/5ac88634e3235.jpg" alt="弹簧锁扣 · 搭扣锁"><p>弹簧锁扣 · 搭扣锁</p></a></li><li><a href="/catalog/314/" title="磁力扣 · 磁吸"><img src="/Public/upload/fa_category/2018/04-07/5ac88625dd875.jpg" alt="磁力扣 · 磁吸"><p>磁力扣 · 磁吸</p></a></li><li><span class="rec">热门</span><a href="/catalog/308/" title="拉手·提手"><img src="/Public/upload/fa_category/2018/04-07/5ac885d4da705.jpg" alt="拉手·提手"><p>拉手·提手</p></a></li><li><a href="/catalog/307/" title="紧定手柄·胶木手柄"><img src="/Public/upload/fa_category/2019/09-10/5d7743ebce8d4.jpg" alt="紧定手柄·胶木手柄"><p>紧定手柄·胶木手柄</p></a></li><li><a href="/catalog/325/" title="旋钮把手▪胶木把手"><img src="/Public/upload/fa_category/2019/09-26/5d8c1a909c1fd.jpg" alt="旋钮把手▪胶木把手"><p>旋钮把手▪胶木把手</p></a></li><li><span class="rec">热门</span><a href="/catalog/309/" title="手轮 · 摇手柄"><img src="/Public/upload/fa_category/2018/04-07/5ac885e2ba353.jpg" alt="手轮 · 摇手柄"><p>手轮 · 摇手柄</p></a></li>			</ul>
+            <ul>
+
+                @{
+                    if (Model.goodsList_cat3.Any())
+                    {
+                        foreach (var item in Model.goodsList_cat3)
+                        {
+                            string imgsrc = "/uploads" + item.goodsImg + "_100.jpg";
+                            string goodsName = item.goodsName;
+                            if (goodsName.Length > 9)
+                            {
+                                goodsName = goodsName.Substring(0, 9)+"...";
+                            }
+
+                            if (@item.isRecom || @item.isNew)
+                            {
+                                <li>
+                                    <span class="rec">热门</span>
+                                    <a href="/catalog/426/" title="@item.goodsName">
+                                        <img src="@imgsrc" alt="@item.goodsName">
+                                        <p>@goodsName</p>
+                                    </a>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="/catalog/426/" title="@item.goodsName">
+                                        <img src="@imgsrc" alt="@item.goodsName">
+                                        <p>@goodsName</p>
+                                    </a>
+                                </li>
+                            }
+                        }
+                    }
+                }
+
+            </ul>
         </div>
     </div>
 </div>
@@ -328,8 +369,6 @@
 
                         @*<option value='@item.EnClassName' selected="selected">@item.ClassName</option>*@
                         <li><a href="#"><img src="/uploads/Logo/@item.brandImg" alt="@item.brandName" /><span>@item.brandName</span></a></li>
-
-
                     }
                 }
             }

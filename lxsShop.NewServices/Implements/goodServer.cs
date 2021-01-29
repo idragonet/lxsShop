@@ -98,10 +98,12 @@ namespace lxsShop.NewServices.Implements
                         JoinQueryInfos(JoinType.Left, g.goodsCatId == gc.catId
                             , JoinType.Left, g.brandId == b.brandId))
                     .WhereIF(param.id != 0, g => g.goodsId == param.id)
-                    //  .WhereIF(!string.IsNullOrEmpty(param.guid), (b, m, g) => b.QuestionGuid == param.guid)  //问题
-                    //  .OrderByIF(param.attr == 1, (b, m, g) => b.AddTime, OrderByType.Desc)  //热门排序
-                    //   .OrderBy((g, gc, b) => g.CreateDate, OrderByType.Desc)
-                    //  .OrderByIF(param.order.ToUpper() == "DESC", g => g.CreateDate, param.order.ToUpper())
+                    .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "parentId", (g, gc, b) => gc.parentId == param.attr) //归属上级类别
+
+                                                                                                                          //  .WhereIF(!string.IsNullOrEmpty(param.guid), (b, m, g) => b.QuestionGuid == param.guid)  //问题
+                                                                                                                          //  .OrderByIF(param.attr == 1, (b, m, g) => b.AddTime, OrderByType.Desc)  //热门排序
+                                                                                                                          //   .OrderBy((g, gc, b) => g.CreateDate, OrderByType.Desc)
+                                                                                                                          //  .OrderByIF(param.order.ToUpper() == "DESC", g => g.CreateDate, param.order.ToUpper())
                     .OrderByIF(!string.IsNullOrEmpty(param.field), param.field + " " + param.order)
                     .Select((g, gc, b) => new goodsViewModel()
                     {
