@@ -19,6 +19,11 @@ namespace lxsShop.ViewModel
         [Required(ErrorMessage = "类别名称不要忘记填")]
         public string catName { get; set; }
 
+
+        [Display(Name = "简称")]
+        [StringLength(10)]
+        public string catNameShort { get; set; }
+
         [Display(Name = "上级类别")]
         public long parentId { get; set; }
 

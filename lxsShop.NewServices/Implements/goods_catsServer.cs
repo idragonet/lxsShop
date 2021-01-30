@@ -73,6 +73,7 @@ namespace lxsShop.NewServices.Implements
             {
                 res.data = await Db.Queryable<goods_cats>()
                     .WhereIF(!string.IsNullOrEmpty(parm.key), m => m.catId == Convert.ToInt64(parm.key))
+                    .WhereIF(!string.IsNullOrEmpty(parm.where) && parm.where == "parentId", m => m.parentId == Convert.ToInt64(parm.attr))
                     //  .OrderBy(m => m.Sort)
                     .ToPageAsync(parm.page, parm.limit);
 

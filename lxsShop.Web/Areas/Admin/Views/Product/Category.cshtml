@@ -22,7 +22,8 @@
                     .Columns(
                         F.RenderFieldFor(m => m.catId).Width(60),
                         F.RenderFieldFor(m => m.catName, true).DataSimulateTreeLevelField("TreeLevel").Width(370),
-
+                        F.RenderFieldFor(m => m.catNameShort).Width(120),
+                        
                         F.RenderFieldFor(m => m.catSort).Width(70),
                       
                       

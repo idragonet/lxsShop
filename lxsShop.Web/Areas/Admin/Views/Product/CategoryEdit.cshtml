@@ -26,6 +26,7 @@
                     F.HiddenFieldFor(m => m.catId),
                     F.HiddenFieldFor(m => m.isShow),
                     F.TextBoxFor(m => m.catName),
+                    F.TextBoxFor(m => m.catNameShort),
                     F.NumberBoxFor(m => m.catSort).NoDecimal(true),
                 
                     F.DropDownListFor(m => m.parentId).EnableSimulateTree(true).DataTextField("catName").DataValueField("catId").DataSimulateTreeLevelField("TreeLevel").Required(true).ShowRedStar(true).DataSource(ViewBag.DeptDataSource)

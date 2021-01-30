@@ -22,6 +22,7 @@
             F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
                 .Items(
                     F.TextBoxFor(m => m.catName),
+                    F.TextBoxFor(m => m.catNameShort),
                     F.NumberBoxFor(m => m.catSort).NoDecimal(true).Text("1"),
                 
                     F.DropDownListFor(m => m.parentId).EnableSimulateTree(true).DataTextField("catName").DataValueField("catId").DataSimulateTreeLevelField("TreeLevel").Required(true).ShowRedStar(true).DataSource(ViewBag.DeptDataSource)

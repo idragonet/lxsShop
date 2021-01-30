@@ -187,7 +187,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CategoryNew_btnSaveClose_Click(
-            [Bind(include:"catName,catSort,parentId")]
+            [Bind(include:"catName,catSort,parentId,catNameShort")]
             goods_cats goods_cat) {
 
            
@@ -252,7 +252,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CategoryEdit_btnSaveClose_Click([Bind(include:"catId,catName,catSort,parentId,isShow")]
+        public ActionResult CategoryEdit_btnSaveClose_Click([Bind(include:"catId,catName,catSort,parentId,isShow,catNameShort")]
             goods_cats goods_cat)
         {
             if (ModelState.IsValid)

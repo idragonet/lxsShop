@@ -56,5 +56,11 @@ namespace Entitys
         /// CreateDate
         /// </summary>
         public System.DateTime? CreateDate { get { return this._CreateDate; } set { this._CreateDate = value ?? default(System.DateTime); } }
+
+        private System.String _catNameShort;
+        /// <summary>
+        /// catNameShort
+        /// </summary>
+        public System.String catNameShort { get { return this._catNameShort; } set { this._catNameShort = value; } }
     }
 }
