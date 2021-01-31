@@ -21,8 +21,11 @@
 
 
 <body>
+@Html.Partial("Header")
+
 @RenderBody()
 
-    @RenderSection("Scripts", required: false)
+@Html.Partial("Footer")
+@RenderSection("Scripts", required: false)
 </body>
 </html>

@@ -11,6 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Pages\_Layout.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="ScaffoldingReadMe.txt" />
   </ItemGroup>
 

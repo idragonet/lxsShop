@@ -1,0 +1,96 @@
+﻿@using lxsShop.NewServices.Interfaces
+@inject Isys_configsServer _sysconfigsserver
+@{
+    var copyright = await _sysconfigsserver.GetKeyAsync("Copyright");
+
+    var Title = await _sysconfigsserver.GetKeyAsync("Title");
+    var Tel = await _sysconfigsserver.GetKeyAsync("tel");
+    var keywords = await _sysconfigsserver.GetKeyAsync("keywords");
+
+    var description = await _sysconfigsserver.GetKeyAsync("description");
+    var 首页 = await _sysconfigsserver.GetKeyAsync("首页");
+    var 报价 = await _sysconfigsserver.GetKeyAsync("报价");
+    var 热门搜索 = await _sysconfigsserver.GetKeyAsync("热门搜索");
+
+}
+
+<div class="header">
+    <div class="topline">
+        <div class="frame">
+            <ul class="login-nav fl">
+                <li class="addfav"><a href="javascript:void(0);" target="_parent" onclick="AddFav(window.location.href,document.title)" rel="nofollow"><i class="fa fa-star" aria-hidden="true"></i> 收藏本站</a></li>
+
+
+            </ul>        <ul class="tool-nav fr">
+                <li class="tool-sub"><a href="javascript:void(0);" rel="nofollow">微信号</a><img class="tool-sub-con" src="/Static/images/WX58ba66d5dc527.jpg" alt="邦可微信二维码" /></li>
+                <li class="br">-</li>
+
+                <li><a href="/help/contact.html" rel="nofollow">联系我们</a></li>
+
+                <li class="br">-</li>
+                <li class="telephone"><i class="fa fa-phone-square" aria-hidden="true"></i> @Tel</li>
+            </ul>
+        </div>
+    </div>
+    <div class="top frame">
+        <div class="logo"><a href="@首页" title="Title"><img src="/uploads/5ed463b88a786.png" alt="@Title"></a></div>
+        <div class="search-bar">
+            <div class="search-form">
+                <form name="search_form" id="search_form" method="get" action="/search/">
+                    <input autocomplete="off" type="text" class="search-text" name="keyword" id="search_keyword" value="" placeholder="请输入产品型号或名称进行搜索" />
+                    <button type="button" class="search-btn" id="search_submit"><i class="fa fa-search" aria-hidden="true"></i> 搜 索</button>
+                </form>
+                <div class="search-suggest"></div>
+            </div>
+            <div class="search-hot">
+                <span>热门搜索：</span>
+                @*<a target="_blank" href="/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">直线导轨</a>
+                    <a target="_blank" href="/search/?keyword=%E6%BB%9A%E7%8F%A0%E4%B8%9D%E6%9D%A0">滚珠丝杠</a>
+                    <a target="_blank" href="/search/?keyword=%E6%97%A0%E6%B2%B9%E8%A1%AC%E5%A5%97">无油衬套</a>
+                    <a target="_blank" href="/search/?keyword=%E5%90%8C%E6%AD%A5%E5%B8%A6">同步带</a>
+                    <a target="_blank" href="/search/?keyword=%E5%AE%9A%E4%BD%8D%E9%94%80">定位销</a>
+                    <a target="_blank" href="/search/?keyword=%E5%9B%BA%E5%AE%9A%E7%8E%AF">固定环</a>*@
+                @{
+                    List<string> Keylist = new List<string>(热门搜索.Split(','));
+                    if (Keylist.Count > 0)
+                    {
+                        foreach (var item in Keylist)
+                        {
+                            <a target="_blank" href="/search/?keyword=@System.Web.HttpUtility.UrlEncode(item)">@item</a>
+                        }
+                    }
+                }
+
+            </div>
+        </div>
+        @*<div class="top-cart" id="top_cart">
+                <div class="top-my-cart">
+                    <div class="top-cart-btn">
+                        <a href="/cart/index.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i> 购物车</a>
+                        <span class="cart-num"><em class="cart_quantity">0</em></span>
+                    </div>
+                    <div class="top-cart-list"></div>
+                </div>
+            </div>*@
+        <div class="top-quote">
+            <a href="#" onclick="alert('@Html.Raw(报价)'); return false;"><i class="fa fa-bolt" aria-hidden="true"></i> 快速报价</a>
+        </div>
+    </div>
+</div>
+
+<div class="nav">
+    <div class="frame">
+        <div class="cate on" id="cate">
+            <div class="cate-tit"><h2>所有产品分类</h2></div>
+            <div class="cate-list" id="cate-list">
+
+            </div>
+        </div>
+        <ul class="nav-right">
+            <li><a href="https://www.forrun.cn/">首页</a></li>
+            <li><a href="/catalog/">产品中心</a></li>
+            <li><a href="/brand/">品牌中心</a></li>
+            <li><a href="/help/about.html">关于我们</a></li>
+        </ul>
+    </div>
+</div>

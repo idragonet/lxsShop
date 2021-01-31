@@ -1,0 +1,36 @@
+﻿@using lxsShop.NewServices.Interfaces
+@inject Isys_configsServer _sysconfigsserver
+@{
+    var copyright = await _sysconfigsserver.GetKeyAsync("Copyright");
+}
+
+
+<div class="footer">
+    <div class="frame">
+        <ul class="footer-good">
+            <li class="f1"><h5>超短货期</h5><p>现货备存 闪电发货</p></li>
+            <li class="f2"><h5>高品质保证</h5><p>专柜精选 优势供应</p></li>
+            <li class="f4"><h5>提供增值税发票</h5><p>商务凭证 省时省力</p></li>
+            <li class="f5"><h5>一站式采购</h5><p>种类丰富 应有尽有</p></li>
+        </ul>
+    </div>
+
+    <div class="footer-info">
+        <div class="frame">
+            <div class="footer-nav">
+                @* <a href="/sitemap.html">网站地图</a><span>-</span> *@
+                <a href="/help/about.html">关于我们</a><span>-</span>
+                <a href="/help/manager.html">企业创始人</a><span>-</span>
+                <a href="/help/contact.html">联系我们</a><span>-</span>
+
+
+                <a href="/help/index.html">帮助中心</a><span>-</span>
+                <a href="/help/license.html">网站声明</a>
+            </div>
+
+            <div class="copyright">
+                <p>@Html.Raw(copyright)</p>
+            </div>
+        </div>
+    </div>
+</div>
