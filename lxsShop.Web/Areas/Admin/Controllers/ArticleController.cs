@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Entitys;
 using FineUICore;
+using lxsShop.NewServices;
+using lxsShop.NewServices.Interfaces;
 using lxsShop.Repository;
 using lxsShop.Services;
 using lxsShop.ViewModel;
@@ -25,10 +27,13 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         
         public articleRepository ArticleRepository = new articleRepository();
 
+        private readonly IarticlesServer _articlesServer;
+
         //通过构造函数注入Service
-        public ArticleController(Iarticle_catsService article_catsservice)
+        public ArticleController(Iarticle_catsService article_catsservice, IarticlesServer articlesServe)
         {
             this.articleCatsservice = article_catsservice;
+            _articlesServer = articlesServe;
         }
 
 
@@ -36,17 +41,15 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
 
         [Authorize]
-        public IActionResult Article()
+        public async Task<IActionResult>  Article()
         {
-            var post = ArticleRepository.FindAll();
-            var result = post.MapTo<List<articlesViewModel>>();
+            /*var post = ArticleRepository.FindAll();
+            var result = post.MapTo<List<articlesViewModel>>();*/
 
-         //   var post2 = ArticleRepository.FindAll2();
-           // var result2= post2.MapTo<List<articlesViewModel>>();
+            var post = await _articlesServer.GetPagesAsync(new PageParm(){limit = 500});
+            var result2 = post.data.Items;
 
-
-
-            return View(result);
+            return View(result2);
         }
 
 
@@ -60,11 +63,13 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 ArticleRepository.DeleteById(deletedRowID);
             }
 
-            var post = ArticleRepository.FindAll();
+            /*var post = ArticleRepository.FindAll();
             var result = post.MapTo<List<articlesViewModel>>();
             UIHelper.Grid("Grid1").DataSource(result, Grid1_fields);
 
-            return UIHelper.Result();
+            return UIHelper.Result();*/
+
+            return RedirectToAction("Article");
         }
 
 
@@ -139,14 +144,17 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ArticleNew_btnSaveClose_Click(
             [Bind(include:"articleTitle,catId")]
-            articles articlesEdit, string text)
+            articles articles, string text)
         {
             if (ModelState.IsValid)
             {
-                articlesEdit.CreateDate = DateTime.Now;
-                articlesEdit.articleContent = text;
+                articles.CreateDate = DateTime.Now;
+                articles.articleContent = text;
+                articles.isShow = 1;
 
-                ArticleRepository.Insert(articlesEdit);
+                //ArticleRepository.Insert(articles);
+
+                _articlesServer.AddAsync(articles);
 
                 // 关闭本窗体（触发窗体的关闭事件）
                 ActiveWindow.HidePostBack();
