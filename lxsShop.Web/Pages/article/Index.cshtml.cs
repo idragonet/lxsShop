@@ -46,24 +46,33 @@ namespace lxsShop.Web.Pages.article
         public async Task OnGetAsync(string category = null, string key = null, string where = "", int limit = 5)
         {
 
-            if (string.IsNullOrEmpty(ID) || !long.TryParse(ID,out long result))
+            if (string.IsNullOrEmpty(ID))
             {
                 ViewData["Title"] = "没有找到文章 - " + await _sysconfigsserver.GetKeyAsync("Title");
             }
             else
             {
-                var post = await _articlesServer.GetPagesAsync(new PageParm() {key = ID});
-                if (post.data.Items.Count == 0)
-                {
-                    ViewData["Title"] = "没有找到文章 - " + await _sysconfigsserver.GetKeyAsync("Title");
-                }
-                else
-                {
-                    ViewData["Title"] = post.data.Items[0].articleTitle+ " - " + await _sysconfigsserver.GetKeyAsync("Title");
-                    _articles = post.data.Items[0];
+                if (ID == "about") ID = "7";
+                if (ID == "contact") ID = "10";
 
-                    ViewData["Title2"] = post.data.Items[0].articleTitle;
+                if (long.TryParse(ID, out long result))
+                {
+                    var post = await _articlesServer.GetPagesAsync(new PageParm() { key = ID });
+                    if (post.data.Items.Count == 0)
+                    {
+                        ViewData["Title"] = "没有找到文章 - " + await _sysconfigsserver.GetKeyAsync("Title");
+                    }
+                    else
+                    {
+                        ViewData["Title"] = post.data.Items[0].articleTitle + " - " + await _sysconfigsserver.GetKeyAsync("Title");
+                        _articles = post.data.Items[0];
+
+                        ViewData["Title2"] = post.data.Items[0].articleTitle;
+                    }
                 }
+
+
+               
             }
 
 
