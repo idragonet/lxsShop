@@ -45,6 +45,8 @@ namespace lxsShop.Web.Pages.article
 
         public async Task OnGetAsync(string category = null, string key = null, string where = "", int limit = 5)
         {
+            ViewData["keywords"] = await _sysconfigsserver.GetKeyAsync("keywords");
+            ViewData["description"] = await _sysconfigsserver.GetKeyAsync("description");
 
             if (string.IsNullOrEmpty(ID))
             {

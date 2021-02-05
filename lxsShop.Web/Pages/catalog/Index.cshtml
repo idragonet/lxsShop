@@ -1,4 +1,160 @@
-﻿@page
+﻿@page "{ID?}"
 @model lxsShop.Web.Pages.catalog.IndexModel
 @{
+    Layout = "Shared/_Layout";
+
+}
+
+
+@section Css{
+    <link rel="stylesheet" href="/Static/css/public.min.css?v=8236772c1f" type="text/css">
+    <link rel="stylesheet" href="/Static/css/product.min.css?v=5b03619417" type="text/css">
+
+}
+
+
+<div id="container" class="frame mt10">
+
+    <div class="page-side">
+        <div class="cate-box">
+            <h3 class="title">产品类别</h3>
+            <div class="cate-dl"> 
+            @{
+                if (Model.goods_cats_top1.Any())
+                {
+                    foreach (var item in Model.goods_cats_top1)
+                    {
+                        string show = "class=hide";
+                        if (Int64.TryParse(Model.ID,out long result))
+                        {
+                            var select_top1 = Model.goods_cats.Where(t => t.catId == result).ToList();
+                            if (select_top1.Count > 0 && item.catId== select_top1[0].parentId)
+                            {
+                                show= "class=show";
+                            }
+                        }
+
+
+                        <dl>
+                            <dt class="current"><a href="/catalog/293/">@item.catName</a></dt>
+                            <dd @show>
+                                <ul>
+
+                                    @{
+                                        var select = Model.goods_cats.Where(t => t.parentId == item.catId).ToList();
+
+                                        if (select.Any())
+                                        {
+                                            foreach (var item2 in select)
+                                            {
+                                                if (item2.catId.ToString() == Model.ID)
+                                                {
+                                                    <li class="sel"><a href="/catalog/@item2.catId/">@item2.catName</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li><a href="/catalog/@item2.catId/">@item2.catName</a></li>
+                                                }
+                                            }
+                                        }
+                                    }
+                                </ul>
+
+                            </dd>
+                        </dl>
+                    }
+                }
+            }
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="page-main">
+        <div class="mb20 clearfix"><img src="/Static/images/am-l.png" alt="快速交期" class="fl"><a class="fr" href="/book.html" target="_blank" rel="nofollow"><img src="/Static/images/am-r.png" alt="产品选型目录免费送"></a></div>
+    @*<div class="products-filter">
+                <div class="products-filter-tr clearfix" style="border-bottom: none;">
+                    <div class="products-filter-name"><p>系列</p></div>
+                    <div class="products-filter-list">
+                        <ul class="clearfix">
+                            <li><a class="filter-a" data-type="spec" data-key="162" data-val="1706"><p>半密封-丝杆带动</p></a></li>
+                            <li><a class="filter-a" data-type="spec" data-key="162" data-val="1707"><p>半密封-皮带带动</p></a></li>
+                            <li><a class="filter-a" data-type="spec" data-key="162" data-val="1708"><p>全密封-丝杆带动</p></a></li>
+                            <li><a class="filter-a" data-type="spec" data-key="162" data-val="1709"><p>全密封-皮带带动</p></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>*@
+
+    @{
+    <div class="products-list" id="products_list"><h2 class="title">@Model.CatName <small>(共{@Model.GoodsCount}个产品)</small></h2>
+
+        <ul class="products-ul clearfix">
+
+            @if (Model.goods.Any())
+            {
+                foreach (var item in Model.goods)
+                {
+                    string src = "/uploads" + item.goodsImg + "_300.jpg";
+                <li>
+                    <div class="products-box">
+                        <div class="pic"><a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName"><img src="@src" alt="@item.goodsName" title="@item.goodsName" class="img img-lazy"></a></div>
+                        <div class="name"><a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName">@item.goodsName</a></div>
+                        @*<div class="days">SATA</div>*@
+                    </div>
+                </li>
+              }
+            }
+
+            @*<li>
+                <div class="products-box">
+                    <div class="pic"><a target="_blank" href="/fa/1463.html" title="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800"><img src="/Public/upload/fa/thumb/1463/150_150.jpeg" alt="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800" title="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800" class="img img-lazy"></a></div>
+                    <div class="name"><a target="_blank" href="/fa/1463.html" title="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800">50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800</a></div>
+                    <div class="days">SATA</div>
+                </div>
+            </li>
+
+
+            <li>
+                <div class="products-box">
+                    <div class="pic"><a target="_blank" href="/fa/1464.html" title="60D系列 SATA滚珠丝杆模组 05/10导程 100~800mm行程"><img src="/Public/upload/fa/thumb/1464/150_150.jpeg" alt="60D系列 SATA滚珠丝杆模组 05/10导程 100~800mm行程" title="60D系列 SATA滚珠丝杆模组 05/10导程 100~800mm行程" class="img img-lazy"></a></div>
+                    <div class="name"><a target="_blank" href="/fa/1464.html" title="60D系列 SATA滚珠丝杆模组 05/10导程 100~800mm行程">60D系列 SATA滚珠丝杆模组 05/10导程 100~800mm行程</a></div>
+                    <div class="days">SATA</div>
+                </div>
+            </li>*@
+
+        </ul>
+
+        <div class="ct"><ul class="pagination"><li class="active"><a href="/catalog/sata-299/?p=1">1</a></li><li><a href="/catalog/sata-299/?p=2">2</a></li><li><a href="/catalog/sata-299/?p=2">下一页</a></li></ul></div>
+
+
+    </div>
+    }
+
+
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+        var ROOT = '/';
+        var STATIC = '/Static/';
+        var UID = 0;
+        var IS_INDEX = 0;
+        var SSID = 'jpor32sed1irlijq3a54q7bsp7';
+    </script>
+
+    <script src="/Static/js/forrun.min.js?v=ae9e0a639c"></script>
+    <script type="text/javascript">
+        var URL = '/catalog/sata-299/';
+    </script>
+    <script src="/Static/js/product_list.min.js?v=57ffe3709f"></script>
+
 }

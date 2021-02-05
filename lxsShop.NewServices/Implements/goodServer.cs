@@ -99,6 +99,7 @@ namespace lxsShop.NewServices.Implements
                             , JoinType.Left, g.brandId == b.brandId))
                     .WhereIF(param.id != 0, g => g.goodsId == param.id)
                     .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "parentId", (g, gc, b) => gc.parentId == param.attr) //归属上级类别
+                    .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "goodsCatId", (g, gc, b) => g.goodsCatId == param.attr) //查询类别下的商品
 
                                                                                                                           //  .WhereIF(!string.IsNullOrEmpty(param.guid), (b, m, g) => b.QuestionGuid == param.guid)  //问题
                                                                                                                           //  .OrderByIF(param.attr == 1, (b, m, g) => b.AddTime, OrderByType.Desc)  //热门排序
