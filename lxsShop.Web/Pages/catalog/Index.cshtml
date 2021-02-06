@@ -1,8 +1,7 @@
-﻿@page "{ID?}"
+﻿@page "{ID:int=11}/{pages:int?}"
 @model lxsShop.Web.Pages.catalog.IndexModel
 @{
     Layout = "Shared/_Layout";
-
 }
 
 
@@ -25,21 +24,18 @@
                     foreach (var item in Model.goods_cats_top1)
                     {
                         string show = "class=hide";
-                        if (Int64.TryParse(Model.ID,out long result))
-                        {
-                            var select_top1 = Model.goods_cats.Where(t => t.catId == result).ToList();
+                       
+                            var select_top1 = Model.goods_cats.Where(t => t.catId == Model.ID).ToList();
                             if (select_top1.Count > 0 && item.catId== select_top1[0].parentId)
                             {
                                 show= "class=show";
                             }
-                        }
-
 
                         <dl>
-                            <dt class="current"><a href="/catalog/293/">@item.catName</a></dt>
+                            <dt class="current">@item.catName</dt>
+                            @*<dt class="current"><a href="/catalog/293/">@item.catName</a></dt>*@
                             <dd @show>
                                 <ul>
-
                                     @{
                                         var select = Model.goods_cats.Where(t => t.parentId == item.catId).ToList();
 
@@ -47,7 +43,7 @@
                                         {
                                             foreach (var item2 in select)
                                             {
-                                                if (item2.catId.ToString() == Model.ID)
+                                                if (item2.catId == Model.ID)
                                                 {
                                                     <li class="sel"><a href="/catalog/@item2.catId/">@item2.catName</a></li>
                                                 }
@@ -73,7 +69,8 @@
     </div>
 
     <div class="page-main">
-        <div class="mb20 clearfix"><img src="/Static/images/am-l.png" alt="快速交期" class="fl"><a class="fr" href="/book.html" target="_blank" rel="nofollow"><img src="/Static/images/am-r.png" alt="产品选型目录免费送"></a></div>
+        <div class="mb20 clearfix"><img src="/Static/images/am-l.png" alt="快速交期" class="fl">
+            <a class="fr" href="#" onclick="alert('@Html.Raw(Model.纸质产品目录)'); return false;"  rel="nofollow"><img src="/Static/images/am-r.png" alt="产品选型目录免费送"></a></div>
     @*<div class="products-filter">
                 <div class="products-filter-tr clearfix" style="border-bottom: none;">
                     <div class="products-filter-name"><p>系列</p></div>
@@ -89,26 +86,27 @@
             </div>*@
 
     @{
-    <div class="products-list" id="products_list"><h2 class="title">@Model.CatName <small>(共{@Model.GoodsCount}个产品)</small></h2>
+            <div class="products-list" id="products_list">
+                <h2 class="title">@Model.CatName <small>(共@(Model.GoodsCount)个产品)</small></h2>
 
-        <ul class="products-ul clearfix">
+                <ul class="products-ul clearfix">
 
-            @if (Model.goods.Any())
-            {
-                foreach (var item in Model.goods)
-                {
-                    string src = "/uploads" + item.goodsImg + "_300.jpg";
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName"><img src="@src" alt="@item.goodsName" title="@item.goodsName" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName">@item.goodsName</a></div>
-                        @*<div class="days">SATA</div>*@
-                    </div>
-                </li>
-              }
-            }
+                    @if (Model.goods.Any())
+                    {
+                        foreach (var item in Model.goods)
+                        {
+                            string src = "/uploads" + item.goodsImg + "_300.jpg";
+                            <li>
+                                <div class="products-box">
+                                    <div class="pic"><a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName"><img src="@src" alt="@item.goodsName" title="@item.goodsName" class="img img-lazy"></a></div>
+                                    <div class="name"><a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName">@item.goodsName</a></div>
+                                    <div class="days">@item.brandName</div>
+                                </div>
+                            </li>
+                        }
+                    }
 
-            @*<li>
+                    @*<li>
                 <div class="products-box">
                     <div class="pic"><a target="_blank" href="/fa/1463.html" title="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800"><img src="/Public/upload/fa/thumb/1463/150_150.jpeg" alt="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800" title="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800" class="img img-lazy"></a></div>
                     <div class="name"><a target="_blank" href="/fa/1463.html" title="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800">50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800</a></div>
@@ -125,12 +123,54 @@
                 </div>
             </li>*@
 
-        </ul>
+                </ul>
 
-        <div class="ct"><ul class="pagination"><li class="active"><a href="/catalog/sata-299/?p=1">1</a></li><li><a href="/catalog/sata-299/?p=2">2</a></li><li><a href="/catalog/sata-299/?p=2">下一页</a></li></ul></div>
+                @{
+                    if (Model.TotalPages > 1)
+                    {
+                        string urlFisrst= "/catalog/"+Model.ID+"/1";
+                        string urlNow= "/catalog/"+Model.ID+"/"+ Model.pages;
+
+                        int Next = Convert.ToInt16(Model.pages) + 1;
+                        string urlNext= "/catalog/"+Model.ID+"/"+ Next;
+
+                        int Previous =Convert.ToInt16(Model.pages) - 1;
+                        string urlPrevious = "/catalog/"+Model.ID+"/"+ Previous;
+
+                        string urlLast = "/catalog/"+Model.ID+"/"+ Model.TotalPages;
+
+                            <div class="ct">
+                                <ul class="pagination">
+
+                                    @if (Model.pages > 1)
+                                    {
+                                        <li><a href="@urlFisrst">首页</a></li>
+                                        <li><a href="@urlPrevious">上一页</a></li>
+                                    }
+
+                                    <li class="active"><a href="@urlNow">@Model.pages</a></li>
+
+                                    @if (Model.pages < Model.TotalPages)
+                                    {
+                                        <li><a href="@urlNext">下一页</a></li>
+                                        <li><a href="@urlLast">末页</a></li>
+                                    }
+
+                                </ul>
+                        </div>
+                    }
+                }
+
+                @*<div class="ct">
+                    <ul class="pagination">
+                        <li class="active"><a href="/catalog/sata-299/?p=1">1</a></li>
+                        <li><a href="/catalog/sata-299/?p=2">2</a></li>
+                        <li><a href="/catalog/sata-299/?p=2">下一页</a></li>
+                    </ul>
+                </div>*@
 
 
-    </div>
+            </div>
     }
 
 
