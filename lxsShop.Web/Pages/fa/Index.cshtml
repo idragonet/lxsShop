@@ -1,0 +1,181 @@
+﻿@page "{ID:int}"
+@model lxsShop.Web.Pages.fa.IndexModel
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+
+@section Css{
+    <link rel="stylesheet" href="/Static/css/public.min.css?v=8236772c1f" type="text/css">
+    <link rel="stylesheet" href="/Static/css/product.min.css?v=5b03619417" type="text/css">
+
+}
+<div class="breadcrumb frame"> <a href="/catalog/">@Model.goods.catName</a> <small>/</small> <a href="/catalog/@Model.goods.goodsCatId/">@Model.goods.catName</a> </div>
+
+<div id="container" class="frame">
+    <div class="goods-info clearfix">
+        <div class="goods-info-left">
+            <div class="goods-img">
+                <div class="goods-img-big">
+                    <img id="pro-big" src="/uploads@(Model.goods.goodsImg)_300.jpg" width="300px" height="300px" alt="@Model.goods.goodsName 现货|价格|参数|样本|图片">
+                </div>
+                @* <p class="goods-tools"> *@
+                @*     <a class="tool-pdf" href="/pdf/1327.html" target="_blank">选型PDF下载</a>                                        <a class="tool-fav" onclick="collect_goods(2235);" href="javascript:void(0);" rel="nofollow">收藏</a> *@
+                @* </p> *@
+            </div>
+        </div>
+
+        <div class="goods-info-right">
+            <div class="goods-info-desc">
+                <h1>@Model.goods.goodsName</h1>
+                <p>邦可电子为您提供@(Model.goods.goodsName)的产品报价、产品参数、产品图片等信息，欢迎采购咨询！</p>
+            </div>
+            <div style="padding:0 0 20px 20px;"><img src="/uploads/5d09abff41dcd.jpg" alt="采购惊喜"></div>
+            <div class="goods-info-public">
+                @{
+                    if (Model.goods.brandId > 0)
+                    { 
+                        <div class="goods-info-brand"><img src="/Public/upload/brand/2018/12-11/5c0f17f5cf0be.png" alt="@Model.goods.brandName"></div>
+                    }
+                }
+
+                <dl>
+                    <dt>价格：</dt>
+                    <dd class="price"><del>变动价</del></dd>
+                </dl>
+                @{
+                    if (Model.goods.brandId > 0)
+                    {
+                        <dl>
+                            <dt>品牌：</dt>
+                            <dd>@Model.goods.brandName</dd>
+                        </dl>
+                    }
+                }
+
+
+                <dl>
+                    <dt>系列：</dt>
+                    <dd>@Model.goods.catName</dd>
+                </dl>
+            </div>
+
+
+
+        </div>
+    </div>
+
+    <div class="goods-con clearfix">
+        <div class="goods-con-main">
+
+            <div class="goods-con-tab">
+                <div class="hd" id="goods-con-nav">
+                    <ul>
+                        <li class="on">产品详情</li>
+
+                    </ul>
+                </div>
+
+                <div class="bd">
+                    <div class="goods-con-remark">
+                        @Html.Raw(Model.goods.goodsDesc)
+                        @*<p style="white-space: normal;"><strong><span style="font-size: 16px;">机床用超重载荷-THK直线导轨NR/NRS-X型</span></strong></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><img src="/Public/upload/remote/2019/12/52901576828067.png" title="1.png"></p>
+        <p style="white-space: normal;">钢球沿着导轨和NR滑块上经过精密研磨加工的4列滚动面进行滚动；通过组装在NR滑块上的端盖板，使钢球列循环运动。钢球的滚动面是通过专用设备和具有极高精度的加工技术加工而成，实现了比以往产品更接近球径的深沟滚动面加工的加工。因此，提高了工具机所必需的高刚性、耐振动与冲击性、阻尼性(减衰性)，成为能够承受超重载荷的类型。</p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;">NR/NRS-X型的导轨的刚性非常高，因此在结构上容易受到安装面的中心线不重合度、组装误差的影响。若受到了这种影响，则可能造成使用寿命缩短、运行不畅。</p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><span style="font-size: 16px;">滑块型式：<br></span></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><img src="/Public/upload/fa/2019/12-20/5dfc7cd4ae64a.png" title="B-LB.png"></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><span style="font-size: 16px;">径向间隙（预压）：</span></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;">通常间隙（无符号）:</p>
+        <p style="white-space: normal;">● 负荷施加方向固定,冲击和振动较小,并且2轴平行使用的场所</p>
+        <p style="white-space: normal;">● 不需要非常高的精度,而滑动阻力必须尽可能低的场所</p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;">轻预压（C1）</p>
+        <p style="white-space: normal;">● 需承受悬臂负荷或力矩负荷的场所</p>
+        <p style="white-space: normal;">● 以单轴使用的场所</p>
+        <p style="white-space: normal;">● 要求轻负荷和高精度的场所</p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;">中预压（C0）</p>
+        <p style="white-space: normal;">● 需要高刚性、承受振动和冲击的场所</p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><strong><span style="font-size: 16px;">精度规格：</span></strong></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;">可以按型号划分为普通级（无标记）、高级（H）、精密级（P）、超精密级（SP）以及超超精密级（UP）。</p>
+        <p style="white-space: normal;">按精度等级规格分类的LM轨道长度和行走平行度。单位∶μm</p>
+        <p style="white-space: normal;"><img src="/Public/upload/remote/2019/12/73781576828067.png" title="3.png"></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><strong><span style="font-size: 16px;">防尘附件标记：</span></strong></p>
+        <p style="white-space: normal;"><strong><span style="font-size: 16px;"><br></span></strong></p>
+        <p style="white-space: normal;">UU：末端密封垫片</p>
+        <p style="white-space: normal;">SS：带末端密封垫片＋侧面密封垫片＋内部密封垫片&nbsp;</p>
+        <p style="white-space: normal;">DD：带双密封垫片＋侧面密封垫片＋内部密封垫片&nbsp;</p>
+        <p style="white-space: normal;">ZZ：带末端密封垫片＋侧面密封垫片＋内部密封垫片 ＋金属刮板</p>
+        <p style="white-space: normal;">KK：带双密封垫片＋侧面密封垫片＋内部密封垫片 ＋金属刮板</p>
+        <p style="white-space: normal;">SSHH：带末端密封垫片＋侧面密封垫片＋内部密封垫片 ＋LaCS</p>
+        <p style="white-space: normal;">DDHH：带双密封垫片＋侧面密封垫片＋内部密封垫片 ＋LaCS</p>
+        <p style="white-space: normal;">ZZHH：带末端密封垫片＋侧面密封垫片＋内部密封垫片 ＋金属刮板＋LaCS</p>
+        <p style="white-space: normal;">KKHH：带双密封垫片＋侧面密封垫片＋内部密封垫片 ＋金属刮板＋LaCS</p>
+        <p style="white-space: normal;">JJHH：带末端密封垫片＋侧面密封垫片＋内部密封垫片 ＋LaCS＋防尘盖(兼有金属刮板的功能)</p>
+        <p style="white-space: normal;">TTHH：带双密封垫片＋侧面密封垫片＋内部密封垫片 ＋LaCS＋防尘盖(兼有金属刮板的功能)</p>
+        <p style="white-space: normal;">（注：LaCS表示层叠式接触刮板）</p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><strong><span style="font-size: 16px;"><br></span></strong></p>
+        <p style="white-space: normal;"><span style="font-size: 16px;">NR-B、NR-LB系列型号规格尺寸表：</span><br></p>
+        <p style="white-space: normal;"><strong><span style="font-size: 16px;"><br></span></strong></p>
+        <p style="white-space: normal;"><img src="/Public/upload/fa/2019/12-20/5dfc7cb1adb4a.png" title="B-LB_副本.png"></p>
+        <p style="white-space: normal;"><br></p>
+        <p style="white-space: normal;"><strong style="color: rgb(227, 108, 9);">注：鼠标右键点击图片，选（在新标签页中打开图片）来查看大图。</strong></p>
+        <p style="white-space: normal;"><br></p>
+        <p><br></p>
+        <p>NR系列-THK直线导轨NR75~100（B-LB）-机床用超重载荷产品资料由凡一商城www.forrun.cn整理</p>*@
+                    </div>
+                   					
+                   
+                </div>
+            </div>
+
+
+            <div class="tech-w-list mt40">
+                <h3 class="tit">技术支持</h3>
+                <div class="mt20">欢迎咨询“单膜片联轴器 止动螺丝固定型 铝合金材质”产品相关问题，咨询电话☎ <strong>400-888-1044</strong>，或<a href="javascript:void(0);" class="shangqiao">咨询在线客服</a> (工作日：8:30-18:00)。</div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+@section Scripts{
+
+    <script type="text/javascript">
+        var ROOT = '/';
+        var STATIC = '/Static/';
+        var UID = 0;
+        var IS_INDEX = 0;
+        var SSID = 'jpor32sed1irlijq3a54q7bsp7';
+    </script>
+    <script src="/Static/js/forrun.min.js?v=ae9e0a639c"></script>
+    <script type="text/javascript">
+        var goods_id = 2235;
+        var book_dir = '/Public/book/2017/';
+        var book_cur = '';
+    </script>
+    <script src="/Static/js/product_goods.min.js?v=7b35723664"></script>
+
+
+}
