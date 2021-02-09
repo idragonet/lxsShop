@@ -140,23 +140,27 @@
                         string urlLast = "/catalog/"+Model.ID+"/"+ Model.TotalPages;
 
                             <div class="ct">
-                                <ul class="pagination">
+                                                <ul class="pagination">
 
-                                    @if (Model.pages > 1)
-                                    {
-                                        <li><a href="@urlFisrst">首页</a></li>
-                                        <li><a href="@urlPrevious">上一页</a></li>
-                                    }
+                                                    @if (Model.pages > 1)
+                                                    {
+                                                        <li><a href="@urlPrevious">上一页</a></li>
+                                                        <li><a href="@urlFisrst">1</a></li>
+                                                        <li class="disabled"><span>…</span></li>
+                                                       
+                                                    }
 
-                                    <li class="active"><a href="@urlNow">@Model.pages</a></li>
+                                                    <li class="active"><a href="@urlNow">@Model.pages</a></li>
 
-                                    @if (Model.pages < Model.TotalPages)
-                                    {
-                                        <li><a href="@urlNext">下一页</a></li>
-                                        <li><a href="@urlLast">末页</a></li>
-                                    }
+                                                    @if (Model.pages < Model.TotalPages)
+                                                    {
+                                                        <li class="disabled"><span>…</span></li>
+                                                        <li><a href="@urlLast">@Model.TotalPages</a></li>
+                                                        <li><a href="@urlNext">下一页</a></li>
 
-                                </ul>
+                                                    }
+
+                                                </ul>
                         </div>
                     }
                 }

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/Static/css/product.min.css?v=5b03619417" type="text/css">
 
 }
-<div class="breadcrumb frame"> <a href="/catalog/">@Model.goods.catName</a> <small>/</small> <a href="/catalog/@Model.goods.goodsCatId/">@Model.goods.catName</a> </div>
+<div class="breadcrumb frame">@Model.TopcatName<small>/</small> <a href="/catalog/@Model.goods.goodsCatId/">@Model.goods.catName</a> </div>
 
 <div id="container" class="frame">
     <div class="goods-info clearfix">
@@ -36,7 +36,7 @@
                 @{
                     if (Model.goods.brandId > 0)
                     { 
-                        <div class="goods-info-brand"><img src="/Public/upload/brand/2018/12-11/5c0f17f5cf0be.png" alt="@Model.goods.brandName"></div>
+                        <div class="goods-info-brand"><img src="@Model.brandImg" alt="@Model.goods.brandName"></div>
                     }
                 }
 
@@ -149,7 +149,7 @@
 
             <div class="tech-w-list mt40">
                 <h3 class="tit">技术支持</h3>
-                <div class="mt20">欢迎咨询“单膜片联轴器 止动螺丝固定型 铝合金材质”产品相关问题，咨询电话☎ <strong>400-888-1044</strong>，或<a href="javascript:void(0);" class="shangqiao">咨询在线客服</a> (工作日：8:30-18:00)。</div>
+                <div class="mt20">欢迎咨询“@Model.goods.goodsName”产品相关问题，咨询电话☎ <strong>@ViewData["Tel"]</strong>。</div>
             </div>
 
 
