@@ -1,13 +1,22 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using HtmlAgilityPack;
 using lxsShop.NewServices;
 using lxsShop.NewServices.Interfaces;
 using lxsShop.ViewModel;
 using lxsShop.Web.Extension;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace lxsShop.Web.Pages.catalog
 {
@@ -43,9 +52,17 @@ namespace lxsShop.Web.Pages.catalog
         public string CatName { get; set; }
         public string 纸质产品目录 { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
             if (pages == null) pages = 1;
+
+            if (IsAjax(HttpContext.Request))
+            {
+               var web = new HtmlWeb();
+               var doc = web.Load(Request.GetDisplayUrl());
+               var titleNode = doc.DocumentNode.SelectSingleNode("//div[@id='products_list']");
+               return Content(titleNode.InnerHtml);
+            }
 
             ViewData["Title"] = "产品类别 ";
             ViewData["keywords"] = "产品类别 ";
@@ -84,6 +101,38 @@ namespace lxsShop.Web.Pages.catalog
                 }
 
                 ViewData["Title"] = CatName + " - " + await _sysconfigsserver.GetKeyAsync("Title");
+
+                return null;
         }
+
+
+        public static bool IsAjax(HttpRequest req)
+        {
+            bool result = false;
+            var xreq = req.Headers.ContainsKey("x-requested-with");
+            if (xreq)
+            {
+                result = req.Headers["x-requested-with"] == "XMLHttpRequest";
+            }
+
+            return result;
+        }
+
+
+        public static string GetAbsoluteUri(HttpRequest request)
+        {
+            return new StringBuilder()
+                .Append(request.Scheme)
+                .Append("://")
+                .Append(request.Host)
+                .Append(request.PathBase)
+                .Append(request.Path)
+                .Append(request.QueryString)
+                .ToString();
+        }
+
     }
+
+
+
 }
