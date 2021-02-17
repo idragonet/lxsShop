@@ -71,11 +71,22 @@ namespace lxsShop.NewServices.Implements
             var res = new ApiResult<Page<goods_cats>>() { statusCode = (int)ApiEnum.Error };
             try
             {
-                res.data = await Db.Queryable<goods_cats>()
-                    .WhereIF(!string.IsNullOrEmpty(parm.key), m => m.catId == Convert.ToInt64(parm.key))
-                    .WhereIF(!string.IsNullOrEmpty(parm.where) && parm.where == "parentId", m => m.parentId == Convert.ToInt64(parm.attr))
-                    //  .OrderBy(m => m.Sort)
-                    .ToPageAsync(parm.page, parm.limit);
+                if (!string.IsNullOrEmpty(parm.where) && parm.where == "getgoodscat") //通过类别集合ID查询类别
+                {
+                    res.data = await Db.Queryable<goods_cats>()
+                        .In(it => it.catId, parm.IdList)
+                        .ToPageAsync(parm.page, parm.limit); ;
+                }
+                else
+                {
+                    res.data = await Db.Queryable<goods_cats>()
+                        .WhereIF(!string.IsNullOrEmpty(parm.key), m => m.catId == Convert.ToInt64(parm.key))
+                        .WhereIF(!string.IsNullOrEmpty(parm.where) && parm.where == "parentId", m => m.parentId == Convert.ToInt64(parm.attr))
+                        //  .OrderBy(m => m.Sort)
+                        .ToPageAsync(parm.page, parm.limit);
+                }
+
+              
 
                 res.statusCode = (int)ApiEnum.Status;
             }

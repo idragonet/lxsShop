@@ -23,41 +23,56 @@
             </h3>
             <div class="cate-dl">
                 <dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=直线导轨">全部分类</a></dt>
+                    <dt class="cate-dl-c"><a href="/search/@Model.keyword">全部分类</a></dt>
                 </dl>
-                <dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=296">凡一导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=341">HIWIN上银导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=345">THK直线导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=350">PMI银泰导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=353">TBI直线导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=354">ABBA直线导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=355">CPC直线导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=356">STAF直线导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=358">韩国SBC导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=359">韩国WON导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=361">IKO直线导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=363">三益SAMICK直线轴承 </a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=364">NSK直线导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=365">INA直线导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=367">Rexroth力士乐导轨</a></dt>
-                </dl><dl>
-                    <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=382">HIWIN上银模组</a></dt>
-                </dl>
+
+                @*https://localhost:44391/search/%E9%98%B2%E9%9D%99%E7%94%B5?catid=11&p=111*@
+
+                @{
+                    if (Model.goodscatsLeft.Any())
+                    {
+                        foreach (var item in Model.goodscatsLeft)
+                        {
+                            <dl>
+                                <dt class="cate-dl-c"><a href="/search/@Model.keyword?catid=@item.catId">@item.catName</a></dt>
+                            </dl>
+                        }
+                    }
+                }
+
+                @*<dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=296">凡一导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=341">HIWIN上银导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=345">THK直线导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=350">PMI银泰导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=353">TBI直线导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=354">ABBA直线导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=355">CPC直线导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=356">STAF直线导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=358">韩国SBC导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=359">韩国WON导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=361">IKO直线导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=363">三益SAMICK直线轴承 </a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=364">NSK直线导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=365">INA直线导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=367">Rexroth力士乐导轨</a></dt>
+        </dl><dl>
+            <dt class="cate-dl-c"><a href="/catalog/search/?keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8&amp;id=382">HIWIN上银模组</a></dt>
+        </dl>*@
             </div>
         </div>
     </div>
@@ -67,122 +82,80 @@
 
 
         <div class="products-list" id="products_list">
-            <h2 class="title">搜索“<strong>@Model.keyword</strong>”相关的产品 <small>(共272个产品)</small></h2>
+            <h2 class="title">搜索“<strong>@Model.keyword</strong>”相关的产品 <small>@Model.GoodsCount</small></h2>
             <ul class="products-ul clearfix">
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2998/"><img src="/Public/upload/fa/thumb/2998/150_150.jpeg" alt="KC4001-KC4005 电机法兰右接型 hiwin上银直线导轨丝杆滑台" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2998/">KC4001-KC4005 电机法兰右接型 hiwin上银<font class="important">直线导轨</font>丝杆滑台</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2996/"><img src="/Public/upload/fa/thumb/2996/150_150.jpeg" alt="KC5005-KC5010 电机马达左接型 hiwin上银直线导轨丝杆滑台" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2996/">KC5005-KC5010 电机马达左接型 hiwin上银<font class="important">直线导轨</font>丝杆滑台</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2994/"><img src="/Public/upload/fa/thumb/2994/150_150.jpeg" alt="KC6005-KC6010 hiwin上银直线导轨丝杆滑台" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2994/">KC6005-KC6010 hiwin上银<font class="important">直线导轨</font>丝杆滑台</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2629/"><img src="/Public/upload/fa/thumb/2629/150_150.png" alt="Rexroth力士乐直线导轨R1672（5 2）-宽幅型" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2629/">Rexroth力士乐<font class="important">直线导轨</font>R1672（5 2）-宽幅型</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2628/"><img src="/Public/upload/fa/thumb/2628/150_150.png" alt="Rexroth力士乐直线导轨R1671（5 2 3）-宽型" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2628/">Rexroth力士乐<font class="important">直线导轨</font>R1671（5 2 3）-宽型</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2627/"><img src="/Public/upload/fa/thumb/2627/150_150.png" alt="Rexroth力士乐直线导轨R1632（1 8 2 7 3）-铝制" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2627/">Rexroth力士乐<font class="important">直线导轨</font>R1632（1 8 2 7 3）-铝制</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2626/"><img src="/Public/upload/fa/thumb/2626/150_150.png" alt="Rexroth力士乐直线导轨R1631（1 8 2 7 3 ）-铝制" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2626/">Rexroth力士乐<font class="important">直线导轨</font>R1631（1 8 2 7 3 ）-铝制</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2625/"><img src="/Public/upload/fa/thumb/2625/150_150.png" alt="Rexroth力士乐直线导轨R1662（1 8 2 7 3 ）-窄型 短 标准高" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2625/">Rexroth力士乐<font class="important">直线导轨</font>R1662（1 8 2 7 3 ）-窄型 短 标准高</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2624/"><img src="/Public/upload/fa/thumb/2624/150_150.png" alt="Rexroth力士乐直线导轨R1661（1 8 2 7 3 ）" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2624/">Rexroth力士乐<font class="important">直线导轨</font>R1661（1 8 2 7 3 ）</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2619/"><img src="/Public/upload/fa/thumb/2619/150_150.png" alt="Rexroth力士乐直线导轨R1664（8 2）" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2619/">Rexroth力士乐<font class="important">直线导轨</font>R1664（8 2）</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2618/"><img src="/Public/upload/fa/thumb/2618/150_150.png" alt="Rexroth力士乐直线导轨R1694（8 2）" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2618/">Rexroth力士乐<font class="important">直线导轨</font>R1694（8 2）</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2617/"><img src="/Public/upload/fa/thumb/2617/150_150.png" alt="Rexroth力士乐直线导轨R1663（8 2）" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2617/">Rexroth力士乐<font class="important">直线导轨</font>R1663（8 2）</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2616/"><img src="/Public/upload/fa/thumb/2616/150_150.png" alt="Rexroth力士乐直线导轨R1693（8 2）" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2616/">Rexroth力士乐<font class="important">直线导轨</font>R1693（8 2）</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2615/"><img src="/Public/upload/fa/thumb/2615/150_150.png" alt="Rexroth力士乐直线导轨R1624（1 8 2 7 3 4 5）" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2615/">Rexroth力士乐<font class="important">直线导轨</font>R1624（1 8 2 7 3 4 5）</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2614/"><img src="/Public/upload/fa/thumb/2614/150_150.png" alt="Rexroth力士乐直线导轨R1621（1 8 2 7 3 4 5）" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2614/">Rexroth力士乐<font class="important">直线导轨</font>R1621（1 8 2 7 3 4 5）</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
-                <li>
-                    <div class="products-box">
-                        <div class="pic"><a target="_blank" href="/fa/2613/"><img src="/Public/upload/fa/thumb/2613/150_150.png" alt="Rexroth力士乐直线导轨R1666（1 8 2 7 3）" class="img img-lazy"></a></div>
-                        <div class="name"><a target="_blank" href="/fa/2613/">Rexroth力士乐<font class="important">直线导轨</font>R1666（1 8 2 7 3）</a></div>
-                        <div class="days">发货日:5天内</div>
-                    </div>
-                </li>
+
+                @if (Model.goods.Any())
+                {
+                    foreach (var item in Model.goods)
+                    {
+                        string src = "/uploads" + item.goodsImg + "_300.jpg";
+                        <li>
+                            <div class="products-box">
+                                <div class="pic"><a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName"><img src="@src" alt="@item.goodsName" title="@item.goodsName" class="img img-lazy"></a></div>
+                                <div class="name"><a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName">@item.goodsName</a></div>
+                                <div class="days">@item.brandName</div>
+                            </div>
+                        </li>
+                    }
+                }
+
             </ul>
-            <div class="ct"><ul class="pagination"><li class="active"><a href="/catalog/search/?p=1&amp;keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">1</a></li><li><a href="/catalog/search/?p=2&amp;keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">2</a></li><li><a href="/catalog/search/?p=3&amp;keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">3</a></li><li><a href="/catalog/search/?p=4&amp;keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">4</a></li><li><a href="/catalog/search/?p=5&amp;keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">5</a></li><li class="disabled"><span>…</span></li><li><a href="/catalog/search/?p=17&amp;keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">17</a></li><li><a href="/catalog/search/?p=2&amp;keyword=%E7%9B%B4%E7%BA%BF%E5%AF%BC%E8%BD%A8">下一页</a></li></ul></div>
+
+            
+            @{
+                if (Model.TotalPages > 1)
+                {
+                    string baseUrl = "/search/" + Model.keyword + "?p={0}{1}";
+
+                    string cat = "";
+                    if (Model.CatID > 0)
+                    {
+                        cat = "&catid=" + Model.CatID;
+                    }
+
+                    string urlFisrst =string.Format(baseUrl,1, cat);
+                    string urlNow = string.Format(baseUrl, Model.CurrentPage, cat);
+
+                    int Next = Convert.ToInt16(Model.pages) + 1;
+                    string urlNext = string.Format(baseUrl, Next, cat);
+
+                    int Previous = Convert.ToInt16(Model.pages) - 1;
+                    string urlPrevious = string.Format(baseUrl, Previous, cat);
+
+                    string urlLast = string.Format(baseUrl, Model.TotalPages, cat);
+
+                    <div class="ct">
+                                    <ul class="pagination">
+
+                                        @if (Model.pages > 1)
+                                        {
+                                            <li><a href="@urlPrevious">上一页</a></li>
+                                            <li><a href="@urlFisrst">1</a></li>
+                                            @if (Model.TotalPages > 2)
+                                            {
+                                                <li class="disabled"><span>…</span></li>
+                                            }
+
+                                        }
+
+                                        <li class="active"><a href="@urlNow">@Model.pages</a></li>
+
+                                        @if (Model.pages < Model.TotalPages)
+                                        {
+                                            @if (Model.TotalPages > 2)
+                                            {
+                                                <li class="disabled"><span>…</span></li>
+                                            }
+                                            <li><a href="@urlLast">@Model.TotalPages</a></li>
+                                            <li><a href="@urlNext">下一页</a></li>
+
+                                        }
+
+                                    </ul>
+                    </div>
+                }
+            }
         </div>
 
     </div>

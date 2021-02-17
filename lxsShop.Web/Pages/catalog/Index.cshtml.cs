@@ -81,7 +81,7 @@ namespace lxsShop.Web.Pages.catalog
 
            
                 var postgoods = await _goodserver.GetPagesAsync(new PageParm()
-                    {limit = 20, page = Convert.ToInt16(pages), attr = ID, where = "goodsCatId"});
+                    {limit = 16, page = Convert.ToInt16(pages), attr = ID, where = "goodsCatId"});
                 goods = postgoods.data.Items.MapTo<List<goodsViewModel>>();
                 GoodsCount = postgoods.data.TotalItems;
                 TotalPages = postgoods.data.TotalPages;

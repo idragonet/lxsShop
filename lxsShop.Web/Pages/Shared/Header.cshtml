@@ -56,7 +56,7 @@
                     {
                         foreach (var item in Keylist)
                         {
-                            <a target="_blank" href="/search/?keyword=@System.Web.HttpUtility.UrlEncode(item)">@item</a>
+                            <a target="_blank" href="/search/@System.Web.HttpUtility.UrlEncode(item)">@item</a>
                         }
                     }
                 }

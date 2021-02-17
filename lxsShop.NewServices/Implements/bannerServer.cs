@@ -71,10 +71,12 @@ namespace lxsShop.NewServices.Implements
             var res = new ApiResult<Page<banner>>() { statusCode = (int)ApiEnum.Error };
             try
             {
-                res.data = await Db.Queryable<banner>()
-                    .WhereIF(parm.id != 0, g => g.ID == parm.id)
-                    .OrderByIF(!string.IsNullOrEmpty(parm.field), parm.field + " " + parm.order)
-                    .ToPageAsync(parm.page, parm.limit);
+                
+                    res.data = await Db.Queryable<banner>()
+                        .WhereIF(parm.id != 0, g => g.ID == parm.id)
+                        .OrderByIF(!string.IsNullOrEmpty(parm.field), parm.field + " " + parm.order)
+                        .ToPageAsync(parm.page, parm.limit);
+                
 
                 res.statusCode = (int)ApiEnum.Status;
             }

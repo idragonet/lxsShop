@@ -146,15 +146,20 @@
                                                     {
                                                         <li><a href="@urlPrevious">上一页</a></li>
                                                         <li><a href="@urlFisrst">1</a></li>
-                                                        <li class="disabled"><span>…</span></li>
-                                                       
+                                                        @if (Model.TotalPages > 2)
+                                                        {
+                                                            <li class="disabled"><span>…</span></li>
+                                                        }
                                                     }
 
                                                     <li class="active"><a href="@urlNow">@Model.pages</a></li>
 
                                                     @if (Model.pages < Model.TotalPages)
                                                     {
-                                                        <li class="disabled"><span>…</span></li>
+                                                        @if (Model.TotalPages > 2)
+                                                        {
+                                                            <li class="disabled"><span>…</span></li>
+                                                        }
                                                         <li><a href="@urlLast">@Model.TotalPages</a></li>
                                                         <li><a href="@urlNext">下一页</a></li>
 

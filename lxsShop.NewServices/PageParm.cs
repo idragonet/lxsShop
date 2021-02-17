@@ -141,6 +141,12 @@ namespace lxsShop.NewServices
         /// 英文名称
         /// </summary>
         public string number { get; set; }
+
+
+        /// <summary>
+        /// ID集合
+        /// </summary>
+        public List<long> IdList { get; set; }
     }
 
     public class AppSearchParm
