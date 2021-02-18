@@ -58,7 +58,7 @@ namespace lxsShop.Web.Pages.search
         public int? pages { get; set; }
 
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnGetAsync(string keyword)
         {
             if (pages == null) pages = 1;
 
