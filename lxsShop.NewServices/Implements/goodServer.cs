@@ -94,38 +94,72 @@ namespace lxsShop.NewServices.Implements
             var res = new ApiResult<Page<goodsViewModel>>() {statusCode = (int) ApiEnum.Error};
             try
             {
-                res.data = await Db.Queryable<goods, goods_cats, brands>((g, gc, b) => new
-                        JoinQueryInfos(JoinType.Left, g.goodsCatId == gc.catId
-                            , JoinType.Left, g.brandId == b.brandId))
-                    .WhereIF(param.id != 0, g => g.goodsId == param.id)
-                    .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "parentId", (g, gc, b) => gc.parentId == param.attr) //归属上级类别
-                    .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "goodsCatId", (g, gc, b) => g.goodsCatId == param.attr) //查询类别下的商品
-                   
-                    .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "search" && param.attr>0, (g, gc, b) => g.goodsName.Contains(param.key) && g.goodsCatId == param.attr) //搜索 + 指定类别
-                    .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "search", (g, gc, b) => g.goodsName.Contains(param.key)) //搜索
 
-                    //  .WhereIF(!string.IsNullOrEmpty(param.guid), (b, m, g) => b.QuestionGuid == param.guid)  //问题
-                    //  .OrderByIF(param.attr == 1, (b, m, g) => b.AddTime, OrderByType.Desc)  //热门排序
-                    //   .OrderBy((g, gc, b) => g.CreateDate, OrderByType.Desc)
-                    //  .OrderByIF(param.order.ToUpper() == "DESC", g => g.CreateDate, param.order.ToUpper())
-                    .OrderByIF(!string.IsNullOrEmpty(param.field), param.field + " " + param.order)
-                    .Select((g, gc, b) => new goodsViewModel()
-                    {
-                        goodsId = g.goodsId,
-                        goodsSn = g.goodsSn,
-                        goodsName = g.goodsName,
-                        goodsImg = g.goodsImg,
-                        isRecom = Convert.ToBoolean(g.isRecom),
-                        isNew = Convert.ToBoolean(g.isNew),
-                        brandId = g.brandId,
-                        brandName = b.brandName,
-                        goodsDesc = g.goodsDesc,
-                        goodsSeoKeywords = g.goodsSeoKeywords,
-                        goodsCatId = g.goodsCatId,
-                        catName = gc.catName,
-                        CreateDate = g.CreateDate,
-                    })
-                    .ToPageAsync(param.page, param.limit);
+                /* res.data = await Db.Queryable<goods_cats>()
+                    .In(it => it.catId, parm.IdList)
+                    .ToPageAsync(parm.page, parm.limit);  */
+
+                if (param.IdList!=null && param.IdList.Count > 0)
+                {
+                    res.data = await Db.Queryable<goods, goods_cats, brands>((g, gc, b) => new
+                       JoinQueryInfos(JoinType.Left, g.goodsCatId == gc.catId
+                           , JoinType.Left, g.brandId == b.brandId))
+                        .In(g => g.goodsCatId, param.IdList)
+                        .OrderBy(g=>g.CreateDate,OrderByType.Desc)
+                   .Select((g, gc, b) => new goodsViewModel()
+                   {
+                       goodsId = g.goodsId,
+                       goodsSn = g.goodsSn,
+                       goodsName = g.goodsName,
+                       goodsImg = g.goodsImg,
+                       isRecom = Convert.ToBoolean(g.isRecom),
+                       isNew = Convert.ToBoolean(g.isNew),
+                       brandId = g.brandId,
+                       brandName = b.brandName,
+                       goodsDesc = g.goodsDesc,
+                       goodsSeoKeywords = g.goodsSeoKeywords,
+                       goodsCatId = g.goodsCatId,
+                       catName = gc.catName,
+                       CreateDate = g.CreateDate,
+                   })
+                   .ToPageAsync(param.page, param.limit);
+                }
+                else
+                {
+                    res.data = await Db.Queryable<goods, goods_cats, brands>((g, gc, b) => new
+                            JoinQueryInfos(JoinType.Left, g.goodsCatId == gc.catId
+                                , JoinType.Left, g.brandId == b.brandId))
+                        .WhereIF(param.id != 0, g => g.goodsId == param.id)
+                        .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "parentId", (g, gc, b) => gc.parentId == param.attr) //归属上级类别
+                        .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "goodsCatId", (g, gc, b) => g.goodsCatId == param.attr) //查询类别下的商品
+
+                        .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "search" && param.attr > 0, (g, gc, b) => g.goodsName.Contains(param.key) && g.goodsCatId == param.attr) //搜索 + 指定类别
+                        .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "search", (g, gc, b) => g.goodsName.Contains(param.key)) //搜索
+
+                        //  .WhereIF(!string.IsNullOrEmpty(param.guid), (b, m, g) => b.QuestionGuid == param.guid)  //问题
+                        //  .OrderByIF(param.attr == 1, (b, m, g) => b.AddTime, OrderByType.Desc)  //热门排序
+                        //   .OrderBy((g, gc, b) => g.CreateDate, OrderByType.Desc)
+                        //  .OrderByIF(param.order.ToUpper() == "DESC", g => g.CreateDate, param.order.ToUpper())
+                        .OrderByIF(!string.IsNullOrEmpty(param.field), param.field + " " + param.order)
+                        .Select((g, gc, b) => new goodsViewModel()
+                        {
+                            goodsId = g.goodsId,
+                            goodsSn = g.goodsSn,
+                            goodsName = g.goodsName,
+                            goodsImg = g.goodsImg,
+                            isRecom = Convert.ToBoolean(g.isRecom),
+                            isNew = Convert.ToBoolean(g.isNew),
+                            brandId = g.brandId,
+                            brandName = b.brandName,
+                            goodsDesc = g.goodsDesc,
+                            goodsSeoKeywords = g.goodsSeoKeywords,
+                            goodsCatId = g.goodsCatId,
+                            catName = gc.catName,
+                            CreateDate = g.CreateDate,
+                        })
+                        .ToPageAsync(param.page, param.limit);
+                }
+
                 res.statusCode = (int) ApiEnum.Status;
             }
             catch (System.Exception ex)

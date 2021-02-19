@@ -24,16 +24,24 @@
                     foreach (var item in Model.goods_cats_top1)
                     {
                         string show = "class=hide";
-                       
-                            var select_top1 = Model.goods_cats.Where(t => t.catId == Model.ID).ToList();
+
+                        var select_top1 = Model.goods_cats.Where(t => t.catId == Model.ID).ToList();
+                        if (select_top1.Count > 0 && item.catId== select_top1[0].parentId)
+                        {
+                            show= "class=show style=display:block;"; //需要展开添加： style="display: block;"
+                        }
+                        else  //是大类 
+                        {
+                            select_top1 = Model.goods_cats.Where(t => t.parentId == Model.ID).ToList();
                             if (select_top1.Count > 0 && item.catId== select_top1[0].parentId)
                             {
-                                show= "class=show";
+                                show= "class=show style =display:block;"; //是大类 需要展开添加： style="display: block;"
                             }
+                        }
 
                         <dl>
-                            <dt class="current">@item.catName</dt>
-                            @*<dt class="current"><a href="/catalog/293/">@item.catName</a></dt>*@
+                            @* <dt class="current">@item.catName</dt> *@
+                            <dt class="current"><a href="/catalog/@(item.catId)/">@item.catName</a></dt>
                             <dd @show>
                                 <ul>
                                     @{

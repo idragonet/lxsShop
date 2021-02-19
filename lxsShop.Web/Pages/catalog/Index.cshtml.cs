@@ -43,8 +43,7 @@ namespace lxsShop.Web.Pages.catalog
         [BindProperty(SupportsGet = true)] public int ID { get; set; }
 
 
-        [BindProperty(SupportsGet = true)]
-        public int? pages { get; set; }
+        [BindProperty(SupportsGet = true)] public int? pages { get; set; }
 
         public long GoodsCount { get; set; }
         public long TotalPages { get; set; }
@@ -58,10 +57,10 @@ namespace lxsShop.Web.Pages.catalog
 
             if (IsAjax(HttpContext.Request))
             {
-               var web = new HtmlWeb();
-               var doc = web.Load(Request.GetDisplayUrl());
-               var titleNode = doc.DocumentNode.SelectSingleNode("//div[@id='products_list']");
-               return Content(titleNode.InnerHtml);
+                var web = new HtmlWeb();
+                var doc = web.Load(Request.GetDisplayUrl());
+                var titleNode = doc.DocumentNode.SelectSingleNode("//div[@id='products_list']");
+                return Content(titleNode.InnerHtml);
             }
 
             ViewData["Title"] = "产品类别 ";
@@ -72,37 +71,41 @@ namespace lxsShop.Web.Pages.catalog
 
             纸质产品目录 = await _sysconfigsserver.GetKeyAsync("纸质产品目录");
 
-            var post = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 20, attr = 0,where = "parentId"});
+            var post = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 20, attr = 0, where = "parentId"});
             goods_cats_top1 = post.data.Items.MapTo<List<goods_catsViewModel>>();
 
             var post2 = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 200});
             goods_cats = post2.data.Items.MapTo<List<goods_catsViewModel>>();
 
 
-           
-                var postgoods = await _goodserver.GetPagesAsync(new PageParm()
-                    {limit = 16, page = Convert.ToInt16(pages), attr = ID, where = "goodsCatId"});
-                goods = postgoods.data.Items.MapTo<List<goodsViewModel>>();
-                GoodsCount = postgoods.data.TotalItems;
-                TotalPages = postgoods.data.TotalPages;
-                CurrentPage = postgoods.data.CurrentPage;
+            var postgoods = await _goodserver.GetPagesAsync(new PageParm()
+                {limit = 16, page = Convert.ToInt16(pages), attr = ID, where = "goodsCatId"});
+          
+            if (postgoods.data.Items.Count > 0)
+            {
+                CatName = postgoods.data.Items[0].catName;
+            }
+            else //类别是大类  
+            {
 
-                if (postgoods.data.Items.Count > 0)
-                {
-                    CatName = postgoods.data.Items[0].catName;
-                }
-                else //判断类别是不是大类  
-                {
-                    var catList = goods_cats.Where(t => t.catId == ID).ToList();
-                    if (catList.Count > 0)
-                    {
-                        CatName = catList[0].catName;
-                    }
-                }
+              var catList =  goods_cats.Where(t => t.catId == ID && t.parentId==0).ToList();
+              if (catList.Count > 0)
+              {
+                  CatName = catList[0].catName;
+                  catList = goods_cats.Where(t => t.parentId == ID).ToList();
+                  var catLong = catList.Select(t => t.catId).ToList();
+                  postgoods = await _goodserver.GetPagesAsync(new PageParm()
+                      { limit = 16, page = Convert.ToInt16(pages), IdList = catLong });
+              }
+            }
 
-                ViewData["Title"] = CatName + " - " + await _sysconfigsserver.GetKeyAsync("Title");
+            goods = postgoods.data.Items.MapTo<List<goodsViewModel>>();
+            GoodsCount = postgoods.data.TotalItems;
+            TotalPages = postgoods.data.TotalPages;
+            CurrentPage = postgoods.data.CurrentPage;
+            ViewData["Title"] = CatName + " - " + await _sysconfigsserver.GetKeyAsync("Title");
 
-                return null;
+            return null;
         }
 
 
@@ -117,12 +120,5 @@ namespace lxsShop.Web.Pages.catalog
 
             return result;
         }
-
-
-       
-
     }
-
-
-
 }

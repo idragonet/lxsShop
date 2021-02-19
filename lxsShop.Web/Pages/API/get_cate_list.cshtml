@@ -8,11 +8,19 @@
     @{
         if (Model.goods_cats_top1.Any())
         {
+            int cate =0;
             foreach (var item in Model.goods_cats_top1)
             {
+
+                cate = ++cate;
+                if (cate == 8)
+                {
+                    cate = 1;
+                }
+
         <li class="fa-cate-list-li">
             <div class="fa-cate-list-li-f">
-                <h3><a class="fa-nav-cate-1" href="/catalog/@item.catId/"><span>@item.catName</span></a></h3>
+                <h3><a class="fa-nav-cate-@cate" href="/catalog/@item.catId/"><span>@item.catName</span></a></h3>
                 <p>
 
                     @{
@@ -51,17 +59,8 @@
                         <div class="clear"></div>
                     </dd>
 
-                    <dd class="fa-cate-list-img">
-                        <a href="/catalog/zhixiandg-340/" title="直线导轨"><img src="/uploads/202101/5df1e03f619c8.jpg" alt="直线导轨"></a>
-                        <a href="/catalog/298/" title="滚珠丝杠"><img src="/uploads/202101/5a4df0fe771f7.jpg" alt="滚珠丝杠"></a>
-                        <a href="/catalog/376/" title="模组滑台电缸"><img src="/uploads/202101/5e1ecbe0aea46.jpg" alt="模组滑台电缸"></a>
-                        <a href="/catalog/368/" title="丝杆支撑座"><img src="/uploads/202101/5e1bc4da5905a.jpg" alt="丝杆支撑座"></a>
-                        <a href="/catalog/326/" title="电机座"><img src="/Public/upload/fa_category/2019/10-12/5da1762c7df73.jpg" alt="电机座"></a>
-                        <a href="/catalog/320/" title="梯形丝杠"><img src="/Public/upload/fa_category/2020/01-04/5e100b45b75dc.jpg" alt="梯形丝杠"></a>
-                        <a href="/catalog/385/" title="滚珠花键"><img src="/Public/upload/fa_category/2020/02-26/5e55dcf8c864c.jpg" alt="滚珠花键"></a>
-                        <a href="/catalog/362/" title=" 直线轴承"><img src="/Public/upload/fa_category/2020/01-06/5e129e998853a.jpg" alt=" 直线轴承"></a>
-                        <a href="/catalog/360/" title="钢珠衬套"><img src="/Public/upload/fa_category/2020/01-04/5e0fe7bf80153.jpg" alt="钢珠衬套"></a>
-                        <a href="/catalog/108/" title="无油衬套"><img src="/Public/upload/fa_category/2018/03-01/5a97d2a04bac6.jpg" alt="无油衬套"></a>
+                    @*<dd class="fa-cate-list-img">
+                      
                         <a href="/catalog/109/" title="无油垫圈垫片"><img src="/Public/upload/fa_category/2018/03-01/5a97d32f85d84.jpg" alt="无油垫圈垫片"></a>
                         <a href="/catalog/149/" title="自润滑铜滑板"><img src="/Public/upload/fa_category/2018/03-06/5a9e4cfc99c6a.jpg" alt="自润滑铜滑板"></a>
                         <a href="/catalog/4/" title="线性导向轴"><img src="/Public/upload/fa_category/2017/08-08/598910c715e97.jpg" alt="线性导向轴"></a>
@@ -71,7 +70,7 @@
                         <a href="/catalog/329/" title="交叉滚子导轨滑台"><img src="/Public/upload/fa_category/2019/11-02/5dbd15590bb45.jpg" alt="交叉滚子导轨滑台"></a>
                         <a href="/catalog/346/" title="直线电机"><img src="/Public/upload/fa_category/2019/12-19/5dfacdfa38939.jpg" alt="直线电机"></a>
                         <div class="clear"></div>
-                    </dd>
+                    </dd>*@
                 </dl>
             </div>
             
