@@ -80,23 +80,18 @@ namespace lxsShop.Web.Pages.catalog
 
             var postgoods = await _goodserver.GetPagesAsync(new PageParm()
                 {limit = 16, page = Convert.ToInt16(pages), attr = ID, where = "goodsCatId"});
-          
-            if (postgoods.data.Items.Count > 0)
-            {
-                CatName = postgoods.data.Items[0].catName;
-            }
-            else //类别是大类  
-            {
 
-              var catList =  goods_cats.Where(t => t.catId == ID && t.parentId==0).ToList();
-              if (catList.Count > 0)
-              {
-                  CatName = catList[0].catName;
-                  catList = goods_cats.Where(t => t.parentId == ID).ToList();
-                  var catLong = catList.Select(t => t.catId).ToList();
-                  postgoods = await _goodserver.GetPagesAsync(new PageParm()
-                      { limit = 16, page = Convert.ToInt16(pages), IdList = catLong });
-              }
+            var catList = goods_cats.Where(t => t.catId == ID).ToList();
+            CatName = catList[0].catName;
+
+            catList = goods_cats.Where(t => t.catId == ID && t.parentId == 0).ToList();
+            if (catList.Count > 0)
+            {
+                CatName = catList[0].catName;
+                catList = goods_cats.Where(t => t.parentId == ID).ToList();
+                var catLong = catList.Select(t => t.catId).ToList();
+                postgoods = await _goodserver.GetPagesAsync(new PageParm()
+                    {limit = 16, page = Convert.ToInt16(pages), IdList = catLong});
             }
 
             goods = postgoods.data.Items.MapTo<List<goodsViewModel>>();
