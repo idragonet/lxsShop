@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO.Compression;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -16,8 +17,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
 namespace lxsShop.Web
@@ -28,12 +31,38 @@ namespace lxsShop.Web
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+
+            services.AddRazorPages();
+
+            services.Configure<BrotliCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Optimal;
+            }).Configure<GzipCompressionProviderOptions>(options =>
+            {
+                options.Level = CompressionLevel.Optimal;
+            }).AddResponseCompression(options =>
+            {
+                options.EnableForHttps = true;
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[]
+                {
+                    "text/html; charset=utf-8",
+                    "application/xhtml+xml",
+                    "application/atom+xml",
+                    "image/svg+xml"
+                });
+            });
+            services.AddControllers();
+
+
             // FineUI 和 MVC 服务
             services.AddFineUI(Configuration);
             services.AddMvc(options => {
@@ -90,8 +119,10 @@ namespace lxsShop.Web
         }
 
      // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseResponseCompression();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -115,18 +146,27 @@ namespace lxsShop.Web
             //使用身份验证服务  注意这句话要放在app.UseMvc的前面
             app.UseAuthentication();
 
-            app.UseMvc(routes =>
+            /*app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "area",
                     template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
                  /*routes.MapRoute(
                      name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");*/
+                    template: "{controller=Home}/{action=Index}/{id?}");#1#
+            });*/
+
+ 
+
+            app.UseRouting();
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute("default", "{action=Index}/{id?}");
+                endpoints.MapControllerRoute("area", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
 
 
-           
         }
     }
 }

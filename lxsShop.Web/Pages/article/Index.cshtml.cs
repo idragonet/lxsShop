@@ -6,7 +6,7 @@ using Entitys;
 using lxsShop.NewServices;
 using lxsShop.NewServices.Interfaces;
 using lxsShop.ViewModel;
-using Microsoft.AspNetCore.Hosting.Internal;
+// using Microsoft.AspNetCore.Hosting.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
