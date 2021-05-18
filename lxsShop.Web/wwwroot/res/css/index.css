@@ -24,10 +24,10 @@
 }
 
 #header .icontopaction .f-btn-icon {
-    width: 18px;
-    font-size: 18px;
-    line-height: 18px;
-    height: 18px;
+    width: 22px;
+    font-size: 22px;
+    line-height: 22px;
+    height: 22px;
 }
 
 #header .icontopaction .f-btn-text {
@@ -37,17 +37,13 @@
 }
 
 
-    #header .f-btn.icononlyaction {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
+#header .icononlyaction .f-btn-icon,
+#header .icononlyaction .f-btn-text {
+    font-size: 30px;
+    line-height: 42px;
+    height: 42px;
+}
 
-    #header .icononlyaction .f-btn-icon,
-    #header .icononlyaction .f-btn-text {
-        font-size: 18px;
-        line-height: 38px;
-        height: 38px;
-    }
 
 #header .userpicaction .f-btn-icon {
     border-radius: 50%;
@@ -85,11 +81,4 @@ ul.list {
 
 .tabtool.viewcode .f-icon {
     font-weight: bold;
-}
-
-
-
-#header .btn-apply-trial > .f-badge {
-    top: 16px;
-    right: 6px;
 }

@@ -20,7 +20,7 @@
             .Items(
                 F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableCheckBoxSelect(false).DataIDField("catId").DataTextField("catName")
                     .Columns(
-                        F.RowNumberField().EnablePagingNumber(true),
+                        // F.RowNumberField().EnablePagingNumber(false),
                         F.RenderFieldFor(m => m.catId, true).Width(80),
                         F.RenderFieldFor(m => m.catName, true).Width(280),
                         F.RenderFieldFor(m => m.CreateDate, true).Width(200).FieldFormat("yyyy-MM-dd HH:mm"),

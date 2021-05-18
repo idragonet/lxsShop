@@ -6,9 +6,15 @@
 @using Masuit.Tools.Reflection
 @model IEnumerable<lxsShop.ViewModel.bannerViewModel>
 
+
 @section head {
 
-
+    <style>
+        .f-grid-cell-fineui_0 img.f-grid-imagefield {
+            /* width: 30px; */
+            height: 30px;
+        }
+    </style>
 
 }
 
@@ -21,12 +27,12 @@
             .Items(
                 F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableCheckBoxSelect(false).DataIDField("ID").DataTextField("Img")
                     .Columns(
-                     
+
                         F.RenderFieldFor(m => m.ID, true).Hidden(true).Width(80),
                         F.RenderFieldFor(m => m.BannerOrder, true).Width(170),
                         F.RenderFieldFor(m => m.Title, true).Width(200),
                         F.RenderFieldFor(m => m.BackgroundColor, true).Width(150),
-                      
+
                         F.RenderFieldFor(m => m.Img, true).Width(200).Hidden(true),
                         F.RenderField().HeaderText("滚动图片").EnableHeaderMenu(false).EnableColumnHide(false).DataField("Img").RendererFunction("renderLogo").Width(100),
                         F.RenderFieldFor(m => m.URL, true).Width(480),

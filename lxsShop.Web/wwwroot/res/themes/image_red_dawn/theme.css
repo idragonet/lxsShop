@@ -213,25 +213,25 @@
     background-color: #9E0062;
     border-color: #9E0062;
 }
-.f-radiʱobutton:after {
-    background-color: #9E0062;
+.f-radiobutton:after {
+    background-color: #B06101;
 }
 .f-radiobutton.f-checked {
     border-color: #9E0062;
 }
 
-.f-state-focus .f-checkbox,
-.f-state-focus .f-radiobutton {
+.f-state-focus.f-checkbox,
+.f-state-focus.f-radiobutton {
     border-color: #ce0092;
 }
-.f-state-focus .f-checkbox.f-checked {
+.f-state-focus.f-checkbox.f-checked {
     border-color: #ce0092;
     background-color: #ce0092;
 }
-.f-state-focus .f-radiobutton.f-checked {
+.f-state-focus.f-radiobutton.f-checked {
     border-color: #ce0092;
 }
-.f-state-focus .f-radiobutton.f-checked:after {
+.f-state-focus.f-radiobutton.f-checked:after {
     background-color: #ce0092;
 }
 
@@ -477,14 +477,9 @@
 
 
 /* Special - progressbar */
-.f-progressbar {
-    border-width: 0;
-    background-color: #eee;
+.f-progressbar .f-progressbar-value {
+    background-color: #9E0062;
 }
-
-    .f-progressbar .f-progressbar-value {
-        background-color: #9E0062;
-    }
 
 .f-grid-row.f-grid-row-newadded > .f-grid-cell:first-child > .f-grid-cell-inner:after {
 	color: #9E0062;
@@ -497,4 +492,33 @@
 }
 .f-grid-show-selected-cell .f-grid-cell-selected .f-icon {
 	color: #9E0062;
+}
+
+
+
+.f-rate-star-half .f-rate-star-first .f-rate-star-icon,
+.f-rate-star-full .f-rate-star-first .f-rate-star-icon,
+.f-rate-star-full .f-rate-star-second .f-rate-star-icon {
+	color: #9E0062;
+}
+
+
+
+
+.f-calendar-day.f-state-hover,
+.f-calendar-day.f-state-active,
+.f-calendar-float td a.f-state-hover,
+.f-calendar-float td a.f-state-active {
+	border-color: transparent;
+	background-color: #f6f6f6;
+}
+.f-calendar-float td a.f-state-active {
+	background-color: #eee;
+}
+.f-calendar-day.f-state-active {
+	background-color: #9E0062;
+	color: #fff;
+}
+.f-calendar-day.f-state-highlight {
+	border-color: #DEA7C9;
 }

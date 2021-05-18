@@ -220,18 +220,18 @@
     border-color: #B06101;
 }
 
-.f-state-focus .f-checkbox,
-.f-state-focus .f-radiobutton {
+.f-state-focus.f-checkbox,
+.f-state-focus.f-radiobutton {
     border-color: #d08101;
 }
-.f-state-focus .f-checkbox.f-checked {
+.f-state-focus.f-checkbox.f-checked {
     border-color: #d08101;
     background-color: #d08101;
 }
-.f-state-focus .f-radiobutton.f-checked {
+.f-state-focus.f-radiobutton.f-checked {
     border-color: #d08101;
 }
-.f-state-focus .f-radiobutton.f-checked:after {
+.f-state-focus.f-radiobutton.f-checked:after {
     background-color: #d08101;
 }
 
@@ -479,14 +479,9 @@
 
 
 /* Special - progressbar */
-.f-progressbar {
-    border-width: 0;
-    background-color: #eee;
+.f-progressbar .f-progressbar-value {
+    background-color: #B06101;
 }
-
-    .f-progressbar .f-progressbar-value {
-        background-color: #B06101;
-    }
 
 
 .f-grid-row.f-grid-row-newadded > .f-grid-cell:first-child > .f-grid-cell-inner:after {
@@ -500,4 +495,32 @@
 }
 .f-grid-show-selected-cell .f-grid-cell-selected .f-icon {
 	color: #B06101;
+}
+
+
+.f-rate-star-half .f-rate-star-first .f-rate-star-icon,
+.f-rate-star-full .f-rate-star-first .f-rate-star-icon,
+.f-rate-star-full .f-rate-star-second .f-rate-star-icon {
+	color: #B06101;
+}
+
+
+
+
+.f-calendar-day.f-state-hover,
+.f-calendar-day.f-state-active,
+.f-calendar-float td a.f-state-hover,
+.f-calendar-float td a.f-state-active {
+	border-color: transparent;
+	background-color: #f6f6f6;
+}
+.f-calendar-float td a.f-state-active {
+	background-color: #eee;
+}
+.f-calendar-day.f-state-active {
+	background-color: #B06101;
+	color: #fff;
+}
+.f-calendar-day.f-state-highlight {
+	border-color: #D4AA76;
 }

@@ -215,10 +215,10 @@
 	background-color: #fcfcfc;
 }
 
-.f-widget-header.f-mainheader {
+.f-mainheader {
 	background-color: #2f6505;
 }
-.f-widget-header.f-subheader {
+.f-subheader {
 
 }
 
@@ -339,4 +339,12 @@ body.f-body-bgcolor {
 }
 .mainpanel .bodyregion .centerregion .f-tabstrip-header {
     border-width: 0;
+}
+
+
+
+.f-rate-star-half .f-rate-star-first .f-rate-star-icon,
+.f-rate-star-full .f-rate-star-first .f-rate-star-icon,
+.f-rate-star-full .f-rate-star-second .f-rate-star-icon {
+	color: #3a8104;
 }

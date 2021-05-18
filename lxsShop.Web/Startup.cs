@@ -38,7 +38,6 @@ namespace lxsShop.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-
             services.AddRazorPages();
 
             services.Configure<BrotliCompressionProviderOptions>(options =>
@@ -156,14 +155,26 @@ namespace lxsShop.Web
                     template: "{controller=Home}/{action=Index}/{id?}");#1#
             });*/
 
- 
-
+            app.UseAuthentication();
             app.UseRouting();
+          
+          
+            app.UseRouting();
+            app.UseAuthorization();
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
+              
+
+                endpoints.MapControllerRoute(
+                        name: "Areas",
+                        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+    
                 endpoints.MapControllerRoute("default", "{action=Index}/{id?}");
-                endpoints.MapControllerRoute("area", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+
+                //  endpoints.MapControllerRoute("area", "{area:exists}/{controller=Home}/{action=Index}/{id?}");
             });
 
 
