@@ -1,5 +1,5 @@
 ﻿@using lxsShop.NewServices.Interfaces
-@inject Isys_configsServer _sysconfigsserver
+@inject  Isys_configsServer _sysconfigsserver
 @{
     var copyright = await _sysconfigsserver.GetKeyAsync("Copyright");
 }

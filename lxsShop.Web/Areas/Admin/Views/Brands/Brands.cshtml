@@ -9,7 +9,7 @@
 @section head {
 
     <style>
-        .f-grid-cell-fineui_1 img.f-grid-imagefield {
+        .f-grid-cell-brandImg img.f-grid-imagefield {
             /* width: 30px; */
             height: 30px;
         }
@@ -29,7 +29,6 @@
                         // F.RowNumberField().EnablePagingNumber(false),
                         F.RenderFieldFor(m => m.brandId, true).Width(80),
                         F.RenderFieldFor(m => m.brandName, true).Width(170),
-                        F.RenderFieldFor(m => m.brandImg, true).Width(200).Hidden(true),
                         F.RenderField().HeaderText("LOGO").EnableHeaderMenu(false).EnableColumnHide(false).DataField("brandImg").RendererFunction("renderLogo").Width(280),
 
                                 F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).RendererFunction("renderActionEdit").Width(50),

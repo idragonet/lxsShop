@@ -13,8 +13,8 @@
     <meta name="description" content="@Html.Raw(ViewData["description"])" />
 
     <link rel="stylesheet" href="/Static/css/public.min.css" type="text/css">
-    @RenderSection("Css", required: false)
-   
+    @await RenderSectionAsync("Css", required: false)
+
     <link rel="stylesheet" href="/Static/css/layer.css" id="layuicss-skinlayercss">
 </head>
 
@@ -22,13 +22,13 @@
 
 
 <body>
-    @Html.Partial("Header")
+    @await Html.PartialAsync("Header")
 
     @RenderBody()
 
 
 
-    @Html.Partial("Footer")
-    @RenderSection("Scripts", required: false)
+    @await Html.PartialAsync("Footer")
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

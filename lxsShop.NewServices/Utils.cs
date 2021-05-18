@@ -735,19 +735,7 @@ namespace lxsShop.NewServices
         }
         #endregion
 
-        /// <summary>
-        /// 时间戳转换为日期（时间戳单位秒）
-        /// </summary>
-        /// <param name="TimeStamp"></param>
-        /// <returns></returns>
-        public static DateTime ConvertToDateTime(long timeStamp)
-        {
-            var dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-            TimeSpan toNow = new TimeSpan(timeStamp);
-            return dtStart.Add(toNow);
-            //var start = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
-            //return start.AddMilliseconds(timeStamp).AddHours(8);
-        }
+     
         /// <summary>
         /// 日期转换为时间戳（时间戳单位秒）
         /// </summary>

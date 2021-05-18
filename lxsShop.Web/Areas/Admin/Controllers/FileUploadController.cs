@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using FineUICore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 
 namespace lxsShop.Web.Areas.Admin.Controllers
 {
@@ -15,9 +16,9 @@ namespace lxsShop.Web.Areas.Admin.Controllers
     [Area("Admin")]
     public class FileUploadController : Controller
     {
-        private IHostingEnvironment hostingEnv;
+        private IHostEnvironment hostingEnv;
 
-        public FileUploadController(IHostingEnvironment env)
+        public FileUploadController(IHostEnvironment env)
         {
             hostingEnv = env;
         }
