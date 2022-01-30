@@ -78,6 +78,8 @@ namespace lxsShop.Web.Views.Home
             ViewData["banner_bg"] = banner_bg;
 
 
+            #region 首页加载2个类别
+
             var goodPageParm = new PageParm();
             goodPageParm.limit = 10;
             goodPageParm.order = "DESC";
@@ -90,6 +92,10 @@ namespace lxsShop.Web.Views.Home
             goodPageParm.attr = 3;
             var goodspost_3 = await _goodserver.GetPagesAsync(goodPageParm);
             goodsList_cat3 = goodspost_3.data.Items;
+            
+
+            #endregion
+
             /*Types = where;
             pageIndex = page;
             Limit = limit;

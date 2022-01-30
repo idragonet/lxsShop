@@ -92,5 +92,15 @@ namespace Entitys
         /// goodsCatId
         /// </summary>
         public System.Int64 goodsCatId { get { return this._goodsCatId; } set { this._goodsCatId = value; } }
+
+
+
+        private System.Int64 _hcmroID;
+        /// <summary>
+        /// hcmroID
+        /// </summary>
+        public System.Int64 hcmroID { get { return this._hcmroID; } set { this._hcmroID = value; } }
+
+        
     }
 }

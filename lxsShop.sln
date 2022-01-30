@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29709.97
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Web", "lxsShop.Web\lxsShop.Web.csproj", "{1039E139-926A-4C0A-AB4B-CEC9B8A7D1C0}"
 EndProject
@@ -28,6 +28,12 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05.Common", "05.Common", "{B722BA88-DFEE-439D-B7BF-0A60C7263951}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lxsShop.Common", "lxsShop.Common\lxsShop.Common.csproj", "{1A389F48-21B5-4E2C-8077-04018BDAF03E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06.ShopSpider", "06.ShopSpider", "{F4051D31-BAE1-4E0D-8437-CD70BF2FCF1B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopSpider", "ShopSpider\ShopSpider.csproj", "{691AC5B1-EC4F-427F-9229-352F587D6CDB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleAppShopSpiderTest", "ConsoleAppShopSpiderTest\ConsoleAppShopSpiderTest.csproj", "{67BC0B23-F640-454D-89E4-F9DA46B4BE6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +69,14 @@ Global
 		{1A389F48-21B5-4E2C-8077-04018BDAF03E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A389F48-21B5-4E2C-8077-04018BDAF03E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A389F48-21B5-4E2C-8077-04018BDAF03E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{691AC5B1-EC4F-427F-9229-352F587D6CDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{691AC5B1-EC4F-427F-9229-352F587D6CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{691AC5B1-EC4F-427F-9229-352F587D6CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{691AC5B1-EC4F-427F-9229-352F587D6CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67BC0B23-F640-454D-89E4-F9DA46B4BE6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67BC0B23-F640-454D-89E4-F9DA46B4BE6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67BC0B23-F640-454D-89E4-F9DA46B4BE6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67BC0B23-F640-454D-89E4-F9DA46B4BE6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,6 +89,8 @@ Global
 		{8D551E1F-29C3-4E3A-B46B-C0ED6FEDE94F} = {BA372B41-38F2-4333-BB91-7B5DC2F092E0}
 		{2912E4B6-879C-41E1-A754-A7DE691E5162} = {07B7DCD5-6C2E-4802-B479-3A8AEAB5DC16}
 		{1A389F48-21B5-4E2C-8077-04018BDAF03E} = {B722BA88-DFEE-439D-B7BF-0A60C7263951}
+		{691AC5B1-EC4F-427F-9229-352F587D6CDB} = {F4051D31-BAE1-4E0D-8437-CD70BF2FCF1B}
+		{67BC0B23-F640-454D-89E4-F9DA46B4BE6C} = {F4051D31-BAE1-4E0D-8437-CD70BF2FCF1B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28DEAC29-91A4-4E44-9A40-863BA41DB610}

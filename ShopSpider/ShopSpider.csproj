@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\lxsShop.Common\lxsShop.Common.csproj" />
+    <ProjectReference Include="..\lxsShop.Entitys\lxsShop.Entitys.csproj" />
+    <ProjectReference Include="..\lxsShop.NewServices\lxsShop.NewServices.csproj" />
+    <ProjectReference Include="..\lxsShop.ViewModel\lxsShop.ViewModel.csproj" />
+  </ItemGroup>
+
+</Project>

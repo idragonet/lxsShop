@@ -62,5 +62,16 @@ namespace Entitys
         /// catNameShort
         /// </summary>
         public System.String catNameShort { get { return this._catNameShort; } set { this._catNameShort = value; } }
+
+
+
+        private System.Int64 _hcmroTypeID;
+        /// <summary>
+        /// hcmroTypeID
+        /// </summary>
+        public System.Int64 hcmroTypeID { get { return this._hcmroTypeID; } set { this._hcmroTypeID = value; } }
+
+
+        
     }
 }

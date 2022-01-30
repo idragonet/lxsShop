@@ -1,10 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Entitys;
+using lxsShop.Common.ImgHelper;
 using lxsShop.NewServices.IBaseServices;
 using lxsShop.NewServices.Interfaces;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Configuration;
 
 namespace lxsShop.NewServices.Implements
 {
@@ -132,6 +136,11 @@ namespace lxsShop.NewServices.Implements
             }
             return res;
         }
+
+
+
+
+        
 
 
     }

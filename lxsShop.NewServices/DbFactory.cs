@@ -16,6 +16,7 @@ namespace lxsShop.NewServices
     {
 
         public SqlSugarClient Db; //用来处理事务多表查询和复杂的操作
+        public SqlSugarClient DbMysql; //用来处理事务多表查询和复杂的操作
 
         private static IConfiguration configure = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory())
@@ -26,7 +27,7 @@ namespace lxsShop.NewServices
 
         private static readonly string _connectionstring = string.Format(configure["connectionStrings:Conn"], directory);
 
-
+        private static readonly string _connectionstringMysql = configure["connectionStrings:ConnMysql"];
         //private static readonly string _connectionstring = configure["connectionStrings:Conn"];
 
         // public BaseHelper(string connectionString)
@@ -40,6 +41,20 @@ namespace lxsShop.NewServices
                     IsAutoCloseConnection = true,//自动释放数据务，如果存在事务，在事务结束后释放
                     InitKeyType = InitKeyType.Attribute, //从实体特性中读取主键自增列信息
                     ConfigureExternalServices=new ConfigureExternalServices()
+                    {
+                        DataInfoCacheService = new SugarCache()
+                    }
+                });
+
+
+            DbMysql = new SqlSugarClient(
+                new ConnectionConfig()
+                {
+                    ConnectionString = _connectionstringMysql,
+                    DbType = DbType.MySql,//设置数据库类型
+                    IsAutoCloseConnection = true,//自动释放数据务，如果存在事务，在事务结束后释放
+                    InitKeyType = InitKeyType.Attribute, //从实体特性中读取主键自增列信息
+                    ConfigureExternalServices = new ConfigureExternalServices()
                     {
                         DataInfoCacheService = new SugarCache()
                     }
@@ -61,6 +76,11 @@ namespace lxsShop.NewServices
         public SqlSugarClient GetDb()
         {
             return Db;
+        }
+
+        public SqlSugarClient GetDbMysql()
+        {
+            return DbMysql;
         }
 
         public bool InsertInto<T>(T obj) where T : class, new()

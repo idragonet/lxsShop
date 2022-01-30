@@ -4,7 +4,6 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Masuit.Tools.Logging;
-using Microsoft.Azure.KeyVault.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualBasic.CompilerServices;

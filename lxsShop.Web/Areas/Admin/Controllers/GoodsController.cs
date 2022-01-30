@@ -228,7 +228,10 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                     }
                     else
                     {
-                        string fileExt = Path.GetExtension(filePhoto.FileName);
+
+                        goods.goodsImg = UtilsShop.SavePic(filePhoto, PageContext.MapWebPath("~/uploads/"));
+
+                        /*string fileExt = Path.GetExtension(filePhoto.FileName);
                         string fileDir = Path.Combine(PageContext.MapWebPath("~/uploads/"),
                             DateTime.Now.ToString("yyyyMM"));
                         if (!Directory.Exists(fileDir))
@@ -249,7 +252,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                         new ThumbnailImage().MakeThumbnail(filePath, Path.Combine(fileDir, newFileName300), 300, 300);
                         new ThumbnailImage().MakeThumbnail(filePath, Path.Combine(fileDir, newFileName100), 100, 100);
 
-                        goods.goodsImg = "/" + DateTime.Now.ToString("yyyyMM") + "/" + newFileName;
+                        goods.goodsImg = "/" + DateTime.Now.ToString("yyyyMM") + "/" + newFileName;*/
                     }
                 }
 
