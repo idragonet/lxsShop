@@ -18,6 +18,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Hangfire" Version="1.7.28" />
+    <PackageReference Include="Hangfire.Core" Version="1.7.28" />
+    <PackageReference Include="Hangfire.MemoryStorage" Version="1.7.0" />
+    <PackageReference Include="Masuit.Tools.Core" Version="2.4.7.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\ShopSpider\ShopSpider.csproj" />
   </ItemGroup>
 

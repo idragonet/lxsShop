@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Entitys;
 using lxsShop.Common.ImgHelper;
 using lxsShop.NewServices;
+using Masuit.Tools.Logging;
 using Microsoft.Extensions.Configuration;
 
 namespace ShopSpider
@@ -19,6 +20,8 @@ namespace ShopSpider
 
         public static async Task<bool> run()
         {
+            LogManager.Info("开始执行：ShopSpider.run" );
+
             var configure = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory()).AddJsonFile("appsettings.json").Build();
             string readPicspath = configure["readPicspath"];
             if (string.IsNullOrEmpty(readPicspath)) new Exception("请在appsettings.json设置爬虫图片路径：readPicspath");
@@ -58,13 +61,16 @@ namespace ShopSpider
                             newgood.goodsImg = goodsImg;
                             newgood.goodsCatId = goodsCats.catId;
                             await db.Insertable(newgood).ExecuteCommandAsync();
+
+                            LogManager.Info("成功插入商品，ID："+ mroShop.ID);
+
                         }
                     }
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                LogManager.Info("插入商品异常，ID：" + e.ToString());
                 return false;
             }
 
