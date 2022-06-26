@@ -27,11 +27,11 @@ namespace lxsShop.Web.Pages.API
 
         public async Task OnGetAsync()
         {
-            var post = await _goodscatsserver.GetPagesAsync(new PageParm() { limit = 12,attr =0,where = "parentId" });
-            goods_cats_top1 = post.data.Items.MapTo<List<goods_catsViewModel>>();
+            var post = await _goodscatsserver.GetPagesAsync(new PageParm() { limit = 14,attr =0,where = "parentId" });
+            goods_cats_top1 = post.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x=>x.catSort).ToList();
 
-            var post2 = await _goodscatsserver.GetPagesAsync(new PageParm() { limit = 100});
-            goods_cats = post2.data.Items.MapTo<List<goods_catsViewModel>>();
+            var post2 = await _goodscatsserver.GetPagesAsync(new PageParm() { limit = 180});
+            goods_cats = post2.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x => x.catSort).ToList();
 
         }
     }
