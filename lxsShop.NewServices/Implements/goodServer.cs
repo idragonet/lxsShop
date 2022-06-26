@@ -8,6 +8,7 @@ using lxsShop.NewServices.Interfaces;
 using lxsShop.ViewModel;
 using Microsoft.Extensions.Logging;
 using SqlSugar;
+using SqlSugar.Extensions;
 
 namespace lxsShop.NewServices.Implements
 {
