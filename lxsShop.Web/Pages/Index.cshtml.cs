@@ -85,11 +85,11 @@ namespace lxsShop.Web.Views.Home
             goodPageParm.order = "DESC";
             goodPageParm.field = "CreateDate";
             goodPageParm.where = "parentId";
-            goodPageParm.attr = 2;
+            goodPageParm.attr = 93; //类别ID
             var  goodspost_2 = await _goodserver.GetPagesAsync(goodPageParm);
             goodsList_cat2 = goodspost_2.data.Items;
 
-            goodPageParm.attr = 3;
+            goodPageParm.attr = 100;
             var goodspost_3 = await _goodserver.GetPagesAsync(goodPageParm);
             goodsList_cat3 = goodspost_3.data.Items;
             

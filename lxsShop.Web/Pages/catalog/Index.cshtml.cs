@@ -71,11 +71,12 @@ namespace lxsShop.Web.Pages.catalog
 
             纸质产品目录 = await _sysconfigsserver.GetKeyAsync("纸质产品目录");
 
-            var post = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 20, attr = 0, where = "parentId"});
-            goods_cats_top1 = post.data.Items.MapTo<List<goods_catsViewModel>>();
+            var post = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 40, attr = 0, where = "parentId"});
+            goods_cats_top1 = post.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x => x.catSort).ToList(); 
+            //.OrderByDescending(x=>x.catSort).ToList();
 
-            var post2 = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 200});
-            goods_cats = post2.data.Items.MapTo<List<goods_catsViewModel>>();
+            var post2 = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 300});
+            goods_cats = post2.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x => x.catSort).ToList(); ;
 
 
             var postgoods = await _goodserver.GetPagesAsync(new PageParm()

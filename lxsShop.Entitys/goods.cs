@@ -101,6 +101,13 @@ namespace Entitys
         /// </summary>
         public System.Int64 hcmroID { get { return this._hcmroID; } set { this._hcmroID = value; } }
 
-        
+
+
+        private System.String _CopyURL;
+        /// <summary>
+        /// CopyURL
+        /// </summary>
+        public System.String CopyURL { get { return this._CopyURL; } set { this._CopyURL = value; } }
+
     }
 }

@@ -13,11 +13,12 @@ namespace ConsoleAppShopSpiderTest
         {
 
 
-          //  await ShopSpider.ShopSpider.run();
-          //  Console.WriteLine("保存商品完成!");
+            await Horb_ShopSpider.Horb_ShopSpider.run();
+            Console.WriteLine("保存商品完成!");
 
 
 
+            /*
             GlobalConfiguration.Configuration
                 .UseColouredConsoleLogProvider()
                 .UseMemoryStorage();
@@ -35,6 +36,7 @@ namespace ConsoleAppShopSpiderTest
                 Console.WriteLine("Hangfire Server started. Press any key to exit...");
                 Console.ReadLine();
             }
+            */
 
 
 
