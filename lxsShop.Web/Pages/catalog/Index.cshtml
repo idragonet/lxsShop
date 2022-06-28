@@ -1,4 +1,4 @@
-﻿@page "{ID:int=11}/{pages:int?}"
+﻿@page "{ID:int=95}/{pages:int?}" 
 @model lxsShop.Web.Pages.catalog.IndexModel
 @{
     Layout = "Shared/_Layout";
@@ -32,7 +32,7 @@
                         }
                         else  //是大类 
                         {
-                            select_top1 = Model.goods_cats.Where(t => t.parentId == Model.ID).ToList();
+                            select_top1 = Model.goods_cats.Where(t => t.parentId == Model.ID).OrderByDescending(x=>x.catSort).ToList();
                             if (select_top1.Count > 0 && item.catId== select_top1[0].parentId)
                             {
                                 show= "class=show style =display:block;"; //是大类 需要展开添加： style="display: block;"

@@ -51,11 +51,12 @@ namespace lxsShop.Web.Pages.fa
                 ViewData["Title"] = post.data.Items[0].goodsName + " - " + post.data.Items[0].catName + " - " + await _sysconfigsserver.GetKeyAsync("Title");
                 goods = post.data.Items[0];
 
-                var postcat = await _goodscatsserver.GetPagesAsync(new PageParm() { limit = 20, attr =Convert.ToInt32(post.data.Items[0].goodsCatId), where = "catid" });
+                //通过商品归属二级类别ID获取到一级类别ID
+                var postcat = await _goodscatsserver.GetPagesAsync(new PageParm() { limit = 1, attr =Convert.ToInt32(post.data.Items[0].goodsCatId), where = "catid" });
                 if (postcat.data.Items.Count > 0)
                 {
                     var parentId = postcat.data.Items[0].parentId;
-                    postcat = await _goodscatsserver.GetPagesAsync(new PageParm() { limit = 20, attr = Convert.ToInt32(parentId), where = "parentId" });
+                    postcat = await _goodscatsserver.GetPagesAsync(new PageParm() { limit = 1, attr = Convert.ToInt32(parentId), where = "catid" });
                     if (postcat.data.Items.Count > 0)
                     {
                         TopcatName= postcat.data.Items[0].catName;

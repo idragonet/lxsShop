@@ -71,10 +71,17 @@ namespace lxsShop.NewServices.Implements
             var res = new ApiResult<Page<goods_cats>>() { statusCode = (int)ApiEnum.Error };
             try
             {
+               
                 if (!string.IsNullOrEmpty(parm.where) && parm.where == "getgoodscat") //通过类别集合ID查询类别
                 {
                     res.data = await Db.Queryable<goods_cats>()
                         .In(it => it.catId, parm.IdList)
+                        .ToPageAsync(parm.page, parm.limit); ;
+                }
+                else if(!string.IsNullOrEmpty(parm.where) && parm.where == "catid") //通过商品归属二级类别ID获取到一级类别名称
+                {
+                    res.data = await Db.Queryable<goods_cats>()
+                        .Where(x=>x.catId==parm.attr)
                         .ToPageAsync(parm.page, parm.limit); ;
                 }
                 else
