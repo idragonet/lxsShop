@@ -20,7 +20,7 @@
         if (Model._articles!=null)
         {
             <h1 class="article-detail-title">@Model._articles.articleTitle</h1>
-            <p class="article-detail-info">发布日期:@Model._articles.CreateDate</p>
+            @* <p class="article-detail-info">发布日期:@Model._articles.CreateDate</p> *@
             <div class="article-detail-content">
                 @Html.Raw(Model._articles.articleContent)
             </div>

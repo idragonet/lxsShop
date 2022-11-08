@@ -4,7 +4,7 @@
     Layout = "Shared/_Layout";
 }
 @section Css{
-    <link rel="stylesheet" href="/Static/css/index.min.css" type="text/css">
+    <link rel="stylesheet" href="/Static/css/index.min.css?202211082" type="text/css">
 }
 
 
@@ -69,7 +69,7 @@
             <span><a href="/catalog/93/">更多 <i class="fa fa-arrow-right" aria-hidden="true"></i></a></span>
         </div>
         <div class="floor-con clearfix">
-            <div class="floor-img"><a href="/catalog/93/"><img src="/Static/images/index/f2.jpg" alt="人体静电防护"></a></div>
+            <div class="floor-img"><a href="/catalog/93/"><img src="/Static/images/index/f2.jpg?20221031" alt="人体静电防护"></a></div>
             <div class="floor-pro">
                 <ul>
 
@@ -115,11 +115,11 @@
         </div>
     </div><div class="index-floor floor-3 mt35 frame">
         <div class="floor-tit">
-            <h3>防静电耗材</h3>
+        <h3>净化室耗材</h3>
             <span><a href="/catalog/100/">更多 <i class="fa fa-arrow-right" aria-hidden="true"></i></a></span>
         </div>
         <div class="floor-con clearfix">
-            <div class="floor-img"><a href="/catalog/100/"><img src="/Static/images/index/f3.jpg" alt="防静电耗材"></a></div>
+        <div class="floor-img"><a href="/catalog/100/"><img src="/Static/images/index/f3.jpg?20221031" alt="净化室耗材"></a></div>
             <div class="floor-pro">
                 <ul>
 
@@ -168,7 +168,7 @@
     <div class="index-brand mt35 frame">
         <div class="product-tit">
             <h3 class="i-brand">品牌中心</h3>
-            <span><a href="/brand/">查看更多</a></span>
+            @* <span><a href="/brand/">查看更多</a></span> *@
         </div>
         <div class="index-brand-con">
 
@@ -180,9 +180,8 @@
                     {
                         foreach (var item in Model.brandsList)
                         {
-
                             @*<option value='@item.EnClassName' selected="selected">@item.ClassName</option>*@
-                            <li><a href="#"><img src="/uploads/Logo/@item.brandImg" alt="@item.brandName" /><span>@item.brandName</span></a></li>
+                        <li><a href="#"><img src="/uploads/Logo/@item.brandImg" alt="@item.brandName" /><span>@item.brandName</span></a></li>
                         }
                     }
                 }

@@ -6,6 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\uploads\202206\**" />
+    <Content Remove="wwwroot\uploads\202206\**" />
+    <EmbeddedResource Remove="wwwroot\uploads\202206\**" />
+    <None Remove="wwwroot\uploads\202206\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Remove="Controllers\HomeController.cs" />
     <Compile Remove="Extension\AutoMapperExtension.cs" />
   </ItemGroup>

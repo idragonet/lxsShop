@@ -153,7 +153,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 }
                 else
                 {
-                    banner.BackgroundColor = bannerview.BackgroundColor;
+                    banner.BackgroundColor = bannerview.BackgroundColor.Trim();
                 }
               
 
