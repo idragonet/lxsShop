@@ -11,11 +11,41 @@
             int cate =0;
             foreach (var item in Model.goods_cats_top1)
             {
-
-                cate = ++cate;
                 if (cate == 8)
                 {
                     cate = 1;
+                }else if (item.catId == 93 || item.catId == 100 || item.catId == 148) //静电图标
+                {
+                    cate = 2;
+                }else if (item.catId == 119 || item.catId == 139 ) //净化图标
+                {
+                    cate = 3;
+                }else if (item.catId == 155) //口罩图标
+                {
+                    cate = 7;
+                }
+                else if (item.catId == 154 || item.catId == 2 || item.catId == 3) //工具图标
+                {
+                    cate = 6;
+                }
+                else if (item.catId == 18) //仪器仪表
+                {
+                    cate = 8;
+                }
+                else if (item.catId == 26) //控制阀流体泵
+                {
+                    cate = 9;
+                }
+                else if (item.catId == 47) //电工
+                {
+                    cate = 10;
+                }  else if (item.catId == 53) //低压工具
+                {
+                    cate = 11;
+                }
+                if (item.catNameShort == "电动手动工具") //工具图标
+                {
+                    cate = 6;
                 }
 
         <li class="fa-cate-list-li">
