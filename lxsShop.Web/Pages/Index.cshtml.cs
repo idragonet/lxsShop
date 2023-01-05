@@ -89,7 +89,7 @@ namespace lxsShop.Web.Views.Home
             var  goodspost_2 = await _goodserver.GetPagesAsync(goodPageParm);
             goodsList_cat2 = goodspost_2.data.Items;
 
-            goodPageParm.attr = 100;
+            goodPageParm.attr = 119; //119净化室耗材
             var goodspost_3 = await _goodserver.GetPagesAsync(goodPageParm);
             goodsList_cat3 = goodspost_3.data.Items;
             
