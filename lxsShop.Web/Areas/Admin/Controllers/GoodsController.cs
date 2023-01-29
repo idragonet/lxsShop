@@ -468,7 +468,8 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
                 if (ret.statusCode == 200)
                 {
-                    ActiveWindow.HidePostBack();
+                   // ActiveWindow.HidePostBack();
+                    ActiveWindow.Hide();
                 }
                 else
                 {
