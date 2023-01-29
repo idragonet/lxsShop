@@ -26,10 +26,10 @@
 
     @(F.Panel().ID("Panel1").BodyPadding(5).ShowBorder(false).Layout(LayoutType.VBox).ShowHeader(true).Title("商品管理").IsViewPort(true)
         .Items(
-            F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false)
+            F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableTextSelection(true)
                 .EnableCheckBoxSelect(false).DataIDField("goodsId")
-                .AllowPaging(true).PageSize(20).IsDatabasePaging(true).OnPageIndexChanged(Url.Action("Grid1_PageIndexChangedOrSort"), "Grid1")
-                .AllowSorting(true).SortField(ViewBag.Grid1SortField).SortDirection(ViewBag.Grid1SortDirection).OnSort(Url.Action("Grid1_PageIndexChangedOrSort"), "Grid1")
+                            .AllowPaging(true).PageSize(50).IsDatabasePaging(true).OnPageIndexChanged(Url.Action("Grid1_PageIndexChangedOrSort"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()"))
+                .AllowSorting(true).SortField(ViewBag.Grid1SortField).SortDirection(ViewBag.Grid1SortDirection).OnSort(Url.Action("Grid1_PageIndexChangedOrSort"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()"))
                 .Columns(
                     F.RowNumberField().EnablePagingNumber(true),
                     F.RenderFieldFor(m => m.goodsId, false).Hidden(true).Width(100),
@@ -49,8 +49,8 @@
         .Toolbars(
             F.Toolbar().ID("Toolbar1").Position(ToolbarPosition.Top)
                 .Items(
-                    F.ToolbarFill(),F.TextBox().ID("txtSearch").Label("搜索").LabelWidth(50).Width(550).EmptyText("商品编号、名称、类别"),
-                            F.Button().ID("btnSerch").Icon(Icon.SystemSearch).Text("搜索").Listener("click", "onSearchClick"),
+                        F.ToolbarFill(), F.TextBox().ID("tbxSearch").Label("搜索").LabelWidth(50).Width(350).EmptyText("商品编号、名称"),
+                                            F.Button().ID("btnSerch").Icon(Icon.SystemSearch).Text("搜索").OnClick(Url.Action("Search_Click"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()")),
                    F.ToolbarSeparator(),
                     F.Button().ID("btnNew").Icon(Icon.Add).Text("新增").Listener("click", "onNewClick")
                 )
@@ -75,11 +75,7 @@
             F.ui.Window1.show('@Url.Content("~/Admin/Goods/New")', '新增');
         }
 
-
-        function onSearchClick(event) {
-            F.ui.Window1.show('@Url.Content("~/Admin/Goods/New")', '新增');
-        }
-
+ 
                 
         function renderActionEdit(value, params) {
             var imageUrl = '@Url.Content("~/res/icon/pencil.png")';

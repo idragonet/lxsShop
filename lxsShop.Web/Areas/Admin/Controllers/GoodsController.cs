@@ -36,6 +36,49 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         }
 
 
+
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Search_Click(string[] Grid1_fields,string searchKey)
+        {
+            var grid1 = UIHelper.Grid("Grid1");
+
+            var parm = new PageParm
+            {
+                page = 1,
+                limit = 50,
+            };
+
+            if (!string.IsNullOrEmpty(searchKey))
+            {
+                parm = new PageParm
+                {
+                    page = 1,
+                    limit = 50,
+                    key = searchKey,
+                    where = "search"
+                };
+            }
+
+
+            var post = await _goodserver.GetPagesAsync(
+                parm
+            );
+
+            var recordCount = Convert.ToInt32(post.data.TotalItems);
+
+            // 1.设置总项数（数据库分页回发时，如果总记录数不变，可以不设置RecordCount）
+            grid1.RecordCount(recordCount);
+
+            grid1.DataSource(post.data.Items, Grid1_fields);
+
+            return UIHelper.Result();
+        }
+
+
+
         #region 显示、删除
 
         /*[HttpGet]
@@ -91,13 +134,34 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Grid1_PageIndexChangedOrSort(string[] Grid1_fields, int Grid1_pageIndex,
-            string Grid1_sortField, string Grid1_sortDirection)
+            string Grid1_sortField, string Grid1_sortDirection, string searchKey)
         {
             var grid1 = UIHelper.Grid("Grid1");
 
+            var parm = new PageParm
+            {
+                page = (Grid1_pageIndex + 1),
+                limit = 50,
+                order = Grid1_sortDirection,
+                field = Grid1_sortField
+            };
+
+            if (!string.IsNullOrEmpty(searchKey))
+            {
+                parm = new PageParm
+                {
+                    page = (Grid1_pageIndex + 1),
+                    limit = 50,
+                    order = Grid1_sortDirection,
+                    field = Grid1_sortField,
+                    key = searchKey,
+                    where = "search"
+                };
+            }
+
+
             var post = await _goodserver.GetPagesAsync(
-                new PageParm
-                    {page = (Grid1_pageIndex + 1), limit = 20, order = Grid1_sortDirection, field = Grid1_sortField}
+                parm
             );
 
             var recordCount = Convert.ToInt32(post.data.TotalItems);
@@ -126,6 +190,9 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 }*/
                 await _goodserver.DeleteAsync(deletedRowID.ToString());
                 //  brandsservice.DeleteById(deletedRowID);
+            }else if (actionType == "search")
+            {
+                await _goodserver.DeleteAsync(deletedRowID.ToString());
             }
 
             return RedirectToAction("Index");

@@ -128,6 +128,7 @@ namespace lxsShop.NewServices.Implements
                 }
                 else
                 {
+
                     res.data = await Db.Queryable<goods, goods_cats, brands>((g, gc, b) => new
                             JoinQueryInfos(JoinType.Left, g.goodsCatId == gc.catId
                                 , JoinType.Left, g.brandId == b.brandId))
@@ -136,7 +137,7 @@ namespace lxsShop.NewServices.Implements
                         .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "goodsCatId", (g, gc, b) => g.goodsCatId == param.attr) //查询类别下的商品
 
                         .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "search" && param.attr > 0, (g, gc, b) => g.goodsName.Contains(param.key) && g.goodsCatId == param.attr) //搜索 + 指定类别
-                        .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "search", (g, gc, b) => g.goodsName.Contains(param.key)) //搜索
+                        .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "search", (g, gc, b) => g.goodsName.Contains(param.key) || g.goodsSn.Contains(param.key)) //搜索
 
                         //  .WhereIF(!string.IsNullOrEmpty(param.guid), (b, m, g) => b.QuestionGuid == param.guid)  //问题
                         //  .OrderByIF(param.attr == 1, (b, m, g) => b.AddTime, OrderByType.Desc)  //热门排序
