@@ -122,6 +122,7 @@ namespace lxsShop.NewServices.Implements
                        goodsCatId = g.goodsCatId,
                        catName = gc.catName,
                        CreateDate = g.CreateDate,
+                       ordering = g.ordering
                    })
                    .ToPageAsync(param.page, param.limit);
                 }
@@ -141,7 +142,7 @@ namespace lxsShop.NewServices.Implements
                         //  .OrderByIF(param.attr == 1, (b, m, g) => b.AddTime, OrderByType.Desc)  //热门排序
                         //   .OrderBy((g, gc, b) => g.CreateDate, OrderByType.Desc)
                         //  .OrderByIF(param.order.ToUpper() == "DESC", g => g.CreateDate, param.order.ToUpper())
-                        .OrderByIF(!string.IsNullOrEmpty(param.field), param.field + " " + param.order)
+                        .OrderByIF(!string.IsNullOrEmpty(param.field), param.field)
                         .Select((g, gc, b) => new goodsViewModel()
                         {
                             goodsId = g.goodsId,
@@ -157,6 +158,7 @@ namespace lxsShop.NewServices.Implements
                             goodsCatId = g.goodsCatId,
                             catName = gc.catName,
                             CreateDate = g.CreateDate,
+                            ordering = g.ordering
                         })
                         .ToPageAsync(param.page, param.limit);
                 }

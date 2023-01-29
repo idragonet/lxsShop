@@ -80,7 +80,7 @@ namespace lxsShop.Web.Pages.catalog
 
 
             var postgoods = await _goodserver.GetPagesAsync(new PageParm()
-                {limit = 16, page = Convert.ToInt16(pages), attr = ID, where = "goodsCatId"});
+                {limit = 16, page = Convert.ToInt16(pages), attr = ID, where = "goodsCatId", field = "ordering DESC,CreateDate DESC" });
 
             var catList = goods_cats.Where(t => t.catId == ID).ToList();
             CatName = catList[0].catName;
@@ -92,7 +92,7 @@ namespace lxsShop.Web.Pages.catalog
                 catList = goods_cats.Where(t => t.parentId == ID).ToList();
                 var catLong = catList.Select(t => t.catId).ToList();
                 postgoods = await _goodserver.GetPagesAsync(new PageParm()
-                    {limit = 16, page = Convert.ToInt16(pages), IdList = catLong});
+                    {limit = 16, page = Convert.ToInt16(pages), IdList = catLong,field = "ordering DESC,CreateDate DESC" });
             }
 
             goods = postgoods.data.Items.MapTo<List<goodsViewModel>>();

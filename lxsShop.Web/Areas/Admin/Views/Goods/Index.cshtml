@@ -49,7 +49,9 @@
         .Toolbars(
             F.Toolbar().ID("Toolbar1").Position(ToolbarPosition.Top)
                 .Items(
-                    F.ToolbarFill(),
+                    F.ToolbarFill(),F.TextBox().ID("txtSearch").Label("搜索").LabelWidth(50).Width(550).EmptyText("商品编号、名称、类别"),
+                            F.Button().ID("btnSerch").Icon(Icon.SystemSearch).Text("搜索").Listener("click", "onSearchClick"),
+                   F.ToolbarSeparator(),
                     F.Button().ID("btnNew").Icon(Icon.Add).Text("新增").Listener("click", "onNewClick")
                 )
         )
@@ -73,6 +75,12 @@
             F.ui.Window1.show('@Url.Content("~/Admin/Goods/New")', '新增');
         }
 
+
+        function onSearchClick(event) {
+            F.ui.Window1.show('@Url.Content("~/Admin/Goods/New")', '新增');
+        }
+
+                
         function renderActionEdit(value, params) {
             var imageUrl = '@Url.Content("~/res/icon/pencil.png")';
             var disabledCls = '';

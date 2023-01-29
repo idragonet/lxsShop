@@ -49,9 +49,9 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public async Task<IActionResult> Index([FromQuery] PageParm request)
         {
-            request.limit = 20;
-            request.order = "DESC";
-            request.field = "CreateDate";
+            request.limit = 50;
+          //  request.order = "DESC";
+            request.field = "ordering DESC,CreateDate DESC";
 
             ViewBag.Grid1SortField = request.field;
             ViewBag.Grid1SortDirection = request.order;
@@ -181,7 +181,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public async Task<IActionResult> New()
         {
-            var post = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 100});
+            var post = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 1000});
             var result = post.data.Items.MapTo<List<goods_catsViewModel>>();
             _resultNew = new List<goods_catsViewModel>();
 
@@ -193,7 +193,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
 
             var post2 = await _brandsserver.GetPagesAsync(new PageParm()
-                {limit = 100, field = "brandName", order = "ASC"});
+                {limit = 500, field = "brandName", order = "ASC"});
             var brandsNA = new brands {brandId = -1, brandName = "N/A"};
             post2.data.Items.Insert(0, brandsNA);
             ViewBag.brands_DataSource = post2.data.Items;
@@ -260,13 +260,14 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 if (goodsview.brandId != null) goods.brandId = Convert.ToInt64(goodsview.brandId);
                 goods.isNew = Convert.ToInt32(goodsview.isNew);
                 goods.isRecom = Convert.ToInt32(goodsview.isRecom);
-                ;
                 goods.goodsCatId = goodsview.goodsCatId;
                 goods.goodsSeoKeywords = goodsview.goodsSeoKeywords;
                 goods.goodsSn = goodsview.goodsSn;
                 goods.goodsName = goodsview.goodsName;
                 goods.goodsDesc = text;
-            
+                goods.ordering = goodsview.goodsId;
+
+
 
 
                 var ret = await _goodserver.AddAsync(goods);
@@ -300,7 +301,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
-            var post = await _goodscatsserver.GetPagesAsync(new PageParm { limit = 100});
+            var post = await _goodscatsserver.GetPagesAsync(new PageParm { limit = 1000});
             var result = post.data.Items.MapTo<List<goods_catsViewModel>>();
 
          
@@ -315,7 +316,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
 
             var post2 = await _brandsserver.GetPagesAsync(new PageParm()
-                { limit = 100, field = "brandName", order = "ASC" });
+                { limit = 500, field = "brandName", order = "ASC" });
             var brandsNA = new brands { brandId = -1, brandName = "N/A" };
             post2.data.Items.Insert(0, brandsNA);
             ViewBag.brands_DataSource = post2.data.Items;
@@ -386,13 +387,15 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                 if (goodsview.brandId != null) goods.brandId = Convert.ToInt64(goodsview.brandId);
                 goods.isNew = Convert.ToInt32(goodsview.isNew);
                 goods.isRecom = Convert.ToInt32(goodsview.isRecom);
-                ;
+
                 goods.goodsCatId = goodsview.goodsCatId;
                 goods.goodsSeoKeywords = goodsview.goodsSeoKeywords;
                 goods.goodsSn = goodsview.goodsSn;
                 goods.goodsName = goodsview.goodsName;
                 goods.goodsDesc = text;
                 goods.goodsId = goodsview.goodsId;
+                goods.ordering = goodsview.ordering;
+
 
                 var ret = await _goodserver.ModifyAsync(goods);
 

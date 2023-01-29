@@ -23,14 +23,15 @@
         .Items(
             F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
                 .Items(
-                    F.SimpleForm().ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
+                    F.SimpleForm().LabelWidth(130).ID("SimpleForm1").ShowBorder(false).ShowHeader(false).BodyPadding(10)
                         .Items(
                             F.HiddenFieldFor(m => m.goodsId),
                             F.HiddenFieldFor(m => m.goodsImg),
                             F.TextBoxFor(m => m.goodsSn).MaxLength(50).Enabled(false),
                             F.TextBoxFor(m => m.goodsName).MaxLength(50),
                             F.CheckBoxFor(m=>m.isNew),
-                            F.CheckBoxFor(m=>m.isRecom),
+                            // F.CheckBoxFor(m=>m.isRecom),
+                            F.NumberBoxFor(m=>m.ordering),
                             F.TextBoxFor(m => m.goodsSeoKeywords).MaxLength(50),
                             F.FileUpload().ID("filePhoto").EmptyText("可选择一张新商品图（350*350）").Label("商品图片"),
                             F.DropDownListFor(m => m.goodsCatId).EnableSimulateTree(true).DataTextField("catName").DataValueField("catId").DataSimulateTreeLevelField("TreeLevel").Required(true).ShowRedStar(true).DataSource(ViewBag.goods_catsDataSource),

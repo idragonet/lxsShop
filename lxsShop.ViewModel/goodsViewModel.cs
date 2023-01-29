@@ -57,6 +57,10 @@ namespace lxsShop.ViewModel
 
         [Display(Name = "创建日期")]
         public DateTime? CreateDate { get; set; }
-        
+
+
+        [Display(Name = "显示顺序(大排前)")]
+        public long? ordering { get; set; }
+
     }
 }

@@ -109,5 +109,14 @@ namespace Entitys
         /// </summary>
         public System.String CopyURL { get { return this._CopyURL; } set { this._CopyURL = value; } }
 
+
+         
+
+        private System.Int64? _ordering;
+        /// <summary>
+        /// dataFlag
+        /// </summary>
+        public System.Int64? ordering { get { return this._ordering; } set { this._ordering = value ?? default(System.Int64); } }
+
     }
 }
