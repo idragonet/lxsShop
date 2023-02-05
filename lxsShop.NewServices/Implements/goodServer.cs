@@ -182,6 +182,8 @@ namespace lxsShop.NewServices.Implements
         /// <returns></returns>
         public async Task<ApiResult<string>> ModifyAsync(goods parm)
         {
+
+
             var res = new ApiResult<string>() { statusCode = 200 };
             try
             {

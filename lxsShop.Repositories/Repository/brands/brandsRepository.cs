@@ -4,7 +4,6 @@ using System.Data;
 using System.Text;
 using Entitys;
 using lxsShop.ViewModel;
-using MySql.Data.MySqlClient;
 using SqlSugar;
 
 namespace lxsShop.Repository
