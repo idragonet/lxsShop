@@ -49,8 +49,8 @@
         .Toolbars(
             F.Toolbar().ID("Toolbar1").Position(ToolbarPosition.Top)
                 .Items(
-                            F.ToolbarFill(), F.TextBox().ID("tbxSearch").Label("搜索").LabelWidth(50).Width(350).EmptyText("商品编号、名称"),
-                                            F.Button().ID("btnSerch").Icon(Icon.SystemSearch).Text("搜索").OnClick(Url.Action("Search_Click"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()")),
+                                F.ToolbarFill(), F.TextBox().ID("tbxSearch").Label("搜索").LabelWidth(50).Width(350).Listener("enter", "onTextBoxEnter").EmptyText("商品编号、名称"),
+                                                F.Button().ID("btnSerch").Icon(Icon.SystemSearch).Text("搜索").OnClick(Url.Action("Search_Click"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()")),
                    F.ToolbarSeparator(),
                     F.Button().ID("btnNew").Icon(Icon.Add).Text("新增").Listener("click", "onNewClick")
                 )
@@ -70,6 +70,16 @@
 
         var coreDeptEdit = '';
         var coreDeptDelete = '';
+       
+         
+         function onTextBoxEnter() {
+            // 触发后台搜索事件
+            F.doPostBack('@Url.Action("Search_Click")', {
+                Grid1_fields: F("Grid1").fields, searchKey: this.getValue()
+            });
+        }
+
+
 
         function onNewClick(event) {
             F.ui.Window1.show('@Url.Content("~/Admin/Goods/New")', '新增');
