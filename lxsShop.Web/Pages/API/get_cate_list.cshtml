@@ -8,19 +8,22 @@
     @{
         if (Model.goods_cats_top1.Any())
         {
-            int cate =0;
+            int cate = 0;
             foreach (var item in Model.goods_cats_top1)
             {
                 if (cate == 8)
                 {
                     cate = 1;
-                }else if (item.catId == 93 || item.catId == 100 || item.catId == 148) //静电图标
+                }
+                else if (item.catId == 93 || item.catId == 100 || item.catId == 148) //静电图标
                 {
                     cate = 2;
-                }else if (item.catId == 119 || item.catId == 139 ) //净化图标
+                }
+                else if (item.catId == 119 || item.catId == 139) //净化图标
                 {
                     cate = 3;
-                }else if (item.catId == 155) //口罩图标
+                }
+                else if (item.catId == 155) //口罩图标
                 {
                     cate = 7;
                 }
@@ -39,7 +42,8 @@
                 else if (item.catId == 47) //电工
                 {
                     cate = 10;
-                }  else if (item.catId == 53) //低压工具
+                }
+                else if (item.catId == 53) //低压工具
                 {
                     cate = 11;
                 }
@@ -47,36 +51,69 @@
                 {
                     cate = 6;
                 }
-                else if(item.catNameShort == "控制阀流体泵") //工具图标
+                else if (item.catNameShort == "控制阀流体泵") //工具图标
                 {
                     cate = 9;
                 }
 
-        <li class="fa-cate-list-li">
-            <div class="fa-cate-list-li-f">
-                <h3><a class="fa-nav-cate-@cate" href="/catalog/@item.catId/"><span>@item.catName</span></a></h3>
-                <p>
+                <li class="fa-cate-list-li">
+                    <div class="fa-cate-list-li-f">
+                        <h3>
+                            <a class="fa-nav-cate-@cate" href="/catalog/@item.catId/">
+                                <span>@item.catName</span>
+                            </a>
+                        </h3>
+                        <p>
 
-                    @{
+                            @{
+                                //读取二级分类
                                 var select = Model.goods_cats.Where(t => t.parentId == item.catId).ToList();
-
-
                                 if (select.Any())
                                 {
                                     foreach (var item2 in select)
                                     {
                                         if (!string.IsNullOrEmpty(item2.catNameShort))
                                         {
-                                            <a href="/catalog/@item2.catId/">@item2.catNameShort</a>
-                                        }  
+                                            <a href="/catalog/@item2.catId/">@item2.catNameShort</a> //主菜单直接显示有简称的二级分类
+                                        }
                                     }
                                 }
-                    }
+                            }
 
-                </p>
-            </div>
+                        </p>
+                    </div>
 
 
+                    <div class="fa-cate-list-li-s">
+                        @{
+                            if (select.Any())
+                            {
+                                foreach (var item2 in select)
+                                {
+                                    <dl class="clearfix">
+                                        <dt>
+                                            <a href="/catalog/@item2.catId/">@item2.catName</a>
+                                        </dt>
+                                        <dd class="fa-cate-list-name">
+                                            @{
+                                                //读取3级分类
+                                                var select3 = Model.goods_cats.Where(t => t.parentId == item2.catId).ToList();
+                                                if (select3.Any())
+                                                {
+                                                    foreach (var item3 in select3)
+                                                    {
+                                                        <a href="/catalog/@item3.catId/">@item3.catName</a>
+                                                    }
+                                                }
+                                            }
+                                            <div class="clear"></div>
+                                        </dd>
+                                    </dl>
+                                }
+                            }
+                        }
+
+                        @*
             <div class="fa-cate-list-li-s">
                 <dl class="clearfix">
                     <dt><a href="/catalog/@item.catId/">@item.catName</a></dt>
@@ -93,7 +130,7 @@
                         <div class="clear"></div>
                     </dd>
 
-                    @*<dd class="fa-cate-list-img">
+                    $1$<dd class="fa-cate-list-img">
                       
                         <a href="/catalog/109/" title="无油垫圈垫片"><img src="/Public/upload/fa_category/2018/03-01/5a97d32f85d84.jpg" alt="无油垫圈垫片"></a>
                         <a href="/catalog/149/" title="自润滑铜滑板"><img src="/Public/upload/fa_category/2018/03-06/5a9e4cfc99c6a.jpg" alt="自润滑铜滑板"></a>
@@ -104,19 +141,23 @@
                         <a href="/catalog/329/" title="交叉滚子导轨滑台"><img src="/Public/upload/fa_category/2019/11-02/5dbd15590bb45.jpg" alt="交叉滚子导轨滑台"></a>
                         <a href="/catalog/346/" title="直线电机"><img src="/Public/upload/fa_category/2019/12-19/5dfacdfa38939.jpg" alt="直线电机"></a>
                         <div class="clear"></div>
-                    </dd>*@
+                    </dd>#1#
                 </dl>
-            </div>
-            
+                *@
 
-        </li>
 
-    }
+
+
+                    </div>
+
+
+                </li>
+            }
         }
     }
 </ul>
 
-    @*
+@*
     <ul class="fa-cate-list-ul">
         <li class="fa-cate-list-li">
 
