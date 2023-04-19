@@ -20,6 +20,7 @@
         <h3 class="title">产品类别</h3>
         <div class="cate-dl">
             @{
+                    long class2_parentId = -1;//当前是3类时候获取对应2级ID
                 if (Model.goods_cats_top1.Any())
                 {
                     foreach (var item in Model.goods_cats_top1)
@@ -27,9 +28,18 @@
                         string show = "class=hide";
 
                         var select_top1 = Model.goods_cats.Where(t => t.catId == Model.ID).ToList();
-                        if (select_top1.Count > 0 && item.catId == select_top1[0].parentId)
+                        if (select_top1.Count > 0 && item.catId == select_top1[0].parentId) //二级分类
                         {
                             show = "class=show style=display:block;"; //需要展开添加： style="display: block;"
+                        }
+                        else if (Model.list_class3!=null && Model.list_class3.Any(x => x.catId == Model.ID)) //当前三级分类：匹配到归属二级分类展开
+                        {
+                            class2_parentId = Model.list_class3.First(x => x.catId == Model.ID).parentId;
+                            select_top1 = Model.goods_cats.Where(t => t.catId == class2_parentId).ToList();
+                            if (select_top1.Count > 0 && item.catId == select_top1[0].parentId) //二级分类
+                            {
+                                show = "class=show style=display:block;"; //需要展开添加： style="display: block;"
+                            }
                         }
                         else //是大类 
                         {
@@ -48,13 +58,22 @@
                             <dd @show>
                                 <ul>
                                     @{
+                                       
+
                                         var select = Model.goods_cats.Where(t => t.parentId == item.catId).ToList();
+
+                                        //通过3级分类ID获取二级分类ID
+                                        /*long class2_parentId_2 = -1;
+                                        if (Model.list_class3 != null && Model.list_class3.Any(x => x.catId == Model.ID))
+                                        {
+                                            class2_parentId_2 = Model.list_class3.First(x => x.catId == Model.ID).parentId;
+                                        }*/
 
                                         if (select.Any())
                                         {
                                             foreach (var item2 in select)
                                             {
-                                                if (item2.catId == Model.ID) //是当前分类的显示选中状态
+                                                    if (item2.catId == Model.ID || item2.catId == class2_parentId) //是当前二级分类的显示选中状态
                                                 {
                                                     <li class="sel">
                                                         <a href="/catalog/@item2.catId/">@item2.catName</a>
@@ -92,7 +111,7 @@
 </div>
 
 @{
-            if (Model.list_class3!=null && Model.list_class3.Any() &&  Model.list_class3.Count>0)
+    if (Model.list_class3 != null && Model.list_class3.Any() && Model.list_class3.Count > 0)
     {
         <div id="xn_c_products_50_wrap" class="xn_c_products_50_wrap">
             <ul id="EIMS_C_40018_1_PropertyKeyList" class="xn_c_products_50_PropertyKeyList">
@@ -106,10 +125,10 @@
                         }
                         else
                         {
-                                    <span class="EIMS_C_40018_1_scvalue" data-id="0" onclick="document.location.href='/catalog/@Model.list_class3[0].parentId'">全部</span>
+                            <span class="EIMS_C_40018_1_scvalue" data-id="0" onclick="document.location.href='/catalog/@Model.list_class3[0].parentId'">全部</span>
                         }
                     }
-                          
+
                     <div class="xn_c_products_50_scva">
 
                         @{
@@ -117,14 +136,13 @@
                             {
                                 if (Model.ID == goodsCatsViewModel3.catId)
                                 {
-                                            <span class="EIMS_C_40018_1_scishow" data-id="2" onclick="document.location.href='/catalog/@goodsCatsViewModel3.catId'">@goodsCatsViewModel3.catName</span>
+                                    <span class="EIMS_C_40018_1_scishow" data-id="2" onclick="document.location.href='/catalog/@goodsCatsViewModel3.catId'">@goodsCatsViewModel3.catName</span>
                                 }
                                 else
                                 {
                                     <span class="EIMS_C_40018_1_scvalue" data-id="2" onclick="document.location.href='/catalog/@goodsCatsViewModel3.catId'">@goodsCatsViewModel3.catName</span>
                                 }
                                 @* <span class="EIMS_C_40018_1_scvalue" data-id="2" onclick="EIMS_C_40018_1.PreperyClick(this)">@goodsCatsViewModel3.catName</span> *@
-                                       
                             }
                         }
                     </div>
