@@ -8,17 +8,17 @@
 @section Css{
     <link rel="stylesheet" href="/Static/css/public.min.css?v=8236772c1f" type="text/css">
     <link rel="stylesheet" href="/Static/css/product.min.css?v=5b03619417" type="text/css">
-    <link rel="stylesheet" href="/Static/css/mroclass3.css?v=7" type="text/css">
+    <link rel="stylesheet" href="/Static/css/mroclass3.css?v=8" type="text/css">
 
 }
 
 
 <div id="container" class="frame mt10">
 
-    <div class="page-side">
-        <div class="cate-box">
-            <h3 class="title">产品类别</h3>
-            <div class="cate-dl"> 
+<div class="page-side">
+    <div class="cate-box">
+        <h3 class="title">产品类别</h3>
+        <div class="cate-dl">
             @{
                 if (Model.goods_cats_top1.Any())
                 {
@@ -27,22 +27,24 @@
                         string show = "class=hide";
 
                         var select_top1 = Model.goods_cats.Where(t => t.catId == Model.ID).ToList();
-                        if (select_top1.Count > 0 && item.catId== select_top1[0].parentId)
+                        if (select_top1.Count > 0 && item.catId == select_top1[0].parentId)
                         {
-                            show= "class=show style=display:block;"; //需要展开添加： style="display: block;"
+                            show = "class=show style=display:block;"; //需要展开添加： style="display: block;"
                         }
-                        else  //是大类 
+                        else //是大类 
                         {
-                            select_top1 = Model.goods_cats.Where(t => t.parentId == Model.ID).OrderByDescending(x=>x.catSort).ToList();
-                            if (select_top1.Count > 0 && item.catId== select_top1[0].parentId)
+                            select_top1 = Model.goods_cats.Where(t => t.parentId == Model.ID).OrderByDescending(x => x.catSort).ToList();
+                            if (select_top1.Count > 0 && item.catId == select_top1[0].parentId)
                             {
-                                show= "class=show style =display:block;"; //是大类 需要展开添加： style="display: block;"
+                                show = "class=show style =display:block;"; //是大类 需要展开添加： style="display: block;"
                             }
                         }
 
                         <dl>
                             @* <dt class="current">@item.catName</dt> *@
-                            <dt class="current"><a href="/catalog/@(item.catId)/">@item.catName</a></dt>
+                            <dt class="current">
+                                <a href="/catalog/@(item.catId)/">@item.catName</a>
+                            </dt>
                             <dd @show>
                                 <ul>
                                     @{
@@ -52,13 +54,17 @@
                                         {
                                             foreach (var item2 in select)
                                             {
-                                                if (item2.catId == Model.ID)
+                                                if (item2.catId == Model.ID) //是当前分类的显示选中状态
                                                 {
-                                                    <li class="sel"><a href="/catalog/@item2.catId/">@item2.catName</a></li>
+                                                    <li class="sel">
+                                                        <a href="/catalog/@item2.catId/">@item2.catName</a>
+                                                    </li>
                                                 }
                                                 else
                                                 {
-                                                    <li><a href="/catalog/@item2.catId/">@item2.catName</a></li>
+                                                    <li>
+                                                        <a href="/catalog/@item2.catId/">@item2.catName</a>
+                                                    </li>
                                                 }
                                             }
                                         }
@@ -70,17 +76,112 @@
                     }
                 }
             }
-            </div>
-
         </div>
-
 
     </div>
 
-    <div class="page-main">
-        <div class="mb20 clearfix"><img src="/Static/images/am-l.png" alt="快速交期" class="fl">
-            <a class="fr" href="#" onclick="alert('@Html.Raw(Model.纸质产品目录)'); return false;"  rel="nofollow"><img src="/Static/images/am-r.png" alt="产品选型目录免费送"></a></div>
-    @*<div class="products-filter">
+
+</div>
+
+<div class="page-main">
+<div class="mb20 clearfix">
+    <img src="/Static/images/am-l.png" alt="快速交期" class="fl">
+    <a class="fr" href="#" onclick="alert('@Html.Raw(Model.纸质产品目录)'); return false;" rel="nofollow">
+        <img src="/Static/images/am-r.png" alt="产品选型目录免费送">
+    </a>
+</div>
+
+@{
+            if (Model.list_class3!=null && Model.list_class3.Any() &&  Model.list_class3.Count>0)
+    {
+        <div id="xn_c_products_50_wrap" class="xn_c_products_50_wrap">
+            <ul id="EIMS_C_40018_1_PropertyKeyList" class="xn_c_products_50_PropertyKeyList">
+
+                <li class="EIMS_C_40018_1_screen">
+                    <div class="EIMS_C_40018_1_sctitle">三级分类：</div>
+                    @{
+                        if (Model.list_class3.Any(x => x.parentId == Model.ID))
+                        {
+                            <span class="EIMS_C_40018_1_scishow" data-id="0" onclick="document.location.href='/catalog/@Model.ID'">全部</span>
+                        }
+                        else
+                        {
+                                    <span class="EIMS_C_40018_1_scvalue" data-id="0" onclick="document.location.href='/catalog/@Model.list_class3[0].parentId'">全部</span>
+                        }
+                    }
+                          
+                    <div class="xn_c_products_50_scva">
+
+                        @{
+                            foreach (var goodsCatsViewModel3 in Model.list_class3)
+                            {
+                                if (Model.ID == goodsCatsViewModel3.catId)
+                                {
+                                            <span class="EIMS_C_40018_1_scishow" data-id="2" onclick="document.location.href='/catalog/@goodsCatsViewModel3.catId'">@goodsCatsViewModel3.catName</span>
+                                }
+                                else
+                                {
+                                    <span class="EIMS_C_40018_1_scvalue" data-id="2" onclick="document.location.href='/catalog/@goodsCatsViewModel3.catId'">@goodsCatsViewModel3.catName</span>
+                                }
+                                @* <span class="EIMS_C_40018_1_scvalue" data-id="2" onclick="EIMS_C_40018_1.PreperyClick(this)">@goodsCatsViewModel3.catName</span> *@
+                                       
+                            }
+                        }
+                    </div>
+                </li>
+            </ul>
+        </div>
+    }
+}
+
+@*
+<div id="xn_c_products_50_wrap" class="xn_c_products_50_wrap">
+    <ul id="EIMS_C_40018_1_PropertyKeyList" class="xn_c_products_50_PropertyKeyList">
+
+        <li class="EIMS_C_40018_1_screen">
+            <div class="EIMS_C_40018_1_sctitle">三级分类：</div>
+
+            <span class="EIMS_C_40018_1_scishow" data-id="0" onclick="EIMS_C_40018_1.PreperyClick(this)">全部</span>
+            <div class="xn_c_products_50_scva">
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="2" onclick="EIMS_C_40018_1.PreperyClick(this)">减速电机</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="3" onclick="EIMS_C_40018_1.PreperyClick(this)">减速机</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="4" onclick="EIMS_C_40018_1.PreperyClick(this)">交流电机</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="5" onclick="EIMS_C_40018_1.PreperyClick(this)">BOSCH</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="6" onclick="EIMS_C_40018_1.PreperyClick(this)">SMC</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="16" onclick="EIMS_C_40018_1.PreperyClick(this)">直流电机</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="18" onclick="EIMS_C_40018_1.PreperyClick(this)">整流器</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="19" onclick="EIMS_C_40018_1.PreperyClick(this)">整流器</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="20" onclick="EIMS_C_40018_1.PreperyClick(this)">整流器</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="21" onclick="EIMS_C_40018_1.PreperyClick(this)">直流电机</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="22" onclick="EIMS_C_40018_1.PreperyClick(this)">施耐德</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="26" onclick="EIMS_C_40018_1.PreperyClick(this)">公牛</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="27" onclick="EIMS_C_40018_1.PreperyClick(this)">变频电机</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="28" onclick="EIMS_C_40018_1.PreperyClick(this)">3M</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="29" onclick="EIMS_C_40018_1.PreperyClick(this)">NTN</span>
+
+                <span class="EIMS_C_40018_1_scvalue" data-id="30" onclick="EIMS_C_40018_1.PreperyClick(this)">变频电机</span>
+            </div>
+        </li>
+    </ul>
+</div>
+*@
+
+@*<div class="products-filter">
                 <div class="products-filter-tr clearfix" style="border-bottom: none;">
                     <div class="products-filter-name"><p>系列</p></div>
                     <div class="products-filter-list">
@@ -94,28 +195,36 @@
                 </div>
             </div>*@
 
-    @{
-            <div class="products-list" id="products_list">
-                <h2 class="title">@(Model.CatName)<small>(共@(Model.GoodsCount)个产品)</small></h2>
+@{
+    <div class="products-list" id="products_list">
+        <h2 class="title">
+            @(Model.CatName)<small>(共@(Model.GoodsCount)个产品)</small>
+        </h2>
 
-                <ul class="products-ul clearfix">
+        <ul class="products-ul clearfix">
 
-                    @if (Model.goods.Any())
-                    {
-                        foreach (var item in Model.goods)
-                        {
-                            string src = "/uploads" + item.goodsImg + "_300.jpg";
-                            <li>
-                                <div class="products-box">
-                                    <div class="pic"><a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName"><img src="@src" alt="@item.goodsName" title="@item.goodsName" class="img img-lazy"></a></div>
-                                    <div class="name"><a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName">@item.goodsName</a></div>
-                                    <div class="days">@item.brandName</div>
-                                </div>
-                            </li>
-                        }
-                    }
+            @if (Model.goods.Any())
+            {
+                foreach (var item in Model.goods)
+                {
+                    string src = "/uploads" + item.goodsImg + "_300.jpg";
+                    <li>
+                        <div class="products-box">
+                            <div class="pic">
+                                <a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName">
+                                    <img src="@src" alt="@item.goodsName" title="@item.goodsName" class="img img-lazy">
+                                </a>
+                            </div>
+                            <div class="name">
+                                <a target="_blank" href="/fa/@item.goodsId" title="@item.goodsName">@item.goodsName</a>
+                            </div>
+                            <div class="days">@item.brandName</div>
+                        </div>
+                    </li>
+                }
+            }
 
-                    @*<li>
+            @*<li>
                 <div class="products-box">
                     <div class="pic"><a target="_blank" href="/fa/1463.html" title="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800"><img src="/Public/upload/fa/thumb/1463/150_150.jpeg" alt="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800" title="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800" class="img img-lazy"></a></div>
                     <div class="name"><a target="_blank" href="/fa/1463.html" title="50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800">50D系列 半封闭SATA丝杆模组滑台 05/10导程 行程100~800</a></div>
@@ -132,54 +241,67 @@
                 </div>
             </li>*@
 
-                </ul>
+        </ul>
 
-                @{
-                    if (Model.TotalPages > 1)
-                    {
-                        string urlFisrst= "/catalog/"+Model.ID+"/1";
-                        string urlNow= "/catalog/"+Model.ID+"/"+ Model.pages;
+        @{
+            if (Model.TotalPages > 1)
+            {
+                string urlFisrst = "/catalog/" + Model.ID + "/1";
+                string urlNow = "/catalog/" + Model.ID + "/" + Model.pages;
 
-                        int Next = Convert.ToInt16(Model.pages) + 1;
-                        string urlNext= "/catalog/"+Model.ID+"/"+ Next;
+                int Next = Convert.ToInt16(Model.pages) + 1;
+                string urlNext = "/catalog/" + Model.ID + "/" + Next;
 
-                        int Previous =Convert.ToInt16(Model.pages) - 1;
-                        string urlPrevious = "/catalog/"+Model.ID+"/"+ Previous;
+                int Previous = Convert.ToInt16(Model.pages) - 1;
+                string urlPrevious = "/catalog/" + Model.ID + "/" + Previous;
 
-                        string urlLast = "/catalog/"+Model.ID+"/"+ Model.TotalPages;
+                string urlLast = "/catalog/" + Model.ID + "/" + Model.TotalPages;
 
-                            <div class="ct">
-                                                <ul class="pagination">
+                <div class="ct">
+                    <ul class="pagination">
 
-                                                    @if (Model.pages > 1)
-                                                    {
-                                                        <li><a href="@urlPrevious">上一页</a></li>
-                                                        <li><a href="@urlFisrst">1</a></li>
-                                                        @if (Model.TotalPages > 2)
-                                                        {
-                                                            <li class="disabled"><span>…</span></li>
-                                                        }
-                                                    }
+                        @if (Model.pages > 1)
+                        {
+                            <li>
+                                <a href="@urlPrevious">上一页</a>
+                            </li>
+                            <li>
+                                <a href="@urlFisrst">1</a>
+                            </li>
+                            @if (Model.TotalPages > 2)
+                            {
+                                <li class="disabled">
+                                    <span>…</span>
+                                </li>
+                            }
+                        }
 
-                                                    <li class="active"><a href="@urlNow">@Model.pages</a></li>
+                        <li class="active">
+                            <a href="@urlNow">@Model.pages</a>
+                        </li>
 
-                                                    @if (Model.pages < Model.TotalPages)
-                                                    {
-                                                        @if (Model.TotalPages > 2)
-                                                        {
-                                                            <li class="disabled"><span>…</span></li>
-                                                        }
-                                                        <li><a href="@urlLast">@Model.TotalPages</a></li>
-                                                        <li><a href="@urlNext">下一页</a></li>
+                        @if (Model.pages < Model.TotalPages)
+                        {
+                            @if (Model.TotalPages > 2)
+                            {
+                                <li class="disabled">
+                                    <span>…</span>
+                                </li>
+                            }
+                            <li>
+                                <a href="@urlLast">@Model.TotalPages</a>
+                            </li>
+                            <li>
+                                <a href="@urlNext">下一页</a>
+                            </li>
+                        }
 
-                                                    }
+                    </ul>
+                </div>
+            }
+        }
 
-                                                </ul>
-                        </div>
-                    }
-                }
-
-                @*<div class="ct">
+        @*<div class="ct">
                     <ul class="pagination">
                         <li class="active"><a href="/catalog/sata-299/?p=1">1</a></li>
                         <li><a href="/catalog/sata-299/?p=2">2</a></li>
@@ -188,15 +310,14 @@
                 </div>*@
 
 
-            </div>
-    }
-
-
     </div>
+}
 
-    <div class="clear"></div>
+
 </div>
 
+<div class="clear"></div>
+</div>
 
 
 @section Scripts{

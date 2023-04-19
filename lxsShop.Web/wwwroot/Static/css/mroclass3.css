@@ -57,49 +57,6 @@
 }
 
 
-.t_logo {
-    float: left;
-    width: 250px;
-    height: 148px;
-}
-
-    .t_logo img {
-        width: auto;
-        height: 100px;
-        border: 0px;
-        padding-top: 24px;
-    }
-
-
-.t_t_searchbox {
-    float: left;
-    margin-left: 60px;
-    padding-top: 48px;
-    width: 593px;
-}
-
-.t_search {
-    width: 593px;
-    height: 42px;
-    background: url(https://1.rc.xiniu.com/rc/Heads/47279/Images/ihpsp1_t_search_lbg.png?d=20181011172954519) left top no-repeat;
-    float: left;
-}
-
-.t_search_text {
-    border: 2px solid #03999a;
-    background-color: transparent;
-    float: left;
-    width: 482px;
-    height: 37px;
-    line-height: 37px;
-    font-size: 14px;
-    color: #888888;
-    text-indent: 18px;
-    border-radius: 8px 0 0 8px;
-    outline: none;
-}
-
-
 .xn_h_10_wrap {
     width: 100%;
 }
@@ -134,17 +91,6 @@
             color: #e3201e;
         }
 
-
-.xn_h_15_wrap {
-    float: left;
-    overflow: hidden;
-    width: 156px;
-    height: 41px;
-    background: url(https://0.rc.xiniu.com/g2/M00/EA/73/CgAGfFvKltWAUgrTAAAEvVdCeDE307.png) no-repeat center;
-    border-radius: 8px;
-    line-height: 41px;
-    margin: 48px 0 0 22px;
-}
 
 .EIMS_C_40007_1_wrap {
     font-size: 18px;
@@ -198,17 +144,6 @@
     background-color: #03999a;
 }
 
-    .xn_h_35_btn .xn_h_35_btntxt {
-        width: 220px;
-        height: 45px;
-        overflow: hidden;
-        display: block;
-        font-size: 18px;
-        color: #FFF;
-        cursor: pointer;
-        background: url(https://1.rc.xiniu.com/rc/Heads/47279/images/xn_h_35_btntxt.png?d=20181011172954519) no-repeat 33px center;
-        text-indent: 70px;
-    }
 
 .xn_h_35_inner {
     width: 220px;
@@ -238,27 +173,11 @@
         border-bottom: 1px solid rgba(255,255,255,0.35);
     }
 
-        .xn_h_35_li .xn_h_35_title a {
-            height: 54px;
-            line-height: 54px;
-            display: block;
-            font-size: 16px;
-            color: #FFF;
-            border-bottom: 1px solid #ffffff;
-            text-align: left;
-            text-indent: 32px;
-            background: url(https://1.rc.xiniu.com/rc/Heads/47279/images/xn_h_35_title.png?d=20181011172954519) no-repeat 180px center;
-        }
 
     .xn_h_35_li:hover, .xn_h_35_li.xn_h_35_licur {
         background-color: #ffffff;
         border-bottom: 1px solid #ffffff;
     }
-
-        .xn_h_35_li:hover .xn_h_35_title a {
-            color: #03999a;
-            background: url(https://1.rc.xiniu.com/rc/Heads/47279/images/xn_h_35_title1.png?d=20181011172954519) no-repeat 180px center;
-        }
 
 .xn_h_35_ul li ul {
     width: 980px;
@@ -805,27 +724,6 @@
 }
 
 
-
-#EIMS_C_40018_1_sort1 {
-    display: none;
-}
-
-.xn_c_products_50_screen .EIMS_C_40018_1_secishow {
-    background: url(https://1.rc.xiniu.com/rc/Contents/47291/images/sort_curr_bg.png?d=20181011172957660) no-repeat 40px center #ed4040;
-    color: #fff;
-}
-
-.xn_c_products_50_screen .EIMS_C_40018_1_desc {
-    background: url(https://1.rc.xiniu.com/rc/Contents/47291/images/sort_curr_bg.png?d=20181011172957660) no-repeat 40px center #ed4040;
-    color: #fff;
-    text-indent: 10px;
-}
-
-.xn_c_products_50_screen .EIMS_C_40018_1_ascending {
-    background: url(https://1.rc.xiniu.com/rc/Contents/47291/images/sort_curr_hovbg.png?d=20181011172957660) no-repeat 40px center #ed4040;
-    text-indent: 10px;
-    color: #fff;
-}
 
 .xn_c_products_50_px .EIMS_C_40018_1_sctitle {
     background: none;

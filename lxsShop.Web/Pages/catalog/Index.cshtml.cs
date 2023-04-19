@@ -38,6 +38,9 @@ namespace lxsShop.Web.Pages.catalog
 
         public List<goods_catsViewModel> goods_cats_top1 { get; set; }
         public List<goods_catsViewModel> goods_cats { get; set; }
+
+        public List<goods_catsViewModel> list_class3 { get; set; } //三级分类
+
         public List<goodsViewModel> goods { get; set; }
 
         [BindProperty(SupportsGet = true)] public int ID { get; set; }
@@ -72,15 +75,29 @@ namespace lxsShop.Web.Pages.catalog
             纸质产品目录 = await _sysconfigsserver.GetKeyAsync("纸质产品目录");
 
             var post = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 40, attr = 0, where = "parentId"});
-            goods_cats_top1 = post.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x => x.catSort).ToList(); 
+            goods_cats_top1 = post.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x => x.catSort)
+                .ToList();
             //.OrderByDescending(x=>x.catSort).ToList();
 
             var post2 = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 300});
-            goods_cats = post2.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x => x.catSort).ToList(); ;
+            goods_cats = post2.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x => x.catSort).ToList();
+            ;
 
+
+            //class3
+            var class3 =
+                await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 300, attr = ID, where = "class3"});
+            if (class3 != null && class3.data != null)
+            {
+                list_class3 = class3.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x => x.catSort)
+                    .ToList();
+            }
 
             var postgoods = await _goodserver.GetPagesAsync(new PageParm()
-                {limit = 16, page = Convert.ToInt16(pages), attr = ID, where = "goodsCatId", field = "ordering DESC,CreateDate DESC" });
+            {
+                limit = 16, page = Convert.ToInt16(pages), attr = ID, where = "goodsCatId",
+                field = "ordering DESC,CreateDate DESC"
+            });
 
             var catList = goods_cats.Where(t => t.catId == ID).ToList();
             CatName = catList[0].catName;
@@ -92,7 +109,9 @@ namespace lxsShop.Web.Pages.catalog
                 catList = goods_cats.Where(t => t.parentId == ID).ToList();
                 var catLong = catList.Select(t => t.catId).ToList();
                 postgoods = await _goodserver.GetPagesAsync(new PageParm()
-                    {limit = 16, page = Convert.ToInt16(pages), IdList = catLong,field = "ordering DESC,CreateDate DESC" });
+                {
+                    limit = 16, page = Convert.ToInt16(pages), IdList = catLong, field = "ordering DESC,CreateDate DESC"
+                });
             }
 
             goods = postgoods.data.Items.MapTo<List<goodsViewModel>>();
