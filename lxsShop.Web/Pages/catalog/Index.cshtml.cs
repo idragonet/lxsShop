@@ -81,7 +81,6 @@ namespace lxsShop.Web.Pages.catalog
 
             var post2 = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 300});
             goods_cats = post2.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x => x.catSort).ToList();
-            ;
 
 
             //class3
@@ -92,6 +91,7 @@ namespace lxsShop.Web.Pages.catalog
                 list_class3 = class3.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x => x.catSort)
                     .ToList();
             }
+
 
             var postgoods = await _goodserver.GetPagesAsync(new PageParm()
             {

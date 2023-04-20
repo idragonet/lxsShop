@@ -30,7 +30,13 @@ namespace lxsShop.Web.Pages.fa
 
         [BindProperty(SupportsGet = true)]
         public int ID { get; set; }
+
+        public long TopcatID { get; set; }
         public string TopcatName { get; set; }
+
+        public long Class1catID { get; set; }  //当前商品是三级分类用
+        public string Class1catName { get; set; }  //当前商品是三级分类用
+      
         public string brandImg { get; set; }
 
         public goodsViewModel  goods { get; set; }
@@ -59,8 +65,19 @@ namespace lxsShop.Web.Pages.fa
                     postcat = await _goodscatsserver.GetPagesAsync(new PageParm() { limit = 1, attr = Convert.ToInt32(parentId), where = "catid" });
                     if (postcat.data.Items.Count > 0)
                     {
+                        TopcatID = (long)postcat.data.Items[0].catId;
                         TopcatName= postcat.data.Items[0].catName;
+                        parentId = postcat.data.Items[0].parentId;
                     }
+
+                    //显示3级商品，读取1级分类名称
+                    postcat = await _goodscatsserver.GetPagesAsync(new PageParm() { limit = 1, attr = Convert.ToInt32(parentId), where = "catid" });
+                    if (postcat.data.Items.Count > 0)
+                    {
+                        Class1catName = postcat.data.Items[0].catName;
+                        Class1catID = (long)postcat.data.Items[0].catId;
+                    }
+                    
                 }
 
                 if (goods.brandId > 0)

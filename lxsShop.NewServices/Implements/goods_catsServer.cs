@@ -85,6 +85,9 @@ namespace lxsShop.NewServices.Implements
                 }
                 else if (!string.IsNullOrEmpty(parm.where) && parm.where == "class3") //通过二姐类别ID或者三级类别ID查询同级全部三级类别
                 {
+                    //加载逻辑：当前ID是三级分类或者当前ID是二级分类而且下带3级分类就加载内容；当前是1级分类、当前ID是二级分类而且没下带3级分类就不加载。
+
+
                     //判断当前类别ID是否二级：对应parentId不是0+当前ID作为parentId能查询到有下级
                     //parm.attr是当前料品ID
                     var isparentIdnot0 = await Db.Queryable<goods_cats>()
@@ -101,21 +104,27 @@ namespace lxsShop.NewServices.Implements
                     {
                         var cats_parentId = await Db.Queryable<goods_cats>()
                             .FirstAsync(x => x.catId == parm.attr);
-                        if (cats_parentId!=null)
+                       if (cats_parentId!=null)
                        {
-                          var isparentId0 = await Db.Queryable<goods_cats>()
-                               .AnyAsync(x => x.catId == cats_parentId.catId && x.parentId == 0);
-
-                           if (isparentId0)
-                           {
-                               parm.attr = Convert.ToInt32(cats_parentId.parentId);
-                               res.data = await Db.Queryable<goods_cats>()
-                                   .Where(x => x.parentId == parm.attr)
-                                   .ToPageAsync(parm.page, 300); ;
-                            }
-                        
+                           parm.attr = Convert.ToInt32(cats_parentId.parentId);
+                           res.data = await Db.Queryable<goods_cats>()
+                               .Where(x => x.parentId == parm.attr)
+                               .ToPageAsync(parm.page, 300); ;
                        }
                     }
+
+                    //如果 当前ID是二级分类而且没下带3级分类就不加载
+                    if (res.data != null && res.data.Items != null && res.data.Items.Count>0)
+                    {
+                        var parentId = res.data.Items[0].parentId;
+                        if (await Db.Queryable<goods_cats>()
+                                .AnyAsync(x => x.catId == parentId && x.parentId == 0))
+                        {
+                            res.data.Items = null;
+                        }
+                    }
+                  
+
                 }
                 else
                 {

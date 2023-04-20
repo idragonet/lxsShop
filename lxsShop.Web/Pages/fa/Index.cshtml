@@ -11,7 +11,17 @@
     <link rel="stylesheet" href="/Static/css/product.min.css?v=5b03619417" type="text/css">
 
 }
-<div class="breadcrumb frame">@Model.TopcatName<small>/</small> <a href="/catalog/@Model.goods.goodsCatId/">@Model.goods.catName</a> </div>
+
+@{
+    if (!string.IsNullOrEmpty(Model.Class1catName))//显示3级导航
+    {
+        <div class="breadcrumb frame"><a href="/catalog/@Model.Class1catID/">@Model.Class1catName</a><small>/</small><a href="/catalog/@Model.TopcatID/">@Model.TopcatName</a><small>/</small> <a href="/catalog/@Model.goods.goodsCatId/">@Model.goods.catName</a> </div>
+    }
+    else//显示2级导航
+    {
+        <div class="breadcrumb frame"><a href="/catalog/@Model.TopcatID/">@Model.TopcatName</a><small>/</small> <a href="/catalog/@Model.goods.goodsCatId/">@Model.goods.catName</a> </div>
+    }
+}
 
 <div id="container" class="frame">
     <div class="goods-info clearfix">
