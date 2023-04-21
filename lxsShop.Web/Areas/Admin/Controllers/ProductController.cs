@@ -201,7 +201,16 @@ namespace lxsShop.Web.Areas.Admin.Controllers
                
                 goods_cat.isShow = 1;
                 goods_cat.CreateDate=DateTime.Now;
-                goods_catsservice.Insert(goods_cat);
+
+
+                string[] array = goods_cat.catName.Split(',');
+                List<string> list = array.ToList();
+                foreach (string catName in list)
+                {
+                    goods_cat.catName = catName;
+                    goods_catsservice.Insert(goods_cat);
+                }
+             
 
                 //  db.Depts.Add(dept);
                 //  db.SaveChanges();

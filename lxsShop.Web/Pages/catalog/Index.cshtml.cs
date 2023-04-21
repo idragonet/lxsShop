@@ -80,7 +80,7 @@ namespace lxsShop.Web.Pages.catalog
                 .ToList();
             //.OrderByDescending(x=>x.catSort).ToList();
 
-            var post2 = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 300});
+            var post2 = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 10000});
             goods_cats = post2.data.Items.MapTo<List<goods_catsViewModel>>().OrderByDescending(x => x.catSort).ToList();
 
 
