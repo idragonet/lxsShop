@@ -27,11 +27,11 @@
                         .Items(
                            
                             F.TextBoxFor(m => m.goodsSn).MaxLength(50),
-                            F.TextBoxFor(m => m.goodsName).MaxLength(50),
+                            F.TextBoxFor(m => m.goodsName).MaxLength(100),
                             F.CheckBoxFor(m=>m.isNew),
                             // F.CheckBoxFor(m=>m.isRecom),
                             F.NumberBoxFor(m=>m.ordering),
-                            F.TextBoxFor(m => m.goodsSeoKeywords).MaxLength(50),
+                            F.TextBoxFor(m => m.goodsSeoKeywords).MaxLength(100),
                             F.FileUpload().ID("filePhoto").EmptyText("请选择一张商品图（350*350）").Label("商品图片").Required(true).ShowRedStar(true),
                             F.DropDownListFor(m => m.goodsCatId).EnableSimulateTree(true).DataTextField("catName").DataValueField("catId").DataSimulateTreeLevelField("TreeLevel").Required(true).ShowRedStar(true).DataSource(ViewBag.goods_catsDataSource),
                          
