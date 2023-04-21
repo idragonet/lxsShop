@@ -11,6 +11,7 @@ using lxsShop.NewServices;
 using lxsShop.NewServices.Interfaces;
 using lxsShop.ViewModel;
 using lxsShop.Web.Extension;
+using Masuit.Tools;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -92,26 +93,44 @@ namespace lxsShop.Web.Pages.catalog
                     .ToList();
             }
 
+            
 
-            var postgoods = await _goodserver.GetPagesAsync(new PageParm()
-            {
-                limit = 16, page = Convert.ToInt16(pages), attr = ID, where = "goodsCatId",
-                field = "ordering DESC,CreateDate DESC"
-            });
 
-            var catList = goods_cats.Where(t => t.catId == ID).ToList();
-            CatName = catList[0].catName;
-
-            catList = goods_cats.Where(t => t.catId == ID && t.parentId == 0).ToList();
+            //当前类别是一级的时候读取商品
+            var postgoods = new ApiResult<Page<goodsViewModel>>();
+            var catList = goods_cats.Where(t => t.catId == ID && t.parentId == 0).ToList();
             if (catList.Count > 0)
             {
                 CatName = catList[0].catName;
                 catList = goods_cats.Where(t => t.parentId == ID).ToList();
-                var catLong = catList.Select(t => t.catId).ToList();
+                var catLong = catList.Select(t => t.catId).ToList();//加载二级分类ID
+
+                for (int i = 0; i < catLong.Count; i++)//加载三级分类ID
+                {
+                    var cat3List = goods_cats.Where(t => t.parentId == catLong[i] ).ToList();
+                    catLong.AddRange(cat3List.Select(t => t.catId).ToList());
+                }
+
                 postgoods = await _goodserver.GetPagesAsync(new PageParm()
                 {
                     limit = 16, page = Convert.ToInt16(pages), IdList = catLong, field = "ordering DESC,CreateDate DESC"
                 });
+            }
+            else //当前类别是二级、三级的时候读取商品
+            {
+                var cat3List2 = goods_cats.Where(t => t.parentId == ID).ToList();
+                var catLong2 = cat3List2.Select(t => t.catId).ToList();
+                catLong2.Add(ID);
+                 postgoods = await _goodserver.GetPagesAsync(new PageParm()
+                {
+                    limit = 16,
+                    page = Convert.ToInt16(pages),
+                    IdList = catLong2,
+                    field = "ordering DESC,CreateDate DESC"
+                });
+
+                catList = goods_cats.Where(t => t.catId == ID).ToList();
+                CatName = catList[0].catName;
             }
 
             goods = postgoods.data.Items.MapTo<List<goodsViewModel>>();

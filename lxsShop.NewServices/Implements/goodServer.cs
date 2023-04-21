@@ -87,7 +87,7 @@ namespace lxsShop.NewServices.Implements
 
 
         /// <summary>
-        /// 获得列表
+        /// 获得产品列表
         /// </summary>
         /// <returns></returns>
         public async Task<ApiResult<Page<goodsViewModel>>> GetPagesAsync(PageParm param)
