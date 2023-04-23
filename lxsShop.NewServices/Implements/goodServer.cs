@@ -138,6 +138,7 @@ namespace lxsShop.NewServices.Implements
 
                         .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "search" && param.attr > 0, (g, gc, b) => g.goodsName.Contains(param.key) && g.goodsCatId == param.attr) //搜索 + 指定类别
                         .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "search", (g, gc, b) => g.goodsName.Contains(param.key) || g.goodsSn.Contains(param.key)) //搜索
+                        .WhereIF(!string.IsNullOrEmpty(param.where) && param.where == "search2", (g, gc, b) => gc.catName==param.key) //搜索类别名称
 
                         //  .WhereIF(!string.IsNullOrEmpty(param.guid), (b, m, g) => b.QuestionGuid == param.guid)  //问题
                         //  .OrderByIF(param.attr == 1, (b, m, g) => b.AddTime, OrderByType.Desc)  //热门排序

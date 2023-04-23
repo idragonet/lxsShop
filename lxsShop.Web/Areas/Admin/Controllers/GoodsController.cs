@@ -16,6 +16,7 @@ using Masuit.Tools.Media;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using DbFactory = lxsShop.NewServices.DbFactory;
 using Image = System.Drawing.Image;
 
@@ -79,6 +80,94 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
 
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Search2_Click(string[] Grid1_fields, string searchKey)
+        {
+            var grid1 = UIHelper.Grid("Grid1");
+
+            var parm = new PageParm
+            {
+                page = 1,
+                limit = 500,
+            };
+
+            if (!string.IsNullOrEmpty(searchKey))
+            {
+                parm = new PageParm
+                {
+                    page = 1,
+                    limit = 500,
+                    key = searchKey,
+                    where = "search2"
+                };
+            }
+
+
+            var post = await _goodserver.GetPagesAsync(
+                parm
+            );
+
+            var recordCount = Convert.ToInt32(post.data.TotalItems);
+
+            // 1.设置总项数（数据库分页回发时，如果总记录数不变，可以不设置RecordCount）
+            grid1.RecordCount(recordCount);
+
+            grid1.DataSource(post.data.Items, Grid1_fields);
+
+            return UIHelper.Result();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ModClass_Click(JArray selected)
+        {
+            foreach (JArray item in selected)
+            {
+                /*sb.AppendFormat("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>",
+                    item[0], item[1],
+                    Convert.ToInt32(item[2].ToString()) == 1 ? "男" : "女",
+                    item[3]);*/
+            }
+
+            var grid1 = UIHelper.Grid("Grid1");
+            var parm = new PageParm
+            {
+                page = 1,
+                limit = 500,
+            };
+
+            /*
+            if (!string.IsNullOrEmpty(searchKey))
+            {
+                parm = new PageParm
+                {
+                    page = 1,
+                    limit = 500,
+                    key = searchKey,
+                    where = "search2"
+                };
+            }
+
+
+            var post = await _goodserver.GetPagesAsync(
+                parm
+            );
+
+            var recordCount = Convert.ToInt32(post.data.TotalItems);
+
+            // 1.设置总项数（数据库分页回发时，如果总记录数不变，可以不设置RecordCount）
+            grid1.RecordCount(recordCount);
+
+            grid1.DataSource(post.data.Items, Grid1_fields);
+            */
+
+            return UIHelper.Result();
+        }
+
+        
+
         #region 显示、删除
 
         /*[HttpGet]
@@ -92,6 +181,17 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public async Task<IActionResult> Index([FromQuery] PageParm request)
         {
+            var postcat = await _goodscatsserver.GetPagesAsync(new PageParm() { limit = 10000 });
+            var result = postcat.data.Items.MapTo<List<goods_catsViewModel>>();
+            _resultNew = new List<goods_catsViewModel>();
+
+            var root = new goods_catsViewModel { parentId = -1, catId = 0, catName = "--根节点--" };
+            result.Add(root);
+
+            ResolveCollection(result, null, -1, 0);
+            ViewBag.goods_catsDataSource = _resultNew;
+
+
             request.limit = 50;
           //  request.order = "DESC";
             request.field = "ordering DESC,CreateDate DESC";
@@ -248,7 +348,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public async Task<IActionResult> New()
         {
-            var post = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 1000});
+            var post = await _goodscatsserver.GetPagesAsync(new PageParm() {limit = 10000 });
             var result = post.data.Items.MapTo<List<goods_catsViewModel>>();
             _resultNew = new List<goods_catsViewModel>();
 
@@ -368,10 +468,9 @@ namespace lxsShop.Web.Areas.Admin.Controllers
         [Authorize]
         public async Task<IActionResult> Edit(int id)
         {
-            var post = await _goodscatsserver.GetPagesAsync(new PageParm { limit = 1000});
+            var post = await _goodscatsserver.GetPagesAsync(new PageParm { limit = 10000 });
             var result = post.data.Items.MapTo<List<goods_catsViewModel>>();
 
-         
 
             _resultNew = new List<goods_catsViewModel>();
 

@@ -27,8 +27,8 @@
     @(F.Panel().ID("Panel1").BodyPadding(5).ShowBorder(false).Layout(LayoutType.VBox).ShowHeader(true).Title("商品管理").IsViewPort(true)
         .Items(
             F.Grid().ID("Grid1").BoxFlex(1).ShowBorder(true).ShowHeader(false).EnableTextSelection(true)
-                .EnableCheckBoxSelect(false).DataIDField("goodsId")
-                            .AllowPaging(true).PageSize(50).IsDatabasePaging(true).OnPageIndexChanged(Url.Action("Grid1_PageIndexChangedOrSort"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()"))
+                .EnableCheckBoxSelect(true).DataIDField("goodsId")
+                .AllowPaging(true).PageSize(50).IsDatabasePaging(true).OnPageIndexChanged(Url.Action("Grid1_PageIndexChangedOrSort"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()"))
                 .AllowSorting(true).SortField(ViewBag.Grid1SortField).SortDirection(ViewBag.Grid1SortDirection).OnSort(Url.Action("Grid1_PageIndexChangedOrSort"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()"))
                 .Columns(
                     F.RowNumberField().EnablePagingNumber(true),
@@ -43,19 +43,25 @@
                     F.RenderFieldFor(m => m.CreateDate, true).Width(170).FieldFormat("yyyy-MM-dd HH:mm"),
                     F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).TextAlign(TextAlign.Center).RendererFunction("renderActionEdit").Width(50),
                     F.RenderField().HeaderText("").EnableHeaderMenu(false).EnableColumnHide(false).TextAlign(TextAlign.Center).RendererFunction("renderActionDelete").Width(50),
-                            F.RenderField().HeaderText("浏览").EnableHeaderMenu(false).EnableColumnHide(false).DataField("goodsId").TextAlign(TextAlign.Center).RendererFunction("renderBrowse").Width(50)
+                    F.RenderField().HeaderText("浏览").EnableHeaderMenu(false).EnableColumnHide(false).DataField("goodsId").TextAlign(TextAlign.Center).RendererFunction("renderBrowse").Width(50)
                 ).RecordCount(ViewBag.Grid1RecordCount).DataSource(Model)
         )
         .Toolbars(
             F.Toolbar().ID("Toolbar1").Position(ToolbarPosition.Top)
                 .Items(
-                                F.ToolbarFill(), F.TextBox().ID("tbxSearch").Label("搜索").LabelWidth(50).Width(350).Listener("enter", "onTextBoxEnter").EmptyText("商品编号、名称"),
-                                                F.Button().ID("btnSerch").Icon(Icon.SystemSearch).Text("搜索").OnClick(Url.Action("Search_Click"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()")),
-                   F.ToolbarSeparator(),
+                    F.ToolbarFill(), F.TextBox().ID("tbxSearch").Label("搜索").LabelWidth(50).Width(350).Listener("enter", "onTextBoxEnter").EmptyText("商品编号、商品名称、类别"),
+                    F.Button().ID("btnSerch").Icon(Icon.SystemSearch).Text("搜索").OnClick(Url.Action("Search_Click"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()")),
+                    F.ToolbarSeparator(),
+                    F.Button().ID("btnSerch2").Icon(Icon.SystemSearch).Text("搜类别").OnClick(Url.Action("Search2_Click"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()")),
+
+                    F.DropDownList().EnableSimulateTree(true).DataTextField("catName").DataValueField("catId").Width(320).DataSimulateTreeLevelField("TreeLevel").DataSource(ViewBag.goods_catsDataSource),
+                    F.Button().ID("btnModClass").Icon(Icon.TagBlueEdit).Text("改类别").ConfirmText("选中行确定修改类别?").ConfirmIcon(MessageBoxIcon.Question).ConfirmTitle("操作确认").OnClick(Url.Action("ModClass_Click"), "Grid1", new Parameter("selected", "getGridSelectedRows()")),
+
+
+                    F.ToolbarSeparator(),
                     F.Button().ID("btnNew").Icon(Icon.Add).Text("新增").Listener("click", "onNewClick")
                 )
-        )
-        )
+        ))
 
     @(F.Window().ID("Window1").IsModal(true).Hidden(true).Target(Target.Top).EnableResize(true).EnableMaximize(true).EnableIFrame(true).Width(1000).Height(780).OnClose(Url.Action("DoPostBack"), "Panel1"))
 
@@ -67,6 +73,24 @@
 @section script {
 
     <script>
+
+        function getGridSelectedRows() {
+            var result = [], grid = F.ui.Grid1;
+
+            $.each(grid.getSelectedRows(true), function (index, item) {
+                var itemArr = [];
+                itemArr.push(item.id);
+                itemArr.push(item.text);
+                itemArr.push(item.values.Gender);
+                itemArr.push(item.values.Major);
+
+                result.push(itemArr);
+            });
+
+            return F.toJSON(result);
+        }
+
+        
 
         var coreDeptEdit = '';
         var coreDeptDelete = '';
