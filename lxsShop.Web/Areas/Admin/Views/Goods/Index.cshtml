@@ -54,8 +54,8 @@
                     F.ToolbarSeparator(),
                     F.Button().ID("btnSerch2").Icon(Icon.SystemSearch).Text("搜类别").OnClick(Url.Action("Search2_Click"), "Grid1", new Parameter("searchKey", "F.ui.tbxSearch.getValue()")),
 
-                    F.DropDownList().EnableSimulateTree(true).DataTextField("catName").DataValueField("catId").Width(320).DataSimulateTreeLevelField("TreeLevel").DataSource(ViewBag.goods_catsDataSource),
-                    F.Button().ID("btnModClass").Icon(Icon.TagBlueEdit).Text("改类别").ConfirmText("选中行确定修改类别?").ConfirmIcon(MessageBoxIcon.Question).ConfirmTitle("操作确认").OnClick(Url.Action("ModClass_Click"), "Grid1", new Parameter("selected", "getGridSelectedRows()")),
+                        F.DropDownList().ID("DropDownListCat").EnableSimulateTree(true).DataTextField("catName").DataValueField("catId").Width(320).DataSimulateTreeLevelField("TreeLevel").DataSource(ViewBag.goods_catsDataSource),
+                                F.Button().ID("btnModClass").Icon(Icon.TagBlueEdit).Text("改类别").ConfirmText("选中行确定修改类别?").ConfirmIcon(MessageBoxIcon.Question).ConfirmTitle("操作确认").OnClick(Url.Action("ModClass_Click"), "Grid1", new[] { new Parameter("selected", "getGridSelectedRows()"), new Parameter("catid", "F.ui.DropDownListCat.getValue()") }),
 
 
                     F.ToolbarSeparator(),

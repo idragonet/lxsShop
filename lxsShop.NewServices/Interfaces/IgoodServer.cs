@@ -37,5 +37,14 @@ namespace lxsShop.NewServices.Interfaces
         /// </summary>
         /// <returns></returns>
         Task<ApiResult<string>> ModifyAsync(goods parm);
+
+
+        /// <summary>
+        /// 批量修改商品归属类别
+        /// </summary>
+        /// <param name="catid"></param>
+        /// <param name="googList"></param>
+        /// <returns></returns>
+        Task<ApiResult<string>> ModifyCatAsync(long catid, List<long> googList);
     }
 }

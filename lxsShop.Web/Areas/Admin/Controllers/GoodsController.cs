@@ -121,22 +121,38 @@ namespace lxsShop.Web.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ModClass_Click(JArray selected)
+        public async Task<IActionResult> ModClass_Click(JArray selected,long catid)
         {
+            var goodsList = new List<long>();
             foreach (JArray item in selected)
             {
+                goodsList.Add(Convert.ToInt64(item[0]));
+
                 /*sb.AppendFormat("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td></tr>",
                     item[0], item[1],
                     Convert.ToInt32(item[2].ToString()) == 1 ? "男" : "女",
                     item[3]);*/
             }
 
-            var grid1 = UIHelper.Grid("Grid1");
-            var parm = new PageParm
+            if (selected.Count == 0)
             {
-                page = 1,
-                limit = 500,
-            };
+                ShowNotify("没有选择行.", MessageBoxIcon.Warning);
+            }
+            if (catid<= 0)
+            {
+                ShowNotify("请选择正确类别.", MessageBoxIcon.Warning);
+            }
+
+            var post = await _goodserver.ModifyCatAsync(catid, goodsList);
+
+            if (post.success)
+            {
+                ShowNotify(post.message, MessageBoxIcon.Information);
+            }
+            else
+            {
+                ShowNotify("更新失败.", MessageBoxIcon.Warning);
+            }
 
             /*
             if (!string.IsNullOrEmpty(searchKey))

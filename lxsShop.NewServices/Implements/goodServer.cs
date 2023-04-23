@@ -211,5 +211,49 @@ namespace lxsShop.NewServices.Implements
 
             return res;
         }
+
+
+
+        /// <summary>
+        /// 修改商品类别
+        /// </summary>
+        /// <param name="parm"></param>
+        /// <returns></returns>
+        public async Task<ApiResult<string>> ModifyCatAsync(long catid,List<long> googList)
+        {
+            var res = new ApiResult<string>() { statusCode = 200 };
+            try
+            {
+              var updatecount=  Db.Updateable<goods>()
+                    .SetColumns(x => x.goodsCatId == catid)
+                    .Where(x=> googList.Contains(x.goodsId))
+                    .ExecuteCommand();
+
+
+                if (updatecount == 0)
+                {
+                    res.success = false;
+                    res.statusCode = (int)ApiEnum.Error;
+                    res.message = "更新数据失败~";
+                }
+                else
+                {
+                    res.success= true;
+                    res.message= "更新成功"+updatecount+"条数据.";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                res.statusCode = (int)ApiEnum.Error;
+                res.message = ApiEnum.Error.GetEnumText() + ex.Message;
+                // Logger.Default.ProcessError((int)ApiEnum.Error, ex.Message);
+            }
+
+            return res;
+        }
+
+
+
     }
 }
