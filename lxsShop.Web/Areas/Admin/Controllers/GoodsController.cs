@@ -89,7 +89,7 @@ namespace lxsShop.Web.Areas.Admin.Controllers
             var parm = new PageParm
             {
                 page = 1,
-                limit = 500,
+                limit = 50,
             };
 
             if (!string.IsNullOrEmpty(searchKey))
