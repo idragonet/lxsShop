@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Entitys;
 using HtmlAgilityPack;
@@ -9,6 +10,7 @@ using lxsShop.NewServices.Interfaces;
 using lxsShop.ViewModel;
 using lxsShop.Web.Extension;
 using Masuit.Tools;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -60,6 +62,8 @@ namespace lxsShop.Web.Pages.search
 
         public async Task<IActionResult> OnGetAsync(string keyword)
         {
+            keyword = Regex.Replace(keyword, @"<[^>]*>", String.Empty);//·ÀÖ¹XSS¹¥»÷
+
             if (pages == null) pages = 1;
 
             if (IsAjax(HttpContext.Request))

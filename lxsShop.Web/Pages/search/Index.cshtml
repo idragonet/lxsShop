@@ -1,4 +1,5 @@
 ﻿@page "{keyword?}/{pages:int?}"
+@using System.Text.RegularExpressions
 @model lxsShop.Web.Pages.search.IndexModel
 @{
     Layout = "Shared/_Layout";
@@ -23,7 +24,7 @@
             </h3>
             <div class="cate-dl">
                 <dl>
-                    <dt class="cate-dl-c"><a href="/search/@Model.keyword">全部分类</a></dt>
+                    <dt class="cate-dl-c"><a href="/search/@Html.Raw(Model.keyword)">全部分类</a></dt>
                 </dl>
 
                 @*https://localhost:44391/search/%E9%98%B2%E9%9D%99%E7%94%B5?catid=11&p=111*@
@@ -34,7 +35,7 @@
                         foreach (var item in Model.goodscatsLeft)
                         {
                             <dl>
-                                <dt class="cate-dl-c"><a href="/search/@Model.keyword?catid=@item.catId">@item.catName</a></dt>
+                                <dt class="cate-dl-c"><a href="/search/@Html.Raw(Model.keyword)?catid=@item.catId">@item.catName</a></dt>
                             </dl>
                         }
                     }
@@ -82,7 +83,7 @@
 
 
         <div class="products-list" id="products_list">
-            <h2 class="title">搜索“<strong>@Model.keyword</strong>”相关的产品 <small>@Model.GoodsCount</small></h2>
+            <h2 class="title">搜索“<strong>@Html.Raw(Regex.Replace(Model.keyword, @"<[^>]*>", String.Empty))</strong>”相关的产品 <small>@Model.GoodsCount</small></h2>
             <ul class="products-ul clearfix">
 
                 @if (Model.goods.Any())
@@ -106,7 +107,7 @@
             @{
                 if (Model.TotalPages > 1)
                 {
-                    string baseUrl = "/search/" + Model.keyword + "?p={0}{1}";
+                    string baseUrl = "/search/" + @Html.Raw(Model.keyword) + "?p={0}{1}";
 
                     string cat = "";
                     if (Model.CatID > 0)

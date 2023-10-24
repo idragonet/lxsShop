@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using lxsShop.NewServices;
 using lxsShop.NewServices.Interfaces;
+using System.Text.RegularExpressions;
 
 namespace lxsShop.Web.Pages.API
 {
@@ -26,10 +27,10 @@ namespace lxsShop.Web.Pages.API
         [HttpPost]
         public async Task<ActionResult> search_suggest([FromForm] string keyword)
         {
-             
-            
+            keyword = Regex.Replace(keyword, @"<[^>]*>", String.Empty);//防止XSS攻击
+
             // [FromForm] string keyword, 
-             var postgoods = await _goodserver.GetPagesAsync(new PageParm()
+            var postgoods = await _goodserver.GetPagesAsync(new PageParm()
              {
                  key = keyword, 
                  where = "search"
